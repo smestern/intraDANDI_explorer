@@ -1,1 +1,1 @@
-web: gunicorn dandi_scraper:server
+web: gunicorn dandi_scraper:server -t 120
