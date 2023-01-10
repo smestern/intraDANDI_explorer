@@ -2,7 +2,7 @@
 #for heroku deployment we have to force install some packages here
 import sys
 import subprocess
-packages = ['dandi', 'dash-table', 'pyabf', 'allensdk',]
+packages = ['dandi --no-deps', 'dash-table', 'pyabf', 'allensdk',]
 # implement pip as a subprocess:
 for package in packages:
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', package])
