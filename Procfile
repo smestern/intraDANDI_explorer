@@ -1,1 +1,1 @@
-web: gunicorn dandi_scraper:server -t 120
+web: gunicorn --timeout 120 dandi_scraper:server 
