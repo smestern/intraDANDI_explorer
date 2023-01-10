@@ -1,3 +1,12 @@
 h5py
 allensdk
 gunicorn
+dash,
+dash-core-components
+dash-bootstrap-components
+plotly
+sklearn
+numpy
+scipy
+pandas
+git+https://github.com/smestern/pyAPisolation.git

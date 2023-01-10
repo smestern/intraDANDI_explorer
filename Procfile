@@ -1,1 +1,1 @@
-web: gunicorn dandi_scraper:main
+web: gunicorn dandi_scraper:server
