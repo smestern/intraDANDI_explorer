@@ -1,1 +1,1 @@
-web: gunicorn dandi_scraper.py
+web: gunicorn dandi_scraper:dandi_scraper
