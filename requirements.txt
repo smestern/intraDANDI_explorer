@@ -15,6 +15,6 @@ pandas==0.25.3
 plotly==5.5.0
 pyabf==2.2.8
 pynwb==1.5.1
-scikit_learn==1.2.0
+scikit_learn>=1.2.0
 scipy==1.7.3
 umap==0.1.1
