@@ -37,8 +37,8 @@ import pandas as pd
 import numpy as np
 import pyabf
 from sklearn.preprocessing import StandardScaler, LabelEncoder
-from build_database import run_analysis, parse_long_pulse_from_dataset
-from dash_folder_app import live_data_viz, GLOBAL_VARS
+from .build_database import run_analysis, parse_long_pulse_from_dataset
+from .dash_folder_app import live_data_viz, GLOBAL_VARS
 from sklearn.ensemble import IsolationForest
 
 def build_dandiset_df():
