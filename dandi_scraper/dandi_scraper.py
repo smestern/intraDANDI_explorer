@@ -2,10 +2,10 @@
 #for heroku deployment we have to force install some packages here
 import sys
 import subprocess
-packages = ['ipfx --no-deps', ]
+packages = ['ipfx', ]
 # implement pip as a subprocess:
 for package in packages:
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', package])
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', package, '--no-deps'])
 
 #test imports
 
@@ -37,8 +37,8 @@ import pandas as pd
 import numpy as np
 import pyabf
 from sklearn.preprocessing import StandardScaler, LabelEncoder
-from .build_database import run_analysis, parse_long_pulse_from_dataset
-from .dash_folder_app import live_data_viz, GLOBAL_VARS
+from build_database import run_analysis, parse_long_pulse_from_dataset
+from dash_folder_app import live_data_viz, GLOBAL_VARS
 from sklearn.ensemble import IsolationForest
 
 def build_dandiset_df():
