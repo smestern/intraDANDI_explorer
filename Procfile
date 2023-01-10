@@ -1,1 +1,1 @@
-web: gunicorn dandi_scraper:dandi_scraper
+web: gunicorn dandi_scraper:dandi_data_viz2.app
