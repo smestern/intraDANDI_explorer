@@ -3,6 +3,7 @@ gunicorn
 pyabf==2.2.8
 pg8000
 methodtools
+fsspec
 dash
 dash-core-components
 dash-bootstrap-components
