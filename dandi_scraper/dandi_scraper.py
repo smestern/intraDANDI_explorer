@@ -358,7 +358,7 @@ GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
 GLOBAL_VARS.umap_labels = ['dandiset label', 'species', 'GMM cluster label']
 
 
-dandi_data_viz2 = dandi_data_viz(database_file=f'{__name__}/all.csv')
+dandi_data_viz2 = dandi_data_viz(database_file=f'./all.csv')
 server = dandi_data_viz2.app.server
 
     
