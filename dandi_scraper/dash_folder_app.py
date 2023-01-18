@@ -1,6 +1,6 @@
 # os sys imports
 from pyAPisolation.loadNWB import loadFile
-from pyAPisolation.abf_featureextractor import *
+from pyAPisolation.feature_extractor import *
 from pyAPisolation.patch_ml import *
 import os
 import sys
@@ -47,6 +47,11 @@ class analysis_fields():
 
 GLOBAL_VARS = analysis_fields()
 
+BOOTSTRAP_TABLE_CSS = ['https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css']
+BOOTSTRAP_TABLE_JS = ['https://unpkg.com/bootstrap-table/dist/bootstrap-table.min.js']
+
+
+
 def _df_select_by_col(df, string_to_find):
     columns = df.columns.values
     out = []
@@ -64,7 +69,7 @@ class live_data_viz():
         self.para_df = None
         self._run_analysis(dir_path, database_file)
 
-        app = dash.Dash(__name__,)
+        app = dash.Dash(__name__, external_stylesheets=[*BOOTSTRAP_TABLE_CSS], external_scripts=[*BOOTSTRAP_TABLE_JS])
 
         # find pregenerated labels
         self.labels = self._find_label_cols(self.df_raw)
@@ -128,7 +133,7 @@ class live_data_viz():
                 'overflow': 'hidden',
                 'textOverflow': 'ellipsis',
                 'maxWidth': 0
-            }
+            },style_table={'class': 'table table-hover table-bordered table-sm'}
 
         )],className="table-card-like table-borderless table-striped", id='data-table-col')
 
