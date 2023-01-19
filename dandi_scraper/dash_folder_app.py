@@ -69,7 +69,7 @@ class live_data_viz():
         self.para_df = None
         self._run_analysis(dir_path, database_file)
 
-        app = dash.Dash(__name__, external_stylesheets=[*BOOTSTRAP_TABLE_CSS], external_scripts=[*BOOTSTRAP_TABLE_JS])
+        app = dash.Dash(__name__)
 
         # find pregenerated labels
         self.labels = self._find_label_cols(self.df_raw)
@@ -133,9 +133,9 @@ class live_data_viz():
                 'overflow': 'hidden',
                 'textOverflow': 'ellipsis',
                 'maxWidth': 0
-            },style_table={'class': 'table table-hover table-bordered table-sm'}
+            },
 
-        )],className="table-card-like table-borderless table-striped", id='data-table-col')
+        )], id='data-table-col')
 
         app.layout = html.Div([dbc.Container([dbc.Container([
             dbc.Row([header]),
