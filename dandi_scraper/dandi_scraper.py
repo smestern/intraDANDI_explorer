@@ -301,10 +301,10 @@ class dandi_data_viz(live_data_viz):
         
         # first, create a virtual filesystem based on the http protocol and use
         # we need to parse the speciemen id to get the 
-        dandiset_id = specimen_id.split('//')[1].split('/')[0]
-        filepath = '/'.join(specimen_id.split('//')[1].split('/')[1:])
+        dandiset_id = specimen_id.split('/')[1]
+        filepath = '/'.join(specimen_id.split('/')[2:])
         with DandiAPIClient() as client:
-            asset = client.get_dandiset(dandiset_id, 'draft').get_asset_by_path(filepath)
+            asset = client.get_dandiset(dandiset_id).get_asset_by_path(filepath)
             s3_url = asset.get_content_url(follow_redirects=1, strip_query=True)
         # next, open the file
         with fs.open(s3_url, "rb") as f:

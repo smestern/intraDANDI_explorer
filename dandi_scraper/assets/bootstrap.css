@@ -685,11 +685,7 @@
    }
  }
  
- @media (min-width: 1500px) {
-   .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
-     max-width: 1450px;
-   }
- }
+ 
  
  .row {
    --bs-gutter-x: 1.5rem;
