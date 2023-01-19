@@ -99,7 +99,7 @@ class live_data_viz():
                                    style={"min-height": "500px"}),
                       dbc.CardFooter(["Select Color:", self.dropdown]),
                       ])],
-            width=6)
+            width=12)
         col_para = dbc.Col([dbc.Card(
             [dbc.CardHeader(dbc.Button(
                             "Paracoords Plot",
@@ -139,7 +139,7 @@ class live_data_viz():
 
         app.layout = html.Div([dbc.Container([
             dbc.Row([header]),
-            dbc.Row([col_para, col_umap,], className="g-0"),
+            dbc.Row([ col_umap,], className="g-0"),
             dbc.Row([ col_long]),
             dbc.Row([col_datatable])
         
