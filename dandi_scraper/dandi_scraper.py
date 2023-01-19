@@ -304,7 +304,7 @@ class dandi_data_viz(live_data_viz):
         dandiset_id = specimen_id.split('/')[1]
         filepath = '/'.join(specimen_id.split('/')[2:])
         with DandiAPIClient() as client:
-            asset = client.get_dandiset(dandiset_id).get_asset_by_path(filepath)
+            asset = client.get_dandiset(dandiset_id, 'draft').get_asset_by_path(filepath)
             s3_url = asset.get_content_url(follow_redirects=1, strip_query=True)
         # next, open the file
         with fs.open(s3_url, "rb") as f:
@@ -320,9 +320,9 @@ class dandi_data_viz(live_data_viz):
             x = np.array([sweep.t[int(sweep.sampling_rate*start_time):int(sweep.sampling_rate*end_time)] for i, sweep in enumerate(sweeps) if i in idx_pass])
             y = np.array([sweep.v[int(sweep.sampling_rate*start_time):int(sweep.sampling_rate*end_time)] for i, sweep in enumerate(sweeps) if i in idx_pass])
             c = np.array([sweep.i[int(sweep.sampling_rate*start_time):int(sweep.sampling_rate*end_time)] for i, sweep in enumerate(sweeps) if i in idx_pass])
-        if len(y) > 10:
+        if len(y) > 5:
             #grab every n sweeps so the length is about 10
-            idx = np.arange(0, len(y), int(len(y)/10))
+            idx = np.arange(0, len(y), int(len(y)/5))
             x = x[idx]
             y = y[idx]
             c = c[idx]
