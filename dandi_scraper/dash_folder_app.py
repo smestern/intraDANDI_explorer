@@ -137,12 +137,13 @@ class live_data_viz():
 
         )], id='data-table-col')
 
-        app.layout = html.Div([dbc.Container([dbc.Container([
+        app.layout = html.Div([dbc.Container([
             dbc.Row([header]),
             dbc.Row([col_para, col_umap,], className="g-0"),
             dbc.Row([ col_long]),
             dbc.Row([col_datatable])
-        ], fluid=True, style={"margin-left": "auto","margin-right": "auto"})],),
+        
+        ]),
             dcc.Interval(
             id='interval-component',
             interval=240*1000,  # in milliseconds
