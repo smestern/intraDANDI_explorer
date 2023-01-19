@@ -15,7 +15,6 @@ from collections import defaultdict
 #dandi functions
 # os sys imports
 from pyAPisolation.loadNWB import loadFile, loadNWB, GLOBAL_STIM_NAMES
-#from pyAPisolation.abf_featureextractor import *
 from pyAPisolation.patch_ml import *
 import os
 
