@@ -18,6 +18,10 @@ from pyAPisolation.loadNWB import loadFile, loadNWB, GLOBAL_STIM_NAMES
 from pyAPisolation.patch_ml import *
 import os
 
+import fsspec
+import pynwb
+import h5py
+from fsspec.implementations.cached import CachingFileSystem
 import glob
 import argparse
 import scipy.stats
@@ -39,6 +43,14 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from .build_database import run_analysis, parse_long_pulse_from_dataset
 from .dash_folder_app import live_data_viz, GLOBAL_VARS
 from sklearn.ensemble import IsolationForest
+
+
+#global the cache
+FS = CachingFileSystem(
+        fs=fsspec.filesystem("http"),
+        cache_storage="nwb-cache",  # Local folder for the cache
+    )
+
 
 def build_dandiset_df():
     client = DandiAPIClient()
@@ -183,13 +195,16 @@ def run_merge_dandiset():
     import umap
     from sklearn.impute import SimpleImputer
     from sklearn.mixture import GaussianMixture
+    from sklearn.decomposition import PCA
     csv_files = glob.glob('/media/smestern/Expansion/dandi/*.csv')
     csv_files = [x.split('/')[-1].split('.')[0] for x in csv_files]
     dfs = []
     dataset_numeric = []
     for code in csv_files:
+        if code == 'all':
+            continue
         temp_df = pd.read_csv('/media/smestern/Expansion/dandi/'+code+'.csv', index_col=0)
-        temp_df = temp_df.dropna(axis=0, how='all', subset=temp_df.columns[:-3])
+        #temp_df = temp_df.dropna(axis=0, how='all', subset=temp_df.columns[:-3])
         temp_df.rename(columns={'dandiset': 'dandiset label', 'species label': 'species'}, inplace=True)
         
         dfs.append(temp_df)
@@ -217,26 +232,34 @@ def run_merge_dandiset():
     dataset_numeric = pd.concat(dataset_numeric, axis=0)
     dfs = dfs.loc[np.concatenate(idxs)]
     #embed the data
-    reducer = umap.UMAP(n_neighbors=150)
-    embedding = reducer.fit_transform(dataset_numeric.fillna(0))
+    import matplotlib.pyplot as plt
+    reducer = umap.UMAP(densmap=True, n_neighbors=150, random_state=42)
+    embedding = reducer.fit_transform(dataset_numeric)
     dfs['umap X'] = embedding[:,0]
     dfs['umap Y'] = embedding[:,1]
+    #plt.scatter(dfs['umap X'], dfs['umap Y'] , s=0.1)
+    
+    #also run PCA for fun
+    pca = PCA(n_components=2)
+    embedding = pca.fit_transform(dataset_numeric.fillna(0))
+    dfs['pca X'] = embedding[:,0]
+    dfs['pca Y'] = embedding[:,1]
+
 
     #generate some labels for fun
     gmm = GaussianMixture(n_components=15)
     gmm.fit(dataset_numeric.fillna(0))
     dfs['GMM cluster label'] = gmm.predict(dataset_numeric.fillna(0))
+
+
+
     
     dfs = quick_qc(dfs)
-
+    
     dfs.to_csv('/media/smestern/Expansion/dandi/all.csv')
 
 
 
-import fsspec
-import pynwb
-import h5py
-from fsspec.implementations.cached import CachingFileSystem
 
 
 class dandi_data_viz(live_data_viz):
@@ -307,7 +330,7 @@ class dandi_data_viz(live_data_viz):
             asset = client.get_dandiset(dandiset_id, 'draft').get_asset_by_path(filepath)
             s3_url = asset.get_content_url(follow_redirects=1, strip_query=True)
         # next, open the file
-        with fs.open(s3_url, "rb") as f:
+        with FS.open(s3_url, "rb") as f:
             _, _, _, _, data_set = loadNWB(f, return_obj=True)
             sweeps, start_times, end_times = parse_long_pulse_from_dataset(data_set)
             start_time = scipy.stats.mode(np.array(start_times))[0][0]
@@ -337,27 +360,25 @@ class dandi_data_viz(live_data_viz):
                     className="text-center"), width=12),
         ])
 
-def main():
-    pass
-#run_merge_dandiset()
-    # caching to save accessed data to RAM.
-fs = CachingFileSystem(
-    fs=fsspec.filesystem("http"),
-    cache_storage="nwb-cache",  # Local folder for the cache
-)
+def server():
+    
 
-GLOBAL_STIM_NAMES.stim_inc =['']
+    run_merge_dandiset()
+        # caching to save accessed data to RAM.
+    
 
-GLOBAL_VARS.file_index = 'specimen_id'
-GLOBAL_VARS.file_path = 'specimen_id'
-GLOBAL_VARS.table_vars_rq = ['specimen_id', 'dandiset label', 'species', 'GMM cluster label']
-GLOBAL_VARS.table_vars = ['ap_1', 'resist']
-GLOBAL_VARS.para_vars = ['ap_1', 'resist']
-GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
-GLOBAL_VARS.umap_labels = ['dandiset label', 'species', 'GMM cluster label']
+    GLOBAL_STIM_NAMES.stim_inc =['']
+
+    GLOBAL_VARS.file_index = 'specimen_id'
+    GLOBAL_VARS.file_path = 'specimen_id'
+    GLOBAL_VARS.table_vars_rq = ['specimen_id', 'dandiset label', 'species', 'GMM cluster label']
+    GLOBAL_VARS.table_vars = ['ap_1', 'resist']
+    GLOBAL_VARS.para_vars = ['ap_1', 'resist']
+    GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
+    GLOBAL_VARS.umap_labels = ['dandiset label', 'species', 'GMM cluster label']
 
 
-dandi_data_viz2 = dandi_data_viz(database_file=f'./all.csv')
-server = dandi_data_viz2.app.server
+    dandi_data_viz2 = dandi_data_viz(database_file=f'/media/smestern/Expansion/dandi/all.csv')
+    return dandi_data_viz2.app.server
 
     
