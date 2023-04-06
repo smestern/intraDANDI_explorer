@@ -363,7 +363,7 @@ class dandi_data_viz(live_data_viz):
 def server():
     
 
-    run_merge_dandiset()
+    #run_merge_dandiset()
         # caching to save accessed data to RAM.
     
 
@@ -378,7 +378,7 @@ def server():
     GLOBAL_VARS.umap_labels = ['dandiset label', 'species', 'GMM cluster label']
 
 
-    dandi_data_viz2 = dandi_data_viz(database_file=f'/media/smestern/Expansion/dandi/all.csv')
+    dandi_data_viz2 = dandi_data_viz(database_file=f'./all.csv')
     return dandi_data_viz2.app.server
 
     
