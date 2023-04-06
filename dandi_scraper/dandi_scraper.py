@@ -360,7 +360,7 @@ class dandi_data_viz(live_data_viz):
                     className="text-center"), width=12),
         ])
 
-def server(**kwargs):
+def build_server():
     
 
     #run_merge_dandiset()
@@ -379,6 +379,8 @@ def server(**kwargs):
 
 
     dandi_data_viz2 = dandi_data_viz(database_file=f'./all.csv')
-    return dandi_data_viz2.app.server(**kwargs)
+    return dandi_data_viz2.app.server
+
+server = build_server()
 
     
