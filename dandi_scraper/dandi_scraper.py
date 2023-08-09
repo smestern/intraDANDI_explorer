@@ -39,10 +39,15 @@ from plotly.subplots import make_subplots
 import pandas as pd
 import numpy as np
 import pyabf
+from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import StandardScaler, LabelEncoder
+
+#local imports
 from .build_database import run_analysis, parse_long_pulse_from_dataset
 from .dash_folder_app import live_data_viz, GLOBAL_VARS
-from sklearn.ensemble import IsolationForest
+from ._metadata_parser import dandi_meta_parser
+
+
 
 
 #global the cache
@@ -110,6 +115,15 @@ def build_dandiset_df():
         df["species"] = df["species"].replace(key, val)
     return df
 
+
+def get_dandi_metadata(code):
+    client = DandiAPIClient()
+    dandiset = client.get_dandiset(code)
+    metadata_parser = dandi_meta_parser(code)
+    metadata = metadata_parser.asset_data
+
+    return metadata
+
 def analyze_dandiset(code, cache_dir=None):
     df_dandiset = run_analysis(cache_dir+'/'+code)
     return df_dandiset
@@ -155,6 +169,9 @@ def quick_qc(df):
     df = df[df['ap_1_threshold_v_0_long_square'] > -100]
     df = df[df['ap_1_threshold_v_0_long_square'] < 100]
 
+    df = df[df['ap_1_width_0_long_square'] > (0.1/1000)]
+    df = df[df['ap_1_width_0_long_square'] < (10/1000)]
+
     #perform basic outliers checks
     df_num = df.select_dtypes(include=np.number).fillna(0)
     if_outlier = IsolationForest(random_state=0).fit_predict(df_num)
@@ -196,6 +213,8 @@ def run_merge_dandiset():
     from sklearn.impute import SimpleImputer
     from sklearn.mixture import GaussianMixture
     from sklearn.decomposition import PCA
+
+
     csv_files = glob.glob('/media/smestern/Expansion/dandi/*.csv')
     csv_files = [x.split('/')[-1].split('.')[0] for x in csv_files]
     dfs = []
@@ -213,10 +232,27 @@ def run_merge_dandiset():
     dfs = pd.concat(dfs)
     #remap the dandiset label so that its a string
     dfs['dandiset label'] = dfs['dandiset label'].apply(lambda x: '000000'[:6-len(str(x))]+str(x))
+    #remap the indexes, this is a nightmare due to custom pathing on my local machine
+    dfs.index = dfs.index.map(lambda x: '/'.join(x.split("dandi//")[1].split('/')[1:]))
+    dfs = quick_qc(dfs)
+
+    #also drop columns where over 50% of the data is missing
+    dfs = dfs.dropna(axis=1, thresh=int(len(dfs)*0.5))
+
     idxs = []
     columns = []
+    meta_data = []
     for code in dfs['dandiset label'].unique():
         temp_df = dfs.loc[dfs['dandiset label'] == code]
+        
+        #observe the meta data
+        try:
+            meta_ = get_dandi_metadata(code)
+            meta_data.append(meta_)
+            #pass
+        except:
+            pass
+
         data_num = temp_df.select_dtypes(include=np.number).dropna(axis=1, how='all')
         temp_data_num = data_num.copy()
         if data_num.empty or len(data_num.columns) < 10:
@@ -224,20 +260,34 @@ def run_merge_dandiset():
         idxs.append(data_num.index.values)
         scale = StandardScaler()
         data_num = scale.fit_transform(data_num)
+        #turn nans and infs into nans
+        data_num = np.nan_to_num(data_num, nan=np.nan, posinf=np.nan, neginf=np.nan)
         impute = SimpleImputer()
         data_num = impute.fit_transform(data_num)
 
         data_num = pd.DataFrame(data_num, columns=temp_data_num.columns)
         dataset_numeric.append(data_num)
+    meta_data = pd.concat(meta_data, axis=0)
+    #merge the meta data
+    dfs = dfs.join(meta_data, rsuffix='_meta')
+    #dfs.to_csv('/media/smestern/Expansion/dandi/all.csv')
     dataset_numeric = pd.concat(dataset_numeric, axis=0)
+    #drop columns where over 50% of the data is missing
+    dataset_numeric = dataset_numeric.dropna(axis=1, how='any')
     dfs = dfs.loc[np.concatenate(idxs)]
     #embed the data
     import matplotlib.pyplot as plt
-    reducer = umap.UMAP(densmap=True, n_neighbors=150, random_state=42)
+    reducer = umap.UMAP(densmap=False, n_neighbors=500)
+
     embedding = reducer.fit_transform(dataset_numeric)
-    dfs['umap X'] = embedding[:,0]
-    dfs['umap Y'] = embedding[:,1]
-    #plt.scatter(dfs['umap X'], dfs['umap Y'] , s=0.1)
+    #also make a n=5 umap
+    reducer2 = umap.UMAP(densmap=False,n_neighbors=15, min_dist=1e-4, spread=2.0, random_state=42)
+    reducer2.fit(dataset_numeric)  - reducer
+
+    dfs['umap X'] = reducer2.embedding_[:,0]
+    dfs['umap Y'] = reducer2.embedding_[:,1]
+    plt.scatter(dfs['umap X'], dfs['umap Y'] , s=0.1)
+    #plt.show()
     
     #also run PCA for fun
     pca = PCA(n_components=2)
@@ -251,10 +301,15 @@ def run_merge_dandiset():
     gmm.fit(dataset_numeric.fillna(0))
     dfs['GMM cluster label'] = gmm.predict(dataset_numeric.fillna(0))
 
-
-
+    #add in a supervised umap
+    reducer3 = umap.UMAP(densmap=False, target_weight=0.1, n_neighbors=50)
+    embedding = reducer3.fit(dataset_numeric, y=dfs['GMM cluster label']) + reducer2
+    dfs['supervised umap X'] = reducer3.embedding_[:,0]
+    dfs['supervised umap Y'] = reducer3.embedding_[:,1]
+    #plot it
     
-    dfs = quick_qc(dfs)
+    plt.scatter(dfs['umap X'], dfs['umap Y'] , s=0.1)
+   
     
     dfs.to_csv('/media/smestern/Expansion/dandi/all.csv')
 
@@ -344,7 +399,7 @@ class dandi_data_viz(live_data_viz):
             y = np.array([sweep.v[int(sweep.sampling_rate*start_time):int(sweep.sampling_rate*end_time)] for i, sweep in enumerate(sweeps) if i in idx_pass])
             c = np.array([sweep.i[int(sweep.sampling_rate*start_time):int(sweep.sampling_rate*end_time)] for i, sweep in enumerate(sweeps) if i in idx_pass])
         if len(y) > 5:
-            #grab every n sweeps so the length is about 10
+            #grab every n sweeps so the length is about 5
             idx = np.arange(0, len(y), int(len(y)/5))
             x = x[idx]
             y = y[idx]
@@ -363,7 +418,7 @@ class dandi_data_viz(live_data_viz):
 def build_server():
     
 
-    #run_merge_dandiset()
+    #
         # caching to save accessed data to RAM.
     
 

@@ -424,11 +424,11 @@ def get_stimulus_protocols(files, ext="nwb", method='random'):
 def match_protocol(i, t, test_pulse=True, start_epoch=None, end_epoch=None, test_pulse_length=0.1):
     #this function will take a stimulus and return the stimulus protocol at least it will try
     #first we will try to match the stimulus protocol to a known protocol
-    classifier = sc.stimClassifier()
+    #classifier = sc.stimClassifier()
     start_time, duration, amplitude, start_idx, end_idx = get_stim_characteristics(i, t, test_pulse=test_pulse, start_epoch=start_epoch, end_epoch=end_epoch, test_pulse_length=test_pulse_length)
-    pred = classifier.decode(classifier.predict(i.reshape(1, -1)))[0]
-    if pred=="long_square":
-        return "Long Square"
+    #pred = classifier.decode(classifier.predict(i.reshape(1, -1)))[0]
+    #if pred=="long_square":
+     #   return "Long Square"
     if start_time is None:
         #if we can't find the start time, then we can't identify the stimulus protocol
         return None
