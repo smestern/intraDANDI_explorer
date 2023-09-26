@@ -1,11 +1,11 @@
-#try:
+try:
     #load cohere ai for parsing descriptions
-import cohere
-from . import config
-co = cohere.Client(config.COHERE_KEY)
-#except:
+    import cohere
+    from . import config
+    co = cohere.Client(config.COHERE_KEY)
+except:
     #co = None
-    #print("cohere.ai not installed; skipping description parsing")
+    print("cohere.ai not installed; skipping description parsing")
 
 import time
 from dandi.dandiapi import DandiAPIClient

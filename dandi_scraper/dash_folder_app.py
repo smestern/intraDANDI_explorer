@@ -13,7 +13,7 @@ from dash.dependencies import Input, Output, State
 import dash_table
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
-import dash_html_components as html
+from dash import html
 import plotly.graph_objs as go
 import plotly.express as px
 from plotly.subplots import make_subplots
@@ -86,6 +86,8 @@ class live_data_viz():
         # make the header descibing the app
         header = self._generate_header()
 
+        #generate a side panel column using dash bootstrap
+
         col_long = dbc.Col([dbc.Card([
                 dbc.CardHeader("Longitudinal Plot"),
                 dbc.CardBody([dcc.Loading(
@@ -137,19 +139,13 @@ class live_data_viz():
 
         )], id='data-table-col')
 
-        app.layout = html.Div([dbc.Container([
+        app.layout = dbc.Container([
             dbc.Row([header]),
             dbc.Row([ col_umap,  col_long]),
             dbc.Row([ col_para, ]),
             dbc.Row([col_datatable])
-        
-        ]),
-            dcc.Interval(
-            id='interval-component',
-            interval=240*1000,  # in milliseconds
-            n_intervals=0
+        ], className="container-lg", style={"padding-right": "0px", "padding-left": "0px"}
         )
-        ])
         self.app = app
         # Define Callbacks
         app.callback(
