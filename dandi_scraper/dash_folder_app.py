@@ -10,8 +10,8 @@ import argparse
 # dash / plotly imports
 import dash
 from dash.dependencies import Input, Output, State
-import dash_table
-import dash_core_components as dcc
+from dash import dash_table
+from dash import dcc
 import dash_bootstrap_components as dbc
 from dash import html
 import plotly.graph_objs as go
@@ -92,8 +92,7 @@ class live_data_viz():
                 dbc.CardHeader("Longitudinal Plot"),
                 dbc.CardBody([dcc.Loading(
                     id="loading-2", fullscreen=False, type="default",
-                    children=[html.Div(id='datatable-plot-cell', )])])],style={
-                    "flex-wrap": "nowrap", "min-height": "700px", "overflow-x": "hidden"})]
+                    children=[html.Div(id='datatable-plot-cell', )])])],)]
                 , width=4)
         col_umap = dbc.Col([
             dbc.Card([dbc.CardHeader("UMAP Plot"),
@@ -140,12 +139,15 @@ class live_data_viz():
         )], id='data-table-col')
 
         app.layout = dbc.Container([
-            dbc.Row([header]),
-            dbc.Row([ col_umap,  col_long]),
-            dbc.Row([ col_para, ]),
-            dbc.Row([col_datatable])
-        ], className="container-lg", style={"padding-right": "0px", "padding-left": "0px"}
+            dbc.Row([header, dbc.Col([
+                dbc.Row([col_umap, col_long]),
+                dbc.Row([col_para, ]),
+                dbc.Row([col_datatable])
+            ])]),
+            
+        ], className="container-lg", style={"padding-right": "0px", "padding-left": "0px", 'max-width': '95%'},
         )
+        
         self.app = app
         # Define Callbacks
         app.callback(
@@ -426,13 +428,10 @@ class live_data_viz():
         return is_open
 
     def _generate_header(self):
-        return dbc.Row([
-            dbc.Col(html.H1("pyAPisolation", className="text-center"), width=12),
-            dbc.Col(html.H3("Live Data Visualization",
-                    className="text-center"), width=12),
-            dbc.Col(html.H5("Select a file to view",
-                    className="text-center"), width=12),
-        ])
+        return dbc.Col([html.H1("pyAPisolation", className="text-center"), html.H3("Live Data Visualization",
+                    className="text-center"),html.H5("Select a file to view",
+                    className="text-center")
+        ], className="col-xl-4", style={"max-width": "20%"})
 
 if __name__ == '__main__':
     # make an argparse to parse the command line arguments. command line args should be the path to the data folder, or

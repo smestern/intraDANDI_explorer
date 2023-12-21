@@ -386,7 +386,7 @@ class dandi_data_viz(live_data_viz):
             s3_url = asset.get_content_url(follow_redirects=1, strip_query=True)
         # next, open the file
         with FS.open(s3_url, "rb") as f:
-            _, _, _, _, data_set = loadNWB(f, return_obj=True)
+            _, _, _, _, data_set = loadNWB(f, return_obj=True, load_into_mem=False)
             sweeps, start_times, end_times = parse_long_pulse_from_dataset(data_set)
             start_time = scipy.stats.mode(np.array(start_times))[0]
             end_time = scipy.stats.mode(np.array(end_times))[0]
@@ -407,13 +407,13 @@ class dandi_data_viz(live_data_viz):
         return x, y, c
     
     def _generate_header(self):
-        return dbc.Row([
+        return dbc.Col([
             dbc.Col(html.H1("Dandi icephys", className="text-center"), width=12),
             dbc.Col(html.H3("Live Data Visualization",
                     className="text-center"), width=12),
             dbc.Col(html.H5("Select a file to view",
                     className="text-center"), width=12),
-        ])
+        ], className="col-xl-4", style={"max-width": "20%"})
 
 def build_server():
     
