@@ -190,7 +190,7 @@ def parse_long_pulse_from_dataset(data_set):
                 #probably in pA already
                 i = np.rint(i).astype(np.float32)
             #sometimes i will have a very small offset, this will remove it
-            i[np.logical_and(i < 5, i > -5)] = 0
+            i[np.logical_and(i < 0.5, i > -0.5)] = 0
         if match_protocol(i, t) != "Long Square":
             continue
         start_time, duration, amplitude, start_idx, end_idx = get_stim_characteristics(i, t)
