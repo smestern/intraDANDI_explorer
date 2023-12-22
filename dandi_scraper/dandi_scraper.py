@@ -15,31 +15,23 @@ from dandi.download import download as dandi_download
 from collections import defaultdict
 #dandi functions
 # os sys imports
-from pyAPisolation.loadNWB import loadFile, loadNWB, GLOBAL_STIM_NAMES
+from pyAPisolation.loadNWB import loadNWB, GLOBAL_STIM_NAMES
 from pyAPisolation.patch_ml import *
 import os
 
 import fsspec
-import pynwb
-import h5py
 from fsspec.implementations.cached import CachingFileSystem
 import glob
-import argparse
 import scipy.stats
 # dash / plotly imports
-import dash
-import dash_table
-import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 from dash import html
 import plotly.graph_objs as go
-import plotly.express as px
 from plotly.subplots import make_subplots
 # data science imports
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import IsolationForest
-from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 #local imports
 from .build_database import run_analysis, parse_long_pulse_from_dataset

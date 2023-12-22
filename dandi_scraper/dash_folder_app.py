@@ -45,10 +45,6 @@ class analysis_fields():
 
 GLOBAL_VARS = analysis_fields()
 
-BOOTSTRAP_TABLE_CSS = ['https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css']
-BOOTSTRAP_TABLE_JS = ['https://unpkg.com/bootstrap-table/dist/bootstrap-table.min.js']
-
-
 
 def _df_select_by_col(df, string_to_find):
     columns = df.columns.values
@@ -62,11 +58,14 @@ def _df_select_by_col(df, string_to_find):
 
 class live_data_viz():
     def __init__(self, dir_path=None, database_file=None):
+
+        #either load the database or generate it
         self.df_raw = None
         self.df = None
         self.para_df = None
-        self._run_analysis(dir_path, database_file)
+        datatable = self._run_analysis(dir_path, database_file)
 
+        # make the app
         app = dash.Dash(__name__)
 
         # find pregenerated labels
@@ -84,8 +83,8 @@ class live_data_viz():
         # make the header descibing the app
         header = self._generate_header()
 
-        #generate a side panel column using dash bootstrap
-
+        
+        
         col_long = dbc.Col([dbc.Card([
                 dbc.CardHeader("Longitudinal Plot"),
                 dbc.CardBody([dcc.Loading(
@@ -112,29 +111,7 @@ class live_data_viz():
                  id="para-collapse",
                  is_open=True,
              )])])], width=12)
-        col_datatable = dbc.Col([dash_table.DataTable(
-            id='datatable-row-ids',
-            columns=[
-                {'name': i, 'id': i, 'deletable': True} for i in self.df.columns
-                # omit the id column
-                if i != 'id'
-            ],
-            data=self.df.to_dict('records'),
-            filter_action="native",
-            sort_action="native",
-            sort_mode='multi',
-            row_selectable='multi',
-            selected_rows=[],
-            page_action='native',
-            page_current=0,
-            page_size=10,
-            style_cell={
-                'overflow': 'hidden',
-                'textOverflow': 'ellipsis',
-                'maxWidth': 0
-            },
-
-        )], id='data-table-col')
+        col_datatable = dbc.Col([datatable], id='data-table-col')
 
         app.layout = dbc.Container([
             dbc.Row([header, dbc.Col([
@@ -187,9 +164,15 @@ class live_data_viz():
             df = pd.read_csv(df)
         self.df_raw = copy.deepcopy(df)
         df = _df_select_by_col(self.df_raw, GLOBAL_VARS.table_vars_rq)
+         #add in a column for dropdown:
+        df['showMore'] = np.random.randn(len(df))
         df_optional = _df_select_by_col(
             self.df_raw, GLOBAL_VARS.table_vars).iloc[:, :GLOBAL_VARS.table_vars_limit]
         df = pd.concat([df, df_optional], axis=1)
+
+       
+        
+
         df['id'] = df[GLOBAL_VARS.file_index] if GLOBAL_VARS.file_index in df.columns else df.index
         df.set_index('id', inplace=True, drop=False)
         self.df = df
