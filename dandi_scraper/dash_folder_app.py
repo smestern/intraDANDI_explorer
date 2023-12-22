@@ -4,7 +4,6 @@ from pyAPisolation.feature_extractor import *
 from pyAPisolation.patch_ml import *
 import os
 import sys
-import glob
 import argparse
 
 # dash / plotly imports
@@ -20,8 +19,7 @@ from plotly.subplots import make_subplots
 # data science imports
 import pandas as pd
 import numpy as np
-import pyabf
-from sklearn.preprocessing import StandardScaler, LabelEncoder
+
 
 sys.path.append('..')
 sys.path.append('')

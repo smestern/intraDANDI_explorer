@@ -2,6 +2,7 @@
 #for heroku deployment we have to force install some packages here
 import sys
 import subprocess
+#ipfx release fails to install if numpy is not installed first, we have to force install it here
 packages = ['ipfx', ]
 # implement pip as a subprocess:
 for package in packages:
@@ -27,7 +28,6 @@ import argparse
 import scipy.stats
 # dash / plotly imports
 import dash
-from dash.dependencies import Input, Output, State
 import dash_table
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
@@ -38,7 +38,6 @@ from plotly.subplots import make_subplots
 # data science imports
 import pandas as pd
 import numpy as np
-import pyabf
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 
