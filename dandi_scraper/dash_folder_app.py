@@ -138,7 +138,7 @@ class live_data_viz():
 
         app.layout = dbc.Container([
             dbc.Row([header, dbc.Col([
-                dbc.Row([col_umap, col_long]),
+                dbc.Row([col_umap, ]), #col_long
                 dbc.Row([col_para, ]),
                 dbc.Row([col_datatable])
             ])]),
