@@ -25,6 +25,8 @@ import glob
 import scipy.stats
 # dash / plotly imports
 import dash_bootstrap_components as dbc
+
+from dash import dcc
 from dash import html
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
@@ -312,7 +314,7 @@ class dandi_data_viz(live_data_viz):
     def __init__(self, database_file=None):
         super(dandi_data_viz, self).__init__(database_file=database_file)
 
-    def update_cell_plot(self, row_ids, selected_row_ids, data):
+    def update_cell_plot(self,  row_ids, dom_children, selected_row_ids, active_cell, data):
         #here we are are overriding the update_cell_plot function to add in the dandi data, allowing streaming from the dandi api
         selected_id_set = set(selected_row_ids or [])
 

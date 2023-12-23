@@ -9,8 +9,9 @@ import argparse
 # dash / plotly imports
 import dash
 from dash.dependencies import Input, Output, State
-from dash import dash_table
+from dash import dash_table, dcc, ALL, Patch, MATCH
 from dash import dcc
+
 import dash_bootstrap_components as dbc
 from dash import html
 import plotly.graph_objs as go
@@ -66,7 +67,7 @@ class live_data_viz():
         datatable = self._run_analysis(dir_path, database_file)
 
         # make the app
-        app = dash.Dash(__name__)
+        app = dash.Dash(__name__, external_scripts=[{'src':"https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"}])
 
         # find pregenerated labels
         self.labels = self._find_label_cols(self.df_raw)
@@ -111,7 +112,7 @@ class live_data_viz():
                  id="para-collapse",
                  is_open=True,
              )])])], width=12)
-        col_datatable = dbc.Col([datatable], id='data-table-col')
+        col_datatable = dbc.Col(datatable, id='data-table-col')
 
         app.layout = dbc.Container([
             dbc.Row([header, dbc.Col([
@@ -126,10 +127,12 @@ class live_data_viz():
         self.app = app
         # Define Callbacks
         app.callback(
-            Output('loading-2', 'children'),
+            Output('datatable-row-ids', 'children'),
             State('datatable-row-ids', 'derived_virtual_row_ids'),
+            State('data-table-col', 'children'),
             Input('datatable-row-ids', 'selected_row_ids'),
-            State('datatable-row-ids', 'data'))(self.update_cell_plot)
+            Input('datatable-row-ids', 'active_cell'),
+            State('datatable-row-ids', 'data'), prevent_intial_call=True)(self.update_cell_plot)
 
         app.callback(Output('datatable-row-ids', 'data'),
                      Input('UMAP-graph', 'selectedData'),
@@ -165,13 +168,13 @@ class live_data_viz():
         self.df_raw = copy.deepcopy(df)
         df = _df_select_by_col(self.df_raw, GLOBAL_VARS.table_vars_rq)
          #add in a column for dropdown:
-        df['showMore'] = np.random.randn(len(df))
+        df['showMore'] = [''] * len(df)
+        #reorder so that the showMore column is first
+        df = df[['showMore'] + df.columns[:-1].tolist()]
+
         df_optional = _df_select_by_col(
             self.df_raw, GLOBAL_VARS.table_vars).iloc[:, :GLOBAL_VARS.table_vars_limit]
         df = pd.concat([df, df_optional], axis=1)
-
-       
-        
 
         df['id'] = df[GLOBAL_VARS.file_index] if GLOBAL_VARS.file_index in df.columns else df.index
         df.set_index('id', inplace=True, drop=False)
@@ -187,7 +190,7 @@ class live_data_viz():
                 filter_action="native",
                 sort_action="native",
                 sort_mode='multi',
-                row_selectable='multi',
+                #row_selectable='multi',
                 selected_rows=[],
                 page_action='native',
                 page_current=0,
