@@ -118,19 +118,20 @@ class live_data_viz():
             dbc.Row([header, dbc.Col([
                 dbc.Row([col_umap, ]), #col_long
                 dbc.Row([col_para, ]),
-                dbc.Row([col_datatable])
+                dbc.Row([col_datatable]),
+                html.Div(id='datatable-row-ids-store', style={'display': 'none'}),
             ])]),
             
-        ], className="container-lg", style={"padding-right": "0px", "padding-left": "0px", 'max-width': '95%'},
+        ], id='primcont', className="container-lg", style={"padding-right": "0px", "padding-left": "0px", 'max-width': '95%'},
         )
         
         self.app = app
         # Define Callbacks
         app.callback(
-            Output('datatable-row-ids', 'children'),
+            Output('datatable-row-ids-store', 'children'),
             State('datatable-row-ids', 'derived_virtual_row_ids'),
             State('data-table-col', 'children'),
-            Input('datatable-row-ids', 'selected_row_ids'),
+            State('datatable-row-ids', 'selected_row_ids'),
             Input('datatable-row-ids', 'active_cell'),
             State('datatable-row-ids', 'data'), prevent_intial_call=True)(self.update_cell_plot)
 
@@ -199,8 +200,8 @@ class live_data_viz():
                     'overflow': 'hidden',
                     'textOverflow': 'ellipsis',
                     'maxWidth': 0
-                }
-
+                },
+                style_as_list_view=True
                 )]
 
     def gen_umap_plots(self, labels=None, label_legend=None, data=None):
@@ -330,6 +331,7 @@ class live_data_viz():
         return out_data
 
     def update_cell_plot(self, row_ids, selected_row_ids, data):
+        raise print("this function is deprecated")
         selected_id_set = set(selected_row_ids or [])
 
         if row_ids is None:

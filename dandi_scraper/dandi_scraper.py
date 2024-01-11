@@ -314,7 +314,41 @@ class dandi_data_viz(live_data_viz):
     def __init__(self, database_file=None):
         super(dandi_data_viz, self).__init__(database_file=database_file)
 
+
     def update_cell_plot(self,  row_ids, dom_children, selected_row_ids, active_cell, data):
+        #here we are are overriding the update_cell_plot function to add in the dandi data, allowing streaming from the dandi api
+        active_row_ids = [active_cell['row_id']] if active_cell is not None else None
+        if active_row_ids is not None:
+            
+            fig = make_subplots(rows=1, cols=1, subplot_titles=selected_row_ids)
+            plot_coords = [(1,1)]
+            #now iter through the active row ids and plot them
+            for active_row_id in active_row_ids[:4]:
+                x, y,c = self.load_data(active_row_id)
+                
+                traces = []
+                for sweep_x, sweep_y in zip(x, y):
+                    traces.append(go.Scatter(x=sweep_x, y=sweep_y, mode='lines', hoverinfo='skip'))
+                fig.add_traces(traces, rows=plot_coords[active_row_ids.index(active_row_id)][0], cols=plot_coords[active_row_ids.index(active_row_id)][1])
+                fig.update_layout(margin=dict(l=0, r=0, t=50, b=0))
+            fig.update_yaxes(automargin=True)
+            fig.layout.autosize = True
+            print(str(active_row_ids[0]))
+            return html.Div([dcc.Graph(
+                id="file_plot",
+                figure=fig,
+                style={
+                    "width": "100%",
+                    "height": "100%"
+                },
+                config=dict(
+                    autosizable=True,
+                    frameMargins=0,
+                ),
+                responsive=True
+            )], id=str(active_row_ids[0]), style={"width": "100%", "height": "100%"})
+
+    def _old_update_cell_plot(self,  row_ids, dom_children, selected_row_ids, active_cell, data):
         #here we are are overriding the update_cell_plot function to add in the dandi data, allowing streaming from the dandi api
         selected_id_set = set(selected_row_ids or [])
 
@@ -351,7 +385,7 @@ class dandi_data_viz(live_data_viz):
                 fig.update_layout(margin=dict(l=0, r=0, t=50, b=0))
             fig.update_yaxes(automargin=True)
             fig.layout.autosize = True
-            return dcc.Graph(
+            return html.Div([dcc.Graph(
                 id="file_plot",
                 figure=fig,
                 style={
@@ -363,7 +397,7 @@ class dandi_data_viz(live_data_viz):
                     frameMargins=0,
                 ),
                 responsive=True
-            )
+            )], id=str(active_row_ids[0]), style={"width": "100%", "height": "100%"})
 
     def load_data(self, specimen_id):
         #here we are overriding  in the dandi data, allowing streaming from the dandi api
