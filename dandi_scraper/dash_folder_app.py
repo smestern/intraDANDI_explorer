@@ -9,7 +9,7 @@ import argparse
 # dash / plotly imports
 import dash
 from dash.dependencies import Input, Output, State
-from dash import dash_table, dcc, ALL, Patch, MATCH
+from dash import dash_table, dcc
 from dash import dcc
 
 import dash_bootstrap_components as dbc

@@ -36,7 +36,7 @@ import numpy as np
 from sklearn.ensemble import IsolationForest
 
 #local imports
-from .build_database import run_analysis, parse_long_pulse_from_dataset
+from .build_database import run_analysis, parse_long_pulse_from_dataset, build_dataset_traces
 from .dash_folder_app import live_data_viz, GLOBAL_VARS
 from ._metadata_parser import dandi_meta_parser
 
@@ -177,7 +177,7 @@ dandisets_to_skip = ['000012', '000013', '000005', '000117', '000168',
  '000293', #Superseeded by 000297
   '000292',
   '000341'] #Superseeded by 000297
-dandisets_to_include = ['000008', '000035']
+dandisets_to_include = ['000008', '000035'] #these are iCEphys datasets that are not labeled as such
 def run_analyze_dandiset():
     dandi_df = build_dandiset_df()
     filtered_df = dandi_df[dandi_df.apply(lambda x: filter_dandiset_df(x, modality='icephys', keywords=['intracellular', 'patch'], method='or'), axis=1)]
@@ -307,8 +307,16 @@ def run_merge_dandiset():
     dfs.to_csv('/media/smestern/Expansion/dandi/all.csv')
 
 
-
-
+def run_plot_dandiset():
+    csv_files = glob.glob('/media/smestern/Expansion/dandi/*.csv')
+    csv_files = [x.split('/')[-1].split('.')[0] for x in csv_files]
+    for code in csv_files:
+        #find the folder
+        if code == 'all':
+            continue
+        folder = f"/media/smestern/Expansion/dandi/{code}"
+        build_dataset_traces(folder, code)
+    
 
 class dandi_data_viz(live_data_viz):
     def __init__(self, database_file=None):
