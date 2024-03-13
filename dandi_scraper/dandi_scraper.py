@@ -1,5 +1,5 @@
 
-#for heroku deployment we have to force install some packages here
+#for deployment we have to force install some packages here
 import sys
 import subprocess
 #ipfx release fails to install if numpy is not installed first, we have to force install it here
@@ -36,8 +36,8 @@ import numpy as np
 from sklearn.ensemble import IsolationForest
 
 #local imports
-from .build_database import run_analysis, parse_long_pulse_from_dataset, build_dataset_traces
-from .dash_folder_app import live_data_viz, GLOBAL_VARS
+from pyAPisolation.web_viz.build_database import run_analysis, parse_long_pulse_from_dataset, build_dataset_traces
+from pyAPisolation.web_viz.dash_folder_app import live_data_viz, GLOBAL_VARS
 from ._metadata_parser import dandi_meta_parser
 
 
@@ -312,6 +312,7 @@ def run_plot_dandiset():
     csv_files = [x.split('/')[-1].split('.')[0] for x in csv_files]
     for code in csv_files:
         #find the folder
+
         if code == 'all':
             continue
         folder = f"/media/smestern/Expansion/dandi/{code}"
