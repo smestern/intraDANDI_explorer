@@ -41,8 +41,6 @@ from pyAPisolation.web_viz.dash_folder_app import live_data_viz, GLOBAL_VARS
 from ._metadata_parser import dandi_meta_parser
 
 
-
-
 #global the cache
 FS = CachingFileSystem(
         fs=fsspec.filesystem("http"),
