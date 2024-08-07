@@ -18,7 +18,7 @@ EXAMPLE_PROMPT = """ Title: Phenotypic variation within and across transcriptomi
                     Description: We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. Contained in this dandiset are the intracellular electrophysiological recordings. See Dandiset #35 for an additional dataset, recorded under the physiological temperature.
                     Keywords: Patch-seq, cortex, motor cortex, mouse
                     Species: Mus musculus
-                    What brain region(s) were studied?: Motor cortex
+                    In one to two words, what brain region(s) were studied?: Motor cortex
                     
                     /n
                     
@@ -26,7 +26,7 @@ EXAMPLE_PROMPT = """ Title: Phenotypic variation within and across transcriptomi
                     Description: Allen Institute for Brain Science IVSCC (In-vitro Single Cell Characterization) project stimulus sets stored in NWB format
                     Keywords: 
                     Species:
-                    What brain region(s) were studied?: Unknown"""
+                    In one to two words, what brain region(s) were studied?: Unknown"""
 
 
 
@@ -45,6 +45,9 @@ class dandi_meta_parser():
         self.dandiset_species = self.metadata.assetsSummary.species[0].name
         self.dandiset_brain_region = self.determine_brain_region()
         self.asset_data = self.build_asset_data()
+        print(f"Metadata parsed for dandiset {self.dandiset_id}, found {len(self.asset_data)} assets")
+        print(f"Brain region: {self.dandiset_brain_region}")
+
         
     def build_asset_data(self):
         asset_data = []
@@ -70,11 +73,15 @@ class dandi_meta_parser():
                     Description: {}
                     Keywords: {}
                     Species: {}
-                    What brain region(s) were studied?:""".format(self.dandiset_name, self.dandiset_description, self.dandiset_keywords, self.dandiset_species)
+                    What brain region(s) were studied (in one to two words)?:""".format(self.dandiset_name, self.dandiset_description, self.dandiset_keywords, self.dandiset_species)
         extraction = co.generate(
-          prompt=EXAMPLE_PROMPT + '\n' + PROMPT,
-          max_tokens=10,
-          temperature=0.1,
-          stop_sequences=["\n"])
-        time.sleep(60)
-        return extraction.generations[0].text
+           prompt=EXAMPLE_PROMPT + '\n' + PROMPT,
+           max_tokens=20,
+           temperature=0.1,
+           stop_sequences=["\n"])
+        #time.sleep(60)
+        text = extraction.generations[0].text
+        #sometimes the model returns the prompt included so we want to split at the colon and take the second part
+        if ':' in text:
+            text = ''.join(text.split(':')[-1])
+        return text.strip()

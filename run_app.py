@@ -1,4 +1,5 @@
 import dandi_scraper
 
 if __name__ == "__main__":
-    dandi_scraper.server.run()
+    server = dandi_scraper.build_server()
+    server.run()

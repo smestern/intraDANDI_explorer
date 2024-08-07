@@ -15,12 +15,13 @@ from dandi.download import download as dandi_download
 from collections import defaultdict
 #dandi functions
 # os sys imports
-from pyAPisolation.loadNWB import loadNWB, GLOBAL_STIM_NAMES
+from pyAPisolation.loadFile.loadNWB import loadNWB, GLOBAL_STIM_NAMES
 from pyAPisolation.patch_ml import *
 import os
+import shutil
 
-import fsspec
-from fsspec.implementations.cached import CachingFileSystem
+#import fsspec
+#from fsspec.implementations.cached import CachingFileSystem
 import glob
 import scipy.stats
 # dash / plotly imports
@@ -36,16 +37,19 @@ import numpy as np
 from sklearn.ensemble import IsolationForest
 
 #local imports
-from pyAPisolation.web_viz.build_database import run_analysis, parse_long_pulse_from_dataset, build_dataset_traces
-from pyAPisolation.web_viz.dash_folder_app import live_data_viz, GLOBAL_VARS
+from pyAPisolation.database.build_database import run_analysis, parse_long_pulse_from_dataset, build_dataset_traces
+from pyAPisolation.webViz.dashApp import dashBackend, GLOBAL_VARS
+import pyAPisolation.webViz.run_web_viz as wbz
+import pyAPisolation.webViz.webVizConfig as wvc
+import pyAPisolation.webViz.ephysDatabaseViewer as edb
 from ._metadata_parser import dandi_meta_parser
 
 
 #global the cache
-FS = CachingFileSystem(
-        fs=fsspec.filesystem("http"),
-        cache_storage="nwb-cache",  # Local folder for the cache
-    )
+# FS = CachingFileSystem(
+#         fs=fsspec.filesystem("http"),
+#         cache_storage="nwb-cache",  # Local folder for the cache
+#     )
 
 
 def build_dandiset_df():
@@ -170,17 +174,25 @@ def quick_qc(df):
     return df
 
 
-dandisets_to_skip = ['000012', '000013', '000005', '000117', '000168', 
+dandisets_to_skip = [#'000012', '000013', 
+                     
+'000005', #mostly in vivo continous data
+'000117', '000168', 
 '000362', #appears to be some lfp or something
+'000717', #test dandiset
  '000293', #Superseeded by 000297
-  '000292',
-  '000341'] #Superseeded by 000297
+  '000292', #Superseeded by 000297
+  '000341' ] #Superseeded by 000297
 dandisets_to_include = ['000008', '000035'] #these are iCEphys datasets that are not labeled as such
 def run_analyze_dandiset():
-    dandi_df = build_dandiset_df()
-    filtered_df = dandi_df[dandi_df.apply(lambda x: filter_dandiset_df(x, modality='icephys', keywords=['intracellular', 'patch'], method='or'), axis=1)]
+    """ 
+    Analyze the dandiset and save the results to a csv file, this function will download the dandiset if it is not already downloaded
+    then it will analyze the dandiset and save the results to a csv file.
+    """
+    dandi_df = build_dandiset_df() #pull all the dandisets
+    filtered_df = dandi_df[dandi_df.apply(lambda x: filter_dandiset_df(x, modality='icephys', keywords=['intracellular', 'patch'], method='or'), axis=1)] #filter the dandisets we only want the icephys ones
     
-    print(len(filtered_df))
+    print(f"found {len(filtered_df)} dandisets to analyze")
     #glob the csv files
     csv_files = glob.glob('/media/smestern/Expansion/dandi/*.csv')
     csv_files = [x.split('/')[-1].split('.')[0] for x in csv_files]
@@ -190,6 +202,7 @@ def run_analyze_dandiset():
     for row in filtered_df.iterrows():
         print(f"Downloading {row[1]['identifier']}")
         if row[1]["identifier"] in dandisets_to_skip:
+            print(f"Skipping {row[1]['identifier']}")
             continue
         download_dandiset(row[1]["identifier"], save_dir='/media/smestern/Expansion/dandi', overwrite=False)
         df_dandiset = analyze_dandiset(row[1]["identifier"],cache_dir='/media/smestern/Expansion/dandi/')
@@ -201,7 +214,7 @@ def run_analyze_dandiset():
 def run_merge_dandiset():
     from sklearn.preprocessing import StandardScaler
     import umap
-    from sklearn.impute import SimpleImputer
+    from sklearn.impute import SimpleImputer, KNNImputer
     from sklearn.mixture import GaussianMixture
     from sklearn.decomposition import PCA
 
@@ -223,8 +236,11 @@ def run_merge_dandiset():
     dfs = pd.concat(dfs)
     #remap the dandiset label so that its a string
     dfs['dandiset label'] = dfs['dandiset label'].apply(lambda x: '000000'[:6-len(str(x))]+str(x))
+   
     #remap the indexes, this is a nightmare due to custom pathing on my local machine
     dfs.index = dfs.index.map(lambda x: '/'.join(x.split("dandi//")[1].split('/')[1:]))
+    dfs['specimen_id'] = dfs.index
+    dfs['id_full'] = dfs['dandiset label'] + '/' + dfs['specimen_id']
     dfs = quick_qc(dfs)
 
     #also drop columns where over 50% of the data is missing
@@ -235,7 +251,7 @@ def run_merge_dandiset():
     meta_data = []
     for code in dfs['dandiset label'].unique():
         temp_df = dfs.loc[dfs['dandiset label'] == code]
-        
+        print(f"Processing {code}")
         #observe the meta data
         try:
             meta_ = get_dandi_metadata(code)
@@ -248,37 +264,44 @@ def run_merge_dandiset():
         temp_data_num = data_num.copy()
         if data_num.empty or len(data_num.columns) < 10:
             continue
+        
         idxs.append(data_num.index.values)
-        scale = StandardScaler()
-        data_num = scale.fit_transform(data_num)
+        print(f"Processing {code} with {len(data_num)} cells")
         #turn nans and infs into nans
         data_num = np.nan_to_num(data_num, nan=np.nan, posinf=np.nan, neginf=np.nan)
-        impute = SimpleImputer()
+        impute = KNNImputer(keep_empty_features=False)
         data_num = impute.fit_transform(data_num)
-
+        print(f"Imputed {code} with {len(data_num)} cells and {len(data_num[0])} features")
+        scale = StandardScaler()
+        #data_num = scale.fit_transform(data_num)
+        print(f"Scaled {code} with {len(data_num)} cells")
         data_num = pd.DataFrame(data_num, columns=temp_data_num.columns)
+        print(f"Processed {code} with {len(data_num)} cells")
         dataset_numeric.append(data_num)
     meta_data = pd.concat(meta_data, axis=0)
     #merge the meta data
-    dfs = dfs.join(meta_data, rsuffix='_meta')
+    dfs = dfs.join(meta_data, how='left', rsuffix='_meta')
+    #filter dfs to only include rows where the data is present
+    dfs = dfs.loc[np.hstack(idxs)]
     #dfs.to_csv('/media/smestern/Expansion/dandi/all.csv')
     dataset_numeric = pd.concat(dataset_numeric, axis=0)
     #drop columns where over 50% of the data is missing
     dataset_numeric = dataset_numeric.dropna(axis=1, how='any')
-    dfs = dfs.loc[np.concatenate(idxs)]
+    print(f"Processed {len(dataset_numeric)} cells, {len(dataset_numeric.columns)} features")
+    #dfs = dfs.loc[np.hstack(idxs)]
     #embed the data
     import matplotlib.pyplot as plt
-    reducer = umap.UMAP(densmap=False, n_neighbors=500)
+    reducer = umap.UMAP(densmap=False, n_neighbors=500,verbose=True,)
 
     embedding = reducer.fit_transform(dataset_numeric)
     #also make a n=5 umap
-    reducer2 = umap.UMAP(densmap=False,n_neighbors=15, min_dist=1e-4, spread=2.0, random_state=42)
-    reducer2.fit(dataset_numeric)  - reducer
+    reducer2 = umap.UMAP(densmap=False,n_neighbors=50, min_dist=1e-4, spread=2.0,   random_state=42, verbose=True,)
+    reducer2.fit(dataset_numeric) - reducer
 
     dfs['umap X'] = reducer2.embedding_[:,0]
     dfs['umap Y'] = reducer2.embedding_[:,1]
-    plt.scatter(dfs['umap X'], dfs['umap Y'] , s=0.1)
-    #plt.show()
+    #plt.scatter(dfs['umap X'], dfs['umap Y'] , s=0.1)
+
     
     #also run PCA for fun
     pca = PCA(n_components=2)
@@ -293,7 +316,7 @@ def run_merge_dandiset():
     dfs['GMM cluster label'] = gmm.predict(dataset_numeric.fillna(0))
 
     #add in a supervised umap
-    reducer3 = umap.UMAP(densmap=False, target_weight=0.1, n_neighbors=50)
+    reducer3 = umap.UMAP(densmap=False, target_weight=0.1, n_neighbors=50, verbose=True,)
     embedding = reducer3.fit(dataset_numeric, y=dfs['GMM cluster label']) + reducer2
     dfs['supervised umap X'] = reducer3.embedding_[:,0]
     dfs['supervised umap Y'] = reducer3.embedding_[:,1]
@@ -302,7 +325,7 @@ def run_merge_dandiset():
     plt.scatter(dfs['umap X'], dfs['umap Y'] , s=0.1)
    
     
-    dfs.to_csv('/media/smestern/Expansion/dandi/all.csv')
+    dfs.to_csv('./all.csv')
 
 
 def run_plot_dandiset():
@@ -310,17 +333,27 @@ def run_plot_dandiset():
     csv_files = [x.split('/')[-1].split('.')[0] for x in csv_files]
     for code in csv_files:
         #find the folder
-
+        #load the csv so we can
         if code == 'all':
             continue
         folder = f"/media/smestern/Expansion/dandi/{code}"
-        build_dataset_traces(folder, code)
+        build_dataset_traces(folder, code, False)
     
+def sort_plot_dandiset():
+    svg_files = glob.glob('/media/smestern/Expansion/dandi/**/*.svg', recursive=True)
+    for svg_file in svg_files:
+        print(f"Processing {svg_file}")
+        #split and save into data/traces
+        svg_file_no_dandi = ''.join(svg_file.split('/dandi/')[-1])
+        #move into the local folder
+        local_path = "./data/traces/"+svg_file_no_dandi
+        os.makedirs(os.path.dirname(local_path), exist_ok=True)
+        shutil.move(svg_file, local_path)
+    return
 
-class dandi_data_viz(live_data_viz):
+class dandi_data_viz(dashBackend):
     def __init__(self, database_file=None):
         super(dandi_data_viz, self).__init__(database_file=database_file)
-
 
     def update_cell_plot(self,  row_ids, dom_children, selected_row_ids, active_cell, data):
         #here we are are overriding the update_cell_plot function to add in the dandi data, allowing streaming from the dandi api
@@ -420,7 +453,7 @@ class dandi_data_viz(live_data_viz):
             s3_url = asset.get_content_url(follow_redirects=1, strip_query=True)
         # next, open the file
         with FS.open(s3_url, "rb") as f:
-            _, _, _, _, data_set = loadNWB(f, return_obj=True, load_into_mem=False)
+            _, _, _, _, data_set = loadNWB(f, return_obj=True, load_into_mem=True)
             sweeps, start_times, end_times = parse_long_pulse_from_dataset(data_set)
             start_time = scipy.stats.mode(np.array(start_times))[0]
             end_time = scipy.stats.mode(np.array(end_times))[0]
@@ -450,26 +483,21 @@ class dandi_data_viz(live_data_viz):
         ], className="col-xl-4", style={"max-width": "20%"})
 
 def build_server():
-    
-
-    #
-        # caching to save accessed data to RAM.
-    
-
     GLOBAL_STIM_NAMES.stim_inc =['']
-
+    GLOBAL_VARS = wvc.webVizConfig()
     GLOBAL_VARS.file_index = 'specimen_id'
     GLOBAL_VARS.file_path = 'specimen_id'
     GLOBAL_VARS.table_vars_rq = ['specimen_id', 'dandiset label', 'species', 'GMM cluster label']
     GLOBAL_VARS.table_vars = ['ap_1', 'resist']
     GLOBAL_VARS.para_vars = ['ap_1', 'resist']
     GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
-    GLOBAL_VARS.umap_labels = ['dandiset label', 'species', 'GMM cluster label']
-
-
-    dandi_data_viz2 = dandi_data_viz(database_file=f'./all.csv')
-    return dandi_data_viz2.app.server
-
-server = build_server()
-
+    GLOBAL_VARS.umap_labels = ['dandiset label', 'species', 'GMM cluster label', 'brain_region']
+    GLOBAL_VARS.plots_path='.'
+    # GLOBAL_VARS.table_split = 'species'
+    # GLOBAL_VARS.split_default = "Human"
+    wbz.run_web_viz(database_file='all.csv', config=GLOBAL_VARS, backend='static')
+    return
+    
+if __name__ == "__main__":
+    build_server()
     
