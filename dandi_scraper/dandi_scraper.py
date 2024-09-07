@@ -175,7 +175,7 @@ def quick_qc(df):
 
 
 dandisets_to_skip = [#'000012', '000013', 
-                     
+'000008',                     
 '000005', #mostly in vivo continous data
 '000117', '000168', 
 '000362', #appears to be some lfp or something
@@ -184,6 +184,8 @@ dandisets_to_skip = [#'000012', '000013',
   '000292', #Superseeded by 000297
   '000341' ] #Superseeded by 000297
 dandisets_to_include = ['000008', '000035'] #these are iCEphys datasets that are not labeled as such
+
+
 def run_analyze_dandiset():
     """ 
     Analyze the dandiset and save the results to a csv file, this function will download the dandiset if it is not already downloaded
@@ -334,10 +336,12 @@ def run_plot_dandiset():
     for code in csv_files:
         #find the folder
         #load the csv so we can
+        if code in dandisets_to_skip:
+            continue
         if code == 'all':
             continue
         folder = f"/media/smestern/Expansion/dandi/{code}"
-        build_dataset_traces(folder, code, False)
+        build_dataset_traces(folder, code, True)
     
 def sort_plot_dandiset():
     svg_files = glob.glob('/media/smestern/Expansion/dandi/**/*.svg', recursive=True)

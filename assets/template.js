@@ -4,7 +4,7 @@ $( document ).ready(function() {
 
     /* data_tb */
 
-    var embed_colors = Plotly.d3.scale.category10()
+    var embed_colors = None
 
     var ekeys = ["GMM cluster label", "dandiset label", "species"]
 
