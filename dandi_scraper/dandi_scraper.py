@@ -174,8 +174,9 @@ def quick_qc(df):
     return df
 
 
-dandisets_to_skip = [#'000012', '000013', 
-'000008',                     
+dandisets_to_skip = ['000012', '000013', 
+'000008', 
+'000020',                    
 '000005', #mostly in vivo continous data
 '000117', '000168', 
 '000362', #appears to be some lfp or something
@@ -335,13 +336,16 @@ def run_plot_dandiset():
     csv_files = [x.split('/')[-1].split('.')[0] for x in csv_files]
     for code in csv_files:
         #find the folder
-        #load the csv so we can
+        #load the csv so we can filter ids
+        df = pd.read_csv('/media/smestern/Expansion/dandi/'+code+'.csv', index_col=0)
+        ids = [x.split("/dandi/")[-1] for x in df.index.values]
+        print(f"Processing {code}")
         if code in dandisets_to_skip:
             continue
         if code == 'all':
             continue
         folder = f"/media/smestern/Expansion/dandi/{code}"
-        build_dataset_traces(folder, code, True)
+        build_dataset_traces(folder, ids, parallel=True)
     
 def sort_plot_dandiset():
     svg_files = glob.glob('/media/smestern/Expansion/dandi/**/*.svg', recursive=True)
