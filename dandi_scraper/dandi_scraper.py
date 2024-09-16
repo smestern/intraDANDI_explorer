@@ -495,15 +495,16 @@ def build_server():
     GLOBAL_VARS = wvc.webVizConfig()
     GLOBAL_VARS.file_index = 'specimen_id'
     GLOBAL_VARS.file_path = 'specimen_id'
-    GLOBAL_VARS.table_vars_rq = ['specimen_id', 'dandiset label', 'species', 'GMM cluster label']
-    GLOBAL_VARS.table_vars = ['ap_1', 'resist']
-    GLOBAL_VARS.para_vars = ['ap_1', 'resist']
+    GLOBAL_VARS.table_vars_rq = ['specimen_id', 'ap_1_width_0_long_square']
+    GLOBAL_VARS.table_vars = []
+    GLOBAL_VARS.para_vars = []
     GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
-    GLOBAL_VARS.umap_labels = ['dandiset label', 'species', 'GMM cluster label', 'brain_region']
+    GLOBAL_VARS.umap_labels = ['dandiset label']
     GLOBAL_VARS.plots_path='.'
     # GLOBAL_VARS.table_split = 'species'
     # GLOBAL_VARS.split_default = "Human"
-    wbz.run_web_viz(database_file='all.csv', config=GLOBAL_VARS, backend='static')
+    filepath = os.path.dirname(os.path.abspath(__file__))
+    wbz.run_web_viz(database_file=filepath+'/../all.csv', config=GLOBAL_VARS, backend='static')
     return
     
 if __name__ == "__main__":
