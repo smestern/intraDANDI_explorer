@@ -497,11 +497,12 @@ def build_server():
     GLOBAL_VARS = wvc.webVizConfig()
     GLOBAL_VARS.file_index = 'specimen_id'
     GLOBAL_VARS.file_path = 'specimen_id'
-    GLOBAL_VARS.table_vars_rq = ['specimen_id', 'ap_1_width_0_long_square', 'input_resistance','tau','v_baseline','sag_nearest_minus_100']
+    GLOBAL_VARS.table_vars_rq = ['specimen_id', 'ap_1_width_0_long_square', 'input_resistance','tau','v_baseline',
+                                 'sag_nearest_minus_100', 'ap_1_threshold_v_0_long_square', 'ap_1_peak_v_0_long_square']
     GLOBAL_VARS.table_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100']
-    GLOBAL_VARS.para_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100']
+    GLOBAL_VARS.para_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100', 'ap_1_width_0_long_square']
     GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
-    GLOBAL_VARS.umap_labels = ['dandiset label']
+    GLOBAL_VARS.umap_labels = ['dandiset label', 'species']
     GLOBAL_VARS.plots_path='.'
     GLOBAL_VARS.hidden_table = True
     # GLOBAL_VARS.table_split = 'species'
