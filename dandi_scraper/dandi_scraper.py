@@ -340,6 +340,8 @@ def run_plot_dandiset():
         df = pd.read_csv('/media/smestern/Expansion/dandi/'+code+'.csv', index_col=0)
         ids = [x.split("/dandi/")[-1] for x in df.index.values]
         print(f"Processing {code}")
+        if code != "000636":
+            continue
         if code in dandisets_to_skip:
             continue
         if code == 'all':
@@ -495,16 +497,25 @@ def build_server():
     GLOBAL_VARS = wvc.webVizConfig()
     GLOBAL_VARS.file_index = 'specimen_id'
     GLOBAL_VARS.file_path = 'specimen_id'
-    GLOBAL_VARS.table_vars_rq = ['specimen_id', 'ap_1_width_0_long_square']
-    GLOBAL_VARS.table_vars = []
-    GLOBAL_VARS.para_vars = []
+    GLOBAL_VARS.table_vars_rq = ['specimen_id', 'ap_1_width_0_long_square', 'input_resistance','tau','v_baseline','sag_nearest_minus_100']
+    GLOBAL_VARS.table_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100']
+    GLOBAL_VARS.para_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100']
     GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
     GLOBAL_VARS.umap_labels = ['dandiset label']
     GLOBAL_VARS.plots_path='.'
+    GLOBAL_VARS.hidden_table = True
     # GLOBAL_VARS.table_split = 'species'
     # GLOBAL_VARS.split_default = "Human"
     filepath = os.path.dirname(os.path.abspath(__file__))
-    wbz.run_web_viz(database_file=filepath+'/../all.csv', config=GLOBAL_VARS, backend='static')
+
+    #load the data
+    file = pd.read_csv(filepath+'/../all.csv')
+    #concat the file name and save
+    dandi_id = np.array([str(int(x)).zfill(6) + '/' + y for x, y in zip(file['dandiset label'], file['specimen_id'].to_numpy())])
+    file['specimen_id'] = dandi_id 
+    file.to_csv(filepath+'/../all2.csv')
+
+    wbz.run_web_viz(database_file=filepath+'/../all2.csv', config=GLOBAL_VARS, backend='static')
     return
     
 if __name__ == "__main__":
