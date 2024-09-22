@@ -340,8 +340,8 @@ def run_plot_dandiset():
         df = pd.read_csv('/media/smestern/Expansion/dandi/'+code+'.csv', index_col=0)
         ids = [x.split("/dandi/")[-1] for x in df.index.values]
         print(f"Processing {code}")
-        if code != "000636":
-            continue
+        #if code != "000142":
+        #continue
         if code in dandisets_to_skip:
             continue
         if code == 'all':
