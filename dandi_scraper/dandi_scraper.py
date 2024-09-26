@@ -502,9 +502,20 @@ def build_server():
     GLOBAL_VARS.table_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100']
     GLOBAL_VARS.para_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100', 'ap_1_width_0_long_square']
     GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
-    GLOBAL_VARS.umap_labels = ['dandiset label', 'species']
+    GLOBAL_VARS.umap_labels = ['dandiset label', 'ap_1_width_0_long_square', 'species', 'brain_region', 'contributor',]
     GLOBAL_VARS.plots_path='.'
     GLOBAL_VARS.hidden_table = True
+    GLOBAL_VARS.hidden_table_vars = ['dandiset label', 'species']
+    #Add a title to the webviz
+    GLOBAL_VARS.db_title = "Icephys Dandiset Visualization"
+    GLOBAL_VARS.db_description = """ This is a visualization of some of the intracellular electrophysiology (icephys) data found across the open \n
+    neuroscience initiative DANDI. The data is visualized using a UMAP and a parallel coordinates plot. The data is also visualized in a table format. \n
+    this is currently a work in progress and is not yet complete. Please cite the original authors of the data when using this data. """
+    GLOBAL_VARS.db_subtitle = ""
+    GLOBAL_VARS.db_links = {'Dandi': 'https://dandiarchive.org/',  "smestern on X": "https://twitter.com/smestern"}
+
+
+
     # GLOBAL_VARS.table_split = 'species'
     # GLOBAL_VARS.split_default = "Human"
     filepath = os.path.dirname(os.path.abspath(__file__))
