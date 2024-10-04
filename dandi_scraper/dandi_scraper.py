@@ -406,6 +406,10 @@ def build_server():
     #concat the file name and save
     #dandi_id = np.array([str(int(x)).zfill(6) + '/' + y for x, y in zip(file['dandiset label'], file['specimen_id'].to_numpy())])
     #file['specimen_id'] = dandi_id 
+
+    #shuffle the data for fun
+    file = file.sample(frac=1)
+
     file.to_csv(filepath+'/../all2.csv')
 
     wbz.run_web_viz(database_file=filepath+'/../all2.csv', config=GLOBAL_VARS, backend='static')
