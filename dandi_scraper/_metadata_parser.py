@@ -1,12 +1,12 @@
 
-try:
-    #load cohere ai for parsing descriptions
-    import cohere
-    from . import config
-    co = cohere.Client(config.COHERE_KEY)
-except:
-    co = None
-    print("cohere.ai not installed; skipping description parsing")
+#try:
+#load cohere ai for parsing descriptions
+import cohere
+from . import config
+co = cohere.Client(config.COHERE_KEY)
+#except:
+#co = None
+print("cohere.ai not installed; skipping description parsing")
 
 import time
 from dandi.dandiapi import DandiAPIClient
@@ -36,13 +36,13 @@ class dandi_meta_parser():
         self.dandiset_id = dandiset_id
         self.client = DandiAPIClient("https://api.dandiarchive.org/api/")
         self.dandiset = self.client.get_dandiset(dandiset_id)
-        self.metadata = self.dandiset.get_metadata()
-        self.dandiset_name = self.metadata.name
-        self.dandiset_description = self.metadata.description
-        self.dandiset_keywords = self.metadata.keywords
-        self.first_contributor = self.metadata.contributor[0].name
+        self.metadata = self.dandiset.get_raw_metadata()
+        self.dandiset_name = self.metadata['name']
+        self.dandiset_description = self.metadata['description'] if 'description' in self.metadata else None
+        self.dandiset_keywords = self.metadata['keywords'] if 'keywords' in self.metadata else None
+        self.first_contributor = self.metadata['contributor'][0]['name']
 
-        self.dandiset_species = self.metadata.assetsSummary.species[0].name
+        self.dandiset_species = self.metadata['assetsSummary']['species'] if 'species' in self.metadata['assetsSummary'] else None
         self.dandiset_brain_region = self.determine_brain_region()
         self.asset_data = self.build_asset_data()
         print(f"Metadata parsed for dandiset {self.dandiset_id}, found {len(self.asset_data)} assets")
@@ -60,12 +60,15 @@ class dandi_meta_parser():
                 cell_id = meta_asst.wasGeneratedBy[0].id if meta_asst.wasGeneratedBy[0].id != None else meta_asst.wasGeneratedBy[0].identifier
                 species = meta_asst.wasAttributedTo[0].species.name if meta_asst.wasAttributedTo[0].species != None else self.dandiset_species
                 filepath = meta_asst.path
-                asset_data.append({'dandiset_id': self.dandiset_id, 'age': age, 'subject_id': subject_id, 
+
+                #make the index a concat of the dandiset_id and the filepath
+                idxs = self.dandiset_id + '/' + filepath
+                asset_data.append({'idxs':idxs, 'dandiset_id': self.dandiset_id, 'age': age, 'subject_id': subject_id, 
                 'cell_id': cell_id, 'brain_region': self.dandiset_brain_region, 'species': species, 'filepath': filepath, 'contributor': self.first_contributor})
             except:
-                asset_data.append({'dandiset_id': self.dandiset_id, 'age': None, 'subject_id': None,
+                asset_data.append({'idxs': self.dandiset_id + '/' + meta_asst.path, 'dandiset_id': self.dandiset_id, 'age': None, 'subject_id': None,
                 'cell_id': None, 'brain_region': self.dandiset_brain_region, 'species': self.dandiset_species, 'filepath': meta_asst.path, 'contributor': self.first_contributor})
-        return pd.DataFrame.from_dict(asset_data).set_index('filepath')
+        return pd.DataFrame.from_dict(asset_data).set_index('idxs')
 
     def determine_brain_region(self):
         PROMPT = """

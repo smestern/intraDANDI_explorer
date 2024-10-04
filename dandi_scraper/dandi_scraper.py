@@ -9,7 +9,7 @@ for package in packages:
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', package, '--no-deps'])
 
 #test imports
-
+    import matplotlib.pyplot as plt
 from dandi.dandiapi import DandiAPIClient
 from dandi.download import download as dandi_download
 from collections import defaultdict
@@ -25,10 +25,7 @@ import shutil
 import glob
 import scipy.stats
 # dash / plotly imports
-import dash_bootstrap_components as dbc
 
-from dash import dcc
-from dash import html
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 # data science imports
@@ -240,14 +237,16 @@ def run_merge_dandiset():
     #remap the dandiset label so that its a string
     dfs['dandiset label'] = dfs['dandiset label'].apply(lambda x: '000000'[:6-len(str(x))]+str(x))
    
+    
     #remap the indexes, this is a nightmare due to custom pathing on my local machine
-    dfs.index = dfs.index.map(lambda x: '/'.join(x.split("dandi//")[1].split('/')[1:]))
+    dfs.index = dfs.index.map(lambda x: ''.join(x.split("dandi//")[1]))
+    print(dfs.index[:5])
     dfs['specimen_id'] = dfs.index
     dfs['id_full'] = dfs['dandiset label'] + '/' + dfs['specimen_id']
     dfs = quick_qc(dfs)
 
     #also drop columns where over 50% of the data is missing
-    dfs = dfs.dropna(axis=1, thresh=int(len(dfs)*0.5))
+    dfs = dfs.dropna(axis=1, thresh=int(len(dfs)*0.9))
 
     idxs = []
     columns = []
@@ -256,44 +255,55 @@ def run_merge_dandiset():
         temp_df = dfs.loc[dfs['dandiset label'] == code]
         print(f"Processing {code}")
         #observe the meta data
-        try:
-            meta_ = get_dandi_metadata(code)
-            meta_data.append(meta_)
+        #try:
+        meta_ = get_dandi_metadata(code)
+        meta_data.append(meta_)
             #pass
-        except:
-            pass
+        #except:
+        #   pass
 
         data_num = temp_df.select_dtypes(include=np.number).dropna(axis=1, how='all')
+        #data_num should have the same number of rows
+        assert len(data_num) == len(temp_df)
         temp_data_num = data_num.copy()
-        if data_num.empty or len(data_num.columns) < 10:
+        if data_num.empty or len(data_num.columns) < 3:
             continue
         
         idxs.append(data_num.index.values)
         print(f"Processing {code} with {len(data_num)} cells")
         #turn nans and infs into nans
         data_num = np.nan_to_num(data_num, nan=np.nan, posinf=np.nan, neginf=np.nan)
-        impute = KNNImputer(keep_empty_features=False)
+        impute = KNNImputer(keep_empty_features=True)
         data_num = impute.fit_transform(data_num)
         print(f"Imputed {code} with {len(data_num)} cells and {len(data_num[0])} features")
         scale = StandardScaler()
         #data_num = scale.fit_transform(data_num)
         print(f"Scaled {code} with {len(data_num)} cells")
-        data_num = pd.DataFrame(data_num, columns=temp_data_num.columns)
+        data_num = pd.DataFrame(data_num, columns=temp_data_num.columns, index=temp_data_num.index)
         print(f"Processed {code} with {len(data_num)} cells")
+        assert len(data_num) == len(temp_df)
         dataset_numeric.append(data_num)
     meta_data = pd.concat(meta_data, axis=0)
-    #merge the meta data
+    print(f"Meta data shape: {meta_data.shape}")
+
+    # Merge the meta data
     dfs = dfs.join(meta_data, how='left', rsuffix='_meta')
-    #filter dfs to only include rows where the data is present
+    print(f"dfs shape after joining meta data: {dfs.shape}")
+
+    # Filter dfs to only include rows where the data is present
     dfs = dfs.loc[np.hstack(idxs)]
-    #dfs.to_csv('/media/smestern/Expansion/dandi/all.csv')
+    print(f"dfs shape after filtering: {dfs.shape}")
+
     dataset_numeric = pd.concat(dataset_numeric, axis=0)
-    #drop columns where over 50% of the data is missing
+    print(f"dataset_numeric shape after concatenation: {dataset_numeric.shape}")
+
+    # Drop columns where over 50% of the data is missing
     dataset_numeric = dataset_numeric.dropna(axis=1, how='any')
-    print(f"Processed {len(dataset_numeric)} cells, {len(dataset_numeric.columns)} features")
-    #dfs = dfs.loc[np.hstack(idxs)]
+    print(f"dataset_numeric shape after dropping columns: {dataset_numeric.shape}")
+    # Ensure dfs and dataset_numeric have the same index
+    dfs = dfs.loc[dataset_numeric.index]
     #embed the data
-    import matplotlib.pyplot as plt
+
     reducer = umap.UMAP(densmap=False, n_neighbors=500,verbose=True,)
 
     embedding = reducer.fit_transform(dataset_numeric)
@@ -328,7 +338,7 @@ def run_merge_dandiset():
     plt.scatter(dfs['umap X'], dfs['umap Y'] , s=0.1)
    
     
-    dfs.to_csv('./all.csv')
+    dfs.to_csv('./all_new.csv')
 
 
 def run_plot_dandiset():
@@ -361,6 +371,50 @@ def sort_plot_dandiset():
         shutil.move(svg_file, local_path)
     return
 
+
+
+def build_server():
+    GLOBAL_STIM_NAMES.stim_inc =['']
+    GLOBAL_VARS = wvc.webVizConfig()
+    GLOBAL_VARS.file_index = 'specimen_id'
+    GLOBAL_VARS.file_path = 'specimen_id'
+    GLOBAL_VARS.table_vars_rq = ['specimen_id', 'ap_1_width_0_long_square', 'input_resistance','tau','v_baseline',
+                                 'sag_nearest_minus_100', 'ap_1_threshold_v_0_long_square', 'ap_1_peak_v_0_long_square']
+    GLOBAL_VARS.table_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100']
+    GLOBAL_VARS.para_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100', 'ap_1_width_0_long_square']
+    GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
+    GLOBAL_VARS.umap_labels = ['dandiset label', 'ap_1_width_0_long_square', 'species', 'brain_region', 'contributor',]
+    GLOBAL_VARS.plots_path='.'
+    GLOBAL_VARS.hidden_table = True
+    GLOBAL_VARS.hidden_table_vars = ['dandiset label', 'species']
+    #Add a title to the webviz
+    GLOBAL_VARS.db_title = "Icephys Dandiset Visualization"
+    GLOBAL_VARS.db_description = """ This is a visualization of some of the intracellular electrophysiology (icephys) data found across the open \n
+    neuroscience initiative DANDI. The data is visualized using a UMAP and a parallel coordinates plot. The data is also visualized in a table format. \n
+    this is currently a work in progress and is not yet complete. Please cite the original authors of the data when using this data. """
+    GLOBAL_VARS.db_subtitle = ""
+    GLOBAL_VARS.db_links = {'Dandi': 'https://dandiarchive.org/',  "smestern on X": "https://twitter.com/smestern"}
+
+
+
+    # GLOBAL_VARS.table_split = 'species'
+    # GLOBAL_VARS.split_default = "Human"
+    filepath = os.path.dirname(os.path.abspath(__file__))
+
+    #load the data
+    file = pd.read_csv(filepath+'/../all_new.csv')
+    #concat the file name and save
+    #dandi_id = np.array([str(int(x)).zfill(6) + '/' + y for x, y in zip(file['dandiset label'], file['specimen_id'].to_numpy())])
+    #file['specimen_id'] = dandi_id 
+    file.to_csv(filepath+'/../all2.csv')
+
+    wbz.run_web_viz(database_file=filepath+'/../all2.csv', config=GLOBAL_VARS, backend='static')
+    return
+    
+if __name__ == "__main__":
+    build_server()
+
+### DEPRECATED
 class dandi_data_viz(dashBackend):
     def __init__(self, database_file=None):
         super(dandi_data_viz, self).__init__(database_file=database_file)
@@ -491,45 +545,3 @@ class dandi_data_viz(dashBackend):
             dbc.Col(html.H5("Select a file to view",
                     className="text-center"), width=12),
         ], className="col-xl-4", style={"max-width": "20%"})
-
-def build_server():
-    GLOBAL_STIM_NAMES.stim_inc =['']
-    GLOBAL_VARS = wvc.webVizConfig()
-    GLOBAL_VARS.file_index = 'specimen_id'
-    GLOBAL_VARS.file_path = 'specimen_id'
-    GLOBAL_VARS.table_vars_rq = ['specimen_id', 'ap_1_width_0_long_square', 'input_resistance','tau','v_baseline',
-                                 'sag_nearest_minus_100', 'ap_1_threshold_v_0_long_square', 'ap_1_peak_v_0_long_square']
-    GLOBAL_VARS.table_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100']
-    GLOBAL_VARS.para_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100', 'ap_1_width_0_long_square']
-    GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
-    GLOBAL_VARS.umap_labels = ['dandiset label', 'ap_1_width_0_long_square', 'species', 'brain_region', 'contributor',]
-    GLOBAL_VARS.plots_path='.'
-    GLOBAL_VARS.hidden_table = True
-    GLOBAL_VARS.hidden_table_vars = ['dandiset label', 'species']
-    #Add a title to the webviz
-    GLOBAL_VARS.db_title = "Icephys Dandiset Visualization"
-    GLOBAL_VARS.db_description = """ This is a visualization of some of the intracellular electrophysiology (icephys) data found across the open \n
-    neuroscience initiative DANDI. The data is visualized using a UMAP and a parallel coordinates plot. The data is also visualized in a table format. \n
-    this is currently a work in progress and is not yet complete. Please cite the original authors of the data when using this data. """
-    GLOBAL_VARS.db_subtitle = ""
-    GLOBAL_VARS.db_links = {'Dandi': 'https://dandiarchive.org/',  "smestern on X": "https://twitter.com/smestern"}
-
-
-
-    # GLOBAL_VARS.table_split = 'species'
-    # GLOBAL_VARS.split_default = "Human"
-    filepath = os.path.dirname(os.path.abspath(__file__))
-
-    #load the data
-    file = pd.read_csv(filepath+'/../all.csv')
-    #concat the file name and save
-    dandi_id = np.array([str(int(x)).zfill(6) + '/' + y for x, y in zip(file['dandiset label'], file['specimen_id'].to_numpy())])
-    file['specimen_id'] = dandi_id 
-    file.to_csv(filepath+'/../all2.csv')
-
-    wbz.run_web_viz(database_file=filepath+'/../all2.csv', config=GLOBAL_VARS, backend='static')
-    return
-    
-if __name__ == "__main__":
-    build_server()
-    
