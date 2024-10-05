@@ -380,11 +380,11 @@ def build_server():
     GLOBAL_VARS.file_path = 'specimen_id'
     GLOBAL_VARS.table_vars_rq = ['specimen_id', 'ap_1_width_0_long_square', 'input_resistance','tau','v_baseline',
                                  'sag_nearest_minus_100', 'ap_1_threshold_v_0_long_square', 'ap_1_peak_v_0_long_square']
-    GLOBAL_VARS.table_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100']
+    GLOBAL_VARS.table_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100', 'file_link', 'dandiset_link']
     GLOBAL_VARS.para_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100', 'ap_1_width_0_long_square']
     GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
     GLOBAL_VARS.umap_labels = ['dandiset label', 'ap_1_width_0_long_square', 'species', 'brain_region', 'contributor',]
-    GLOBAL_VARS.plots_path='.'
+    GLOBAL_VARS.plots_path = '.'
     GLOBAL_VARS.hidden_table = True
     GLOBAL_VARS.hidden_table_vars = ['dandiset label', 'species']
     #Add a title to the webviz
@@ -394,15 +394,40 @@ def build_server():
     this is currently a work in progress and is not yet complete. Please cite the original authors of the data when using this data. """
     GLOBAL_VARS.db_subtitle = ""
     GLOBAL_VARS.db_links = {'Dandi': 'https://dandiarchive.org/',  "smestern on X": "https://twitter.com/smestern"}
+    GLOBAL_VARS.db_para_title = "Paracoords"
+    GLOBAL_VARS.db_embed_title = "UMAP"
 
+    GLOBAL_VARS.col_rename = {
+    "ap_1_width_0_long_square": "Rheobase spike width (ms)",
+    "sag_nearest_minus_100": "Sag (mV)",
+    "input_resistance": "Input resistance (MOhm)",
+    "tau": "Tau (ms)",
+    "v_baseline": "Baseline voltage (mV)",
+    }
 
+    GLOBAL_VARS.table_spec = {'file_link': "links", 'dandiset_link': "links"}
 
     # GLOBAL_VARS.table_split = 'species'
     # GLOBAL_VARS.split_default = "Human"
     filepath = os.path.dirname(os.path.abspath(__file__))
 
     #load the data
-    file = pd.read_csv(filepath+'/../all_new.csv')
+    file = pd.read_csv(filepath+'/../all_new.csv',)
+
+    file["ap_1_width_0_long_square"] = file["ap_1_width_0_long_square"]*1000
+
+    file["dandiset_link"] = file["dandiset label"].apply(lambda x: f"https://dandiarchive.org/dandiset/{str(int(x)).zfill(6)}")
+    file_link = []
+    meta_data_link = []
+    with DandiAPIClient() as client:
+        for dandiset_id, specimen_id in zip(file['dandiset label'], file['specimen_id']):
+            asset = client.get_dandiset(str(int( dandiset_id)).zfill(6), 'draft').get_asset_by_path('/'.join(specimen_id.split('/')[1:]))
+            s3_url = asset.get_content_url(follow_redirects=1, strip_query=True)
+            file_link.append(s3_url)
+            meta_data_link.append(asset.api_url)
+    file['file_link'] = file_link
+    file['meta_data_link'] = meta_data_link
+
     #concat the file name and save
     #dandi_id = np.array([str(int(x)).zfill(6) + '/' + y for x, y in zip(file['dandiset label'], file['specimen_id'].to_numpy())])
     #file['specimen_id'] = dandi_id 
