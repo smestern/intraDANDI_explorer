@@ -433,7 +433,7 @@ def build_server():
     #file['specimen_id'] = dandi_id 
 
     #shuffle the data for fun
-    file = file.sample(frac=1)
+    #file = file.sample(frac=1)
 
     file.to_csv(filepath+'/../all2.csv')
 
