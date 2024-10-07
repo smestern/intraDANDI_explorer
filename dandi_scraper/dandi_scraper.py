@@ -233,6 +233,8 @@ def run_merge_dandiset():
         dfs.append(temp_df)
         
 
+    
+
     dfs = pd.concat(dfs)
     #remap the dandiset label so that its a string
     dfs['dandiset label'] = dfs['dandiset label'].apply(lambda x: '000000'[:6-len(str(x))]+str(x))
@@ -334,8 +336,25 @@ def run_merge_dandiset():
     dfs['supervised umap X'] = reducer3.embedding_[:,0]
     dfs['supervised umap Y'] = reducer3.embedding_[:,1]
     #plot it
+
+
     
-    plt.scatter(dfs['umap X'], dfs['umap Y'] , s=0.1)
+    plt.scatter(dfs['umap X'], dfs['umap Y'] , s=0.1
+                
+                )
+    
+
+    dfs["dandiset_link"] = dfs["dandiset label"].apply(lambda x: f"https://dandiarchive.org/dandiset/{str(int(x)).zfill(6)}")
+    file_link = []
+    meta_data_link = []
+    with DandiAPIClient() as client:
+        for dandiset_id, specimen_id in zip(dfs['dandiset label'], dfs['specimen_id']):
+            asset = client.get_dandiset(str(int( dandiset_id)).zfill(6), 'draft').get_asset_by_path('/'.join(specimen_id.split('/')[1:]))
+            s3_url = asset.get_content_url(follow_redirects=1, strip_query=True)
+            file_link.append(s3_url)
+            meta_data_link.append(asset.api_url)
+    dfs['file_link'] = file_link
+    dfs['meta_data_link'] = meta_data_link
    
     
     dfs.to_csv('./all_new.csv')
@@ -416,17 +435,7 @@ def build_server():
 
     file["ap_1_width_0_long_square"] = file["ap_1_width_0_long_square"]*1000
 
-    file["dandiset_link"] = file["dandiset label"].apply(lambda x: f"https://dandiarchive.org/dandiset/{str(int(x)).zfill(6)}")
-    file_link = []
-    meta_data_link = []
-    with DandiAPIClient() as client:
-        for dandiset_id, specimen_id in zip(file['dandiset label'], file['specimen_id']):
-            asset = client.get_dandiset(str(int( dandiset_id)).zfill(6), 'draft').get_asset_by_path('/'.join(specimen_id.split('/')[1:]))
-            s3_url = asset.get_content_url(follow_redirects=1, strip_query=True)
-            file_link.append(s3_url)
-            meta_data_link.append(asset.api_url)
-    file['file_link'] = file_link
-    file['meta_data_link'] = meta_data_link
+    
 
     #concat the file name and save
     #dandi_id = np.array([str(int(x)).zfill(6) + '/' + y for x, y in zip(file['dandiset label'], file['specimen_id'].to_numpy())])
