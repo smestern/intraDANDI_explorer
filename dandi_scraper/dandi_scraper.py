@@ -398,8 +398,8 @@ def build_server():
     GLOBAL_VARS.file_index = 'specimen_id'
     GLOBAL_VARS.file_path = 'specimen_id'
     GLOBAL_VARS.table_vars_rq = ['specimen_id', 'ap_1_width_0_long_square', 'input_resistance','tau','v_baseline',
-                                 'sag_nearest_minus_100', 'ap_1_threshold_v_0_long_square', 'ap_1_peak_v_0_long_square']
-    GLOBAL_VARS.table_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100', 'file_link', 'dandiset_link']
+                                 'sag_nearest_minus_100', 'ap_1_threshold_v_0_long_square', 'ap_1_peak_v_0_long_square', 'file_link', 'dandiset_link', "meta_data_link"]
+    GLOBAL_VARS.table_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100']#
     GLOBAL_VARS.para_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100', 'ap_1_width_0_long_square']
     GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
     GLOBAL_VARS.umap_labels = ['dandiset label', 'ap_1_width_0_long_square', 'species', 'brain_region', 'contributor',]
@@ -422,9 +422,12 @@ def build_server():
     "input_resistance": "Input resistance (MOhm)",
     "tau": "Tau (ms)",
     "v_baseline": "Baseline voltage (mV)",
+    "dandiset_link": "View Dandiset",
+    "meta_data_link": "View File Metadata",
+    "file_link": "File Download",
     }
 
-    GLOBAL_VARS.table_spec = {'file_link': "links", 'dandiset_link': "links"}
+    GLOBAL_VARS.table_spec = {"View Dandiset": "links", "View File Metadata": "links", "File Download": "links"}
 
     # GLOBAL_VARS.table_split = 'species'
     # GLOBAL_VARS.split_default = "Human"
@@ -434,15 +437,12 @@ def build_server():
     file = pd.read_csv(filepath+'/../all_new.csv',)
 
     file["ap_1_width_0_long_square"] = file["ap_1_width_0_long_square"]*1000
-
-    
-
     #concat the file name and save
     #dandi_id = np.array([str(int(x)).zfill(6) + '/' + y for x, y in zip(file['dandiset label'], file['specimen_id'].to_numpy())])
     #file['specimen_id'] = dandi_id 
 
     #shuffle the data for fun
-    #file = file.sample(frac=1)
+    file = file.sample(frac=1)
 
     file.to_csv(filepath+'/../all2.csv')
 
