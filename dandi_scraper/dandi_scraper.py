@@ -404,6 +404,7 @@ def build_server():
     GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
     GLOBAL_VARS.umap_labels = ['dandiset label', 'species', 'brain_region', 'contributor', {'Ephys Feat:': ['input_resistance','tau','v_baseline','sag_nearest_minus_100', 'ap_1_width_0_long_square']}]
     GLOBAL_VARS.plots_path = '.'
+    GLOBAL_VARS.umap_cols = ['Umap X', 'Umap Y']
     GLOBAL_VARS.hidden_table = True
     GLOBAL_VARS.hidden_table_vars = ['dandiset label', 'species']
     #Add a title to the webviz
@@ -437,9 +438,8 @@ def build_server():
     file = pd.read_csv(filepath+'/../all_new.csv',)
 
     file["ap_1_width_0_long_square"] = np.log10(file["ap_1_width_0_long_square"]*1000)
-    #concat the file name and save
-    #dandi_id = np.array([str(int(x)).zfill(6) + '/' + y for x, y in zip(file['dandiset label'], file['specimen_id'].to_numpy())])
-    #file['specimen_id'] = dandi_id 
+    #do the same for the tau
+    file["tau"] = np.log10(file["tau"]*1000)
 
     #shuffle the data for fun
     file = file.sample(frac=1)
