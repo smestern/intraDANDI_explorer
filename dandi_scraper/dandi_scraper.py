@@ -404,6 +404,7 @@ def build_server():
     GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
     GLOBAL_VARS.umap_labels = ['dandiset label', 'species', 'brain_region', 'contributor', {'Ephys Feat:': ['input_resistance','tau','v_baseline','sag_nearest_minus_100', 'ap_1_width_0_long_square']}]
     GLOBAL_VARS.plots_path = '.'
+    #GLOBAL_VARS.primary_label = 'brain_region'
     GLOBAL_VARS.umap_cols = ['Umap X', 'Umap Y']
     GLOBAL_VARS.hidden_table = True
     GLOBAL_VARS.hidden_table_vars = ['dandiset label', 'species']
