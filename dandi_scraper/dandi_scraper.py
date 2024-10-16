@@ -400,10 +400,11 @@ def build_server():
     GLOBAL_VARS.table_vars_rq = ['specimen_id', 'ap_1_width_0_long_square', 'input_resistance','tau','v_baseline',
                                  'sag_nearest_minus_100', 'ap_1_threshold_v_0_long_square', 'ap_1_peak_v_0_long_square', 'file_link', 'dandiset_link', "meta_data_link"]
     GLOBAL_VARS.table_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100']#
-    GLOBAL_VARS.para_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100', 'ap_1_width_0_long_square']
+    GLOBAL_VARS.para_vars = ['ap_1_width_0_long_square', 'input_resistance','tau','v_baseline','sag_nearest_minus_100', ]
     GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
     GLOBAL_VARS.umap_labels = ['dandiset label', 'species', 'brain_region', 'contributor', {'Ephys Feat:': ['input_resistance','tau','v_baseline','sag_nearest_minus_100', 'ap_1_width_0_long_square']}]
     GLOBAL_VARS.plots_path = '.'
+    #GLOBAL_VARS.primary_label = 'dandiset label'
     #GLOBAL_VARS.primary_label = 'brain_region'
     GLOBAL_VARS.umap_cols = ['Umap X', 'Umap Y']
     GLOBAL_VARS.hidden_table = True
@@ -419,7 +420,7 @@ def build_server():
     GLOBAL_VARS.db_embed_title = "UMAP"
 
     GLOBAL_VARS.col_rename = {
-    "ap_1_width_0_long_square": "Rheobase spike width (ms)",
+    "ap_1_width_0_long_square": "Rheobase spike width log[(ms)]",
     "sag_nearest_minus_100": "Sag (mV)",
     "input_resistance": "Input resistance (MOhm)",
     "tau": "Tau (ms)",
