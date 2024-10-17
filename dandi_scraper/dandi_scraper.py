@@ -420,10 +420,10 @@ def build_server():
     GLOBAL_VARS.db_embed_title = "UMAP"
 
     GLOBAL_VARS.col_rename = {
-    "ap_1_width_0_long_square": "Rheobase spike width log[(ms)]",
+    "ap_1_width_0_long_square": "Rheo-AP width Log[(ms)]",
     "sag_nearest_minus_100": "Sag (mV)",
     "input_resistance": "Input resistance (MOhm)",
-    "tau": "Tau (ms)",
+    "tau": "Tau Log[(ms)]",
     "v_baseline": "Baseline voltage (mV)",
     "dandiset_link": "View Dandiset",
     "meta_data_link": "View File Metadata",
