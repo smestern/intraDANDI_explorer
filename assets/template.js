@@ -6,11 +6,11 @@ $( document ).ready(function() {
 
     var embed_colors = ['viridis', 'plasma', 'inferno', 'magma', 'cividis', 'Greys', 'Purples', 'Blues', 'Greens', 'Oranges', 'Reds', 'YlOrBr', 'YlOrRd', 'OrRd', 'PuRd', 'RdPu', 'BuPu', 'GnBu', 'PuBu', 'YlGnBu', 'PuBuGn', 'BuGn', 'YlGn']
 
-    var ekeys = ["Baseline voltage (mV)", "Input resistance (MOhm)", "Rheo-AP width Log[(ms)]", "Sag (mV)", "Tau Log[(ms)]", "ap_1_peak_v_0_long_square", "ap_1_threshold_v_0_long_square"]
+    var ekeys = ["Baseline voltage (mV)", "Input resistance (MOhm)", "Rheo-AP width Log[(ms)]", "Sag", "Tau Log[(ms)]", "ap_1_peak_v_0_long_square", "ap_1_threshold_v_0_long_square", "brain_region", "species"]
 
-    var para_keys = ["Rheo-AP width Log[(ms)]", "Input resistance (MOhm)", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag (mV)", "species", "brain_region"]
+    var para_keys = ["Rheo-AP width Log[(ms)]", "Input resistance (MOhm)", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag", "species", "brain_region"]
 
-    var umap_labels = ["dandiset label", "species", "brain_region", "contributor", {"Ephys Feat:": ["Input resistance (MOhm)", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag (mV)", "Rheo-AP width Log[(ms)]"]}]
+    var umap_labels = ["dandiset label", "species", "brain_region", "contributor", {"Ephys Feat:": ["Input resistance (MOhm)", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag", "Rheo-AP width Log[(ms)]"]}]
 
     /* dataset_label_col */
 
@@ -700,9 +700,9 @@ $( document ).ready(function() {
     $table.bootstrapTable('refresh')
 
     generate_umap(data_tb, ['Umap X', 'Umap Y', 'dandiset label']); 
- 	var paracoordskeys = ['Rheo-AP width Log[(ms)]', 'Input resistance (MOhm)', 'Tau Log[(ms)]', 'Baseline voltage (mV)', 'Sag (mV)', 'species', 'brain_region'];
+ 	var paracoordskeys = ['Rheo-AP width Log[(ms)]', 'Input resistance (MOhm)', 'Tau Log[(ms)]', 'Baseline voltage (mV)', 'Sag', 'species', 'brain_region'];
                     var paracoordscolors = "Rheo-AP width Log[(ms)]";
-                    generate_paracoords(data_tb, ['Rheo-AP width Log[(ms)]', 'Input resistance (MOhm)', 'Tau Log[(ms)]', 'Baseline voltage (mV)', 'Sag (mV)', 'species', 'brain_region'], 'Rheo-AP width Log[(ms)]'); 
+                    generate_paracoords(data_tb, ['Rheo-AP width Log[(ms)]', 'Input resistance (MOhm)', 'Tau Log[(ms)]', 'Baseline voltage (mV)', 'Sag', 'species', 'brain_region'], 'Rheo-AP width Log[(ms)]'); 
     
     //find the elements of 
     var drop_parent = document.getElementById("umap-drop-menu");
