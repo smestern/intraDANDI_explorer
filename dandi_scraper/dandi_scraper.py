@@ -413,7 +413,7 @@ def build_server():
     GLOBAL_VARS.db_title = "Icephys Dandiset Visualization"
     GLOBAL_VARS.db_description = """ This is a visualization of some of the intracellular electrophysiology (icephys) data found across the open \n
     neuroscience initiative DANDI. The data is visualized using a UMAP and a parallel coordinates plot. The data is also visualized in a table format. \n
-    this is currently a work in progress and is not yet complete. Please cite the original authors of the data when using this data. """
+    This is currently a work in progress and is not yet complete. Please cite the original authors of the data when using this data. """
     GLOBAL_VARS.db_subtitle = ""
     GLOBAL_VARS.db_links = {'Dandi': 'https://dandiarchive.org/',  "smestern on X": "https://twitter.com/smestern"}
     GLOBAL_VARS.db_para_title = "Paracoords"
