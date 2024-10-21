@@ -406,7 +406,7 @@ def build_server():
     GLOBAL_VARS.plots_path = '.'
     #GLOBAL_VARS.primary_label = 'dandiset label'
     #GLOBAL_VARS.primary_label = 'brain_region'
-    GLOBAL_VARS.umap_cols = ['Umap X', 'Umap Y']
+    GLOBAL_VARS.umap_cols = ['umap X', 'umap Y']
     GLOBAL_VARS.hidden_table = True
     GLOBAL_VARS.hidden_table_vars = ['dandiset label', 'species']
     #Add a title to the webviz
