@@ -23,6 +23,19 @@ cols_to_keep = {
     }
 cols_to_keep = list(cols_to_keep.keys())
 
+cols_to_keep = ['input_resistance', 'tau', 'v_baseline', 'sag_nearest_minus_100',
+       'sag_measured_at', 'rheobase_i', 'fi_linear_fit_slope',
+       'ap_1_threshold_v_0_long_square', 'ap_1_peak_v_0_long_square',
+       'ap_1_upstroke_0_long_square', 'ap_1_downstroke_0_long_square',
+       'ap_1_upstroke_downstroke_ratio_0_long_square',
+       'ap_1_width_0_long_square', 'ap_1_fast_trough_v_0_long_square',
+       'ap_mean_threshold_v_0_long_square', 'ap_mean_peak_v_0_long_square',
+       'ap_mean_upstroke_0_long_square', 'ap_mean_downstroke_0_long_square',
+       'ap_mean_upstroke_downstroke_ratio_0_long_square',
+       'ap_mean_width_0_long_square', 'ap_mean_fast_trough_v_0_long_square',
+       'avg_rate_0_long_square', 'latency_0_long_square',
+       'stimulus_amplitude_0_long_square']
+
 # %%
 #filter the data
 df = df.dropna(subset=['umap X'])
@@ -43,9 +56,8 @@ reg = RandomForestRegressor(n_estimators=100)
 reg.fit(X, Y)
 
 #run PCA on X
-pca = PCA(n_components=2, whiten=True)
-
-
+pca = PCA(n_components=1, whiten=True)
+pca.fit(X)
 # %%
 #show feature importance
 importances = reg.feature_importances_
@@ -67,10 +79,10 @@ plt.ylabel('umap Y')
 
 plt.show()
 #%% plot pca
-plt.scatter(pca.fit_transform(X)[:,0], pca.fit_transform(X)[:,1], c=df['umap X'])
+#plt.scatter(pca.fit_transform(X)[:,0], pca.fit_transform(X)[:,1], c=df['umap X'])
 
 #%% grid plot with each feature on the umap
-fig, axs = plt.subplots(2, 2, figsize=(10,10))
+fig, axs = plt.subplots(5, 5, figsize=(20,20))
 for i, ax in enumerate(axs.flat):
     ax.scatter(df['umap X'], df['umap Y'], c=X[:,i])
     ax.set_xlabel('umap X')

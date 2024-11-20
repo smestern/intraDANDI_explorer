@@ -24,6 +24,7 @@ import shutil
 #from fsspec.implementations.cached import CachingFileSystem
 import glob
 import scipy.stats
+import joblib
 # dash / plotly imports
 
 import plotly.graph_objs as go
@@ -47,6 +48,21 @@ from ._metadata_parser import dandi_meta_parser
 #         fs=fsspec.filesystem("http"),
 #         cache_storage="nwb-cache",  # Local folder for the cache
 #     )
+
+
+cols_to_keep = ['input_resistance', 'tau', 'v_baseline', 'sag_nearest_minus_100', 'rheobase_i',
+       'ap_1_threshold_v_0_long_square', 'ap_1_peak_v_0_long_square',
+       'ap_1_upstroke_0_long_square', 'ap_1_downstroke_0_long_square',
+       'ap_1_upstroke_downstroke_ratio_0_long_square',
+       'ap_1_width_0_long_square', 'ap_1_fast_trough_v_0_long_square',
+       'ap_mean_threshold_v_0_long_square', 'ap_mean_peak_v_0_long_square',
+       'ap_mean_upstroke_0_long_square', 'ap_mean_downstroke_0_long_square',
+       'ap_mean_upstroke_downstroke_ratio_0_long_square',
+       'ap_mean_width_0_long_square', 'ap_mean_fast_trough_v_0_long_square',
+       'avg_rate_0_long_square', 'latency_0_long_square',
+       'stimulus_amplitude_0_long_square']
+
+
 
 
 def build_dandiset_df():
@@ -296,7 +312,7 @@ def run_merge_dandiset():
     dfs = dfs.loc[np.hstack(idxs)]
     print(f"dfs shape after filtering: {dfs.shape}")
 
-    dataset_numeric = pd.concat(dataset_numeric, axis=0)
+    dataset_numeric = pd.concat(dataset_numeric, axis=0)[cols_to_keep]
     print(f"dataset_numeric shape after concatenation: {dataset_numeric.shape}")
 
     # Drop columns where over 50% of the data is missing
@@ -306,16 +322,19 @@ def run_merge_dandiset():
     dfs = dfs.loc[dataset_numeric.index]
     #embed the data
 
+    #dump the data
+    joblib.dump(dataset_numeric, './dataset_numeric.pkl')
+
     reducer = umap.UMAP(densmap=False, n_neighbors=500,verbose=True,)
 
     embedding = reducer.fit_transform(dataset_numeric)
     #also make a n=5 umap
-    reducer2 = umap.UMAP(densmap=False,n_neighbors=50, min_dist=1e-4, spread=2.0,   random_state=42, verbose=True,)
-    reducer2.fit(dataset_numeric) - reducer
+    reducer2 = umap.UMAP(densmap=False,n_neighbors=50,  random_state=42, verbose=True,)
+    reducer3 = reducer2.fit(dataset_numeric) + reducer
 
-    dfs['umap X'] = reducer2.embedding_[:,0]
-    dfs['umap Y'] = reducer2.embedding_[:,1]
-    #plt.scatter(dfs['umap X'], dfs['umap Y'] , s=0.1)
+    dfs['umap X'] = reducer3.embedding_[:,0]
+    dfs['umap Y'] = reducer3.embedding_[:,1]
+    plt.scatter(dfs['umap X'], dfs['umap Y'] , s=0.1)
 
     
     #also run PCA for fun
@@ -343,7 +362,7 @@ def run_merge_dandiset():
                 
                 )
     
-
+    plt.show()
     dfs["dandiset_link"] = dfs["dandiset label"].apply(lambda x: f"https://dandiarchive.org/dandiset/{str(int(x)).zfill(6)}")
     file_link = []
     meta_data_link = []
@@ -355,7 +374,7 @@ def run_merge_dandiset():
             meta_data_link.append(asset.api_url)
     dfs['file_link'] = file_link
     dfs['meta_data_link'] = meta_data_link
-   
+    
     
     dfs.to_csv('./all_new.csv')
 
