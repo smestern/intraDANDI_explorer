@@ -325,15 +325,15 @@ def run_merge_dandiset():
     #dump the data
     joblib.dump(dataset_numeric, './dataset_numeric.pkl')
 
-    reducer = umap.UMAP(densmap=False, n_neighbors=500,verbose=True,)
+    reducer = umap.UMAP(densmap=False, min_dist=0.3, spread=10, metric='cosine',n_neighbors=500,verbose=True,)
 
     embedding = reducer.fit_transform(dataset_numeric)
     #also make a n=5 umap
-    reducer2 = umap.UMAP(densmap=False,n_neighbors=50,  random_state=42, verbose=True,)
-    reducer3 = reducer2.fit(dataset_numeric) + reducer
+    reducer2 = umap.UMAP(densmap=False, n_neighbors=150, min_dist=0.01, spread=1, metric='correlation', verbose=True,)
+    reducer3 = reducer2.fit(dataset_numeric) #+ reducer
 
-    dfs['umap X'] = reducer3.embedding_[:,0]
-    dfs['umap Y'] = reducer3.embedding_[:,1]
+    dfs['umap X'] = reducer2.embedding_[:,0]
+    dfs['umap Y'] = reducer2.embedding_[:,1]
     plt.scatter(dfs['umap X'], dfs['umap Y'] , s=0.1)
 
     
@@ -362,7 +362,7 @@ def run_merge_dandiset():
                 
                 )
     
-    plt.show()
+    #plt.show()
     dfs["dandiset_link"] = dfs["dandiset label"].apply(lambda x: f"https://dandiarchive.org/dandiset/{str(int(x)).zfill(6)}")
     file_link = []
     meta_data_link = []
