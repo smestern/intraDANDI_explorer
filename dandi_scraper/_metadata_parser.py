@@ -77,13 +77,10 @@ class dandi_meta_parser():
                     Keywords: {}
                     Species: {}
                     What brain region(s) were studied (in one to two words)?:""".format(self.dandiset_name, self.dandiset_description, self.dandiset_keywords, self.dandiset_species)
-        extraction = co.generate(
-           prompt=EXAMPLE_PROMPT + '\n' + PROMPT,
-           max_tokens=20,
-           temperature=0.1,
-           stop_sequences=["\n"])
+        extraction = co.chat(
+           message=EXAMPLE_PROMPT + '\n' + PROMPT,)
         #time.sleep(60)
-        text = extraction.generations[0].text
+        text = extraction.text
         #sometimes the model returns the prompt included so we want to split at the colon and take the second part
         if ':' in text:
             text = ''.join(text.split(':')[-1])

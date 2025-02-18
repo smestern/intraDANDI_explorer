@@ -266,6 +266,8 @@ def run_merge_dandiset():
     #also drop columns where over 50% of the data is missing
     dfs = dfs.dropna(axis=1, thresh=int(len(dfs)*0.9))
 
+    
+
     idxs = []
     columns = []
     meta_data = []
@@ -320,7 +322,9 @@ def run_merge_dandiset():
     print(f"dataset_numeric shape after dropping columns: {dataset_numeric.shape}")
     # Ensure dfs and dataset_numeric have the same index
     dfs = dfs.loc[dataset_numeric.index]
-    #embed the data
+    #
+    #log scale the input resistance
+    dataset_numeric['input_resistance'] = np.log10(dataset_numeric['input_resistance'])
 
     #dump the data
     joblib.dump(dataset_numeric, './dataset_numeric.pkl')
@@ -425,7 +429,7 @@ def build_server():
     GLOBAL_VARS.plots_path = '.'
     #GLOBAL_VARS.primary_label = 'dandiset label'
     #GLOBAL_VARS.primary_label = 'brain_region'
-    GLOBAL_VARS.umap_cols = ['umap X', 'umap Y']
+    GLOBAL_VARS.umap_cols = ['Umap X', 'Umap Y']
     GLOBAL_VARS.hidden_table = True
     GLOBAL_VARS.hidden_table_vars = ['dandiset label', 'species']
     #Add a title to the webviz
@@ -461,6 +465,7 @@ def build_server():
     file["ap_1_width_0_long_square"] = np.log10(file["ap_1_width_0_long_square"]*1000)
     #do the same for the tau
     file["tau"] = np.log10(file["tau"]*1000)
+    file['input_resistance'] = np.log10(file['input_resistance'])
 
     #shuffle the data for fun
     file = file.sample(frac=1)

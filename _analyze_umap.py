@@ -82,7 +82,7 @@ plt.show()
 #plt.scatter(pca.fit_transform(X)[:,0], pca.fit_transform(X)[:,1], c=df['umap X'])
 
 #%% grid plot with each feature on the umap
-fig, axs = plt.subplots(5, 5, figsize=(20,20))
+fig, axs = plt.subplots(3, 3, figsize=(20,20))
 for i, ax in enumerate(axs.flat):
     ax.scatter(df['umap X'], df['umap Y'], c=X[:,i])
     ax.set_xlabel('umap X')
