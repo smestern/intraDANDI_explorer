@@ -50,7 +50,7 @@ from ._metadata_parser import dandi_meta_parser
 #     )
 
 
-cols_to_keep = ['input_resistance', 'tau', 'v_baseline', 'sag_nearest_minus_100', 'rheobase_i',
+cols_to_keep = ['input_resistance', 'tau', 'v_baseline', 'sag_nearest_minus_100', 
        'ap_1_threshold_v_0_long_square', 'ap_1_peak_v_0_long_square',
        'ap_1_upstroke_0_long_square', 'ap_1_downstroke_0_long_square',
        'ap_1_upstroke_downstroke_ratio_0_long_square',
@@ -59,8 +59,7 @@ cols_to_keep = ['input_resistance', 'tau', 'v_baseline', 'sag_nearest_minus_100'
        'ap_mean_upstroke_0_long_square', 'ap_mean_downstroke_0_long_square',
        'ap_mean_upstroke_downstroke_ratio_0_long_square',
        'ap_mean_width_0_long_square', 'ap_mean_fast_trough_v_0_long_square',
-       'avg_rate_0_long_square', 'latency_0_long_square',
-       'stimulus_amplitude_0_long_square']
+       'avg_rate_0_long_square', 'latency_0_long_square',]
 
 
 
@@ -227,7 +226,7 @@ def run_analyze_dandiset():
         df_dandiset["species"] = row[1]["species"]
         df_dandiset.to_csv('/media/smestern/Expansion/dandi/'+row[1]["identifier"]+'.csv')
 
-def run_merge_dandiset():
+def run_merge_dandiset(use_cached_metadata=True):
     from sklearn.preprocessing import StandardScaler
     import umap
     from sklearn.impute import SimpleImputer, KNNImputer
@@ -248,7 +247,11 @@ def run_merge_dandiset():
         
         dfs.append(temp_df)
         
-
+    if os.path.exists('./all_new.csv'):
+        #load all new for cached metadata stuff
+        df_old = pd.read_csv('./all_new.csv', index_col=0)
+    else:
+        df_old = None
     
 
     dfs = pd.concat(dfs)
@@ -276,7 +279,10 @@ def run_merge_dandiset():
         print(f"Processing {code}")
         #observe the meta data
         #try:
-        meta_ = get_dandi_metadata(code)
+        if use_cached_metadata and df_old is not None:
+            meta_ = df_old.loc[df_old['dandiset label'] == code, ['dandiset_id', 'age', 'subject_id', 'cell_id', 'brain_region', 'species', 'filepath', 'contributor']]
+        else:
+            meta_ = get_dandi_metadata(code)
         meta_data.append(meta_)
             #pass
         #except:
@@ -332,8 +338,8 @@ def run_merge_dandiset():
     reducer = umap.UMAP(densmap=False, min_dist=0.3, spread=10, metric='cosine',n_neighbors=500,verbose=True,)
 
     embedding = reducer.fit_transform(dataset_numeric)
-    #also make a n=5 umap
-    reducer2 = umap.UMAP(densmap=False, n_neighbors=150, min_dist=0.01, spread=1, metric='correlation', verbose=True,)
+    #also make a n=25 umap
+    reducer2 = umap.UMAP(n_neighbors=25, min_dist=0.1, spread=2, repulsion_strength=5, metric='cosine')
     reducer3 = reducer2.fit(dataset_numeric) #+ reducer
 
     dfs['umap X'] = reducer2.embedding_[:,0]
@@ -366,16 +372,23 @@ def run_merge_dandiset():
                 
                 )
     
-    #plt.show()
+    plt.show()
     dfs["dandiset_link"] = dfs["dandiset label"].apply(lambda x: f"https://dandiarchive.org/dandiset/{str(int(x)).zfill(6)}")
     file_link = []
     meta_data_link = []
     with DandiAPIClient() as client:
         for dandiset_id, specimen_id in zip(dfs['dandiset label'], dfs['specimen_id']):
-            asset = client.get_dandiset(str(int( dandiset_id)).zfill(6), 'draft').get_asset_by_path('/'.join(specimen_id.split('/')[1:]))
-            s3_url = asset.get_content_url(follow_redirects=1, strip_query=True)
+
+
+            if use_cached_metadata and df_old is not None:
+                asset = df_old.loc[df_old['id_full'] == (dandiset_id + '/' + specimen_id)]
+                s3_url = asset['file_link'].values[0]
+                meta_data_link.append(asset['meta_data_link'].values[0])
+            else:
+                asset = client.get_dandiset(str(int( dandiset_id)).zfill(6), 'draft').get_asset_by_path('/'.join(specimen_id.split('/')[1:]))
+                s3_url = asset.get_content_url(follow_redirects=1, strip_query=True)
+                meta_data_link.append(asset.api_url)
             file_link.append(s3_url)
-            meta_data_link.append(asset.api_url)
     dfs['file_link'] = file_link
     dfs['meta_data_link'] = meta_data_link
     
@@ -429,7 +442,7 @@ def build_server():
     GLOBAL_VARS.plots_path = '.'
     #GLOBAL_VARS.primary_label = 'dandiset label'
     #GLOBAL_VARS.primary_label = 'brain_region'
-    GLOBAL_VARS.umap_cols = ['Umap X', 'Umap Y']
+    GLOBAL_VARS.umap_cols = ['umap X', 'umap Y']
     GLOBAL_VARS.hidden_table = True
     GLOBAL_VARS.hidden_table_vars = ['dandiset label', 'species']
     #Add a title to the webviz

@@ -1,0 +1,361 @@
+
+                    Title: Phenotypic variation within and across transcriptomic cell types in mouse motor cortex
+                    Description: We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. Contained in this dandiset are the intracellular electrophysiological recordings. See Dandiset #35 for an additional dataset, recorded under the physiological temperature. 
+                    Keywords: ['Patch-seq', 'cortex', 'motor cortex', 'mouse']
+                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
+                    What brain region(s) were studied (in one to two words)?:
+Motor cortex.
+
+                    Title: Patch-seq recordings from mouse visual cortex
+                    Description: Whole-cell Patch-seq recordings from neurons of the mouse visual cortex from the Allen Institute for Brain Science, released in June 2020. The majority of cells in this dataset are GABAergic interneurons, but there are also a small number of glutamatergic neurons from layer 2/3 of the mouse visual cortex.
+                    Keywords: ['Patch-seq', 'mouse', 'visual cortex', 'interneuron']
+                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
+                    What brain region(s) were studied (in one to two words)?:
+Visual cortex
+
+                    Title: Patch-seq recordings from human cortex (June 2020)
+                    Description: Whole-cell Patch-seq recordings from neurons of the human neocortex from the Allen Institute for Brain Science, released in June 2020.
+                    Keywords: ['Patch-seq', 'human', 'neocortex', ' layer 2/3']
+                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Neocortex
+
+                    Title: Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex
+                    Description:  We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. This dataset contains rectangular stimulation of cells under temperature-controlled conditions (34 ℃). See Dandiset #8 for the main dataset, recorded under the room temperature.
+                    Keywords: ['Patch-seq', 'mouse', 'cortex', 'motor cortex']
+                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
+                    What brain region(s) were studied (in one to two words)?:
+Motor cortex.
+
+                    Title: Patch-seq recordings from human cortex (June 2021)
+                    Description: Whole-cell Patch-seq recordings from neurons of the human neocortex from the Allen Institute for Brain Science, released in June 2021.
+                    Keywords: ['Patch-seq', 'human', 'neocortex']
+                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Human neocortex.
+
+                    Title: 20210923_AIBS_Patchseq_human
+                    Description: U01 Lein PatchSeq upload September 2021
+                    Keywords: ['Patch-seq', 'human', 'neocortical']
+                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Neocortex
+
+                    Title: Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021
+                    Description: Patch-clamp recording data from spinal cord neurons. Data was generated at Huizhong Tao's lab at USC(htao@usc.edu). The recording was performed by Can Tao(cantao@usc.edu) and Bo Peng(pengb@usc.edu).
+                    Keywords: []
+                    Species: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
+                    What brain region(s) were studied (in one to two words)?:
+Spinal cord
+
+                    Title: 20211223_AIBS_Patchseq_human
+                    Description: U01 Lein PatchSeq upload December 2021
+                    Keywords: ['Patch-seq', 'human', 'neocortical']
+                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Neocortex
+
+                    Title: 20220330_AIBS_Patchseq_human
+                    Description: U01 Lein PatchSeq upload March 2022
+                    Keywords: ['Patch-seq', 'human', 'neocortical']
+                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Neocortex
+
+                    Title: Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI
+                    Description: Whole-cell patch clamp recording of specific cell types in the adult mouse spinal cord. Neurons are either input defined, output defined or expressing specific molecular markers. 
+                    Keywords: []
+                    Species: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
+                    What brain region(s) were studied (in one to two words)?:
+Spinal cord
+
+                    Title: 20220630_AIBS_Patchseq_human
+                    Description: U01 Lein PatchSeq upload June 2022
+                    Keywords: ['Patch-seq', 'human']
+                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Human cortex
+
+                    Title: Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI
+                    Description: Whole-cell patch clamp recording of specific cell types in the adult mouse spinal cord. Neurons are either input defined, output defined or expressing specific molecular markers.
+                    Keywords: []
+                    Species: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
+                    What brain region(s) were studied (in one to two words)?:
+Spinal cord
+
+                    Title: 20230630_AIBS_Patchseq_nonhuman_primate
+                    Description: HMBA Lein PatchSeq upload (Q2 2023)
+                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
+                    Species: [{'name': 'Macaca nemestrina - Pigtail macaque', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
+                    What brain region(s) were studied (in one to two words)?:
+Cortex, Motor Cortex
+
+                    Title: 20230630_AIBS_Patchseq_human
+                    Description: U01 Lein Patch-seq data upload (Q2 2023)
+                    Keywords: ['Patch-seq', 'human', 'multimodal']
+                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Human brain.
+
+                    Title: Human L1 patch-seq electrophysiology
+                    Description: Patch-seq electrophysiology data from human neocortical L1 neurons, accompanying the manuscript "Morpho-electric and transcriptomic divergence of the layer 1 interneuron repertoire in human versus mouse neocortex" (https://www.biorxiv.org/content/10.1101/2022.10.24.511199).
+
+Analysis code and extracted features available at https://github.com/AllenInstitute/patchseq_human_L1. Feature extraction package available at https://github.com/AllenInstitute/ipfx.
+                    Keywords: ['human', 'multimodal', 'patch-seq', 'neocortex']
+                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}, {'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Neocortex (Layer 1)
+
+                    Title: 20230930_AIBS_Patchseq_nonhuman_primate
+                    Description: HMBA Lein PatchSeq upload (Q3 2023)
+                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
+                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
+                    What brain region(s) were studied (in one to two words)?:
+Cortex.
+
+                    Title: Human interneuron patch-seq electrophysiology
+                    Description: Patch-seq electrophysiology data from human neocortical interneurons from acute and slice culture preparations, accompanying the manuscript "Signature morpho-electric properties of diverse GABAergic interneurons in the human neocortex" (https://www.biorxiv.org/content/10.1101/2022.11.08.515739).
+                    Keywords: ['human', 'multimodal', 'patch-seq', 'neocortex']
+                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}, {'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Neocortex
+
+                    Title: 20231222_AIBS_Patchseq_nonhuman_primate
+                    Description: HMBA Lein PatchSeq upload (nonhuman primate) (Q4 2023)
+                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
+                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
+                    What brain region(s) were studied (in one to two words)?:
+Cortex.
+
+                    Title: 20231222_AIBS_Patchseq_human
+                    Description: HMBA Lein PatchSeq upload (human) (Q4 2023)
+                    Keywords: ['Patch-seq', 'human', 'multimodal']
+                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Human brain
+
+                    Title: 20240331_AIBS_Patchseq_human
+                    Description: HMBA Lein PatchSeq upload (human) (Q1 2024)
+                    Keywords: ['Patch-seq', 'human', 'multimodal']
+                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Human brain
+
+                    Title: 20240331_AIBS_Patchseq_nonhuman_primate
+                    Description: HMBA Lein PatchSeq upload (nonhuman primate) (Q1 2024)
+                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
+                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
+                    What brain region(s) were studied (in one to two words)?:
+Cerebral cortex.
+
+                    Title: UHN whole-cell patch-clamp excitability recordings from human cortical neurons
+                    Description: Whole-cell current clamp recordings from surgically resected human cortical tissue 
+                    Keywords: ['excitability', 'human', 'cortex']
+                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Cortex
+
+                    Title: 20220917_AIBS_Patchseq_human
+                    Description: U01 Lein PatchSeq upload March 2022 - Mansvelder lab data
+                    Keywords: None
+                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Human cortex.
+
+                    Title: Phenotypic variation within and across transcriptomic cell types in mouse motor cortex
+                    Description: We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. Contained in this dandiset are the intracellular electrophysiological recordings. See Dandiset #35 for an additional dataset, recorded under the physiological temperature. 
+                    Keywords: ['Patch-seq', 'cortex', 'motor cortex', 'mouse']
+                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
+                    What brain region(s) were studied (in one to two words)?:
+Motor cortex
+
+                    Title: Patch-seq recordings from mouse visual cortex
+                    Description: Whole-cell Patch-seq recordings from neurons of the mouse visual cortex from the Allen Institute for Brain Science, released in June 2020. The majority of cells in this dataset are GABAergic interneurons, but there are also a small number of glutamatergic neurons from layer 2/3 of the mouse visual cortex.
+                    Keywords: ['Patch-seq', 'mouse', 'visual cortex', 'interneuron']
+                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
+                    What brain region(s) were studied (in one to two words)?:
+1. **Motor cortex**  
+2. **Unknown**  
+3. **Visual cortex**
+
+                    Title: Patch-seq recordings from human cortex (June 2020)
+                    Description: Whole-cell Patch-seq recordings from neurons of the human neocortex from the Allen Institute for Brain Science, released in June 2020.
+                    Keywords: ['Patch-seq', 'human', 'neocortex', ' layer 2/3']
+                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+1. **Motor cortex**  
+2. **Unknown**  
+3. **Human neocortex**
+
+                    Title: Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex
+                    Description:  We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. This dataset contains rectangular stimulation of cells under temperature-controlled conditions (34 ℃). See Dandiset #8 for the main dataset, recorded under the room temperature.
+                    Keywords: ['Patch-seq', 'mouse', 'cortex', 'motor cortex']
+                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
+                    What brain region(s) were studied (in one to two words)?:
+Motor cortex
+
+                    Title: Patch-seq recordings from human cortex (June 2021)
+                    Description: Whole-cell Patch-seq recordings from neurons of the human neocortex from the Allen Institute for Brain Science, released in June 2021.
+                    Keywords: ['Patch-seq', 'human', 'neocortex']
+                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+1. **Motor cortex**  
+2. **Unknown**  
+3. **Human neocortex**
+
+                    Title: 20210923_AIBS_Patchseq_human
+                    Description: U01 Lein PatchSeq upload September 2021
+                    Keywords: ['Patch-seq', 'human', 'neocortical']
+                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+1. **Motor cortex**  
+2. **Unknown**  
+3. **Neocortex**
+
+                    Title: Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021
+                    Description: Patch-clamp recording data from spinal cord neurons. Data was generated at Huizhong Tao's lab at USC(htao@usc.edu). The recording was performed by Can Tao(cantao@usc.edu) and Bo Peng(pengb@usc.edu).
+                    Keywords: []
+                    Species: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
+                    What brain region(s) were studied (in one to two words)?:
+1. **Motor cortex**  
+2. **Unknown**  
+3. **Spinal cord**
+
+                    Title: 20211223_AIBS_Patchseq_human
+                    Description: U01 Lein PatchSeq upload December 2021
+                    Keywords: ['Patch-seq', 'human', 'neocortical']
+                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+1. **Motor cortex**  
+2. **Unknown**  
+3. **Neocortex**
+
+                    Title: 20220330_AIBS_Patchseq_human
+                    Description: U01 Lein PatchSeq upload March 2022
+                    Keywords: ['Patch-seq', 'human', 'neocortical']
+                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Neocortex
+
+                    Title: Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI
+                    Description: Whole-cell patch clamp recording of specific cell types in the adult mouse spinal cord. Neurons are either input defined, output defined or expressing specific molecular markers. 
+                    Keywords: []
+                    Species: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
+                    What brain region(s) were studied (in one to two words)?:
+Spinal cord
+
+                    Title: 20220630_AIBS_Patchseq_human
+                    Description: U01 Lein PatchSeq upload June 2022
+                    Keywords: ['Patch-seq', 'human']
+                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+1. **Motor cortex**  
+2. **Unknown**  
+3. **Not specified**
+
+                    Title: Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI
+                    Description: Whole-cell patch clamp recording of specific cell types in the adult mouse spinal cord. Neurons are either input defined, output defined or expressing specific molecular markers.
+                    Keywords: []
+                    Species: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
+                    What brain region(s) were studied (in one to two words)?:
+Spinal cord
+
+                    Title: 20230630_AIBS_Patchseq_nonhuman_primate
+                    Description: HMBA Lein PatchSeq upload (Q2 2023)
+                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
+                    Species: [{'name': 'Macaca nemestrina - Pigtail macaque', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
+                    What brain region(s) were studied (in one to two words)?:
+Unknown
+
+                    Title: 20230630_AIBS_Patchseq_human
+                    Description: U01 Lein Patch-seq data upload (Q2 2023)
+                    Keywords: ['Patch-seq', 'human', 'multimodal']
+                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+1. **Motor cortex**  
+2. **Unknown**  
+3. **Not specified**
+
+                    Title: Human L1 patch-seq electrophysiology
+                    Description: Patch-seq electrophysiology data from human neocortical L1 neurons, accompanying the manuscript "Morpho-electric and transcriptomic divergence of the layer 1 interneuron repertoire in human versus mouse neocortex" (https://www.biorxiv.org/content/10.1101/2022.10.24.511199).
+
+Analysis code and extracted features available at https://github.com/AllenInstitute/patchseq_human_L1. Feature extraction package available at https://github.com/AllenInstitute/ipfx.
+                    Keywords: ['human', 'multimodal', 'patch-seq', 'neocortex']
+                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}, {'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Neocortex, Layer 1
+
+                    Title: 20230930_AIBS_Patchseq_nonhuman_primate
+                    Description: HMBA Lein PatchSeq upload (Q3 2023)
+                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
+                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
+                    What brain region(s) were studied (in one to two words)?:
+Unknown
+
+                    Title: Human interneuron patch-seq electrophysiology
+                    Description: Patch-seq electrophysiology data from human neocortical interneurons from acute and slice culture preparations, accompanying the manuscript "Signature morpho-electric properties of diverse GABAergic interneurons in the human neocortex" (https://www.biorxiv.org/content/10.1101/2022.11.08.515739).
+                    Keywords: ['human', 'multimodal', 'patch-seq', 'neocortex']
+                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}, {'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+1. **Motor cortex**  
+2. **Unknown**  
+3. **Neocortex**
+
+                    Title: 20231222_AIBS_Patchseq_nonhuman_primate
+                    Description: HMBA Lein PatchSeq upload (nonhuman primate) (Q4 2023)
+                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
+                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
+                    What brain region(s) were studied (in one to two words)?:
+1. **Motor cortex**  
+2. **Unknown**  
+3. **Not specified**
+
+                    Title: 20231222_AIBS_Patchseq_human
+                    Description: HMBA Lein PatchSeq upload (human) (Q4 2023)
+                    Keywords: ['Patch-seq', 'human', 'multimodal']
+                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+Unknown
+
+                    Title: 20240331_AIBS_Patchseq_human
+                    Description: HMBA Lein PatchSeq upload (human) (Q1 2024)
+                    Keywords: ['Patch-seq', 'human', 'multimodal']
+                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+
+
+1. **Motor cortex**  
+2. **Unknown**  
+3. **Not specified** (The description and keywords do not mention a specific brain region.)
+
+                    Title: 20240331_AIBS_Patchseq_nonhuman_primate
+                    Description: HMBA Lein PatchSeq upload (nonhuman primate) (Q1 2024)
+                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
+                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
+                    What brain region(s) were studied (in one to two words)?:
+Unknown
+
+                    Title: UHN whole-cell patch-clamp excitability recordings from human cortical neurons
+                    Description: Whole-cell current clamp recordings from surgically resected human cortical tissue 
+                    Keywords: ['excitability', 'human', 'cortex']
+                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+1. **Motor cortex**  
+2. **Unknown**  
+3. **Human cortex**
+
+                    Title: 20220917_AIBS_Patchseq_human
+                    Description: U01 Lein PatchSeq upload March 2022 - Mansvelder lab data
+                    Keywords: None
+                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
+                    What brain region(s) were studied (in one to two words)?:
+1. **Motor cortex**  
+2. **Unknown**  
+3. **Not specified**
+
+                    Title: Phenotypic variation within and across transcriptomic cell types in mouse motor cortex
+                    Description: We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. Contained in this dandiset are the intracellular electrophysiological recordings. See Dandiset #35 for an additional dataset, recorded under the physiological temperature. 
+                    Keywords: ['Patch-seq', 'cortex', 'motor cortex', 'mouse']
+                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
+                    What brain region(s) were studied (in one to two words)?:
+Motor cortex

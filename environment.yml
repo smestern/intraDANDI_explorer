@@ -1,5 +1,6 @@
 name: intraspca_dandi_explorer
 dependencies:
+  - python=3.11
   # bind tornado version (websocket problems)
   - h5py
   - scipy
@@ -12,4 +13,6 @@ dependencies:
   - six
   - sqlalchemy
   - nose
+  - scikit-learn
+  - pandas
   

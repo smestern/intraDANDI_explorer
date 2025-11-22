@@ -23,8 +23,7 @@ cols_to_keep = {
     }
 cols_to_keep = list(cols_to_keep.keys())
 
-cols_to_keep = ['input_resistance', 'tau', 'v_baseline', 'sag_nearest_minus_100',
-       'sag_measured_at', 'rheobase_i', 'fi_linear_fit_slope',
+cols_to_keep = ['input_resistance', 'tau', 'v_baseline', 'sag_nearest_minus_100', 'rheobase_i',
        'ap_1_threshold_v_0_long_square', 'ap_1_peak_v_0_long_square',
        'ap_1_upstroke_0_long_square', 'ap_1_downstroke_0_long_square',
        'ap_1_upstroke_downstroke_ratio_0_long_square',
@@ -33,8 +32,8 @@ cols_to_keep = ['input_resistance', 'tau', 'v_baseline', 'sag_nearest_minus_100'
        'ap_mean_upstroke_0_long_square', 'ap_mean_downstroke_0_long_square',
        'ap_mean_upstroke_downstroke_ratio_0_long_square',
        'ap_mean_width_0_long_square', 'ap_mean_fast_trough_v_0_long_square',
-       'avg_rate_0_long_square', 'latency_0_long_square',
-       'stimulus_amplitude_0_long_square']
+       'avg_rate_0_long_square', 'latency_0_long_square',]
+
 
 # %%
 #filter the data

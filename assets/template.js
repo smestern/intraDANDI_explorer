@@ -699,7 +699,7 @@ $( document ).ready(function() {
     //$table.bootstrapTable('refreshOptions', {detailView: true, detailFormatter : traceFormatter})
     $table.bootstrapTable('refresh')
 
-    generate_umap(data_tb, ['Umap X', 'Umap Y', 'dandiset label']); 
+    generate_umap(data_tb, ['umap X', 'umap Y', 'dandiset label']); 
  	var paracoordskeys = ['Rheo-AP width Log[(ms)]', 'Input resistance (MOhm)', 'Tau Log[(ms)]', 'Baseline voltage (mV)', 'Sag', 'species', 'brain_region'];
                     var paracoordscolors = "Rheo-AP width Log[(ms)]";
                     generate_paracoords(data_tb, ['Rheo-AP width Log[(ms)]', 'Input resistance (MOhm)', 'Tau Log[(ms)]', 'Baseline voltage (mV)', 'Sag', 'species', 'brain_region'], 'Rheo-AP width Log[(ms)]'); 
