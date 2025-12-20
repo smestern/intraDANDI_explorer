@@ -211,7 +211,11 @@ def run_analyze_dandiset():
     #glob the csv files
     csv_files = glob.glob('/media/smestern/Expansion/dandi/*.csv')
     csv_files = [x.split('/')[-1].split('.')[0] for x in csv_files]
-    filtered_df = filtered_df[~filtered_df["identifier"].isin(csv_files)]
+    filtered_df = filtered_df[~filtered_df["identifier"].isin(csv_files)] #remove any dandisets we have already analyzed
+    #add in the ones we specifically want
+    for code in dandisets_to_include:
+        if code not in filtered_df["identifier"].values:
+            filtered_df = pd.concat([filtered_df, dandi_df[dandi_df["identifier"] == code]])
 
 
     for row in filtered_df.iterrows():
@@ -226,7 +230,7 @@ def run_analyze_dandiset():
         df_dandiset["species"] = row[1]["species"]
         df_dandiset.to_csv('/media/smestern/Expansion/dandi/'+row[1]["identifier"]+'.csv')
 
-def run_merge_dandiset(use_cached_metadata=True):
+def run_merge_dandiset(use_cached_metadata=False):
     from sklearn.preprocessing import StandardScaler
     import umap
     from sklearn.impute import SimpleImputer, KNNImputer
@@ -311,6 +315,7 @@ def run_merge_dandiset(use_cached_metadata=True):
         dataset_numeric.append(data_num)
     meta_data = pd.concat(meta_data, axis=0)
     print(f"Meta data shape: {meta_data.shape}")
+    print(meta_data.head())
 
     # Merge the meta data
     dfs = dfs.join(meta_data, how='left', rsuffix='_meta')
@@ -378,10 +383,15 @@ def run_merge_dandiset(use_cached_metadata=True):
     meta_data_link = []
     with DandiAPIClient() as client:
         for dandiset_id, specimen_id in zip(dfs['dandiset label'], dfs['specimen_id']):
-
-
             if use_cached_metadata and df_old is not None:
+                
                 asset = df_old.loc[df_old['id_full'] == (dandiset_id + '/' + specimen_id)]
+                if asset.empty: #not found in old df
+                    asset = client.get_dandiset(str(int( dandiset_id)).zfill(6), 'draft').get_asset_by_path('/'.join(specimen_id.split('/')[1:]))
+                    s3_url = asset.get_content_url(follow_redirects=1, strip_query=True)
+                    meta_data_link.append(asset.api_url)
+                    file_link.append(s3_url)
+                    continue
                 s3_url = asset['file_link'].values[0]
                 meta_data_link.append(asset['meta_data_link'].values[0])
             else:
@@ -408,10 +418,13 @@ def run_plot_dandiset():
         #if code != "000142":
         #continue
         if code in dandisets_to_skip:
+            print(f"Skipping {code}")
             continue
         if code == 'all':
+            print(f"Skipping {code}")
             continue
         folder = f"/media/smestern/Expansion/dandi/{code}"
+        
         build_dataset_traces(folder, ids, parallel=True)
     
 def sort_plot_dandiset():
