@@ -36,7 +36,7 @@ from sklearn.ensemble import IsolationForest
 
 #local imports
 from pyAPisolation.database.build_database import run_analysis, parse_long_pulse_from_dataset, build_dataset_traces
-from pyAPisolation.webViz.dashApp import dashBackend, GLOBAL_VARS
+
 import pyAPisolation.webViz.run_web_viz as wbz
 import pyAPisolation.webViz.webVizConfig as wvc
 import pyAPisolation.webViz.ephysDatabaseViewer as edb
@@ -451,7 +451,7 @@ def build_server():
     GLOBAL_VARS.table_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100', 'species', 'brain_region',]#
     GLOBAL_VARS.para_vars = ['ap_1_width_0_long_square', 'input_resistance','tau','v_baseline','sag_nearest_minus_100', 'species', 'brain_region']
     GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
-    GLOBAL_VARS.umap_labels = ['dandiset label', 'species', 'brain_region', 'contributor', {'Ephys Feat:': ['input_resistance','tau','v_baseline','sag_nearest_minus_100', 'ap_1_width_0_long_square']}]
+    GLOBAL_VARS.umap_labels = ['dandiset label', 'species', 'brain_region', 'contributor', {'Ephys Feat:': ['input_resistance','tau','v_baseline','sag_nearest_minus_100', 'ap_1_width_0_long_square', 'tau']}]
     GLOBAL_VARS.plots_path = '.'
     #GLOBAL_VARS.primary_label = 'dandiset label'
     #GLOBAL_VARS.primary_label = 'brain_region'
@@ -503,135 +503,3 @@ def build_server():
     
 if __name__ == "__main__":
     build_server()
-
-### DEPRECATED
-class dandi_data_viz(dashBackend):
-    def __init__(self, database_file=None):
-        super(dandi_data_viz, self).__init__(database_file=database_file)
-
-    def update_cell_plot(self,  row_ids, dom_children, selected_row_ids, active_cell, data):
-        #here we are are overriding the update_cell_plot function to add in the dandi data, allowing streaming from the dandi api
-        active_row_ids = [active_cell['row_id']] if active_cell is not None else None
-        if active_row_ids is not None:
-            
-            fig = make_subplots(rows=1, cols=1, subplot_titles=selected_row_ids)
-            plot_coords = [(1,1)]
-            #now iter through the active row ids and plot them
-            for active_row_id in active_row_ids[:4]:
-                x, y,c = self.load_data(active_row_id)
-                
-                traces = []
-                for sweep_x, sweep_y in zip(x, y):
-                    traces.append(go.Scatter(x=sweep_x, y=sweep_y, mode='lines', hoverinfo='skip'))
-                fig.add_traces(traces, rows=plot_coords[active_row_ids.index(active_row_id)][0], cols=plot_coords[active_row_ids.index(active_row_id)][1])
-                fig.update_layout(margin=dict(l=0, r=0, t=50, b=0))
-            fig.update_yaxes(automargin=True)
-            fig.layout.autosize = True
-            print(str(active_row_ids[0]))
-            return html.Div([dcc.Graph(
-                id="file_plot",
-                figure=fig,
-                style={
-                    "width": "100%",
-                    "height": "100%"
-                },
-                config=dict(
-                    autosizable=True,
-                    frameMargins=0,
-                ),
-                responsive=True
-            )], id=str(active_row_ids[0]), style={"width": "100%", "height": "100%"})
-
-    def _old_update_cell_plot(self,  row_ids, dom_children, selected_row_ids, active_cell, data):
-        #here we are are overriding the update_cell_plot function to add in the dandi data, allowing streaming from the dandi api
-        selected_id_set = set(selected_row_ids or [])
-
-        if row_ids is None:
-            dff = self.df
-            # pandas Series works enough like a list for this to be OK
-            row_ids = self.df['id']
-        else:
-            dff = self.df.loc[row_ids]
-
-        active_row_ids = selected_row_ids
-        if active_row_ids is None or len(active_row_ids) == 0:
-            active_row_ids = [self.df.iloc[0]['id']]
-        if active_row_ids is not None:
-            #determine the amount of different cells to plot, then make up to 4 subplots
-            len_active_row_ids = len(active_row_ids)
-            if len_active_row_ids == 1:
-                fig = make_subplots(rows=1, cols=1, subplot_titles=selected_row_ids)
-                plot_coords = [(1,1)]
-            elif len_active_row_ids == 2:
-                fig = make_subplots(rows=2, cols=1, subplot_titles=selected_row_ids)
-                plot_coords = [(1,1), (2,1)]
-            elif len_active_row_ids >= 3:
-                fig = make_subplots(rows=2, cols=2,subplot_titles=selected_row_ids[:4])
-                plot_coords = [(1,1), (1,2), (2,1), (2,2)]
-            #now iter through the active row ids and plot them
-            for active_row_id in active_row_ids[:4]:
-                x, y,c = self.load_data(active_row_id)
-                
-                traces = []
-                for sweep_x, sweep_y in zip(x, y):
-                    traces.append(go.Scatter(x=sweep_x, y=sweep_y, mode='lines', hoverinfo='skip'))
-                fig.add_traces(traces, rows=plot_coords[active_row_ids.index(active_row_id)][0], cols=plot_coords[active_row_ids.index(active_row_id)][1])
-                fig.update_layout(margin=dict(l=0, r=0, t=50, b=0))
-            fig.update_yaxes(automargin=True)
-            fig.layout.autosize = True
-            return html.Div([dcc.Graph(
-                id="file_plot",
-                figure=fig,
-                style={
-                    "width": "100%",
-                    "height": "100%"
-                },
-                config=dict(
-                    autosizable=True,
-                    frameMargins=0,
-                ),
-                responsive=True
-            )], id=str(active_row_ids[0]), style={"width": "100%", "height": "100%"})
-
-    def load_data(self, specimen_id):
-        #here we are overriding  in the dandi data, allowing streaming from the dandi api
-        if specimen_id is None:
-            return self.df
-        
-        # first, create a virtual filesystem based on the http protocol and use
-        # we need to parse the speciemen id to get the 
-        dandiset_id = specimen_id.split('/')[1]
-        filepath = '/'.join(specimen_id.split('/')[2:])
-        with DandiAPIClient() as client:
-            asset = client.get_dandiset(dandiset_id, 'draft').get_asset_by_path(filepath)
-            s3_url = asset.get_content_url(follow_redirects=1, strip_query=True)
-        # next, open the file
-        with FS.open(s3_url, "rb") as f:
-            _, _, _, _, data_set = loadNWB(f, return_obj=True, load_into_mem=True)
-            sweeps, start_times, end_times = parse_long_pulse_from_dataset(data_set)
-            start_time = scipy.stats.mode(np.array(start_times))[0]
-            end_time = scipy.stats.mode(np.array(end_times))[0]
-            idx_pass = np.where((np.array(start_times) == start_time) & (np.array(end_times) == end_time))[0]
-            #index out the sweeps that have the most common start and end times
-            #take 10% of the stim epochs
-            start_time *= 0.75
-            end_time *= 1.2
-            x = np.array([sweep.t[int(sweep.sampling_rate*start_time):int(sweep.sampling_rate*end_time)] for i, sweep in enumerate(sweeps) if i in idx_pass])
-            y = np.array([sweep.v[int(sweep.sampling_rate*start_time):int(sweep.sampling_rate*end_time)] for i, sweep in enumerate(sweeps) if i in idx_pass])
-            c = np.array([sweep.i[int(sweep.sampling_rate*start_time):int(sweep.sampling_rate*end_time)] for i, sweep in enumerate(sweeps) if i in idx_pass])
-        if len(y) > 5:
-            #grab every n sweeps so the length is about 5
-            idx = np.arange(0, len(y), int(len(y)/5))
-            x = x[idx]
-            y = y[idx]
-            c = c[idx]
-        return x, y, c
-    
-    def _generate_header(self):
-        return dbc.Col([
-            dbc.Col(html.H1("Dandi icephys", className="text-center"), width=12),
-            dbc.Col(html.H3("Live Data Visualization",
-                    className="text-center"), width=12),
-            dbc.Col(html.H5("Select a file to view",
-                    className="text-center"), width=12),
-        ], className="col-xl-4", style={"max-width": "20%"})
