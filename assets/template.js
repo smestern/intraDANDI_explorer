@@ -26,6 +26,8 @@ $(document).ready(function () {
     var prev_ranges = {};
     var prev_filter = "";
 
+    var prev_rows = [];
+
     function unpack(rows, key) {
         return rows.map(function (row) {
             return row[key];
@@ -662,9 +664,16 @@ $(document).ready(function () {
     }
 
     function generate_plots() {
-        console.log("Generating plots...");
         $table.bootstrapTable('showLoading');
-        var rows = $table.bootstrapTable('getData', { useCurrentPage: true }); // get the rows, only the visible ones
+        var rows = $table.bootstrapTable('getData', { useCurrentPage: true }); // get the rows, only the visible ones\
+        //determine if the visible rows are the same as the previous rows
+        if (JSON.stringify(rows) === JSON.stringify(prev_rows)) {
+            $table.bootstrapTable('hideLoading');
+            return;
+        } else {
+            prev_rows = rows;
+        }
+        console.log("Generating plots...");
         let promises = rows.map(row => {
             return new Promise(resolve => {
                 setTimeout(() => {
