@@ -861,3 +861,894 @@ Unknown
   "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only species and technique details are provided\"\n}\n```"
 }
 
+{
+  "dandiset_id": "000008",
+  "title": "Phenotypic variation within and across transcriptomic cell types in mouse motor cortex",
+  "brain_region": "motor cortex",
+  "confidence": "high",
+  "reasoning": "Title, description, and keywords explicitly mention motor cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"motor cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title, description, and keywords explicitly mention motor cortex as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000020",
+  "title": "Patch-seq recordings from mouse visual cortex",
+  "brain_region": "visual cortex",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention visual cortex as the study region, with additional details about layers and neuron types within this region.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"visual cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention visual cortex as the study region, with additional details about layers and neuron types within this region.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000023",
+  "title": "Patch-seq recordings from human cortex (June 2020)",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Description and keywords mention neocortex, but no specific region within the neocortex is specified.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description and keywords mention neocortex, but no specific region within the neocortex is specified.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000035",
+  "title": "Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex",
+  "brain_region": "motor cortex",
+  "confidence": "high",
+  "reasoning": "Title, description, and keywords explicitly mention motor cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"motor cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title, description, and keywords explicitly mention motor cortex as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000109",
+  "title": "Patch-seq recordings from human cortex (June 2021)",
+  "brain_region": "neocortex",
+  "confidence": "high",
+  "reasoning": "Description and keywords explicitly mention neocortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description and keywords explicitly mention neocortex as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000142",
+  "title": "20210923_AIBS_Patchseq_human",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but the exact region within the neocortex is not specified.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but the exact region within the neocortex is not specified.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000148",
+  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021",
+  "brain_region": "spinal cord",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention spinal cord as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000209",
+  "title": "20211223_AIBS_Patchseq_human",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000228",
+  "title": "20220330_AIBS_Patchseq_human",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Keywords mention 'neocortical' as the studied region, but specific subregion is not specified",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical' as the studied region, but specific subregion is not specified\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000245",
+  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI",
+  "brain_region": "spinal cord",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention spinal cord as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000288",
+  "title": "20220630_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000295",
+  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI",
+  "brain_region": "spinal cord",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention spinal cord as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000569",
+  "title": "20230630_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only general information about species and technique",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general information about species and technique\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000570",
+  "title": "20230630_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000630",
+  "title": "Human L1 patch-seq electrophysiology",
+  "brain_region": "neocortical L1",
+  "confidence": "high",
+  "reasoning": "Description explicitly mentions neocortical L1 neurons as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortical L1\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions neocortical L1 neurons as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000635",
+  "title": "20230930_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000636",
+  "title": "Human interneuron patch-seq electrophysiology",
+  "brain_region": "neocortex",
+  "confidence": "high",
+  "reasoning": "Description and keywords explicitly mention neocortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description and keywords explicitly mention neocortex as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000768",
+  "title": "20231222_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000769",
+  "title": "20231222_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000933",
+  "title": "20240331_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000934",
+  "title": "20240331_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000297",
+  "title": "UHN whole-cell patch-clamp excitability recordings from human cortical neurons",
+  "brain_region": "cortical tissue",
+  "confidence": "medium",
+  "reasoning": "Title and description mention cortical tissue, but do not specify a particular region within the cortex",
+  "raw_response": "```json\n{\n  \"brain_region\": \"cortical tissue\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Title and description mention cortical tissue, but do not specify a particular region within the cortex\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000337",
+  "title": "20220917_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001065",
+  "title": "Areal specializations in the morpho-electric and transcriptomic properties of layer 5 extratelencephalic-projecting neurons in the primate neocortex",
+  "brain_region": "temporal cortex",
+  "confidence": "medium",
+  "reasoning": "Description mentions both temporal and motor cortical regions, but temporal cortex is listed first, suggesting it may be the primary focus.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"temporal cortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description mentions both temporal and motor cortical regions, but temporal cortex is listed first, suggesting it may be the primary focus.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001348",
+  "title": "20250331_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only species and technique are specified",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only species and technique are specified\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001351",
+  "title": "20250331_AIBS_Patchseq_mouse",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001359",
+  "title": "20250331_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001455",
+  "title": "20250630_AIBS_Patchseq_Mouse",
+  "brain_region": "visual cortex",
+  "confidence": "high",
+  "reasoning": "Description explicitly mentions visual cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"visual cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions visual cortex as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001464",
+  "title": "20250627_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001465",
+  "title": "20250627_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only general terms like 'Patch-seq' and 'multimodal' are provided.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general terms like 'Patch-seq' and 'multimodal' are provided.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001534",
+  "title": "20250707_Patchseq_BICAN_R01_Neuromodulation_mouse",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001625",
+  "title": "20251020_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001626",
+  "title": "20251020_AIBS_Patchseq_nhp",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only species and technique details are provided",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only species and technique details are provided\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000008",
+  "title": "Phenotypic variation within and across transcriptomic cell types in mouse motor cortex",
+  "brain_region": "motor cortex",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention motor cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"motor cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention motor cortex as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000020",
+  "title": "Patch-seq recordings from mouse visual cortex",
+  "brain_region": "visual cortex",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention visual cortex as the study region, with additional details about layers and neuron types within this region.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"visual cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention visual cortex as the study region, with additional details about layers and neuron types within this region.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000023",
+  "title": "Patch-seq recordings from human cortex (June 2020)",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Description and keywords mention neocortex, but no specific region within the neocortex is specified.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description and keywords mention neocortex, but no specific region within the neocortex is specified.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000035",
+  "title": "Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex",
+  "brain_region": "motor cortex",
+  "confidence": "high",
+  "reasoning": "Title, description, and keywords explicitly mention motor cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"motor cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title, description, and keywords explicitly mention motor cortex as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000109",
+  "title": "Patch-seq recordings from human cortex (June 2021)",
+  "brain_region": "neocortex",
+  "confidence": "high",
+  "reasoning": "Description and keywords explicitly mention neocortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description and keywords explicitly mention neocortex as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000142",
+  "title": "20210923_AIBS_Patchseq_human",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Keywords mention 'neocortical' as the studied region, but no specific subregion is specified",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical' as the studied region, but no specific subregion is specified\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000148",
+  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021",
+  "brain_region": "spinal cord",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention spinal cord as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000209",
+  "title": "20211223_AIBS_Patchseq_human",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000228",
+  "title": "20220330_AIBS_Patchseq_human",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Keywords mention 'neocortical' as the studied region, but specific area within neocortex is not specified",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical' as the studied region, but specific area within neocortex is not specified\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000245",
+  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI",
+  "brain_region": "spinal cord",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention spinal cord as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000288",
+  "title": "20220630_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000295",
+  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI",
+  "brain_region": "spinal cord",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention spinal cord as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000569",
+  "title": "20230630_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only general techniques and species information provided",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general techniques and species information provided\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000570",
+  "title": "20230630_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000630",
+  "title": "Human L1 patch-seq electrophysiology",
+  "brain_region": "neocortical L1",
+  "confidence": "high",
+  "reasoning": "Description explicitly mentions neocortical L1 neurons as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortical L1\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions neocortical L1 neurons as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000635",
+  "title": "20230930_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000636",
+  "title": "Human interneuron patch-seq electrophysiology",
+  "brain_region": "neocortex",
+  "confidence": "high",
+  "reasoning": "Description and keywords explicitly mention human neocortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description and keywords explicitly mention human neocortex as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000768",
+  "title": "20231222_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000769",
+  "title": "20231222_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000933",
+  "title": "20240331_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000934",
+  "title": "20240331_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only general information about species and technique provided",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general information about species and technique provided\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000297",
+  "title": "UHN whole-cell patch-clamp excitability recordings from human cortical neurons",
+  "brain_region": "cortical tissue",
+  "confidence": "medium",
+  "reasoning": "Description mentions cortical tissue, but does not specify a particular region within the cortex",
+  "raw_response": "```json\n{\n  \"brain_region\": \"cortical tissue\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description mentions cortical tissue, but does not specify a particular region within the cortex\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000337",
+  "title": "20220917_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001065",
+  "title": "Areal specializations in the morpho-electric and transcriptomic properties of layer 5 extratelencephalic-projecting neurons in the primate neocortex",
+  "brain_region": "temporal cortex",
+  "confidence": "medium",
+  "reasoning": "Description mentions both temporal and motor cortical regions, but temporal cortex is listed first, suggesting it may be the primary focus.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"temporal cortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description mentions both temporal and motor cortical regions, but temporal cortex is listed first, suggesting it may be the primary focus.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001348",
+  "title": "20250331_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only general information about species and technique provided",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general information about species and technique provided\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001351",
+  "title": "20250331_AIBS_Patchseq_mouse",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001359",
+  "title": "20250331_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001455",
+  "title": "20250630_AIBS_Patchseq_Mouse",
+  "brain_region": "visual cortex",
+  "confidence": "high",
+  "reasoning": "Description explicitly mentions visual cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"visual cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions visual cortex as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001464",
+  "title": "20250627_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001465",
+  "title": "20250627_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only general terms like 'Patch-seq' and 'multimodal' are provided.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general terms like 'Patch-seq' and 'multimodal' are provided.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001534",
+  "title": "20250707_Patchseq_BICAN_R01_Neuromodulation_mouse",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001625",
+  "title": "20251020_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001626",
+  "title": "20251020_AIBS_Patchseq_nhp",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only species and technique details provided",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only species and technique details provided\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000008",
+  "title": "Phenotypic variation within and across transcriptomic cell types in mouse motor cortex",
+  "brain_region": "motor cortex",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention motor cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"motor cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention motor cortex as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000020",
+  "title": "Patch-seq recordings from mouse visual cortex",
+  "brain_region": "visual cortex",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention visual cortex as the study region, with additional details about layers and neuron types within this region.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"visual cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention visual cortex as the study region, with additional details about layers and neuron types within this region.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000023",
+  "title": "Patch-seq recordings from human cortex (June 2020)",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Description and keywords mention neocortex, but no specific region within the neocortex is specified.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description and keywords mention neocortex, but no specific region within the neocortex is specified.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000035",
+  "title": "Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex",
+  "brain_region": "motor cortex",
+  "confidence": "high",
+  "reasoning": "Title, description, and keywords explicitly mention motor cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"motor cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title, description, and keywords explicitly mention motor cortex as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000109",
+  "title": "Patch-seq recordings from human cortex (June 2021)",
+  "brain_region": "neocortex",
+  "confidence": "high",
+  "reasoning": "Description and keywords explicitly mention neocortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description and keywords explicitly mention neocortex as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000142",
+  "title": "20210923_AIBS_Patchseq_human",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000148",
+  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021",
+  "brain_region": "spinal cord",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention spinal cord as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000209",
+  "title": "20211223_AIBS_Patchseq_human",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Keywords mention 'neocortical', indicating the neocortex as the studied region, but no specific subregion is specified.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', indicating the neocortex as the studied region, but no specific subregion is specified.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000228",
+  "title": "20220330_AIBS_Patchseq_human",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000245",
+  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI",
+  "brain_region": "spinal cord",
+  "confidence": "high",
+  "reasoning": "Description explicitly mentions spinal cord as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions spinal cord as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000288",
+  "title": "20220630_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000295",
+  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI",
+  "brain_region": "spinal cord",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention spinal cord as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000569",
+  "title": "20230630_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only general information about species and technique provided",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general information about species and technique provided\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000570",
+  "title": "20230630_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000630",
+  "title": "Human L1 patch-seq electrophysiology",
+  "brain_region": "neocortical L1",
+  "confidence": "high",
+  "reasoning": "Description explicitly mentions neocortical L1 neurons as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortical L1\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions neocortical L1 neurons as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000635",
+  "title": "20230930_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000636",
+  "title": "Human interneuron patch-seq electrophysiology",
+  "brain_region": "neocortex",
+  "confidence": "high",
+  "reasoning": "Description and keywords explicitly mention neocortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description and keywords explicitly mention neocortex as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000768",
+  "title": "20231222_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000769",
+  "title": "20231222_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000933",
+  "title": "20240331_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000934",
+  "title": "20240331_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000297",
+  "title": "UHN whole-cell patch-clamp excitability recordings from human cortical neurons",
+  "brain_region": "cortical tissue",
+  "confidence": "medium",
+  "reasoning": "Title and description mention cortical tissue, but do not specify a particular region within the cortex",
+  "raw_response": "```json\n{\n  \"brain_region\": \"cortical tissue\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Title and description mention cortical tissue, but do not specify a particular region within the cortex\"\n}\n```"
+}
+
+{
+  "dandiset_id": "000337",
+  "title": "20220917_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001065",
+  "title": "Areal specializations in the morpho-electric and transcriptomic properties of layer 5 extratelencephalic-projecting neurons in the primate neocortex",
+  "brain_region": "temporal cortex",
+  "confidence": "medium",
+  "reasoning": "Description mentions both temporal and motor cortical regions, but temporal cortex is listed first, suggesting it might be the primary focus.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"temporal cortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description mentions both temporal and motor cortical regions, but temporal cortex is listed first, suggesting it might be the primary focus.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001348",
+  "title": "20250331_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001351",
+  "title": "20250331_AIBS_Patchseq_mouse",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001359",
+  "title": "20250331_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001455",
+  "title": "20250630_AIBS_Patchseq_Mouse",
+  "brain_region": "visual cortex",
+  "confidence": "high",
+  "reasoning": "Description explicitly mentions visual cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"visual cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions visual cortex as the study region\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001464",
+  "title": "20250627_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001465",
+  "title": "20250627_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only general terms like 'Patch-seq' and 'multimodal' are provided.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general terms like 'Patch-seq' and 'multimodal' are provided.\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001534",
+  "title": "20250707_Patchseq_BICAN_R01_Neuromodulation_mouse",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001625",
+  "title": "20251020_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "dandiset_id": "001626",
+  "title": "20251020_AIBS_Patchseq_nhp",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only species and technique details provided",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only species and technique details provided\"\n}\n```"
+}
+

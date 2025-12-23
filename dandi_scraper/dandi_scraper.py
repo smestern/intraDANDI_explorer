@@ -168,6 +168,14 @@ def quick_qc(df):
     df = df[df['input_resistance'] > 0]
     df = df[df['input_resistance'] < 1e8]
 
+    #check if the tau is reasonable
+    df = df[df['tau'] > 0]
+    df = df[df['tau'] < 1e2]
+
+    #check if sag is reasonable
+    df = df[df['sag_nearest_minus_100'] > -1e2]
+    df = df[df['sag_nearest_minus_100'] < 1e2]
+
     #check if the resting potential is reasonable
     #df = df[df['resting_potential'] > -1e3]
     #df = df[df['resting_potential'] < 1e3]
@@ -230,7 +238,7 @@ def run_analyze_dandiset():
         df_dandiset["species"] = row[1]["species"]
         df_dandiset.to_csv('/media/smestern/Expansion/dandi/'+row[1]["identifier"]+'.csv')
 
-def run_merge_dandiset(use_cached_metadata=False):
+def run_merge_dandiset(use_cached_metadata=True):
     from sklearn.preprocessing import StandardScaler
     import umap
     from sklearn.impute import SimpleImputer, KNNImputer
@@ -283,10 +291,10 @@ def run_merge_dandiset(use_cached_metadata=False):
         print(f"Processing {code}")
         #observe the meta data
         #try:
-        if use_cached_metadata and df_old is not None:
-            meta_ = df_old.loc[df_old['dandiset label'] == code, ['dandiset_id', 'age', 'subject_id', 'cell_id', 'brain_region', 'species', 'filepath', 'contributor']]
-        else:
-            meta_ = get_dandi_metadata(code)
+        # if use_cached_metadata and df_old is not None:
+        #     meta_ = df_old.loc[df_old['dandiset label'] == code, ['dandiset_id', 'age', 'subject_id', 'cell_id', 'brain_region', 'species', 'filepath', 'contributor']]
+        # else:
+        meta_ = get_dandi_metadata(code)
         meta_data.append(meta_)
             #pass
         #except:
@@ -327,6 +335,10 @@ def run_merge_dandiset(use_cached_metadata=False):
 
     dataset_numeric = pd.concat(dataset_numeric, axis=0)[cols_to_keep]
     print(f"dataset_numeric shape after concatenation: {dataset_numeric.shape}")
+
+    #KNN impute again to be on final dataset
+    impute = KNNImputer(keep_empty_features=True)
+    dataset_numeric.loc[:, :] = impute.fit_transform(dataset_numeric.values) #shoudl work unless we lose a column or row
 
     # Drop columns where over 50% of the data is missing
     dataset_numeric = dataset_numeric.dropna(axis=1, how='any')

@@ -11,7 +11,7 @@ import umap
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 
 #%% load the data.js
-df = pd.read_csv('all_new.csv')
+df = pd.read_csv('all2.csv')
 
 #get the columns 
 cols_to_keep = {
@@ -23,16 +23,16 @@ cols_to_keep = {
     }
 cols_to_keep = list(cols_to_keep.keys())
 
-cols_to_keep = ['input_resistance', 'tau', 'v_baseline', 'sag_nearest_minus_100', 'rheobase_i',
-       'ap_1_threshold_v_0_long_square', 'ap_1_peak_v_0_long_square',
-       'ap_1_upstroke_0_long_square', 'ap_1_downstroke_0_long_square',
-       'ap_1_upstroke_downstroke_ratio_0_long_square',
-       'ap_1_width_0_long_square', 'ap_1_fast_trough_v_0_long_square',
-       'ap_mean_threshold_v_0_long_square', 'ap_mean_peak_v_0_long_square',
-       'ap_mean_upstroke_0_long_square', 'ap_mean_downstroke_0_long_square',
-       'ap_mean_upstroke_downstroke_ratio_0_long_square',
-       'ap_mean_width_0_long_square', 'ap_mean_fast_trough_v_0_long_square',
-       'avg_rate_0_long_square', 'latency_0_long_square',]
+# cols_to_keep = ['input_resistance', 'tau', 'v_baseline', 'sag_nearest_minus_100', 'rheobase_i',
+#        'ap_1_threshold_v_0_long_square', 'ap_1_peak_v_0_long_square',
+#        'ap_1_upstroke_0_long_square', 'ap_1_downstroke_0_long_square',
+#        'ap_1_upstroke_downstroke_ratio_0_long_square',
+#        'ap_1_width_0_long_square', 'ap_1_fast_trough_v_0_long_square',
+#        'ap_mean_threshold_v_0_long_square', 'ap_mean_peak_v_0_long_square',
+#        'ap_mean_upstroke_0_long_square', 'ap_mean_downstroke_0_long_square',
+#        'ap_mean_upstroke_downstroke_ratio_0_long_square',
+#        'ap_mean_width_0_long_square', 'ap_mean_fast_trough_v_0_long_square',
+#        'avg_rate_0_long_square', 'latency_0_long_square',]
 
 
 # %%
@@ -68,7 +68,7 @@ plt.barh(cols_to_keep, importances)
 plt.xlabel('Feature Importance')
 plt.ylabel('Feature')
 plt.title('Feature Importance')
-plt.show()
+plt.pause(0.1)
 # %%
 #plot umap of the data
 plt.scatter(df['umap X'], df['umap Y'], c=pca.fit_transform(X)[:,0])
@@ -76,19 +76,21 @@ plt.scatter(df['umap X'], df['umap Y'], c=pca.fit_transform(X)[:,0])
 plt.xlabel('umap X')
 plt.ylabel('umap Y')
 
-plt.show()
+plt.pause(0.1)
 #%% plot pca
 #plt.scatter(pca.fit_transform(X)[:,0], pca.fit_transform(X)[:,1], c=df['umap X'])
 
 #%% grid plot with each feature on the umap
-fig, axs = plt.subplots(3, 3, figsize=(20,20))
+fig, axs = plt.subplots(len(cols_to_keep)//2, len(cols_to_keep)//2, figsize=(20,20))
 for i, ax in enumerate(axs.flat):
+    if i >= len(cols_to_keep):
+        break
     ax.scatter(df['umap X'], df['umap Y'], c=X[:,i])
     ax.set_xlabel('umap X')
     ax.set_ylabel('umap Y')
     ax.set_title(cols_to_keep[i])
 
-
+plt.show()
 # %%
 from sklearn import tree
 
