@@ -161,31 +161,18 @@ def download_dandiset(code=None, save_dir=None, overwrite=False):
     dandi_download(dandiset.api_url, save_dir)
     
 
-def quick_qc(df):
+def quick_qc(df, qc_features={'input_resistance':[0, 1e9],'sag_nearest_minus_100':[-1e2, 1e2],
+                             'ap_1_threshold_v_0_long_square':[-100, 100],
+                             'tau':[(0.01/1000), (1e2)],
+                             'ap_1_width_0_long_square':[(0.01/1000), (10/1000)]}):
     #this is a quick qc function to check if the data is good, specifically for the output of the analyze_dandiset function
-    #this is not a full qc function, but it is a good start
-    #check if the input resistence is reasonable
-    df = df[df['input_resistance'] > 0]
-    df = df[df['input_resistance'] < 1e8]
-
-    #check if the tau is reasonable
-    df = df[df['tau'] > 0]
-    df = df[df['tau'] < 1e2]
-
-    #check if sag is reasonable
-    df = df[df['sag_nearest_minus_100'] > -1e2]
-    df = df[df['sag_nearest_minus_100'] < 1e2]
-
-    #check if the resting potential is reasonable
-    #df = df[df['resting_potential'] > -1e3]
-    #df = df[df['resting_potential'] < 1e3]
-
-    #check the ap_1_threshold_v_0_long_square
-    df = df[df['ap_1_threshold_v_0_long_square'] > -100]
-    df = df[df['ap_1_threshold_v_0_long_square'] < 100]
-
-    df = df[df['ap_1_width_0_long_square'] > (0.1/1000)]
-    df = df[df['ap_1_width_0_long_square'] < (10/1000)]
+    for feature, (min_val, max_val) in qc_features.items():
+        if feature in df.columns:
+            #get number of failing values for logging
+            _failing = df[(df[feature] < min_val) | (df[feature] > max_val)]
+            num_failing = len(_failing)
+            print(f"QC: {num_failing} cells failed {feature} check ({min_val} to {max_val}), examples:\n {_failing[feature].head()}")
+            df = df[(df[feature] >= min_val) & (df[feature] <= max_val)]
 
     #perform basic outliers checks
     df_num = df.select_dtypes(include=np.number).fillna(0)

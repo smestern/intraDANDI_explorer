@@ -154,6 +154,7 @@ Response:"""
                 
                 # Log the structured result
                 log_entry = {
+                    'prompt': query,
                     'dandiset_id': self.dandiset_id,
                     'title': self.dandiset_name,
                     'brain_region': brain_region,

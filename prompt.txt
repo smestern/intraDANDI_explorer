@@ -1,570 +1,5 @@
-
-                    Title: Phenotypic variation within and across transcriptomic cell types in mouse motor cortex
-                    Description: We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. Contained in this dandiset are the intracellular electrophysiological recordings. See Dandiset #35 for an additional dataset, recorded under the physiological temperature. 
-                    Keywords: ['Patch-seq', 'cortex', 'motor cortex', 'mouse']
-                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-Motor cortex.
-
-                    Title: Patch-seq recordings from mouse visual cortex
-                    Description: Whole-cell Patch-seq recordings from neurons of the mouse visual cortex from the Allen Institute for Brain Science, released in June 2020. The majority of cells in this dataset are GABAergic interneurons, but there are also a small number of glutamatergic neurons from layer 2/3 of the mouse visual cortex.
-                    Keywords: ['Patch-seq', 'mouse', 'visual cortex', 'interneuron']
-                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-Visual cortex
-
-                    Title: Patch-seq recordings from human cortex (June 2020)
-                    Description: Whole-cell Patch-seq recordings from neurons of the human neocortex from the Allen Institute for Brain Science, released in June 2020.
-                    Keywords: ['Patch-seq', 'human', 'neocortex', ' layer 2/3']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Neocortex
-
-                    Title: Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex
-                    Description:  We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. This dataset contains rectangular stimulation of cells under temperature-controlled conditions (34 ℃). See Dandiset #8 for the main dataset, recorded under the room temperature.
-                    Keywords: ['Patch-seq', 'mouse', 'cortex', 'motor cortex']
-                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-Motor cortex.
-
-                    Title: Patch-seq recordings from human cortex (June 2021)
-                    Description: Whole-cell Patch-seq recordings from neurons of the human neocortex from the Allen Institute for Brain Science, released in June 2021.
-                    Keywords: ['Patch-seq', 'human', 'neocortex']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Human neocortex.
-
-                    Title: 20210923_AIBS_Patchseq_human
-                    Description: U01 Lein PatchSeq upload September 2021
-                    Keywords: ['Patch-seq', 'human', 'neocortical']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Neocortex
-
-                    Title: Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021
-                    Description: Patch-clamp recording data from spinal cord neurons. Data was generated at Huizhong Tao's lab at USC(htao@usc.edu). The recording was performed by Can Tao(cantao@usc.edu) and Bo Peng(pengb@usc.edu).
-                    Keywords: []
-                    Species: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-Spinal cord
-
-                    Title: 20211223_AIBS_Patchseq_human
-                    Description: U01 Lein PatchSeq upload December 2021
-                    Keywords: ['Patch-seq', 'human', 'neocortical']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Neocortex
-
-                    Title: 20220330_AIBS_Patchseq_human
-                    Description: U01 Lein PatchSeq upload March 2022
-                    Keywords: ['Patch-seq', 'human', 'neocortical']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Neocortex
-
-                    Title: Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI
-                    Description: Whole-cell patch clamp recording of specific cell types in the adult mouse spinal cord. Neurons are either input defined, output defined or expressing specific molecular markers. 
-                    Keywords: []
-                    Species: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-Spinal cord
-
-                    Title: 20220630_AIBS_Patchseq_human
-                    Description: U01 Lein PatchSeq upload June 2022
-                    Keywords: ['Patch-seq', 'human']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Human cortex
-
-                    Title: Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI
-                    Description: Whole-cell patch clamp recording of specific cell types in the adult mouse spinal cord. Neurons are either input defined, output defined or expressing specific molecular markers.
-                    Keywords: []
-                    Species: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-Spinal cord
-
-                    Title: 20230630_AIBS_Patchseq_nonhuman_primate
-                    Description: HMBA Lein PatchSeq upload (Q2 2023)
-                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
-                    Species: [{'name': 'Macaca nemestrina - Pigtail macaque', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
-                    What brain region(s) were studied (in one to two words)?:
-Cortex, Motor Cortex
-
-                    Title: 20230630_AIBS_Patchseq_human
-                    Description: U01 Lein Patch-seq data upload (Q2 2023)
-                    Keywords: ['Patch-seq', 'human', 'multimodal']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Human brain.
-
-                    Title: Human L1 patch-seq electrophysiology
-                    Description: Patch-seq electrophysiology data from human neocortical L1 neurons, accompanying the manuscript "Morpho-electric and transcriptomic divergence of the layer 1 interneuron repertoire in human versus mouse neocortex" (https://www.biorxiv.org/content/10.1101/2022.10.24.511199).
-
-Analysis code and extracted features available at https://github.com/AllenInstitute/patchseq_human_L1. Feature extraction package available at https://github.com/AllenInstitute/ipfx.
-                    Keywords: ['human', 'multimodal', 'patch-seq', 'neocortex']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}, {'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Neocortex (Layer 1)
-
-                    Title: 20230930_AIBS_Patchseq_nonhuman_primate
-                    Description: HMBA Lein PatchSeq upload (Q3 2023)
-                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
-                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
-                    What brain region(s) were studied (in one to two words)?:
-Cortex.
-
-                    Title: Human interneuron patch-seq electrophysiology
-                    Description: Patch-seq electrophysiology data from human neocortical interneurons from acute and slice culture preparations, accompanying the manuscript "Signature morpho-electric properties of diverse GABAergic interneurons in the human neocortex" (https://www.biorxiv.org/content/10.1101/2022.11.08.515739).
-                    Keywords: ['human', 'multimodal', 'patch-seq', 'neocortex']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}, {'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Neocortex
-
-                    Title: 20231222_AIBS_Patchseq_nonhuman_primate
-                    Description: HMBA Lein PatchSeq upload (nonhuman primate) (Q4 2023)
-                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
-                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
-                    What brain region(s) were studied (in one to two words)?:
-Cortex.
-
-                    Title: 20231222_AIBS_Patchseq_human
-                    Description: HMBA Lein PatchSeq upload (human) (Q4 2023)
-                    Keywords: ['Patch-seq', 'human', 'multimodal']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Human brain
-
-                    Title: 20240331_AIBS_Patchseq_human
-                    Description: HMBA Lein PatchSeq upload (human) (Q1 2024)
-                    Keywords: ['Patch-seq', 'human', 'multimodal']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Human brain
-
-                    Title: 20240331_AIBS_Patchseq_nonhuman_primate
-                    Description: HMBA Lein PatchSeq upload (nonhuman primate) (Q1 2024)
-                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
-                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
-                    What brain region(s) were studied (in one to two words)?:
-Cerebral cortex.
-
-                    Title: UHN whole-cell patch-clamp excitability recordings from human cortical neurons
-                    Description: Whole-cell current clamp recordings from surgically resected human cortical tissue 
-                    Keywords: ['excitability', 'human', 'cortex']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Cortex
-
-                    Title: 20220917_AIBS_Patchseq_human
-                    Description: U01 Lein PatchSeq upload March 2022 - Mansvelder lab data
-                    Keywords: None
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Human cortex.
-
-                    Title: Phenotypic variation within and across transcriptomic cell types in mouse motor cortex
-                    Description: We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. Contained in this dandiset are the intracellular electrophysiological recordings. See Dandiset #35 for an additional dataset, recorded under the physiological temperature. 
-                    Keywords: ['Patch-seq', 'cortex', 'motor cortex', 'mouse']
-                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-Motor cortex
-
-                    Title: Patch-seq recordings from mouse visual cortex
-                    Description: Whole-cell Patch-seq recordings from neurons of the mouse visual cortex from the Allen Institute for Brain Science, released in June 2020. The majority of cells in this dataset are GABAergic interneurons, but there are also a small number of glutamatergic neurons from layer 2/3 of the mouse visual cortex.
-                    Keywords: ['Patch-seq', 'mouse', 'visual cortex', 'interneuron']
-                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Visual cortex**
-
-                    Title: Patch-seq recordings from human cortex (June 2020)
-                    Description: Whole-cell Patch-seq recordings from neurons of the human neocortex from the Allen Institute for Brain Science, released in June 2020.
-                    Keywords: ['Patch-seq', 'human', 'neocortex', ' layer 2/3']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Human neocortex**
-
-                    Title: Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex
-                    Description:  We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. This dataset contains rectangular stimulation of cells under temperature-controlled conditions (34 ℃). See Dandiset #8 for the main dataset, recorded under the room temperature.
-                    Keywords: ['Patch-seq', 'mouse', 'cortex', 'motor cortex']
-                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-Motor cortex
-
-                    Title: Patch-seq recordings from human cortex (June 2021)
-                    Description: Whole-cell Patch-seq recordings from neurons of the human neocortex from the Allen Institute for Brain Science, released in June 2021.
-                    Keywords: ['Patch-seq', 'human', 'neocortex']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Human neocortex**
-
-                    Title: 20210923_AIBS_Patchseq_human
-                    Description: U01 Lein PatchSeq upload September 2021
-                    Keywords: ['Patch-seq', 'human', 'neocortical']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Neocortex**
-
-                    Title: Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021
-                    Description: Patch-clamp recording data from spinal cord neurons. Data was generated at Huizhong Tao's lab at USC(htao@usc.edu). The recording was performed by Can Tao(cantao@usc.edu) and Bo Peng(pengb@usc.edu).
-                    Keywords: []
-                    Species: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Spinal cord**
-
-                    Title: 20211223_AIBS_Patchseq_human
-                    Description: U01 Lein PatchSeq upload December 2021
-                    Keywords: ['Patch-seq', 'human', 'neocortical']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Neocortex**
-
-                    Title: 20220330_AIBS_Patchseq_human
-                    Description: U01 Lein PatchSeq upload March 2022
-                    Keywords: ['Patch-seq', 'human', 'neocortical']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Neocortex
-
-                    Title: Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI
-                    Description: Whole-cell patch clamp recording of specific cell types in the adult mouse spinal cord. Neurons are either input defined, output defined or expressing specific molecular markers. 
-                    Keywords: []
-                    Species: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-Spinal cord
-
-                    Title: 20220630_AIBS_Patchseq_human
-                    Description: U01 Lein PatchSeq upload June 2022
-                    Keywords: ['Patch-seq', 'human']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Not specified**
-
-                    Title: Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI
-                    Description: Whole-cell patch clamp recording of specific cell types in the adult mouse spinal cord. Neurons are either input defined, output defined or expressing specific molecular markers.
-                    Keywords: []
-                    Species: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-Spinal cord
-
-                    Title: 20230630_AIBS_Patchseq_nonhuman_primate
-                    Description: HMBA Lein PatchSeq upload (Q2 2023)
-                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
-                    Species: [{'name': 'Macaca nemestrina - Pigtail macaque', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
-                    What brain region(s) were studied (in one to two words)?:
-Unknown
-
-                    Title: 20230630_AIBS_Patchseq_human
-                    Description: U01 Lein Patch-seq data upload (Q2 2023)
-                    Keywords: ['Patch-seq', 'human', 'multimodal']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Not specified**
-
-                    Title: Human L1 patch-seq electrophysiology
-                    Description: Patch-seq electrophysiology data from human neocortical L1 neurons, accompanying the manuscript "Morpho-electric and transcriptomic divergence of the layer 1 interneuron repertoire in human versus mouse neocortex" (https://www.biorxiv.org/content/10.1101/2022.10.24.511199).
-
-Analysis code and extracted features available at https://github.com/AllenInstitute/patchseq_human_L1. Feature extraction package available at https://github.com/AllenInstitute/ipfx.
-                    Keywords: ['human', 'multimodal', 'patch-seq', 'neocortex']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}, {'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Neocortex, Layer 1
-
-                    Title: 20230930_AIBS_Patchseq_nonhuman_primate
-                    Description: HMBA Lein PatchSeq upload (Q3 2023)
-                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
-                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
-                    What brain region(s) were studied (in one to two words)?:
-Unknown
-
-                    Title: Human interneuron patch-seq electrophysiology
-                    Description: Patch-seq electrophysiology data from human neocortical interneurons from acute and slice culture preparations, accompanying the manuscript "Signature morpho-electric properties of diverse GABAergic interneurons in the human neocortex" (https://www.biorxiv.org/content/10.1101/2022.11.08.515739).
-                    Keywords: ['human', 'multimodal', 'patch-seq', 'neocortex']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}, {'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Neocortex**
-
-                    Title: 20231222_AIBS_Patchseq_nonhuman_primate
-                    Description: HMBA Lein PatchSeq upload (nonhuman primate) (Q4 2023)
-                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
-                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Not specified**
-
-                    Title: 20231222_AIBS_Patchseq_human
-                    Description: HMBA Lein PatchSeq upload (human) (Q4 2023)
-                    Keywords: ['Patch-seq', 'human', 'multimodal']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Unknown
-
-                    Title: 20240331_AIBS_Patchseq_human
-                    Description: HMBA Lein PatchSeq upload (human) (Q1 2024)
-                    Keywords: ['Patch-seq', 'human', 'multimodal']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-
-
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Not specified** (The description and keywords do not mention a specific brain region.)
-
-                    Title: 20240331_AIBS_Patchseq_nonhuman_primate
-                    Description: HMBA Lein PatchSeq upload (nonhuman primate) (Q1 2024)
-                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
-                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
-                    What brain region(s) were studied (in one to two words)?:
-Unknown
-
-                    Title: UHN whole-cell patch-clamp excitability recordings from human cortical neurons
-                    Description: Whole-cell current clamp recordings from surgically resected human cortical tissue 
-                    Keywords: ['excitability', 'human', 'cortex']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Human cortex**
-
-                    Title: 20220917_AIBS_Patchseq_human
-                    Description: U01 Lein PatchSeq upload March 2022 - Mansvelder lab data
-                    Keywords: None
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Not specified**
-
-                    Title: Phenotypic variation within and across transcriptomic cell types in mouse motor cortex
-                    Description: We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. Contained in this dandiset are the intracellular electrophysiological recordings. See Dandiset #35 for an additional dataset, recorded under the physiological temperature. 
-                    Keywords: ['Patch-seq', 'cortex', 'motor cortex', 'mouse']
-                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-Motor cortex
-
-                    Title: Phenotypic variation within and across transcriptomic cell types in mouse motor cortex
-                    Description: We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. Contained in this dandiset are the intracellular electrophysiological recordings. See Dandiset #35 for an additional dataset, recorded under the physiological temperature. 
-                    Keywords: ['Patch-seq', 'cortex', 'motor cortex', 'mouse']
-                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-Motor cortex
-
-                    Title: Patch-seq recordings from mouse visual cortex
-                    Description: Whole-cell Patch-seq recordings from neurons of the mouse visual cortex from the Allen Institute for Brain Science, released in June 2020. The majority of cells in this dataset are GABAergic interneurons, but there are also a small number of glutamatergic neurons from layer 2/3 of the mouse visual cortex.
-                    Keywords: ['Patch-seq', 'mouse', 'visual cortex', 'interneuron']
-                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Visual cortex**
-
-                    Title: Patch-seq recordings from human cortex (June 2020)
-                    Description: Whole-cell Patch-seq recordings from neurons of the human neocortex from the Allen Institute for Brain Science, released in June 2020.
-                    Keywords: ['Patch-seq', 'human', 'neocortex', ' layer 2/3']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Human neocortex**
-
-                    Title: Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex
-                    Description:  We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. This dataset contains rectangular stimulation of cells under temperature-controlled conditions (34 ℃). See Dandiset #8 for the main dataset, recorded under the room temperature.
-                    Keywords: ['Patch-seq', 'mouse', 'cortex', 'motor cortex']
-                    Species: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-Motor cortex
-
-                    Title: Patch-seq recordings from human cortex (June 2021)
-                    Description: Whole-cell Patch-seq recordings from neurons of the human neocortex from the Allen Institute for Brain Science, released in June 2021.
-                    Keywords: ['Patch-seq', 'human', 'neocortex']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Human neocortex**
-
-                    Title: 20210923_AIBS_Patchseq_human
-                    Description: U01 Lein PatchSeq upload September 2021
-                    Keywords: ['Patch-seq', 'human', 'neocortical']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Neocortex**
-
-                    Title: Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021
-                    Description: Patch-clamp recording data from spinal cord neurons. Data was generated at Huizhong Tao's lab at USC(htao@usc.edu). The recording was performed by Can Tao(cantao@usc.edu) and Bo Peng(pengb@usc.edu).
-                    Keywords: []
-                    Species: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Spinal cord**
-
-                    Title: 20211223_AIBS_Patchseq_human
-                    Description: U01 Lein PatchSeq upload December 2021
-                    Keywords: ['Patch-seq', 'human', 'neocortical']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Neocortex**
-
-                    Title: 20220330_AIBS_Patchseq_human
-                    Description: U01 Lein PatchSeq upload March 2022
-                    Keywords: ['Patch-seq', 'human', 'neocortical']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Neocortex
-
-                    Title: Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI
-                    Description: Whole-cell patch clamp recording of specific cell types in the adult mouse spinal cord. Neurons are either input defined, output defined or expressing specific molecular markers. 
-                    Keywords: []
-                    Species: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-Spinal cord
-
-                    Title: 20220630_AIBS_Patchseq_human
-                    Description: U01 Lein PatchSeq upload June 2022
-                    Keywords: ['Patch-seq', 'human']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Not specified**
-
-                    Title: Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI
-                    Description: Whole-cell patch clamp recording of specific cell types in the adult mouse spinal cord. Neurons are either input defined, output defined or expressing specific molecular markers.
-                    Keywords: []
-                    Species: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]
-                    What brain region(s) were studied (in one to two words)?:
-Spinal cord
-
-                    Title: 20230630_AIBS_Patchseq_nonhuman_primate
-                    Description: HMBA Lein PatchSeq upload (Q2 2023)
-                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
-                    Species: [{'name': 'Macaca nemestrina - Pigtail macaque', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Not specified**
-
-                    Title: 20230630_AIBS_Patchseq_human
-                    Description: U01 Lein Patch-seq data upload (Q2 2023)
-                    Keywords: ['Patch-seq', 'human', 'multimodal']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Not specified**
-
-                    Title: Human L1 patch-seq electrophysiology
-                    Description: Patch-seq electrophysiology data from human neocortical L1 neurons, accompanying the manuscript "Morpho-electric and transcriptomic divergence of the layer 1 interneuron repertoire in human versus mouse neocortex" (https://www.biorxiv.org/content/10.1101/2022.10.24.511199).
-
-Analysis code and extracted features available at https://github.com/AllenInstitute/patchseq_human_L1. Feature extraction package available at https://github.com/AllenInstitute/ipfx.
-                    Keywords: ['human', 'multimodal', 'patch-seq', 'neocortex']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}, {'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Neocortex**
-
-                    Title: 20230930_AIBS_Patchseq_nonhuman_primate
-                    Description: HMBA Lein PatchSeq upload (Q3 2023)
-                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
-                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
-                    What brain region(s) were studied (in one to two words)?:
-Unknown
-
-                    Title: Human interneuron patch-seq electrophysiology
-                    Description: Patch-seq electrophysiology data from human neocortical interneurons from acute and slice culture preparations, accompanying the manuscript "Signature morpho-electric properties of diverse GABAergic interneurons in the human neocortex" (https://www.biorxiv.org/content/10.1101/2022.11.08.515739).
-                    Keywords: ['human', 'multimodal', 'patch-seq', 'neocortex']
-                    Species: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}, {'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Neocortex**
-
-                    Title: 20231222_AIBS_Patchseq_nonhuman_primate
-                    Description: HMBA Lein PatchSeq upload (nonhuman primate) (Q4 2023)
-                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
-                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
-                    What brain region(s) were studied (in one to two words)?:
-Unknown
-
-                    Title: 20231222_AIBS_Patchseq_human
-                    Description: HMBA Lein PatchSeq upload (human) (Q4 2023)
-                    Keywords: ['Patch-seq', 'human', 'multimodal']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-Unknown
-
-                    Title: 20240331_AIBS_Patchseq_human
-                    Description: HMBA Lein PatchSeq upload (human) (Q1 2024)
-                    Keywords: ['Patch-seq', 'human', 'multimodal']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Not specified**
-
-                    Title: 20240331_AIBS_Patchseq_nonhuman_primate
-                    Description: HMBA Lein PatchSeq upload (nonhuman primate) (Q1 2024)
-                    Keywords: ['Patch-seq', 'non-human primate', 'multimodal']
-                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
-                    What brain region(s) were studied (in one to two words)?:
-Unknown
-
-                    Title: UHN whole-cell patch-clamp excitability recordings from human cortical neurons
-                    Description: Whole-cell current clamp recordings from surgically resected human cortical tissue 
-                    Keywords: ['excitability', 'human', 'cortex']
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Cortical tissue**
-
-                    Title: 20220917_AIBS_Patchseq_human
-                    Description: U01 Lein PatchSeq upload March 2022 - Mansvelder lab data
-                    Keywords: None
-                    Species: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]
-                    What brain region(s) were studied (in one to two words)?:
-1. **Motor cortex**  
-2. **Unknown**  
-3. **Not specified**
-
-                    Title: Areal specializations in the morpho-electric and transcriptomic properties of layer 5 extratelencephalic-projecting neurons in the primate neocortex
-                    Description: Electrophysiology dataset associated with journal article titled areal specializations in the morpho-electric and transcriptomic properties of layer 5 extratelencephalic-projecting neurons in the primate neocortex. NWB files contains current clamp data collected for analysis of deep layer 5 ET neurons in the primate temporal and motor cortical regions. 
-                    Keywords: []
-                    Species: [{'name': 'Macaca mulatta - Rhesus monkey', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9544'}, {'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
-                    What brain region(s) were studied (in one to two words)?:
-Motor cortex, Temporal cortex
-
-                    Title: 20250331_AIBS_Patchseq_nonhuman_primate
-                    Description: HMBA Lein PatchSeq upload (nonhuman primate) (Q1 2025)
-                    Keywords: ['Patch-seq, non-human primate, multimodal']
-                    Species: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]
-                    What brain region(s) were studied (in one to two words)?:
-Unknown
 {
+  "prompt": "Now analyze this dataset:\nTitle: Phenotypic variation within and across transcriptomic cell types in mouse motor cortex\nDescription: We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. Contained in this dandiset are the intracellular electrophysiological recordings. See Dandiset #35 for an additional dataset, recorded under the physiological temperature. \nKeywords: ['Patch-seq', 'cortex', 'motor cortex', 'mouse']\nSpecies: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
   "dandiset_id": "000008",
   "title": "Phenotypic variation within and across transcriptomic cell types in mouse motor cortex",
   "brain_region": "motor cortex",
@@ -574,6 +9,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: Patch-seq recordings from mouse visual cortex\nDescription: Whole-cell Patch-seq recordings from neurons of the mouse visual cortex from the Allen Institute for Brain Science, released in June 2020. The majority of cells in this dataset are GABAergic interneurons, but there are also a small number of glutamatergic neurons from layer 2/3 of the mouse visual cortex.\nKeywords: ['Patch-seq', 'mouse', 'visual cortex', 'interneuron']\nSpecies: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
   "dandiset_id": "000020",
   "title": "Patch-seq recordings from mouse visual cortex",
   "brain_region": "visual cortex",
@@ -583,285 +19,17 @@ Unknown
 }
 
 {
-  "dandiset_id": "000023",
-  "title": "Patch-seq recordings from human cortex (June 2020)",
-  "brain_region": "neocortex",
-  "confidence": "medium",
-  "reasoning": "Description and keywords mention neocortex, but no specific region within the neocortex is specified.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description and keywords mention neocortex, but no specific region within the neocortex is specified.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000035",
-  "title": "Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex",
+  "prompt": "Now analyze this dataset:\nTitle: Phenotypic variation within and across transcriptomic cell types in mouse motor cortex\nDescription: We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. Contained in this dandiset are the intracellular electrophysiological recordings. See Dandiset #35 for an additional dataset, recorded under the physiological temperature. \nKeywords: ['Patch-seq', 'cortex', 'motor cortex', 'mouse']\nSpecies: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
+  "dandiset_id": "000008",
+  "title": "Phenotypic variation within and across transcriptomic cell types in mouse motor cortex",
   "brain_region": "motor cortex",
   "confidence": "high",
-  "reasoning": "Title, description, and keywords explicitly mention motor cortex as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"motor cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title, description, and keywords explicitly mention motor cortex as the study region\"\n}\n```"
+  "reasoning": "Title and description explicitly mention motor cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"motor cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention motor cortex as the study region\"\n}\n```"
 }
 
 {
-  "dandiset_id": "000109",
-  "title": "Patch-seq recordings from human cortex (June 2021)",
-  "brain_region": "neocortex",
-  "confidence": "high",
-  "reasoning": "Description and keywords explicitly mention neocortex as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description and keywords explicitly mention neocortex as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000142",
-  "title": "20210923_AIBS_Patchseq_human",
-  "brain_region": "neocortex",
-  "confidence": "medium",
-  "reasoning": "Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000148",
-  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021",
-  "brain_region": "spinal cord",
-  "confidence": "high",
-  "reasoning": "Title and description explicitly mention spinal cord as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000209",
-  "title": "20211223_AIBS_Patchseq_human",
-  "brain_region": "neocortex",
-  "confidence": "medium",
-  "reasoning": "Keywords mention 'neocortical', suggesting the neocortex as the studied region, but no specific area is specified.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the neocortex as the studied region, but no specific area is specified.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000228",
-  "title": "20220330_AIBS_Patchseq_human",
-  "brain_region": "neocortex",
-  "confidence": "medium",
-  "reasoning": "Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000245",
-  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI",
-  "brain_region": "spinal cord",
-  "confidence": "high",
-  "reasoning": "Description explicitly mentions spinal cord as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions spinal cord as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000288",
-  "title": "20220630_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000295",
-  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI",
-  "brain_region": "spinal cord",
-  "confidence": "high",
-  "reasoning": "Title and description explicitly mention spinal cord as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000569",
-  "title": "20230630_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata, only general technique and species information provided",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general technique and species information provided\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000570",
-  "title": "20230630_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000630",
-  "title": "Human L1 patch-seq electrophysiology",
-  "brain_region": "neocortical L1",
-  "confidence": "high",
-  "reasoning": "Description explicitly mentions patch-seq data from human neocortical L1 neurons, clearly identifying the brain region.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortical L1\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions patch-seq data from human neocortical L1 neurons, clearly identifying the brain region.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000635",
-  "title": "20230930_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000636",
-  "title": "Human interneuron patch-seq electrophysiology",
-  "brain_region": "neocortex",
-  "confidence": "high",
-  "reasoning": "Description and keywords explicitly mention human neocortex as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description and keywords explicitly mention human neocortex as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000768",
-  "title": "20231222_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000769",
-  "title": "20231222_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000933",
-  "title": "20240331_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000934",
-  "title": "20240331_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000297",
-  "title": "UHN whole-cell patch-clamp excitability recordings from human cortical neurons",
-  "brain_region": "cortical tissue",
-  "confidence": "medium",
-  "reasoning": "Description mentions 'human cortical tissue' but does not specify a particular cortical region, leaving the exact brain region less precise.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"cortical tissue\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description mentions 'human cortical tissue' but does not specify a particular cortical region, leaving the exact brain region less precise.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000337",
-  "title": "20220917_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001065",
-  "title": "Areal specializations in the morpho-electric and transcriptomic properties of layer 5 extratelencephalic-projecting neurons in the primate neocortex",
-  "brain_region": "temporal cortex",
-  "confidence": "medium",
-  "reasoning": "Description mentions both temporal and motor cortical regions, but temporal cortex is listed first, suggesting it may be the primary focus.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"temporal cortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description mentions both temporal and motor cortical regions, but temporal cortex is listed first, suggesting it may be the primary focus.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001348",
-  "title": "20250331_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata, only general information about species and technique",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general information about species and technique\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001351",
-  "title": "20250331_AIBS_Patchseq_mouse",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001359",
-  "title": "20250331_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001455",
-  "title": "20250630_AIBS_Patchseq_Mouse",
-  "brain_region": "visual cortex",
-  "confidence": "high",
-  "reasoning": "Description explicitly mentions visual cortex as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"visual cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions visual cortex as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001464",
-  "title": "20250627_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001465",
-  "title": "20250627_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata, only general information about species and technique provided",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general information about species and technique provided\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001534",
-  "title": "20250707_Patchseq_BICAN_R01_Neuromodulation_mouse",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001625",
-  "title": "20251020_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001626",
-  "title": "20251020_AIBS_Patchseq_nhp",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata, only species and technique details are provided",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only species and technique details are provided\"\n}\n```"
-}
-
-{
+  "prompt": "Now analyze this dataset:\nTitle: Phenotypic variation within and across transcriptomic cell types in mouse motor cortex\nDescription: We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. Contained in this dandiset are the intracellular electrophysiological recordings. See Dandiset #35 for an additional dataset, recorded under the physiological temperature. \nKeywords: ['Patch-seq', 'cortex', 'motor cortex', 'mouse']\nSpecies: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
   "dandiset_id": "000008",
   "title": "Phenotypic variation within and across transcriptomic cell types in mouse motor cortex",
   "brain_region": "motor cortex",
@@ -871,15 +39,27 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: Phenotypic variation within and across transcriptomic cell types in mouse motor cortex\nDescription: We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. Contained in this dandiset are the intracellular electrophysiological recordings. See Dandiset #35 for an additional dataset, recorded under the physiological temperature. \nKeywords: ['Patch-seq', 'cortex', 'motor cortex', 'mouse']\nSpecies: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
+  "dandiset_id": "000008",
+  "title": "Phenotypic variation within and across transcriptomic cell types in mouse motor cortex",
+  "brain_region": "motor cortex",
+  "confidence": "high",
+  "reasoning": "Title, description, and keywords explicitly mention motor cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"motor cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title, description, and keywords explicitly mention motor cortex as the study region\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: Patch-seq recordings from mouse visual cortex\nDescription: Whole-cell Patch-seq recordings from neurons of the mouse visual cortex from the Allen Institute for Brain Science, released in June 2020. The majority of cells in this dataset are GABAergic interneurons, but there are also a small number of glutamatergic neurons from layer 2/3 of the mouse visual cortex.\nKeywords: ['Patch-seq', 'mouse', 'visual cortex', 'interneuron']\nSpecies: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
   "dandiset_id": "000020",
   "title": "Patch-seq recordings from mouse visual cortex",
   "brain_region": "visual cortex",
   "confidence": "high",
-  "reasoning": "Title and description explicitly mention visual cortex as the study region, with additional details about layers and neuron types within this region.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"visual cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention visual cortex as the study region, with additional details about layers and neuron types within this region.\"\n}\n```"
+  "reasoning": "Title and description explicitly mention visual cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"visual cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention visual cortex as the study region\"\n}\n```"
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: Patch-seq recordings from human cortex (June 2020)\nDescription: Whole-cell Patch-seq recordings from neurons of the human neocortex from the Allen Institute for Brain Science, released in June 2020.\nKeywords: ['Patch-seq', 'human', 'neocortex', ' layer 2/3']\nSpecies: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "000023",
   "title": "Patch-seq recordings from human cortex (June 2020)",
   "brain_region": "neocortex",
@@ -889,6 +69,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex\nDescription:  We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. This dataset contains rectangular stimulation of cells under temperature-controlled conditions (34 \u2103). See Dandiset #8 for the main dataset, recorded under the room temperature.\nKeywords: ['Patch-seq', 'mouse', 'cortex', 'motor cortex']\nSpecies: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
   "dandiset_id": "000035",
   "title": "Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex",
   "brain_region": "motor cortex",
@@ -898,6 +79,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: Patch-seq recordings from human cortex (June 2021)\nDescription: Whole-cell Patch-seq recordings from neurons of the human neocortex from the Allen Institute for Brain Science, released in June 2021.\nKeywords: ['Patch-seq', 'human', 'neocortex']\nSpecies: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "000109",
   "title": "Patch-seq recordings from human cortex (June 2021)",
   "brain_region": "neocortex",
@@ -907,15 +89,17 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20210923_AIBS_Patchseq_human\nDescription: U01 Lein PatchSeq upload September 2021\nKeywords: ['Patch-seq', 'human', 'neocortical']\nSpecies: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "000142",
   "title": "20210923_AIBS_Patchseq_human",
   "brain_region": "neocortex",
   "confidence": "medium",
-  "reasoning": "Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but the exact region within the neocortex is not specified.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but the exact region within the neocortex is not specified.\"\n}\n```"
+  "reasoning": "Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.\"\n}\n```"
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021\nDescription: Patch-clamp recording data from spinal cord neurons. Data was generated at Huizhong Tao's lab at USC(htao@usc.edu). The recording was performed by Can Tao(cantao@usc.edu) and Bo Peng(pengb@usc.edu).\nKeywords: []\nSpecies: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
   "dandiset_id": "000148",
   "title": "Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021",
   "brain_region": "spinal cord",
@@ -925,6 +109,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20211223_AIBS_Patchseq_human\nDescription: U01 Lein PatchSeq upload December 2021\nKeywords: ['Patch-seq', 'human', 'neocortical']\nSpecies: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "000209",
   "title": "20211223_AIBS_Patchseq_human",
   "brain_region": "neocortex",
@@ -934,6 +119,337 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20220330_AIBS_Patchseq_human\nDescription: U01 Lein PatchSeq upload March 2022\nKeywords: ['Patch-seq', 'human', 'neocortical']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "000228",
+  "title": "20220330_AIBS_Patchseq_human",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI\nDescription: Whole-cell patch clamp recording of specific cell types in the adult mouse spinal cord. Neurons are either input defined, output defined or expressing specific molecular markers. \nKeywords: []\nSpecies: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
+  "dandiset_id": "000245",
+  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI",
+  "brain_region": "spinal cord",
+  "confidence": "high",
+  "reasoning": "Description explicitly mentions spinal cord as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions spinal cord as the study region\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20220630_AIBS_Patchseq_human\nDescription: U01 Lein PatchSeq upload June 2022\nKeywords: ['Patch-seq', 'human']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "000288",
+  "title": "20220630_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI\nDescription: Whole-cell patch clamp recording of specific cell types in the adult mouse spinal cord. Neurons are either input defined, output defined or expressing specific molecular markers.\nKeywords: []\nSpecies: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
+  "dandiset_id": "000295",
+  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI",
+  "brain_region": "spinal cord",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention spinal cord as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20230630_AIBS_Patchseq_nonhuman_primate\nDescription: HMBA Lein PatchSeq upload (Q2 2023)\nKeywords: ['Patch-seq', 'non-human primate', 'multimodal']\nSpecies: [{'name': 'Macaca nemestrina - Pigtail macaque', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
+  "dandiset_id": "000569",
+  "title": "20230630_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only general information about species and technique provided",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general information about species and technique provided\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20230630_AIBS_Patchseq_human\nDescription: U01 Lein Patch-seq data upload (Q2 2023)\nKeywords: ['Patch-seq', 'human', 'multimodal']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "000570",
+  "title": "20230630_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: Human L1 patch-seq electrophysiology\nDescription: Patch-seq electrophysiology data from human neocortical L1 neurons, accompanying the manuscript \"Morpho-electric and transcriptomic divergence of the layer 1 interneuron repertoire in human versus mouse neocortex\" (https://www.biorxiv.org/content/10.1101/2022.10.24.511199).\n\nAnalysis code and extracted features available at https://github.com/AllenInstitute/patchseq_human_L1. Feature extraction package available at https://github.com/AllenInstitute/ipfx.\nKeywords: ['human', 'multimodal', 'patch-seq', 'neocortex']\nSpecies: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}, {'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "000630",
+  "title": "Human L1 patch-seq electrophysiology",
+  "brain_region": "neocortical L1",
+  "confidence": "high",
+  "reasoning": "Description explicitly mentions neocortical L1 neurons as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortical L1\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions neocortical L1 neurons as the study region\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20230930_AIBS_Patchseq_nonhuman_primate\nDescription: HMBA Lein PatchSeq upload (Q3 2023)\nKeywords: ['Patch-seq', 'non-human primate', 'multimodal']\nSpecies: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
+  "dandiset_id": "000635",
+  "title": "20230930_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: Human interneuron patch-seq electrophysiology\nDescription: Patch-seq electrophysiology data from human neocortical interneurons from acute and slice culture preparations, accompanying the manuscript \"Signature morpho-electric properties of diverse GABAergic interneurons in the human neocortex\" (https://www.biorxiv.org/content/10.1101/2022.11.08.515739).\nKeywords: ['human', 'multimodal', 'patch-seq', 'neocortex']\nSpecies: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}, {'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "000636",
+  "title": "Human interneuron patch-seq electrophysiology",
+  "brain_region": "neocortex",
+  "confidence": "high",
+  "reasoning": "Description and keywords explicitly mention human neocortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description and keywords explicitly mention human neocortex as the study region\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20231222_AIBS_Patchseq_nonhuman_primate\nDescription: HMBA Lein PatchSeq upload (nonhuman primate) (Q4 2023)\nKeywords: ['Patch-seq', 'non-human primate', 'multimodal']\nSpecies: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
+  "dandiset_id": "000768",
+  "title": "20231222_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20231222_AIBS_Patchseq_human\nDescription: HMBA Lein PatchSeq upload (human) (Q4 2023)\nKeywords: ['Patch-seq', 'human', 'multimodal']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "000769",
+  "title": "20231222_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20240331_AIBS_Patchseq_human\nDescription: HMBA Lein PatchSeq upload (human) (Q1 2024)\nKeywords: ['Patch-seq', 'human', 'multimodal']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "000933",
+  "title": "20240331_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20240331_AIBS_Patchseq_nonhuman_primate\nDescription: HMBA Lein PatchSeq upload (nonhuman primate) (Q1 2024)\nKeywords: ['Patch-seq', 'non-human primate', 'multimodal']\nSpecies: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
+  "dandiset_id": "000934",
+  "title": "20240331_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: UHN whole-cell patch-clamp excitability recordings from human cortical neurons\nDescription: Whole-cell current clamp recordings from surgically resected human cortical tissue \nKeywords: ['excitability', 'human', 'cortex']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "000297",
+  "title": "UHN whole-cell patch-clamp excitability recordings from human cortical neurons",
+  "brain_region": "cortex",
+  "confidence": "medium",
+  "reasoning": "Description and keywords mention cortical tissue, but do not specify a particular region within the cortex",
+  "raw_response": "```json\n{\n  \"brain_region\": \"cortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description and keywords mention cortical tissue, but do not specify a particular region within the cortex\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20220917_AIBS_Patchseq_human\nDescription: U01 Lein PatchSeq upload March 2022 - Mansvelder lab data\nKeywords: None\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "000337",
+  "title": "20220917_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: Areal specializations in the morpho-electric and transcriptomic properties of layer 5 extratelencephalic-projecting neurons in the primate neocortex\nDescription: Electrophysiology dataset associated with journal article titled areal specializations in the morpho-electric and transcriptomic properties of layer 5 extratelencephalic-projecting neurons in the primate neocortex. NWB files contains current clamp data collected for analysis of deep layer 5 ET neurons in the primate temporal and motor cortical regions. \nKeywords: []\nSpecies: [{'name': 'Macaca mulatta - Rhesus monkey', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9544'}, {'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
+  "dandiset_id": "001065",
+  "title": "Areal specializations in the morpho-electric and transcriptomic properties of layer 5 extratelencephalic-projecting neurons in the primate neocortex",
+  "brain_region": "temporal cortex",
+  "confidence": "medium",
+  "reasoning": "Description mentions both temporal and motor cortical regions, but temporal cortex is listed first, suggesting it may be the primary focus.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"temporal cortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description mentions both temporal and motor cortical regions, but temporal cortex is listed first, suggesting it may be the primary focus.\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20250331_AIBS_Patchseq_nonhuman_primate\nDescription: HMBA Lein PatchSeq upload (nonhuman primate) (Q1 2025)\nKeywords: ['Patch-seq, non-human primate, multimodal']\nSpecies: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
+  "dandiset_id": "001348",
+  "title": "20250331_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only general information about species and technique",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general information about species and technique\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20250331_AIBS_Patchseq_mouse\nDescription: HMBA Lein PatchSeq upload (mouse) (Q1 2025)\nKeywords: ['Patch-seq, mouse, multimodal']\nSpecies: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
+  "dandiset_id": "001351",
+  "title": "20250331_AIBS_Patchseq_mouse",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20250331_AIBS_Patchseq_human\nDescription: HMBA Lein PatchSeq upload (human) (Q1 2025)\nKeywords: ['Patch-seq, human, multimodal']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "001359",
+  "title": "20250331_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20250630_AIBS_Patchseq_Mouse\nDescription: A whole cell patch clamp dataset from Allen Institute measuring intrinsic properties of excitatory projection neurons in slices of mouse visual cortex\nKeywords: None\nSpecies: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
+  "dandiset_id": "001455",
+  "title": "20250630_AIBS_Patchseq_Mouse",
+  "brain_region": "visual cortex",
+  "confidence": "high",
+  "reasoning": "Description explicitly mentions visual cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"visual cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions visual cortex as the study region\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20250627_AIBS_Patchseq_human\nDescription: HMBA Lein PatchSeq upload (human) (Q2 2025)\nKeywords: ['Patch-seq, human, multimodal']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "001464",
+  "title": "20250627_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20250627_AIBS_Patchseq_nonhuman_primate\nDescription: HMBA Lein PatchSeq upload (nonhuman primate) (Q2 2025)\nKeywords: ['Patch-seq, human, multimodal']\nSpecies: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
+  "dandiset_id": "001465",
+  "title": "20250627_AIBS_Patchseq_nonhuman_primate",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only general terms like 'Patch-seq' and 'multimodal' are provided.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general terms like 'Patch-seq' and 'multimodal' are provided.\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20250707_Patchseq_BICAN_R01_Neuromodulation_mouse\nDescription: BICAN R01 Neuromodulation mouse upload (Q3 2025)\nKeywords: ['Patch-seq, mouse']\nSpecies: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
+  "dandiset_id": "001534",
+  "title": "20250707_Patchseq_BICAN_R01_Neuromodulation_mouse",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20251020_AIBS_Patchseq_human\nDescription: HMBA Lein PatchSeq upload (human) (Q3 2025)\nKeywords: ['Patch-seq, human, multimodal']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "001625",
+  "title": "20251020_AIBS_Patchseq_human",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20251020_AIBS_Patchseq_nhp\nDescription: HMBA Lein PatchSeq upload (non-human primate) (Q3 2025)\nKeywords: ['Patch-seq, non-human primate, multimodal']\nSpecies: [{'name': 'Macaca mulatta - Rhesus monkey', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9544'}, {'name': 'Macaca fascicularis - Cynomolgus monkeys', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9541'}, {'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
+  "dandiset_id": "001626",
+  "title": "20251020_AIBS_Patchseq_nhp",
+  "brain_region": "unknown",
+  "confidence": "low",
+  "reasoning": "No specific brain region mentioned in available metadata, only species and technique details are provided",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only species and technique details are provided\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: Phenotypic variation within and across transcriptomic cell types in mouse motor cortex\nDescription: We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. Contained in this dandiset are the intracellular electrophysiological recordings. See Dandiset #35 for an additional dataset, recorded under the physiological temperature. \nKeywords: ['Patch-seq', 'cortex', 'motor cortex', 'mouse']\nSpecies: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
+  "dandiset_id": "000008",
+  "title": "Phenotypic variation within and across transcriptomic cell types in mouse motor cortex",
+  "brain_region": "motor cortex",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention motor cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"motor cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention motor cortex as the study region\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: Patch-seq recordings from mouse visual cortex\nDescription: Whole-cell Patch-seq recordings from neurons of the mouse visual cortex from the Allen Institute for Brain Science, released in June 2020. The majority of cells in this dataset are GABAergic interneurons, but there are also a small number of glutamatergic neurons from layer 2/3 of the mouse visual cortex.\nKeywords: ['Patch-seq', 'mouse', 'visual cortex', 'interneuron']\nSpecies: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
+  "dandiset_id": "000020",
+  "title": "Patch-seq recordings from mouse visual cortex",
+  "brain_region": "visual cortex",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention visual cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"visual cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention visual cortex as the study region\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: Patch-seq recordings from human cortex (June 2020)\nDescription: Whole-cell Patch-seq recordings from neurons of the human neocortex from the Allen Institute for Brain Science, released in June 2020.\nKeywords: ['Patch-seq', 'human', 'neocortex', ' layer 2/3']\nSpecies: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "000023",
+  "title": "Patch-seq recordings from human cortex (June 2020)",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Description and keywords mention neocortex, but no specific region within the neocortex is specified.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description and keywords mention neocortex, but no specific region within the neocortex is specified.\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex\nDescription:  We used Patch-seq to combine patch-clamp recording, biocytin staining, and single-cell RNA sequencing of over 1300 neurons in adult mouse motor cortex, providing a comprehensive morpho-electric annotation of almost all transcriptomically defined neural cell types. This dataset contains rectangular stimulation of cells under temperature-controlled conditions (34 \u2103). See Dandiset #8 for the main dataset, recorded under the room temperature.\nKeywords: ['Patch-seq', 'mouse', 'cortex', 'motor cortex']\nSpecies: [{'name': 'House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
+  "dandiset_id": "000035",
+  "title": "Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex",
+  "brain_region": "motor cortex",
+  "confidence": "high",
+  "reasoning": "Title, description, and keywords explicitly mention motor cortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"motor cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title, description, and keywords explicitly mention motor cortex as the study region\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: Patch-seq recordings from human cortex (June 2021)\nDescription: Whole-cell Patch-seq recordings from neurons of the human neocortex from the Allen Institute for Brain Science, released in June 2021.\nKeywords: ['Patch-seq', 'human', 'neocortex']\nSpecies: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "000109",
+  "title": "Patch-seq recordings from human cortex (June 2021)",
+  "brain_region": "neocortex",
+  "confidence": "high",
+  "reasoning": "Description and keywords explicitly mention neocortex as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description and keywords explicitly mention neocortex as the study region\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20210923_AIBS_Patchseq_human\nDescription: U01 Lein PatchSeq upload September 2021\nKeywords: ['Patch-seq', 'human', 'neocortical']\nSpecies: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "000142",
+  "title": "20210923_AIBS_Patchseq_human",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021\nDescription: Patch-clamp recording data from spinal cord neurons. Data was generated at Huizhong Tao's lab at USC(htao@usc.edu). The recording was performed by Can Tao(cantao@usc.edu) and Bo Peng(pengb@usc.edu).\nKeywords: []\nSpecies: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
+  "dandiset_id": "000148",
+  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021",
+  "brain_region": "spinal cord",
+  "confidence": "high",
+  "reasoning": "Title and description explicitly mention spinal cord as the study region",
+  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20211223_AIBS_Patchseq_human\nDescription: U01 Lein PatchSeq upload December 2021\nKeywords: ['Patch-seq', 'human', 'neocortical']\nSpecies: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
+  "dandiset_id": "000209",
+  "title": "20211223_AIBS_Patchseq_human",
+  "brain_region": "neocortex",
+  "confidence": "medium",
+  "reasoning": "Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.",
+  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.\"\n}\n```"
+}
+
+{
+  "prompt": "Now analyze this dataset:\nTitle: 20220330_AIBS_Patchseq_human\nDescription: U01 Lein PatchSeq upload March 2022\nKeywords: ['Patch-seq', 'human', 'neocortical']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "000228",
   "title": "20220330_AIBS_Patchseq_human",
   "brain_region": "neocortex",
@@ -943,6 +459,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI\nDescription: Whole-cell patch clamp recording of specific cell types in the adult mouse spinal cord. Neurons are either input defined, output defined or expressing specific molecular markers. \nKeywords: []\nSpecies: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
   "dandiset_id": "000245",
   "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI",
   "brain_region": "spinal cord",
@@ -952,6 +469,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20220630_AIBS_Patchseq_human\nDescription: U01 Lein PatchSeq upload June 2022\nKeywords: ['Patch-seq', 'human']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "000288",
   "title": "20220630_AIBS_Patchseq_human",
   "brain_region": "unknown",
@@ -961,6 +479,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI\nDescription: Whole-cell patch clamp recording of specific cell types in the adult mouse spinal cord. Neurons are either input defined, output defined or expressing specific molecular markers.\nKeywords: []\nSpecies: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
   "dandiset_id": "000295",
   "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI",
   "brain_region": "spinal cord",
@@ -970,15 +489,17 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20230630_AIBS_Patchseq_nonhuman_primate\nDescription: HMBA Lein PatchSeq upload (Q2 2023)\nKeywords: ['Patch-seq', 'non-human primate', 'multimodal']\nSpecies: [{'name': 'Macaca nemestrina - Pigtail macaque', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
   "dandiset_id": "000569",
   "title": "20230630_AIBS_Patchseq_nonhuman_primate",
   "brain_region": "unknown",
   "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata, only general information about species and technique",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general information about species and technique\"\n}\n```"
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20230630_AIBS_Patchseq_human\nDescription: U01 Lein Patch-seq data upload (Q2 2023)\nKeywords: ['Patch-seq', 'human', 'multimodal']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "000570",
   "title": "20230630_AIBS_Patchseq_human",
   "brain_region": "unknown",
@@ -988,6 +509,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: Human L1 patch-seq electrophysiology\nDescription: Patch-seq electrophysiology data from human neocortical L1 neurons, accompanying the manuscript \"Morpho-electric and transcriptomic divergence of the layer 1 interneuron repertoire in human versus mouse neocortex\" (https://www.biorxiv.org/content/10.1101/2022.10.24.511199).\n\nAnalysis code and extracted features available at https://github.com/AllenInstitute/patchseq_human_L1. Feature extraction package available at https://github.com/AllenInstitute/ipfx.\nKeywords: ['human', 'multimodal', 'patch-seq', 'neocortex']\nSpecies: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}, {'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "000630",
   "title": "Human L1 patch-seq electrophysiology",
   "brain_region": "neocortical L1",
@@ -997,6 +519,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20230930_AIBS_Patchseq_nonhuman_primate\nDescription: HMBA Lein PatchSeq upload (Q3 2023)\nKeywords: ['Patch-seq', 'non-human primate', 'multimodal']\nSpecies: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
   "dandiset_id": "000635",
   "title": "20230930_AIBS_Patchseq_nonhuman_primate",
   "brain_region": "unknown",
@@ -1006,303 +529,7 @@ Unknown
 }
 
 {
-  "dandiset_id": "000636",
-  "title": "Human interneuron patch-seq electrophysiology",
-  "brain_region": "neocortex",
-  "confidence": "high",
-  "reasoning": "Description and keywords explicitly mention neocortex as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description and keywords explicitly mention neocortex as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000768",
-  "title": "20231222_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000769",
-  "title": "20231222_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000933",
-  "title": "20240331_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000934",
-  "title": "20240331_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000297",
-  "title": "UHN whole-cell patch-clamp excitability recordings from human cortical neurons",
-  "brain_region": "cortical tissue",
-  "confidence": "medium",
-  "reasoning": "Title and description mention cortical tissue, but do not specify a particular region within the cortex",
-  "raw_response": "```json\n{\n  \"brain_region\": \"cortical tissue\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Title and description mention cortical tissue, but do not specify a particular region within the cortex\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000337",
-  "title": "20220917_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001065",
-  "title": "Areal specializations in the morpho-electric and transcriptomic properties of layer 5 extratelencephalic-projecting neurons in the primate neocortex",
-  "brain_region": "temporal cortex",
-  "confidence": "medium",
-  "reasoning": "Description mentions both temporal and motor cortical regions, but temporal cortex is listed first, suggesting it may be the primary focus.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"temporal cortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description mentions both temporal and motor cortical regions, but temporal cortex is listed first, suggesting it may be the primary focus.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001348",
-  "title": "20250331_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata, only species and technique are specified",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only species and technique are specified\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001351",
-  "title": "20250331_AIBS_Patchseq_mouse",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001359",
-  "title": "20250331_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001455",
-  "title": "20250630_AIBS_Patchseq_Mouse",
-  "brain_region": "visual cortex",
-  "confidence": "high",
-  "reasoning": "Description explicitly mentions visual cortex as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"visual cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions visual cortex as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001464",
-  "title": "20250627_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001465",
-  "title": "20250627_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata, only general terms like 'Patch-seq' and 'multimodal' are provided.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general terms like 'Patch-seq' and 'multimodal' are provided.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001534",
-  "title": "20250707_Patchseq_BICAN_R01_Neuromodulation_mouse",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001625",
-  "title": "20251020_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001626",
-  "title": "20251020_AIBS_Patchseq_nhp",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata, only species and technique details are provided",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only species and technique details are provided\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000008",
-  "title": "Phenotypic variation within and across transcriptomic cell types in mouse motor cortex",
-  "brain_region": "motor cortex",
-  "confidence": "high",
-  "reasoning": "Title and description explicitly mention motor cortex as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"motor cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention motor cortex as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000020",
-  "title": "Patch-seq recordings from mouse visual cortex",
-  "brain_region": "visual cortex",
-  "confidence": "high",
-  "reasoning": "Title and description explicitly mention visual cortex as the study region, with additional details about layers and neuron types within this region.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"visual cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention visual cortex as the study region, with additional details about layers and neuron types within this region.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000023",
-  "title": "Patch-seq recordings from human cortex (June 2020)",
-  "brain_region": "neocortex",
-  "confidence": "medium",
-  "reasoning": "Description and keywords mention neocortex, but no specific region within the neocortex is specified.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description and keywords mention neocortex, but no specific region within the neocortex is specified.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000035",
-  "title": "Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex",
-  "brain_region": "motor cortex",
-  "confidence": "high",
-  "reasoning": "Title, description, and keywords explicitly mention motor cortex as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"motor cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title, description, and keywords explicitly mention motor cortex as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000109",
-  "title": "Patch-seq recordings from human cortex (June 2021)",
-  "brain_region": "neocortex",
-  "confidence": "high",
-  "reasoning": "Description and keywords explicitly mention neocortex as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description and keywords explicitly mention neocortex as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000142",
-  "title": "20210923_AIBS_Patchseq_human",
-  "brain_region": "neocortex",
-  "confidence": "medium",
-  "reasoning": "Keywords mention 'neocortical' as the studied region, but no specific subregion is specified",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical' as the studied region, but no specific subregion is specified\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000148",
-  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021",
-  "brain_region": "spinal cord",
-  "confidence": "high",
-  "reasoning": "Title and description explicitly mention spinal cord as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000209",
-  "title": "20211223_AIBS_Patchseq_human",
-  "brain_region": "neocortex",
-  "confidence": "medium",
-  "reasoning": "Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000228",
-  "title": "20220330_AIBS_Patchseq_human",
-  "brain_region": "neocortex",
-  "confidence": "medium",
-  "reasoning": "Keywords mention 'neocortical' as the studied region, but specific area within neocortex is not specified",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical' as the studied region, but specific area within neocortex is not specified\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000245",
-  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI",
-  "brain_region": "spinal cord",
-  "confidence": "high",
-  "reasoning": "Title and description explicitly mention spinal cord as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000288",
-  "title": "20220630_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000295",
-  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI",
-  "brain_region": "spinal cord",
-  "confidence": "high",
-  "reasoning": "Title and description explicitly mention spinal cord as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000569",
-  "title": "20230630_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata, only general techniques and species information provided",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general techniques and species information provided\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000570",
-  "title": "20230630_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000630",
-  "title": "Human L1 patch-seq electrophysiology",
-  "brain_region": "neocortical L1",
-  "confidence": "high",
-  "reasoning": "Description explicitly mentions neocortical L1 neurons as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortical L1\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions neocortical L1 neurons as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000635",
-  "title": "20230930_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
+  "prompt": "Now analyze this dataset:\nTitle: Human interneuron patch-seq electrophysiology\nDescription: Patch-seq electrophysiology data from human neocortical interneurons from acute and slice culture preparations, accompanying the manuscript \"Signature morpho-electric properties of diverse GABAergic interneurons in the human neocortex\" (https://www.biorxiv.org/content/10.1101/2022.11.08.515739).\nKeywords: ['human', 'multimodal', 'patch-seq', 'neocortex']\nSpecies: [{'name': 'Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}, {'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "000636",
   "title": "Human interneuron patch-seq electrophysiology",
   "brain_region": "neocortex",
@@ -1312,6 +539,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20231222_AIBS_Patchseq_nonhuman_primate\nDescription: HMBA Lein PatchSeq upload (nonhuman primate) (Q4 2023)\nKeywords: ['Patch-seq', 'non-human primate', 'multimodal']\nSpecies: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
   "dandiset_id": "000768",
   "title": "20231222_AIBS_Patchseq_nonhuman_primate",
   "brain_region": "unknown",
@@ -1321,6 +549,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20231222_AIBS_Patchseq_human\nDescription: HMBA Lein PatchSeq upload (human) (Q4 2023)\nKeywords: ['Patch-seq', 'human', 'multimodal']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "000769",
   "title": "20231222_AIBS_Patchseq_human",
   "brain_region": "unknown",
@@ -1330,6 +559,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20240331_AIBS_Patchseq_human\nDescription: HMBA Lein PatchSeq upload (human) (Q1 2024)\nKeywords: ['Patch-seq', 'human', 'multimodal']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "000933",
   "title": "20240331_AIBS_Patchseq_human",
   "brain_region": "unknown",
@@ -1339,24 +569,27 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20240331_AIBS_Patchseq_nonhuman_primate\nDescription: HMBA Lein PatchSeq upload (nonhuman primate) (Q1 2024)\nKeywords: ['Patch-seq', 'non-human primate', 'multimodal']\nSpecies: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
   "dandiset_id": "000934",
   "title": "20240331_AIBS_Patchseq_nonhuman_primate",
   "brain_region": "unknown",
   "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata, only general information about species and technique provided",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general information about species and technique provided\"\n}\n```"
+  "reasoning": "No specific brain region mentioned in available metadata",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: UHN whole-cell patch-clamp excitability recordings from human cortical neurons\nDescription: Whole-cell current clamp recordings from surgically resected human cortical tissue \nKeywords: ['excitability', 'human', 'cortex']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "000297",
   "title": "UHN whole-cell patch-clamp excitability recordings from human cortical neurons",
   "brain_region": "cortical tissue",
   "confidence": "medium",
-  "reasoning": "Description mentions cortical tissue, but does not specify a particular region within the cortex",
-  "raw_response": "```json\n{\n  \"brain_region\": \"cortical tissue\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description mentions cortical tissue, but does not specify a particular region within the cortex\"\n}\n```"
+  "reasoning": "Description and keywords mention cortical tissue, but do not specify a particular region within the cortex",
+  "raw_response": "```json\n{\n  \"brain_region\": \"cortical tissue\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description and keywords mention cortical tissue, but do not specify a particular region within the cortex\"\n}\n```"
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20220917_AIBS_Patchseq_human\nDescription: U01 Lein PatchSeq upload March 2022 - Mansvelder lab data\nKeywords: None\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "000337",
   "title": "20220917_AIBS_Patchseq_human",
   "brain_region": "unknown",
@@ -1366,6 +599,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: Areal specializations in the morpho-electric and transcriptomic properties of layer 5 extratelencephalic-projecting neurons in the primate neocortex\nDescription: Electrophysiology dataset associated with journal article titled areal specializations in the morpho-electric and transcriptomic properties of layer 5 extratelencephalic-projecting neurons in the primate neocortex. NWB files contains current clamp data collected for analysis of deep layer 5 ET neurons in the primate temporal and motor cortical regions. \nKeywords: []\nSpecies: [{'name': 'Macaca mulatta - Rhesus monkey', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9544'}, {'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
   "dandiset_id": "001065",
   "title": "Areal specializations in the morpho-electric and transcriptomic properties of layer 5 extratelencephalic-projecting neurons in the primate neocortex",
   "brain_region": "temporal cortex",
@@ -1375,303 +609,7 @@ Unknown
 }
 
 {
-  "dandiset_id": "001348",
-  "title": "20250331_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata, only general information about species and technique provided",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general information about species and technique provided\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001351",
-  "title": "20250331_AIBS_Patchseq_mouse",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001359",
-  "title": "20250331_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001455",
-  "title": "20250630_AIBS_Patchseq_Mouse",
-  "brain_region": "visual cortex",
-  "confidence": "high",
-  "reasoning": "Description explicitly mentions visual cortex as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"visual cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions visual cortex as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001464",
-  "title": "20250627_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001465",
-  "title": "20250627_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata, only general terms like 'Patch-seq' and 'multimodal' are provided.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general terms like 'Patch-seq' and 'multimodal' are provided.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001534",
-  "title": "20250707_Patchseq_BICAN_R01_Neuromodulation_mouse",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001625",
-  "title": "20251020_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001626",
-  "title": "20251020_AIBS_Patchseq_nhp",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata, only species and technique details provided",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only species and technique details provided\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000008",
-  "title": "Phenotypic variation within and across transcriptomic cell types in mouse motor cortex",
-  "brain_region": "motor cortex",
-  "confidence": "high",
-  "reasoning": "Title and description explicitly mention motor cortex as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"motor cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention motor cortex as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000020",
-  "title": "Patch-seq recordings from mouse visual cortex",
-  "brain_region": "visual cortex",
-  "confidence": "high",
-  "reasoning": "Title and description explicitly mention visual cortex as the study region, with additional details about layers and neuron types within this region.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"visual cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention visual cortex as the study region, with additional details about layers and neuron types within this region.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000023",
-  "title": "Patch-seq recordings from human cortex (June 2020)",
-  "brain_region": "neocortex",
-  "confidence": "medium",
-  "reasoning": "Description and keywords mention neocortex, but no specific region within the neocortex is specified.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description and keywords mention neocortex, but no specific region within the neocortex is specified.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000035",
-  "title": "Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex",
-  "brain_region": "motor cortex",
-  "confidence": "high",
-  "reasoning": "Title, description, and keywords explicitly mention motor cortex as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"motor cortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title, description, and keywords explicitly mention motor cortex as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000109",
-  "title": "Patch-seq recordings from human cortex (June 2021)",
-  "brain_region": "neocortex",
-  "confidence": "high",
-  "reasoning": "Description and keywords explicitly mention neocortex as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description and keywords explicitly mention neocortex as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000142",
-  "title": "20210923_AIBS_Patchseq_human",
-  "brain_region": "neocortex",
-  "confidence": "medium",
-  "reasoning": "Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000148",
-  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021",
-  "brain_region": "spinal cord",
-  "confidence": "high",
-  "reasoning": "Title and description explicitly mention spinal cord as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000209",
-  "title": "20211223_AIBS_Patchseq_human",
-  "brain_region": "neocortex",
-  "confidence": "medium",
-  "reasoning": "Keywords mention 'neocortical', indicating the neocortex as the studied region, but no specific subregion is specified.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', indicating the neocortex as the studied region, but no specific subregion is specified.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000228",
-  "title": "20220330_AIBS_Patchseq_human",
-  "brain_region": "neocortex",
-  "confidence": "medium",
-  "reasoning": "Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Keywords mention 'neocortical', suggesting the study focuses on the neocortex, but no specific region is specified.\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000245",
-  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI",
-  "brain_region": "spinal cord",
-  "confidence": "high",
-  "reasoning": "Description explicitly mentions spinal cord as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions spinal cord as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000288",
-  "title": "20220630_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000295",
-  "title": "Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI",
-  "brain_region": "spinal cord",
-  "confidence": "high",
-  "reasoning": "Title and description explicitly mention spinal cord as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"spinal cord\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Title and description explicitly mention spinal cord as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000569",
-  "title": "20230630_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata, only general information about species and technique provided",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only general information about species and technique provided\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000570",
-  "title": "20230630_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000630",
-  "title": "Human L1 patch-seq electrophysiology",
-  "brain_region": "neocortical L1",
-  "confidence": "high",
-  "reasoning": "Description explicitly mentions neocortical L1 neurons as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortical L1\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description explicitly mentions neocortical L1 neurons as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000635",
-  "title": "20230930_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000636",
-  "title": "Human interneuron patch-seq electrophysiology",
-  "brain_region": "neocortex",
-  "confidence": "high",
-  "reasoning": "Description and keywords explicitly mention neocortex as the study region",
-  "raw_response": "```json\n{\n  \"brain_region\": \"neocortex\",\n  \"confidence\": \"high\",\n  \"reasoning\": \"Description and keywords explicitly mention neocortex as the study region\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000768",
-  "title": "20231222_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000769",
-  "title": "20231222_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000933",
-  "title": "20240331_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000934",
-  "title": "20240331_AIBS_Patchseq_nonhuman_primate",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000297",
-  "title": "UHN whole-cell patch-clamp excitability recordings from human cortical neurons",
-  "brain_region": "cortical tissue",
-  "confidence": "medium",
-  "reasoning": "Title and description mention cortical tissue, but do not specify a particular region within the cortex",
-  "raw_response": "```json\n{\n  \"brain_region\": \"cortical tissue\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Title and description mention cortical tissue, but do not specify a particular region within the cortex\"\n}\n```"
-}
-
-{
-  "dandiset_id": "000337",
-  "title": "20220917_AIBS_Patchseq_human",
-  "brain_region": "unknown",
-  "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata\"\n}\n```"
-}
-
-{
-  "dandiset_id": "001065",
-  "title": "Areal specializations in the morpho-electric and transcriptomic properties of layer 5 extratelencephalic-projecting neurons in the primate neocortex",
-  "brain_region": "temporal cortex",
-  "confidence": "medium",
-  "reasoning": "Description mentions both temporal and motor cortical regions, but temporal cortex is listed first, suggesting it might be the primary focus.",
-  "raw_response": "```json\n{\n  \"brain_region\": \"temporal cortex\",\n  \"confidence\": \"medium\",\n  \"reasoning\": \"Description mentions both temporal and motor cortical regions, but temporal cortex is listed first, suggesting it might be the primary focus.\"\n}\n```"
-}
-
-{
+  "prompt": "Now analyze this dataset:\nTitle: 20250331_AIBS_Patchseq_nonhuman_primate\nDescription: HMBA Lein PatchSeq upload (nonhuman primate) (Q1 2025)\nKeywords: ['Patch-seq, non-human primate, multimodal']\nSpecies: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
   "dandiset_id": "001348",
   "title": "20250331_AIBS_Patchseq_nonhuman_primate",
   "brain_region": "unknown",
@@ -1681,6 +619,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20250331_AIBS_Patchseq_mouse\nDescription: HMBA Lein PatchSeq upload (mouse) (Q1 2025)\nKeywords: ['Patch-seq, mouse, multimodal']\nSpecies: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
   "dandiset_id": "001351",
   "title": "20250331_AIBS_Patchseq_mouse",
   "brain_region": "unknown",
@@ -1690,6 +629,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20250331_AIBS_Patchseq_human\nDescription: HMBA Lein PatchSeq upload (human) (Q1 2025)\nKeywords: ['Patch-seq, human, multimodal']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "001359",
   "title": "20250331_AIBS_Patchseq_human",
   "brain_region": "unknown",
@@ -1699,6 +639,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20250630_AIBS_Patchseq_Mouse\nDescription: A whole cell patch clamp dataset from Allen Institute measuring intrinsic properties of excitatory projection neurons in slices of mouse visual cortex\nKeywords: None\nSpecies: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
   "dandiset_id": "001455",
   "title": "20250630_AIBS_Patchseq_Mouse",
   "brain_region": "visual cortex",
@@ -1708,6 +649,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20250627_AIBS_Patchseq_human\nDescription: HMBA Lein PatchSeq upload (human) (Q2 2025)\nKeywords: ['Patch-seq, human, multimodal']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "001464",
   "title": "20250627_AIBS_Patchseq_human",
   "brain_region": "unknown",
@@ -1717,6 +659,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20250627_AIBS_Patchseq_nonhuman_primate\nDescription: HMBA Lein PatchSeq upload (nonhuman primate) (Q2 2025)\nKeywords: ['Patch-seq, human, multimodal']\nSpecies: [{'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
   "dandiset_id": "001465",
   "title": "20250627_AIBS_Patchseq_nonhuman_primate",
   "brain_region": "unknown",
@@ -1726,6 +669,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20250707_Patchseq_BICAN_R01_Neuromodulation_mouse\nDescription: BICAN R01 Neuromodulation mouse upload (Q3 2025)\nKeywords: ['Patch-seq, mouse']\nSpecies: [{'name': 'Mus musculus - House mouse', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_10090'}]\n\nResponse:",
   "dandiset_id": "001534",
   "title": "20250707_Patchseq_BICAN_R01_Neuromodulation_mouse",
   "brain_region": "unknown",
@@ -1735,6 +679,7 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20251020_AIBS_Patchseq_human\nDescription: HMBA Lein PatchSeq upload (human) (Q3 2025)\nKeywords: ['Patch-seq, human, multimodal']\nSpecies: [{'name': 'Homo sapiens - Human', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9606'}]\n\nResponse:",
   "dandiset_id": "001625",
   "title": "20251020_AIBS_Patchseq_human",
   "brain_region": "unknown",
@@ -1744,11 +689,12 @@ Unknown
 }
 
 {
+  "prompt": "Now analyze this dataset:\nTitle: 20251020_AIBS_Patchseq_nhp\nDescription: HMBA Lein PatchSeq upload (non-human primate) (Q3 2025)\nKeywords: ['Patch-seq, non-human primate, multimodal']\nSpecies: [{'name': 'Macaca mulatta - Rhesus monkey', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9544'}, {'name': 'Macaca fascicularis - Cynomolgus monkeys', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9541'}, {'name': 'Macaca nemestrina', 'schemaKey': 'SpeciesType', 'identifier': 'http://purl.obolibrary.org/obo/NCBITaxon_9545'}]\n\nResponse:",
   "dandiset_id": "001626",
   "title": "20251020_AIBS_Patchseq_nhp",
   "brain_region": "unknown",
   "confidence": "low",
-  "reasoning": "No specific brain region mentioned in available metadata, only species and technique details provided",
-  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only species and technique details provided\"\n}\n```"
+  "reasoning": "No specific brain region mentioned in available metadata, only species and technique details are provided",
+  "raw_response": "```json\n{\n  \"brain_region\": \"unknown\",\n  \"confidence\": \"low\",\n  \"reasoning\": \"No specific brain region mentioned in available metadata, only species and technique details are provided\"\n}\n```"
 }
 
