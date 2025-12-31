@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     var para_keys = ["Rheo-AP width Log[(ms)]", "Input resistance (MOhm)", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag", "species", "brain_region"]
 
-    var umap_labels = ["dandiset label", "species", "brain_region", "contributor", {"Ephys Feat:": ["Input resistance (MOhm)", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag", "Rheo-AP width Log[(ms)]", "Tau Log[(ms)]"]}]
+    var umap_labels = ["dandiset label", "species", "brain_region", "contributor", {"Ephys Feat:": ["Input resistance (MOhm)", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag", "ap_1_threshold_v_0_long_square", "ap_1_peak_v_0_long_square", "ap_1_upstroke_0_long_square", "Rheo-AP width Log[(ms)]", "ap_1_fast_trough_v_0_long_square", "ap_mean_threshold_v_0_long_square", "ap_mean_peak_v_0_long_square", "ap_mean_upstroke_0_long_square", "ap_mean_width_0_long_square", "ap_mean_fast_trough_v_0_long_square", "avg_rate_0_long_square", "latency_0_long_square"]}]
 
     /* dataset_label_col */
 

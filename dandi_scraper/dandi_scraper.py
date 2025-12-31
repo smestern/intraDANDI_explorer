@@ -52,12 +52,12 @@ from ._metadata_parser import dandi_meta_parser
 
 cols_to_keep = ['input_resistance', 'tau', 'v_baseline', 'sag_nearest_minus_100', 
        'ap_1_threshold_v_0_long_square', 'ap_1_peak_v_0_long_square',
-       'ap_1_upstroke_0_long_square', 'ap_1_downstroke_0_long_square',
-       'ap_1_upstroke_downstroke_ratio_0_long_square',
+       'ap_1_upstroke_0_long_square',# 'ap_1_downstroke_0_long_square',
+       #'ap_1_upstroke_downstroke_ratio_0_long_square',
        'ap_1_width_0_long_square', 'ap_1_fast_trough_v_0_long_square',
        'ap_mean_threshold_v_0_long_square', 'ap_mean_peak_v_0_long_square',
-       'ap_mean_upstroke_0_long_square', 'ap_mean_downstroke_0_long_square',
-       'ap_mean_upstroke_downstroke_ratio_0_long_square',
+       'ap_mean_upstroke_0_long_square', #'ap_mean_downstroke_0_long_square',
+       #'ap_mean_upstroke_downstroke_ratio_0_long_square',
        'ap_mean_width_0_long_square', 'ap_mean_fast_trough_v_0_long_square',
        'avg_rate_0_long_square', 'latency_0_long_square',]
 
@@ -450,7 +450,10 @@ def build_server():
     GLOBAL_VARS.table_vars = [ 'input_resistance','tau','v_baseline','sag_nearest_minus_100', 'species', 'brain_region',]#
     GLOBAL_VARS.para_vars = ['ap_1_width_0_long_square', 'input_resistance','tau','v_baseline','sag_nearest_minus_100', 'species', 'brain_region']
     GLOBAL_VARS.para_var_colors = 'ap_1_width_0_long_square'
-    GLOBAL_VARS.umap_labels = ['dandiset label', 'species', 'brain_region', 'contributor', {'Ephys Feat:': ['input_resistance','tau','v_baseline','sag_nearest_minus_100', 'ap_1_width_0_long_square', 'tau']}]
+    GLOBAL_VARS.umap_labels = ['dandiset label', 'species', 'brain_region', 'contributor',
+                                {'Ephys Feat:': 
+cols_to_keep }]#['input_resistance','tau','v_baseline','sag_nearest_minus_100', 
+                                                 #'ap_1_width_0_long_square']}]
     GLOBAL_VARS.plots_path = '.'
     #GLOBAL_VARS.primary_label = 'dandiset label'
     #GLOBAL_VARS.primary_label = 'brain_region'
