@@ -301,9 +301,15 @@ def run_merge_dandiset(use_cached_metadata=True):
         impute = KNNImputer(keep_empty_features=True)
         data_num = impute.fit_transform(data_num)
         print(f"Imputed {code} with {len(data_num)} cells and {len(data_num[0])} features")
-        scale = StandardScaler()
-        #data_num = scale.fit_transform(data_num)
-        print(f"Scaled {code} with {len(data_num)} cells")
+        #clip to the 95% percentile
+        for i in range(data_num.shape[1]):
+            col = data_num[:, i]
+            lower_bound = np.nanpercentile(col, 0.5)
+            upper_bound = np.nanpercentile(col, 99.5)
+            col = np.clip(col, lower_bound, upper_bound)
+            data_num[:, i] = col
+        
+
         data_num = pd.DataFrame(data_num, columns=temp_data_num.columns, index=temp_data_num.index)
         print(f"Processed {code} with {len(data_num)} cells")
         assert len(data_num) == len(temp_df)
@@ -343,7 +349,7 @@ def run_merge_dandiset(use_cached_metadata=True):
 
     embedding = reducer.fit_transform(dataset_numeric)
     #also make a n=25 umap
-    reducer2 = umap.UMAP(n_neighbors=25, min_dist=0.1, spread=2, repulsion_strength=5, metric='cosine')
+    reducer2 = umap.UMAP(n_neighbors=150, min_dist=0.1, spread=2, repulsion_strength=5, metric='cosine')
     reducer3 = reducer2.fit(dataset_numeric) #+ reducer
 
     dfs['umap X'] = reducer2.embedding_[:,0]
