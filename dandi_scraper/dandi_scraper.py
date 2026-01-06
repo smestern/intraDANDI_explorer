@@ -161,10 +161,13 @@ def download_dandiset(code=None, save_dir=None, overwrite=False):
     dandi_download(dandiset.api_url, save_dir)
     
 
-def quick_qc(df, qc_features={'input_resistance':[0, 1e9],'sag_nearest_minus_100':[-1e2, 1e2],
+def quick_qc(df, qc_features={'input_resistance':[0, 1e9],'sag_nearest_minus_100':[-1, 1],
                              'ap_1_threshold_v_0_long_square':[-100, 100],
-                             'tau':[(0.01/1000), (1e2)],
-                             'ap_1_width_0_long_square':[(0.01/1000), (10/1000)]}):
+                             'tau':[(0.01/1000), (0.4)],
+                             'ap_1_width_0_long_square':[(0.01/1000), (10/1000)],
+                             'ap_1_fast_trough_v_0_long_square':[-100, 0],
+                             'avg_rate_0_long_square':[0, 200]
+                             }):
     #this is a quick qc function to check if the data is good, specifically for the output of the analyze_dandiset function
     for feature, (min_val, max_val) in qc_features.items():
         if feature in df.columns:
@@ -180,6 +183,18 @@ def quick_qc(df, qc_features={'input_resistance':[0, 1e9],'sag_nearest_minus_100
     #df = df[if_outlier == 1]
     return df
 
+def scale_features(df, features={'input_resistance': 'log', 'tau': 'log-1000', 'ap_1_width_0_long_square': 'log-1000'}):
+    for feature, method in features.items():
+        if feature in df.columns:
+            if method == 'log':
+                df[feature] = np.log10(df[feature])
+            elif method == 'log-1000':
+                df[feature] = np.log10(df[feature]*1000)
+            elif method == 'zscore':
+                df[feature] = (df[feature] - df[feature].mean()) / df[feature].std()
+            else:
+                raise ValueError("method must be 'log' or 'zscore'")
+    return df
 
 dandisets_to_skip = ['000012', '000013', 
 '000008', 
@@ -226,7 +241,7 @@ def run_analyze_dandiset():
         df_dandiset.to_csv('/media/smestern/Expansion/dandi/'+row[1]["identifier"]+'.csv')
 
 def run_merge_dandiset(use_cached_metadata=True):
-    from sklearn.preprocessing import StandardScaler
+    from sklearn.preprocessing import StandardScaler, RobustScaler, MinMaxScaler
     import umap
     from sklearn.impute import SimpleImputer, KNNImputer
     from sklearn.mixture import GaussianMixture
@@ -278,10 +293,10 @@ def run_merge_dandiset(use_cached_metadata=True):
         print(f"Processing {code}")
         #observe the meta data
         #try:
-        # if use_cached_metadata and df_old is not None:
-        #     meta_ = df_old.loc[df_old['dandiset label'] == code, ['dandiset_id', 'age', 'subject_id', 'cell_id', 'brain_region', 'species', 'filepath', 'contributor']]
-        # else:
-        meta_ = get_dandi_metadata(code)
+        if use_cached_metadata and df_old is not None:
+            meta_ = df_old.loc[df_old['dandiset_id'] == int(code), ['dandiset_id', 'age', 'subject_id', 'cell_id', 'brain_region', 'species', 'filepath', 'contributor']]
+        else:
+            meta_ = get_dandi_metadata(code)
         meta_data.append(meta_)
             #pass
         #except:
@@ -329,6 +344,8 @@ def run_merge_dandiset(use_cached_metadata=True):
     dataset_numeric = pd.concat(dataset_numeric, axis=0)[cols_to_keep]
     print(f"dataset_numeric shape after concatenation: {dataset_numeric.shape}")
 
+    dataset_numeric = scale_features(dataset_numeric, features={'input_resistance': 'log', 'tau': 'log-1000', 'ap_1_width_0_long_square': 'log-1000'})
+
     #KNN impute again to be on final dataset
     impute = KNNImputer(keep_empty_features=True)
     dataset_numeric.loc[:, :] = impute.fit_transform(dataset_numeric.values) #shoudl work unless we lose a column or row
@@ -338,13 +355,16 @@ def run_merge_dandiset(use_cached_metadata=True):
     print(f"dataset_numeric shape after dropping columns: {dataset_numeric.shape}")
     # Ensure dfs and dataset_numeric have the same index
     dfs = dfs.loc[dataset_numeric.index]
-    #
-    #log scale the input resistance
-    dataset_numeric['input_resistance'] = np.log10(dataset_numeric['input_resistance'])
+    
+
+
 
     #dump the data
     joblib.dump(dataset_numeric, './dataset_numeric.pkl')
-
+    #robust scaler
+    scaler = RobustScaler()
+    dataset_numeric.loc[:, :] = scaler.fit_transform(dataset_numeric.values)
+    
     reducer = umap.UMAP(densmap=False, min_dist=0.3, spread=10, metric='cosine',n_neighbors=500,verbose=True,)
 
     embedding = reducer.fit_transform(dataset_numeric)
@@ -365,9 +385,9 @@ def run_merge_dandiset(use_cached_metadata=True):
 
 
     #generate some labels for fun
-    gmm = GaussianMixture(n_components=15)
-    gmm.fit(dataset_numeric.fillna(0))
-    dfs['GMM cluster label'] = gmm.predict(dataset_numeric.fillna(0))
+    gmm = GaussianMixture(n_components=20)
+    gmm.fit(dataset_numeric)
+    dfs['GMM cluster label'] = gmm.predict(dataset_numeric)
 
     #add in a supervised umap
     reducer3 = umap.UMAP(densmap=False, target_weight=0.1, n_neighbors=50, verbose=True,)
@@ -382,7 +402,7 @@ def run_merge_dandiset(use_cached_metadata=True):
                 
                 )
     
-    plt.show()
+    #plt.show()
     dfs["dandiset_link"] = dfs["dandiset label"].apply(lambda x: f"https://dandiarchive.org/dandiset/{str(int(x)).zfill(6)}")
     file_link = []
     meta_data_link = []
