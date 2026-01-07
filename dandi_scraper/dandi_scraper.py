@@ -42,6 +42,11 @@ import pyAPisolation.webViz.webVizConfig as wvc
 import pyAPisolation.webViz.ephysDatabaseViewer as edb
 from ._metadata_parser import dandi_meta_parser
 
+from sklearn.preprocessing import StandardScaler, RobustScaler, MinMaxScaler
+import umap
+from sklearn.impute import SimpleImputer, KNNImputer
+from sklearn.mixture import GaussianMixture
+from sklearn.decomposition import PCA
 
 #global the cache
 # FS = CachingFileSystem(
@@ -241,13 +246,7 @@ def run_analyze_dandiset():
         df_dandiset.to_csv('/media/smestern/Expansion/dandi/'+row[1]["identifier"]+'.csv')
 
 def run_merge_dandiset(use_cached_metadata=True):
-    from sklearn.preprocessing import StandardScaler, RobustScaler, MinMaxScaler
-    import umap
-    from sklearn.impute import SimpleImputer, KNNImputer
-    from sklearn.mixture import GaussianMixture
-    from sklearn.decomposition import PCA
-
-
+    """"""
     csv_files = glob.glob('/media/smestern/Expansion/dandi/*.csv')
     csv_files = [x.split('/')[-1].split('.')[0] for x in csv_files]
     dfs = []
@@ -292,22 +291,19 @@ def run_merge_dandiset(use_cached_metadata=True):
         temp_df = dfs.loc[dfs['dandiset label'] == code]
         print(f"Processing {code}")
         #observe the meta data
-        #try:
-        if use_cached_metadata and df_old is not None:
+        if use_cached_metadata and df_old is not None: #If we have old metadata use it
             meta_ = df_old.loc[df_old['dandiset_id'] == int(code), ['dandiset_id', 'age', 'subject_id', 'cell_id', 'brain_region', 'species', 'filepath', 'contributor']]
         else:
-            meta_ = get_dandi_metadata(code)
+            meta_ = get_dandi_metadata(code) #get the meta data from dandi, uses an LLM to parse
         meta_data.append(meta_)
-            #pass
-        #except:
-        #   pass
+  
 
         data_num = temp_df.select_dtypes(include=np.number).dropna(axis=1, how='all')
         #data_num should have the same number of rows
         assert len(data_num) == len(temp_df)
         temp_data_num = data_num.copy()
         if data_num.empty or len(data_num.columns) < 3:
-            continue
+            continue #skip empty datasets or ones with too few numeric columns
         
         idxs.append(data_num.index.values)
         print(f"Processing {code} with {len(data_num)} cells")
@@ -316,9 +312,9 @@ def run_merge_dandiset(use_cached_metadata=True):
         impute = KNNImputer(keep_empty_features=True)
         data_num = impute.fit_transform(data_num)
         print(f"Imputed {code} with {len(data_num)} cells and {len(data_num[0])} features")
-        #clip to the 95% percentile
+        #clip to the 99.5% percentile
         for i in range(data_num.shape[1]):
-            col = data_num[:, i]
+            col = data_num[:, i] #get the column
             lower_bound = np.nanpercentile(col, 0.5)
             upper_bound = np.nanpercentile(col, 99.5)
             col = np.clip(col, lower_bound, upper_bound)
@@ -343,8 +339,8 @@ def run_merge_dandiset(use_cached_metadata=True):
 
     dataset_numeric = pd.concat(dataset_numeric, axis=0)[cols_to_keep]
     print(f"dataset_numeric shape after concatenation: {dataset_numeric.shape}")
-
-    dataset_numeric = scale_features(dataset_numeric, features={'input_resistance': 'log', 'tau': 'log-1000', 'ap_1_width_0_long_square': 'log-1000'})
+    #log scale some features
+    dataset_numeric = scale_features(dataset_numeric, features={'input_resistance': 'log', 'tau': 'log-1000', 'ap_1_width_0_long_square': 'log-1000', 'ap_mean_width_0_long_square': 'log-1000'}) #log scale some features
 
     #KNN impute again to be on final dataset
     impute = KNNImputer(keep_empty_features=True)
@@ -356,9 +352,6 @@ def run_merge_dandiset(use_cached_metadata=True):
     # Ensure dfs and dataset_numeric have the same index
     dfs = dfs.loc[dataset_numeric.index]
     
-
-
-
     #dump the data
     joblib.dump(dataset_numeric, './dataset_numeric.pkl')
     #robust scaler
@@ -499,13 +492,25 @@ cols_to_keep }]#['input_resistance','tau','v_baseline','sag_nearest_minus_100',
     GLOBAL_VARS.col_rename = {
     "ap_1_width_0_long_square": "Rheo-AP width Log[(ms)]",
     "sag_nearest_minus_100": "Sag",
-    "input_resistance": "Input resistance (MOhm)",
+    "input_resistance": "Input resistance Log[(MOhm)]",
     "tau": "Tau Log[(ms)]",
+    "ap_1_threshold_v_0_long_square": "Rheo-AP Threshold (mV)",
+    "ap_1_peak_v_0_long_square": "Rheo-AP Peak (mV)",
+    "ap_1_upstroke_0_long_square": "Rheo-AP Upstroke (mV/ms)",
+    "ap_1_fast_trough_v_0_long_square": "Rheo-AP Fast Trough (mV)",
+    "ap_mean_threshold_v_0_long_square": "Mean AP Threshold (mV)",
+    "ap_mean_peak_v_0_long_square": "Mean AP Peak (mV)",
+    "ap_mean_upstroke_0_long_square": "Mean AP Upstroke (mV/ms)",
+    "ap_mean_width_0_long_square": "Mean AP Width Log[(ms)]",
+    "ap_mean_fast_trough_v_0_long_square": "Mean AP Fast Trough (mV)",
+    "avg_rate_0_long_square": "Avg Firing Rate (Hz)",
+    "latency_0_long_square": "Latency (s)",
     "v_baseline": "Baseline voltage (mV)",
     "dandiset_link": "View Dandiset",
     "meta_data_link": "View File Metadata",
     "file_link": "File Download",
     }
+
 
     GLOBAL_VARS.table_spec = {"View Dandiset": "links", "View File Metadata": "links", "File Download": "links"}
 

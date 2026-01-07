@@ -6,11 +6,11 @@ $(document).ready(function () {
 
     var embed_colors = ['viridis', 'plasma', 'inferno', 'magma', 'cividis', 'Greys', 'Purples', 'Blues', 'Greens', 'Oranges', 'Reds', 'YlOrBr', 'YlOrRd', 'OrRd', 'PuRd', 'RdPu', 'BuPu', 'GnBu', 'PuBu', 'YlGnBu', 'PuBuGn', 'BuGn', 'YlGn']
 
-    var ekeys = ["Baseline voltage (mV)", "Input resistance (MOhm)", "Rheo-AP width Log[(ms)]", "Sag", "Tau Log[(ms)]", "ap_1_peak_v_0_long_square", "ap_1_threshold_v_0_long_square", "brain_region", "species"]
+    var ekeys = ["Baseline voltage (mV)", "Input resistance Log[(MOhm)]", "Rheo-AP Peak (mV)", "Rheo-AP Threshold (mV)", "Rheo-AP width Log[(ms)]", "Sag", "Tau Log[(ms)]", "brain_region", "species"]
 
-    var para_keys = ["Rheo-AP width Log[(ms)]", "Input resistance (MOhm)", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag", "species", "brain_region"]
+    var para_keys = ["Rheo-AP width Log[(ms)]", "Input resistance Log[(MOhm)]", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag", "species", "brain_region"]
 
-    var umap_labels = ["dandiset label", "species", "brain_region", "contributor", {"Ephys Feat:": ["Input resistance (MOhm)", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag", "ap_1_threshold_v_0_long_square", "ap_1_peak_v_0_long_square", "ap_1_upstroke_0_long_square", "Rheo-AP width Log[(ms)]", "ap_1_fast_trough_v_0_long_square", "ap_mean_threshold_v_0_long_square", "ap_mean_peak_v_0_long_square", "ap_mean_upstroke_0_long_square", "ap_mean_width_0_long_square", "ap_mean_fast_trough_v_0_long_square", "avg_rate_0_long_square", "latency_0_long_square"]}]
+    var umap_labels = ["dandiset label", "species", "brain_region", "contributor", {"Ephys Feat:": ["Input resistance Log[(MOhm)]", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag", "Rheo-AP Threshold (mV)", "Rheo-AP Peak (mV)", "Rheo-AP Upstroke (mV/ms)", "Rheo-AP width Log[(ms)]", "Rheo-AP Fast Trough (mV)", "Mean AP Threshold (mV)", "Mean AP Peak (mV)", "Mean AP Upstroke (mV/ms)", "Mean AP Width Log[(ms)]", "Mean AP Fast Trough (mV)", "Avg Firing Rate (Hz)", "Latency (s)"]}]
 
     /* dataset_label_col */
 
@@ -731,9 +731,9 @@ $(document).ready(function () {
     $table.bootstrapTable('refresh')
 
     generate_umap(data_tb, ['umap X', 'umap Y', 'dandiset label']); 
- 	var paracoordskeys = ['Rheo-AP width Log[(ms)]', 'Input resistance (MOhm)', 'Tau Log[(ms)]', 'Baseline voltage (mV)', 'Sag', 'species', 'brain_region'];
+ 	var paracoordskeys = ['Rheo-AP width Log[(ms)]', 'Input resistance Log[(MOhm)]', 'Tau Log[(ms)]', 'Baseline voltage (mV)', 'Sag', 'species', 'brain_region'];
                     var paracoordscolors = "Rheo-AP width Log[(ms)]";
-                    generate_paracoords(data_tb, ['Rheo-AP width Log[(ms)]', 'Input resistance (MOhm)', 'Tau Log[(ms)]', 'Baseline voltage (mV)', 'Sag', 'species', 'brain_region'], 'Rheo-AP width Log[(ms)]'); 
+                    generate_paracoords(data_tb, ['Rheo-AP width Log[(ms)]', 'Input resistance Log[(MOhm)]', 'Tau Log[(ms)]', 'Baseline voltage (mV)', 'Sag', 'species', 'brain_region'], 'Rheo-AP width Log[(ms)]'); 
 
     //find the elements of 
     var drop_parent = document.getElementById("umap-drop-menu");
