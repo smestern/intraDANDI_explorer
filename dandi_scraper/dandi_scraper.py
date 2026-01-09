@@ -526,9 +526,9 @@ cols_to_keep }]#['input_resistance','tau','v_baseline','sag_nearest_minus_100',
     #shuffle the data for fun
     file = file.sample(frac=1)
 
-    file.to_csv(filepath+'/../all2.csv')
+    file.to_csv(filepath+'/../all2_2.csv')
 
-    wbz.run_web_viz(database_file=filepath+'/../all2.csv', config=GLOBAL_VARS, backend='static')
+    wbz.run_web_viz(database_file=filepath+'/../all2_2.csv', config=GLOBAL_VARS, backend='static')
     return
     
 if __name__ == "__main__":
