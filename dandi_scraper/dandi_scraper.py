@@ -182,10 +182,7 @@ def quick_qc(df, qc_features={'input_resistance':[0, 1e9],'sag_nearest_minus_100
             print(f"QC: {num_failing} cells failed {feature} check ({min_val} to {max_val}), examples:\n {_failing[feature].head()}")
             df = df[(df[feature] >= min_val) & (df[feature] <= max_val)]
 
-    #perform basic outliers checks
-    df_num = df.select_dtypes(include=np.number).fillna(0)
-    if_outlier = IsolationForest(random_state=0).fit_predict(df_num)
-    #df = df[if_outlier == 1]
+   
     return df
 
 def scale_features(df, features={'input_resistance': 'log', 'tau': 'log-1000', 'ap_1_width_0_long_square': 'log-1000'}):

@@ -776,7 +776,9 @@ $(document).ready(function () {
         } else {
 
             var keys = ['Umap X', 'Umap Y', selected]
-            generate_umap(data_tb, keys);
+            // Get the currently filtered data from the table to preserve filtering
+            var filtered_data = $table.bootstrapTable('getData');
+            generate_umap(filtered_data.length > 0 ? filtered_data : data_tb, keys);
             generate_paracoords(data_tb, paracoordskeys, selected)
 
         };
