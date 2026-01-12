@@ -386,11 +386,18 @@ def run_merge_dandiset(use_cached_metadata=True):
     dfs['supervised umap Y'] = reducer3.embedding_[:,1]
     #plot it
 
-
-    
-    plt.scatter(dfs['umap X'], dfs['umap Y'] , s=0.1
-                
-                )
+    #finally normalize each dataset seperately and then try umap
+    dataset_numeric_norm = dataset_numeric.copy()
+    for code in dfs['dandiset label'].unique():
+        temp_df = dataset_numeric.loc[dfs['dandiset label'] == code]
+        if len(temp_df) < 10:
+            continue
+        scaler = MinMaxScaler()
+        dataset_numeric_norm.loc[temp_df.index, :] = scaler.fit_transform(temp_df.values)
+    reducer4 = umap.UMAP(densmap=False, min_dist=0.3, spread=10, metric='cosine',n_neighbors=500,verbose=True,)
+    embedding = reducer4.fit_transform(dataset_numeric_norm)
+    dfs['norm umap X'] = embedding[:,0]
+    dfs['norm umap Y'] = embedding[:,1]
     
     #plt.show()
     dfs["dandiset_link"] = dfs["dandiset label"].apply(lambda x: f"https://dandiarchive.org/dandiset/{str(int(x)).zfill(6)}")
@@ -420,11 +427,17 @@ def run_merge_dandiset(use_cached_metadata=True):
     
     dfs.to_csv('./all_new.csv')
 
+# ==== PLOTTING FUNCTIONS ==== #
+CODES_TO_PLOT_THRES_HOLD = 1195
+
+
 
 def run_plot_dandiset():
     csv_files = glob.glob('/media/smestern/Expansion/dandi/*.csv')
     csv_files = [x.split('/')[-1].split('.')[0] for x in csv_files]
     for code in csv_files:
+        if int(code) < CODES_TO_PLOT_THRES_HOLD:
+            continue
         #find the folder
         #load the csv so we can filter ids
         df = pd.read_csv('/media/smestern/Expansion/dandi/'+code+'.csv', index_col=0)
