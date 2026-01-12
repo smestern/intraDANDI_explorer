@@ -431,7 +431,7 @@ def run_merge_dandiset(use_cached_metadata=True):
     dfs.to_csv('./all_new.csv')
 
 # ==== PLOTTING FUNCTIONS ==== #
-CODES_TO_PLOT_THRES_HOLD = 1195
+CODES_TO_PLOT_THRES_HOLD = 1455.9
 
 
 
@@ -537,6 +537,8 @@ cols_to_keep }]
     #do the same for the tau
     file["tau"] = np.log10(file["tau"]*1000)
     file['input_resistance'] = np.log10(file['input_resistance'])
+    #for the gmm label in a string
+    file['GMM cluster label'] = file['GMM cluster label'].apply(lambda x: f"Cluster {x}")
 
     #shuffle the data for fun
     file = file.sample(frac=1)
