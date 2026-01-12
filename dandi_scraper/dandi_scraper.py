@@ -398,6 +398,9 @@ def run_merge_dandiset(use_cached_metadata=True):
     embedding = reducer4.fit_transform(dataset_numeric_norm)
     dfs['norm umap X'] = embedding[:,0]
     dfs['norm umap Y'] = embedding[:,1]
+
+    #save the normed data
+    joblib.dump(dataset_numeric_norm, './dataset_numeric_norm.pkl')
     
     #plt.show()
     dfs["dandiset_link"] = dfs["dandiset label"].apply(lambda x: f"https://dandiarchive.org/dandiset/{str(int(x)).zfill(6)}")
@@ -494,7 +497,7 @@ cols_to_keep }]
     neuroscience initiative DANDI. The data is visualized using a UMAP and a parallel coordinates plot. The data is also visualized in a table format. \n
     This is currently a work in progress and is not yet complete. Please cite the original authors of the data when using this data. """
     GLOBAL_VARS.db_subtitle = ""
-    GLOBAL_VARS.db_links = {'Dandi': 'https://dandiarchive.org/',  "smestern on X": "https://twitter.com/smestern"}
+    GLOBAL_VARS.db_links = {"about this project": "https://www.smestern.com/intraDANDI_explorer/dandi_scraper/notes_on_intra_ephys.html", 'Dandi': 'https://dandiarchive.org/',  "smestern on X": "https://twitter.com/smestern"}
     GLOBAL_VARS.db_para_title = "Paracoords"
     GLOBAL_VARS.db_embed_title = "UMAP"
 
