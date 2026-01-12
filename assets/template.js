@@ -113,13 +113,17 @@ function cellStyle(value, row, index) {
 // ============ Filter Functions ============
 
 function filterByID(ids) {
-    if (ids === undefined) {
+    if (ids === undefined || ids.length <= 0) {
         $('#table').bootstrapTable('filterBy', {})
         crossfilter(data_tb, [], "scatter");
+        //trigger a table refresh to make sure the table updates
+        $table.bootstrapTable('refresh');
     }
     else {
-        $('#table').bootstrapTable('filterBy', { ID: ids })
+        $('#table').bootstrapTable('filterBy',{'ID': ids});
         crossfilter(data_tb, ids, "scatter");
+        //trigger a table refresh to make sure the table updates
+        $table.bootstrapTable('refresh');
     }
 }
 
@@ -189,6 +193,8 @@ function filterByPlot(keys, ranges){
 
     $('#table').bootstrapTable('filterBy',{'ID': result});
     crossfilter(data_tb, result, "parallel");
+    //trigger a table refresh to make sure the table updates
+    $table.bootstrapTable('refresh');
 }
 
 function crossfilter(data_tb, IDs, sender='') { 
@@ -247,77 +253,77 @@ function table_concatenator(labels){
     });
 }
 
-// ============ Electrophysiology Data Display ============
+// // ============ Electrophysiology Data Display ============
 
-function makeephys(row, keys=ekeys){
-    var html = [];
+// function makeephys(row, keys=ekeys){
+//     var html = [];
     
-    //we just need to populate it with rows
-    html.push('<div class="col table-ephys">');
+//     //we just need to populate it with rows
+//     html.push('<div class="col table-ephys">');
     
-    //loop through the keys
-    keys.forEach(function(key){
-        html.push('<div class="row">');
-        html.push('<span class="ephys-key">'+key+'</span>');
-        html.push('<span class="ephys-value"> '+row[key]+'</span>');
-        html.push('</div>');
-    });
-    html.push('</div>');
-    //get the div
-    var div = document.getElementById("table_"+row.ID)
-    if (div) {
-        div.innerHTML = html.join('');
-    }
-}
+//     //loop through the keys
+//     keys.forEach(function(key){
+//         html.push('<div class="row">');
+//         html.push('<span class="ephys-key">'+key+'</span>');
+//         html.push('<span class="ephys-value"> '+row[key]+'</span>');
+//         html.push('</div>');
+//     });
+//     html.push('</div>');
+//     //get the div
+//     var div = document.getElementById("table_"+row.ID)
+//     if (div) {
+//         div.innerHTML = html.join('');
+//     }
+// }
 
-function makeLink(row) {
-    if (table_links.length > 0) {
-        // Get the row ID
-        var ID = row.ID;
+// function makeLink(row) {
+//     if (table_links.length > 0) {
+//         // Get the row ID
+//         var ID = row.ID;
         
-        // Get the div
-        var div = document.getElementById("link_" + ID);
+//         // Get the div
+//         var div = document.getElementById("link_" + ID);
         
-        if (!div) {
-            console.error(`Div with ID link_${ID} not found.`);
-            return;
-        }
+//         if (!div) {
+//             console.error(`Div with ID link_${ID} not found.`);
+//             return;
+//         }
         
-        // Create a dropdown (select element)
-        var parent_drop = document.createElement("div"); 
-        parent_drop.className = "dropdown";
+//         // Create a dropdown (select element)
+//         var parent_drop = document.createElement("div"); 
+//         parent_drop.className = "dropdown";
 
-        var drop_button = document.createElement("button");
-        drop_button.className = "btn btn-secondary dropdown-toggle";
-        drop_button.type = "button";
-        drop_button.id = "dropdownMenuButton" + ID;
-        drop_button.setAttribute("data-bs-toggle", "dropdown");
-        drop_button.setAttribute("aria-haspopup", "true");
-        drop_button.setAttribute("aria-expanded", "false");
-        drop_button.innerHTML = "Links";
-        parent_drop.appendChild(drop_button);
+//         var drop_button = document.createElement("button");
+//         drop_button.className = "btn btn-secondary dropdown-toggle";
+//         drop_button.type = "button";
+//         drop_button.id = "dropdownMenuButton" + ID;
+//         drop_button.setAttribute("data-bs-toggle", "dropdown");
+//         drop_button.setAttribute("aria-haspopup", "true");
+//         drop_button.setAttribute("aria-expanded", "false");
+//         drop_button.innerHTML = "Links";
+//         parent_drop.appendChild(drop_button);
 
-        var select = document.createElement("div");
-        select.className = "dropdown-menu";
-        select.setAttribute("aria-labelledby", "dropdownMenuButton" + ID);
+//         var select = document.createElement("div");
+//         select.className = "dropdown-menu";
+//         select.setAttribute("aria-labelledby", "dropdownMenuButton" + ID);
         
-        // Add options for each link
-        for (var i = 0; i < table_links.length; i++) {
-            var link = table_links[i];
-            var url = row[link];
-            var option = document.createElement("a");
-            option.className = "dropdown-item";
-            option.text = link;
-            option.href = url;
-            select.appendChild(option);
-        }
+//         // Add options for each link
+//         for (var i = 0; i < table_links.length; i++) {
+//             var link = table_links[i];
+//             var url = row[link];
+//             var option = document.createElement("a");
+//             option.className = "dropdown-item";
+//             option.text = link;
+//             option.href = url;
+//             select.appendChild(option);
+//         }
         
-        // Clear the div and append the dropdown
-        div.innerHTML = "";
-        parent_drop.appendChild(select);
-        div.appendChild(parent_drop);
-    }
-}
+//         // Clear the div and append the dropdown
+//         div.innerHTML = "";
+//         parent_drop.appendChild(select);
+//         div.appendChild(parent_drop);
+//     }
+// }
 
 // ============ Dataset Selector ============
 
@@ -374,6 +380,10 @@ function dataset_selector(){
 
     function generate_paracoords(data_tb, keys = ['rheobase_thres', 'rheobase_width', 'rheobase_latency'], color = 'rheobase_thres', filter = []) {
         //create out plotly fr
+        //if (restyle_programmatically) {
+        //    return;
+        //}
+        console.log("Generating parallel coordinates plot...");
 
         if (filter.length > 0) {
             //get the row indices that match the filter
@@ -430,8 +440,13 @@ function dataset_selector(){
         }
 
         //filter color_vals by our indices
-        color_vals = color_vals.filter((el, i) => indices.includes(data_para[i]['ID']))
-            .map(el => el);
+        // Convert indices to Set for O(1) lookup performance
+        const indicesSet = new Set(indices);
+        
+        // Pre-filter data_para to only include rows we need
+        const filtered_data = data_para.filter(row => indicesSet.has(row['ID']));
+        
+        color_vals = color_vals.filter((el, i) => indicesSet.has(data_para[i]['ID']));
 
         var data = [{
             type: 'parcoords',
@@ -442,15 +457,17 @@ function dataset_selector(){
                 cmin: 0,
                 cmax: 1,
             },
-            ids: unpack(data_para, 'ID'),
-            customdata: unpack(data_para, 'ID'),
+            ids: unpack(filtered_data, 'ID'),
+            customdata: unpack(filtered_data, 'ID'),
 
             dimensions: keys.map(function (key) {
-                values = unpack(data_para, key)
+                // Use pre-filtered data instead of filtering inside loop
+                values = unpack(filtered_data, key)
+                
                 //check if its a string
                 if (typeof values[0] === 'string') {
-                    //encode the labels
-                    var encoded_labels = encode_labels(data_para, key);
+                    //encode the labels - now operates on smaller filtered dataset
+                    var encoded_labels = encode_labels(filtered_data, key);
                     if (encoded_labels[1].length < 2) {
                         range = [-1, 1];
                     } else {
@@ -458,10 +475,6 @@ function dataset_selector(){
                     }
 
                     values = encoded_labels[0];
-                    //filter by our indices
-                    // Filter out elements not in indices and then map
-                    values = values.filter((el, i) => indices.includes(data_para[i]['ID']))
-                        .map(el => el);
 
                     var out = {
                         range: range,
@@ -475,12 +488,9 @@ function dataset_selector(){
                 } else {
                     //replace null / nan with the mean
                     mean_values = values.reduce((a, b) => a + b, 0) / values.length;
-                    //unfiltered_vals = unpack(data_tb, key);
+                    // Combined map operation - single pass instead of two
                     values = values.map(function (el) { return el == null || el != el ? mean_values : el; });
-                    //filter by our indices
-                    values = values.filter((el, i) => indices.includes(data_para[i]['ID']))
-                        .map(el => el);
-                    //unfiltered_vals = unfiltered_vals.map(function (el) { return el == null || el != el ? mean_values : el; });
+                    
                     var out = {
                         range: [Math.min(...values), Math.max(...values)],
                         label: key,
@@ -686,13 +696,14 @@ function dataset_selector(){
                 eventData.points.forEach(function (pt) {
                     ids.push(pt.text);
                 });
-            } else if (eventData.length == 0) {
+            } else if (eventData.points.length == 0) {
                 console.log("No points selected, resetting table...");
                 ids = undefined
             } else {
                 console.log("No points selected, resetting table...");
                 ids = undefined
             }
+
             filterByID(ids);
         });
         // graphDiv5.on('plotly_hover', function(data) {
@@ -838,77 +849,6 @@ function dataset_selector(){
         }
     };
 
-    function filterByPlot(keys, ranges) {
-        // check to see if the ranges are the same as the previous ranges, or within the bounds of the previous ranges
-        var same = true;
-        for (var i = 0; i < keys.length; i++) {
-            if (prev_ranges[keys[i]] === undefined || ranges[i][0] < prev_ranges[keys[i]][0] || ranges[i][1] > prev_ranges[keys[i]][1]) {
-                same = false;
-                // update the prev_ranges
-                prev_ranges
-                break;
-            }
-        }
-        // if the ranges are the same, do nothing
-        if (same) {
-            return;
-        } else {
-            prev_ranges = {};
-
-            //we want to filter only the data selected on the scatter and parallel plots
-            if (prev_filter != "scatter") { //if the previous filter was not the scatter plot, we want to filter by the parallel plot
-                selected = []
-            } else {
-                var graphDiv_scatter = document.getElementById("graphDiv_scatter");
-                var selected = []
-                for (var i = 0; i < graphDiv_scatter.data.length; i++) {
-                    //get the selected points
-                    var trace = graphDiv_scatter.data[i];
-                    var selectedIndices = trace.selectedpoints;
-                    //if there are no selected points, skip this trace
-                    if (selectedIndices === undefined) {
-                        continue;
-                    }
-
-                    //get the IDs of the selected points
-                    var selectedIDs = selectedIndices.map(function (value, index) {
-                        return trace.text[value
-                        ];
-                    });
-                    //update the selected array
-                    selected.push(...selectedIDs);
-                }
-            };
-        }
-        //if the total number of selected points is 0, skip this step
-        if (selected.length == 0) {
-            var newArray = data_tb;
-        } else {
-            //filter the data_tb by the selected IDs
-            var newArray = data_tb.filter(function (el) {
-                return selected.includes(el.ID);
-            })
-        };
-        //now we want to filter the data_tb by the selected ranges
-        var newArray = newArray.filter(function (el) {
-            return keys.every(function (key, i) {
-                if (ranges[i][0] == -9999) {
-                    return true;
-                }
-                else if (typeof ranges[i][0] === 'string') {
-                    return ranges[i].includes(el[key]);
-                }
-                else {
-                    return el[key] >= ranges[i][0] && el[key] <= ranges[i][1];
-                }
-            });
-        });
-        let result = newArray.map(function (a) { return a.ID; });
-
-        $('#table').bootstrapTable('filterBy', { 'ID': result });
-        crossfilter(data_tb, result, "parallel");
-    };
-
     function cellStyle(value, row, index) {
         var classes = [
             'bg-blue',
@@ -1036,10 +976,14 @@ function dataset_selector(){
         } else {
 
             var keys = ['Umap X', 'Umap Y', selected]
-            // Get the currently filtered data from the table to preserve filtering
-            var filtered_data = $table.bootstrapTable('getData');
-            generate_umap(filtered_data.length > 0 ? filtered_data : data_tb, keys);
+            // Assume we want to reset filtering on label change
+            restyle_programmatically = true; //don't invoke the event listener
+            //$('#table').bootstrapTable('filterBy', {}); //reset any filtering
+            
+            
+            generate_umap(data_tb, keys);
             generate_paracoords(data_tb, paracoordskeys, selected)
+            restyle_programmatically = false;
 
         };
     });
