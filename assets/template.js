@@ -770,7 +770,7 @@ function dataset_selector(){
     }
 
     function maketrace(row) {
-        if (!checkID(row)){
+        if (checkID(row)){
             var url = "https://www.smestern.com/dandi_explorer_traces/" + row.ID + ".svg"
         } else{
             var url = "./data/traces/" + row.ID + ".svg"
@@ -793,7 +793,7 @@ function dataset_selector(){
         div.innerHTML = html.join('');
     };
     function makefi(row) {
-        if (!checkID(row)){
+        if (checkID(row)){
             var url = "https://www.smestern.com/dandi_explorer_traces/" + row.ID + ".svg"
         } else{
             var url = "./data/traces/" + row.ID + ".svg"
