@@ -750,9 +750,33 @@ function dataset_selector(){
         return '<div id="' + row.ID + '"></div>';
     };
 
+    function checkID(rows){
+        id =  rows.ID
+        //split at first forward slash
+        id_split = id.split("/")
+        if (id_split.length > 1){
+            dandi_id = id_split[0]
+        }
+        else{
+            dandi_id = id
+        }
+        //check if dandi_id is greater than 1351
+        if (parseInt(dandi_id) > 1351){
+            return true
+        }
+        else{
+            return false
+        }
+    }
 
     function maketrace(row) {
-        var url = "./data/traces/" + row.ID + ".svg"
+        if (!checkID(row)){
+            var url = "https://www.smestern.com/dandi_explorer_traces/" + row.ID + ".svg"
+        } else{
+            var url = "./data/traces/" + row.ID + ".svg"
+        }
+
+
         var html = []
         html.push('<img src="' + url + '" alt="Traces">');
         //get the div
@@ -769,6 +793,12 @@ function dataset_selector(){
         div.innerHTML = html.join('');
     };
     function makefi(row) {
+        if (!checkID(row)){
+            var url = "https://www.smestern.com/dandi_explorer_traces/" + row.ID + ".svg"
+        } else{
+            var url = "./data/traces/" + row.ID + ".svg"
+        }
+
         var url = "./data/traces/" + row.ID + "_FI.svg"
         var html = []
         html.push('<img src="' + url + '" alt="FI">');
