@@ -794,12 +794,11 @@ function dataset_selector(){
     };
     function makefi(row) {
         if (checkID(row)){
-            var url = "https://www.smestern.com/dandi_explorer_traces/" + row.ID + ".svg"
+            var url = "https://www.smestern.com/dandi_explorer_traces/" + row.ID + "_FI.svg"
         } else{
-            var url = "./data/traces/" + row.ID + ".svg"
+            var url = "./data/traces/" + row.ID + "_FI.svg"
         }
 
-        var url = "./data/traces/" + row.ID + "_FI.svg"
         var html = []
         html.push('<img src="' + url + '" alt="FI">');
         //get the div
