@@ -12,6 +12,7 @@ for package in packages:
     import matplotlib.pyplot as plt
 from dandi.dandiapi import DandiAPIClient
 from dandi.download import download as dandi_download
+import dandi.download as dandi_download_utils
 from collections import defaultdict
 #dandi functions
 # os sys imports
@@ -20,11 +21,11 @@ from pyAPisolation.patch_ml import *
 import os
 import shutil
 
-#import fsspec
-#from fsspec.implementations.cached import CachingFileSystem
 import glob
 import scipy.stats
 import joblib
+import logging
+import traceback
 # dash / plotly imports
 
 import plotly.graph_objs as go
@@ -48,11 +49,6 @@ from sklearn.impute import SimpleImputer, KNNImputer
 from sklearn.mixture import GaussianMixture
 from sklearn.decomposition import PCA
 
-#global the cache
-# FS = CachingFileSystem(
-#         fs=fsspec.filesystem("http"),
-#         cache_storage="nwb-cache",  # Local folder for the cache
-#     )
 
 
 cols_to_keep = ['input_resistance', 'tau', 'v_baseline', 'sag_nearest_minus_100', 
@@ -65,6 +61,42 @@ cols_to_keep = ['input_resistance', 'tau', 'v_baseline', 'sag_nearest_minus_100'
        #'ap_mean_upstroke_downstroke_ratio_0_long_square',
        'ap_mean_width_0_long_square', 'ap_mean_fast_trough_v_0_long_square',
        'avg_rate_0_long_square', 'latency_0_long_square',]
+
+
+# ==== LOGGING ====
+logger = logging.getLogger("dandi_scraper")
+_LOGGING_CONFIGURED = False
+
+
+def _configure_logging(log_path="dandi_scraper_run.log"):
+    """Idempotently attach a file + stream handler to the dandi_scraper and
+    pyAPisolation loggers. Set env var DANDI_SCRAPER_DEBUG=1 for DEBUG level."""
+    global _LOGGING_CONFIGURED
+    if _LOGGING_CONFIGURED:
+        return
+    level = logging.DEBUG if os.environ.get("DANDI_SCRAPER_DEBUG") == "1" else logging.INFO
+    fmt = logging.Formatter(
+        "%(asctime)s %(levelname)s %(name)s: %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
+    fh = logging.FileHandler(log_path, mode="a")
+    fh.setFormatter(fmt)
+    fh.setLevel(level)
+    sh = logging.StreamHandler()
+    sh.setFormatter(fmt)
+    sh.setLevel(level)
+    for name in ("dandi_scraper", "pyAPisolation"):
+        lg = logging.getLogger(name)
+        lg.setLevel(level)
+        # avoid duplicate handlers if user calls this twice
+        existing = {type(h).__name__ + getattr(h, "baseFilename", "") for h in lg.handlers}
+        if "FileHandler" + os.path.abspath(log_path) not in existing:
+            lg.addHandler(fh)
+        if "StreamHandler" not in {type(h).__name__ for h in lg.handlers if not isinstance(h, logging.FileHandler)}:
+            lg.addHandler(sh)
+        lg.propagate = False
+    _LOGGING_CONFIGURED = True
+    logger.info("logging configured (level=%s, file=%s)", logging.getLevelName(level), log_path)
 
 
 
@@ -137,7 +169,24 @@ def get_dandi_metadata(code):
     return metadata
 
 def analyze_dandiset(code, cache_dir=None):
-    df_dandiset = run_analysis(cache_dir+'/'+code)
+    df_dandiset = run_analysis(cache_dir+'/'+code,
+                               outfile=os.path.join(cache_dir, f"{code}.csv"))
+    # Log the error summary for this dandiset (pyAPisolation also writes a
+    # per-cell errors csv next to the outfile).
+    if 'error_stage' in df_dandiset.columns:
+        fail_mask = df_dandiset['error_stage'].notna() & (df_dandiset['error_stage'] != '')
+        n_fail = int(fail_mask.sum())
+        n_total = len(df_dandiset)
+        if n_fail:
+            by_stage = df_dandiset.loc[fail_mask, 'error_stage'].value_counts().to_dict()
+            by_class = (df_dandiset.loc[fail_mask, 'error_class'].value_counts().to_dict()
+                        if 'error_class' in df_dandiset.columns else {})
+            logger.warning(
+                "dandiset %s: %d/%d cells failed; stages=%s classes=%s",
+                code, n_fail, n_total, by_stage, by_class,
+            )
+        else:
+            logger.info("dandiset %s: all %d cells succeeded", code, n_total)
     return df_dandiset
     
 def filter_dandiset_df(row, species=None, modality=None, keywords=[], method='or'):
@@ -163,7 +212,7 @@ def download_dandiset(code=None, save_dir=None, overwrite=False):
         save_dir = os.getcwd()
     if os.path.exists(save_dir+'/'+code) and overwrite==False:
         return
-    dandi_download(dandiset.api_url, save_dir)
+    dandi_download(dandiset.api_url, save_dir, existing=dandi_download_utils.DownloadExisting.OVERWRITE_DIFFERENT)
     
 
 def quick_qc(df, qc_features={'input_resistance':[0, 1e9],'sag_nearest_minus_100':[-1, 1],
@@ -172,17 +221,31 @@ def quick_qc(df, qc_features={'input_resistance':[0, 1e9],'sag_nearest_minus_100
                              'ap_1_width_0_long_square':[(0.01/1000), (10/1000)],
                              'ap_1_fast_trough_v_0_long_square':[-100, 0],
                              'avg_rate_0_long_square':[0, 200]
-                             }):
-    #this is a quick qc function to check if the data is good, specifically for the output of the analyze_dandiset function
+                             }, return_drops=False):
+    """Apply feature-range QC to `df`. Logs and optionally returns the per-cell
+    drop reasons so upstream callers can persist them to a per-cell status csv."""
+    drop_rows = []
     for feature, (min_val, max_val) in qc_features.items():
         if feature in df.columns:
-            #get number of failing values for logging
-            _failing = df[(df[feature] < min_val) | (df[feature] > max_val)]
+            fail_mask = (df[feature] < min_val) | (df[feature] > max_val)
+            _failing = df[fail_mask]
             num_failing = len(_failing)
-            print(f"QC: {num_failing} cells failed {feature} check ({min_val} to {max_val}), examples:\n {_failing[feature].head()}")
-            df = df[(df[feature] >= min_val) & (df[feature] <= max_val)]
-
-   
+            logger.warning(
+                "quick_qc: %d cells failed %s (bounds [%g, %g]); examples=%s",
+                num_failing, feature, min_val, max_val,
+                _failing[feature].head().to_dict(),
+            )
+            if num_failing and return_drops:
+                for idx, val in _failing[feature].items():
+                    drop_rows.append({
+                        "specimen_id": idx,
+                        "feature": feature,
+                        "value": val,
+                        "reason": f"out_of_range[{min_val},{max_val}]",
+                    })
+            df = df[~fail_mask]
+    if return_drops:
+        return df, pd.DataFrame(drop_rows)
     return df
 
 def scale_features(df, features={'input_resistance': 'log', 'tau': 'log-1000', 'ap_1_width_0_long_square': 'log-1000'}):
@@ -208,18 +271,19 @@ dandisets_to_skip = ['000012', '000013',
  '000293', #Superseeded by 000297
   '000292', #Superseeded by 000297
   '000341' ] #Superseeded by 000297
-dandisets_to_include = ['000008', '000035'] #these are iCEphys datasets that are not labeled as such
+dandisets_to_include = [ '001776'] #these are iCEphys datasets that are not labeled as such
 
-
+#'000008', '000035',
 def run_analyze_dandiset():
     """ 
     Analyze the dandiset and save the results to a csv file, this function will download the dandiset if it is not already downloaded
     then it will analyze the dandiset and save the results to a csv file.
     """
+    _configure_logging()
     dandi_df = build_dandiset_df() #pull all the dandisets
     filtered_df = dandi_df[dandi_df.apply(lambda x: filter_dandiset_df(x, modality='icephys', keywords=['intracellular', 'patch'], method='or'), axis=1)] #filter the dandisets we only want the icephys ones
-    
-    print(f"found {len(filtered_df)} dandisets to analyze")
+
+    logger.info("found %d dandisets to analyze", len(filtered_df))
     #glob the csv files
     csv_files = glob.glob('/media/smestern/Expansion/dandi/*.csv')
     csv_files = [x.split('/')[-1].split('.')[0] for x in csv_files]
@@ -230,20 +294,39 @@ def run_analyze_dandiset():
             filtered_df = pd.concat([filtered_df, dandi_df[dandi_df["identifier"] == code]])
 
 
-    for row in filtered_df.iterrows():
-        print(f"Downloading {row[1]['identifier']}")
-        if row[1]["identifier"] in dandisets_to_skip:
-            print(f"Skipping {row[1]['identifier']}")
+    for row in list(filtered_df.iterrows())[::-1]:
+        code = row[1]['identifier']
+        logger.info("downloading dandiset %s", code)
+        if code in dandisets_to_skip:
+            logger.info("skipping dandiset %s (on skip list)", code)
             continue
-        download_dandiset(row[1]["identifier"], save_dir='/media/smestern/Expansion/dandi', overwrite=False)
-        df_dandiset = analyze_dandiset(row[1]["identifier"],cache_dir='/media/smestern/Expansion/dandi/')
-        df_dandiset["dandiset"] = row[1]["identifier"]
+        try:
+            download_dandiset(code, save_dir='/media/smestern/Expansion/dandi', overwrite=True)
+        except Exception:
+            logger.exception("dandiset %s: download failed", code)
+            continue
+        try:
+            df_dandiset = analyze_dandiset(code, cache_dir='/media/smestern/Expansion/dandi/')
+        except Exception:
+            logger.exception("dandiset %s: analyze_dandiset raised", code)
+            continue
+        df_dandiset["dandiset"] = code
         df_dandiset["created"] = row[1]["created"]
         df_dandiset["species"] = row[1]["species"]
-        df_dandiset.to_csv('/media/smestern/Expansion/dandi/'+row[1]["identifier"]+'.csv')
+        df_dandiset.to_csv('/media/smestern/Expansion/dandi/'+code+'.csv')
 
 def run_merge_dandiset(use_cached_metadata=True):
     """"""
+    _configure_logging()
+    # cell_status tracks each id_full through the pipeline, terminal status is
+    # written to ./all_new.errors.csv at the end so every missing cell can be
+    # traced back to a specific drop site.
+    cell_status = {}
+
+    def _mark(ids, status, detail=""):
+        for _id in ids:
+            cell_status[_id] = (status, detail)
+
     csv_files = glob.glob('/media/smestern/Expansion/dandi/*.csv')
     csv_files = [x.split('/')[-1].split('.')[0] for x in csv_files]
     dfs = []
@@ -254,7 +337,7 @@ def run_merge_dandiset(use_cached_metadata=True):
         temp_df = pd.read_csv('/media/smestern/Expansion/dandi/'+code+'.csv', index_col=0)
         #temp_df = temp_df.dropna(axis=0, how='all', subset=temp_df.columns[:-3])
         temp_df.rename(columns={'dandiset': 'dandiset label', 'species label': 'species'}, inplace=True)
-        
+        logger.info("loaded dandiset csv %s: %d rows", code, len(temp_df))
         dfs.append(temp_df)
         
     if os.path.exists('./all_new.csv'):
@@ -271,22 +354,67 @@ def run_merge_dandiset(use_cached_metadata=True):
     
     #remap the indexes, this is a nightmare due to custom pathing on my local machine
     dfs.index = dfs.index.map(lambda x: ''.join(x.split("dandi//")[1]))
-    print(dfs.index[:5])
+    logger.debug("first indexes after remap: %s", list(dfs.index[:5]))
     dfs['specimen_id'] = dfs.index
     dfs['id_full'] = dfs['dandiset label'] + '/' + dfs['specimen_id']
-    dfs = quick_qc(dfs)
+
+    # Mark every loaded cell. pyAPisolation-side per-cell errors (if present in
+    # the csv) are captured here so their terminal status reflects the stage
+    # they failed at rather than appearing as a silent merge-time drop.
+    if 'error_stage' in dfs.columns:
+        fail_mask = dfs['error_stage'].notna() & (dfs['error_stage'] != '')
+        for _id, stage, msg in zip(dfs.loc[fail_mask, 'id_full'],
+                                    dfs.loc[fail_mask, 'error_stage'],
+                                    dfs.get('error_message', pd.Series(index=dfs.index, dtype=object)).loc[fail_mask]):
+            cell_status[_id] = (f"analysis_failed:{stage}", str(msg) if pd.notna(msg) else "")
+        logger.info("analysis-stage failures carried into merge: %d", int(fail_mask.sum()))
+    _mark([i for i in dfs['id_full'] if i not in cell_status], "loaded")
+
+    pre_qc_ids = set(dfs['id_full'])
+    dfs, qc_drops = quick_qc(dfs, return_drops=True)
+    post_qc_ids = set(dfs['id_full'])
+    dropped_by_qc = pre_qc_ids - post_qc_ids
+    # qc_drops is keyed by specimen_id (index of original dfs); join to id_full
+    if not qc_drops.empty:
+        qc_drops['id_full'] = qc_drops['specimen_id'].map(
+            lambda sid: dfs['id_full'].get(sid) if sid in dfs.index else sid)
+        # Aggregate reasons per cell (a cell may fail multiple features but we
+        # only know the aggregate set because quick_qc filters incrementally).
+        reason_by_id = qc_drops.groupby('id_full')['feature'].apply(
+            lambda s: ",".join(sorted(set(s)))).to_dict()
+    else:
+        reason_by_id = {}
+    for _id in dropped_by_qc:
+        cell_status[_id] = ("dropped_quick_qc", reason_by_id.get(_id, "unknown feature"))
+    logger.info("quick_qc dropped %d cells", len(dropped_by_qc))
 
     #also drop columns where over 50% of the data is missing
+    before_cols = set(dfs.columns)
     dfs = dfs.dropna(axis=1, thresh=int(len(dfs)*0.9))
+    dropped_cols = before_cols - set(dfs.columns)
+    if dropped_cols:
+        logger.warning(
+            "dropped %d columns failing <90%% density: %s",
+            len(dropped_cols), sorted(dropped_cols),
+        )
 
-    
-
+    missing_cols_per_dandiset = {}
     idxs = []
     columns = []
     meta_data = []
     for code in dfs['dandiset label'].unique():
         temp_df = dfs.loc[dfs['dandiset label'] == code]
-        print(f"Processing {code}")
+        logger.info("merging dandiset %s (%d rows)", code, len(temp_df))
+        # Log which of cols_to_keep are missing from this dandiset (a major
+        # silent failure source — cells from a dandiset missing required
+        # columns end up filled with NaNs and later dropped post-impute).
+        missing_here = [c for c in cols_to_keep if c not in temp_df.columns]
+        if missing_here:
+            missing_cols_per_dandiset[code] = missing_here
+            logger.warning(
+                "dandiset %s missing %d cols_to_keep: %s",
+                code, len(missing_here), missing_here,
+            )
         #observe the meta data
         if use_cached_metadata and df_old is not None: #If we have old metadata use it
             meta_ = df_old.loc[df_old['dandiset_id'] == int(code), ['dandiset_id', 'age', 'subject_id', 'cell_id', 'brain_region', 'species', 'filepath', 'contributor']]
@@ -300,15 +428,23 @@ def run_merge_dandiset(use_cached_metadata=True):
         assert len(data_num) == len(temp_df)
         temp_data_num = data_num.copy()
         if data_num.empty or len(data_num.columns) < 3:
-            continue #skip empty datasets or ones with too few numeric columns
+            # Every cell in this dandiset is lost here.
+            for _id in temp_df['id_full']:
+                cell_status[_id] = ("dropped_empty_numeric", f"numeric cols={len(data_num.columns)}")
+            logger.warning(
+                "dandiset %s: skipping (numeric cols=%d)", code, len(data_num.columns),
+            )
+            continue
         
         idxs.append(data_num.index.values)
-        print(f"Processing {code} with {len(data_num)} cells")
+        logger.info("dandiset %s: %d cells entering imputation", code, len(data_num))
         #turn nans and infs into nans
         data_num = np.nan_to_num(data_num, nan=np.nan, posinf=np.nan, neginf=np.nan)
         impute = KNNImputer(keep_empty_features=True)
         data_num = impute.fit_transform(data_num)
-        print(f"Imputed {code} with {len(data_num)} cells and {len(data_num[0])} features")
+        logger.debug(
+            "dandiset %s: imputed shape=(%d, %d)", code, len(data_num), len(data_num[0])
+        )
         #clip to the 99.5% percentile
         for i in range(data_num.shape[1]):
             col = data_num[:, i] #get the column
@@ -319,25 +455,35 @@ def run_merge_dandiset(use_cached_metadata=True):
         
 
         data_num = pd.DataFrame(data_num, columns=temp_data_num.columns, index=temp_data_num.index)
-        print(f"Processed {code} with {len(data_num)} cells")
         assert len(data_num) == len(temp_df)
         dataset_numeric.append(data_num)
     meta_data = pd.concat(meta_data, axis=0)
-    print(f"Meta data shape: {meta_data.shape}")
-    print(meta_data.head())
+    logger.info("meta data shape: %s", meta_data.shape)
 
     # Merge the meta data
     dfs = dfs.join(meta_data, how='left', rsuffix='_meta')
-    print(f"dfs shape after joining meta data: {dfs.shape}")
+    logger.info("dfs shape after joining meta data: %s", dfs.shape)
 
     # Filter dfs to only include rows where the data is present
     dfs = dfs.loc[np.hstack(idxs)]
-    print(f"dfs shape after filtering: {dfs.shape}")
+    logger.info("dfs shape after index filter: %s", dfs.shape)
 
-    dataset_numeric = pd.concat(dataset_numeric, axis=0)[cols_to_keep]
-    print(f"dataset_numeric shape after concatenation: {dataset_numeric.shape}")
+    # cols_to_keep intersection — log which are missing in the concatenated frame
+    concat_num = pd.concat(dataset_numeric, axis=0)
+    missing_final = [c for c in cols_to_keep if c not in concat_num.columns]
+    if missing_final:
+        logger.error(
+            "cols_to_keep missing from concatenated numeric frame: %s — "
+            "cells in dandisets that lacked these will be dropped by final "
+            "dropna(any). Per-dandiset missing map: %s",
+            missing_final, missing_cols_per_dandiset,
+        )
+    dataset_numeric = concat_num[cols_to_keep]
+    logger.info("dataset_numeric shape after concatenation: %s", dataset_numeric.shape)
     #log scale some features
     dataset_numeric = scale_features(dataset_numeric, features={'input_resistance': 'log', 'tau': 'log-1000', 'ap_1_width_0_long_square': 'log-1000', 'ap_mean_width_0_long_square': 'log-1000'}) #log scale some features
+
+    pre_impute_ids = set(dfs['id_full'].loc[dataset_numeric.index]) if len(dataset_numeric) else set()
 
     #KNN impute again to be on final dataset
     impute = KNNImputer(keep_empty_features=True)
@@ -345,9 +491,15 @@ def run_merge_dandiset(use_cached_metadata=True):
 
     # Drop columns where over 50% of the data is missing
     dataset_numeric = dataset_numeric.dropna(axis=1, how='any')
-    print(f"dataset_numeric shape after dropping columns: {dataset_numeric.shape}")
+    logger.info("dataset_numeric shape after dropping columns: %s", dataset_numeric.shape)
     # Ensure dfs and dataset_numeric have the same index
+    pre_align_dfs_ids = set(dfs['id_full'])
     dfs = dfs.loc[dataset_numeric.index]
+    post_align_ids = set(dfs['id_full'])
+    for _id in (pre_align_dfs_ids - post_align_ids):
+        if _id not in cell_status or cell_status[_id][0] == "loaded":
+            cell_status[_id] = ("dropped_final_align",
+                                 "row missing after final dropna/align")
     
     #dump the data
     joblib.dump(dataset_numeric, './dataset_numeric.pkl')
@@ -429,6 +581,25 @@ def run_merge_dandiset(use_cached_metadata=True):
     
     
     dfs.to_csv('./all_new.csv')
+
+    # Mark survivors and write per-cell status csv so every cell that started
+    # in a dandiset-level csv has a terminal status documented.
+    for _id in dfs['id_full']:
+        cell_status[_id] = ("kept", "")
+    status_rows = [
+        {"id_full": k, "status": v[0], "detail": v[1]}
+        for k, v in cell_status.items()
+    ]
+    status_df = pd.DataFrame(status_rows)
+    status_df.to_csv('./all_new.errors.csv', index=False)
+    terminal_counts = status_df['status'].value_counts().to_dict()
+    logger.info(
+        "merge complete: wrote all_new.csv (%d kept) and all_new.errors.csv "
+        "(%d rows); status breakdown=%s",
+        int((status_df['status'] == 'kept').sum()),
+        len(status_df),
+        terminal_counts,
+    )
 
 # ==== PLOTTING FUNCTIONS ==== #
 CODES_TO_PLOT_THRES_HOLD = 1455.9
