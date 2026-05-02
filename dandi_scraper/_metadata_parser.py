@@ -8,7 +8,7 @@ import time
 import json
 import cohere
 from . import config
-co = cohere.Client(config.COHERE_KEY)
+co = cohere.Client(config.get_cohere_key())
 # except:
 # co = None
 # print("cohere.ai not installed; skipping description parsing")

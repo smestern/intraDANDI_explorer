@@ -4,4 +4,5 @@ venv
 *.pyc
 .DS_Store
 .env
-dandi_scraper/config.py
+dandi_scraper/secrets.py
+dandi_scraper_run.log

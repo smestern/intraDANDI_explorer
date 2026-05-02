@@ -38,3 +38,6 @@ Traceback (most recent call last):
 ValueError: bessel coeff (2.000000) is outside of valid range [0,1); cannot filter sampling frequency 10.0 kHz with cutoff frequency 10.0 kHz.
 2026-04-28 07:04:51 INFO dandi_scraper: logging configured (level=INFO, file=dandi_scraper_run.log)
 2026-04-28 07:05:27 INFO dandi_scraper: found 65 dandisets to analyze
+2026-04-28 07:32:34 INFO dandi_scraper: logging configured (level=INFO, file=dandi_scraper_run.log)
+2026-04-28 07:33:12 INFO dandi_scraper.download: found 65 dandisets to analyze
+2026-04-28 07:33:12 INFO dandi_scraper.download: downloading dandiset 001776
