@@ -6,14 +6,14 @@ import numpy as np
 import sklearn
 import pandas as pd
 
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, RobustScaler
 from sklearn.decomposition import PCA
 from sklearn.impute import SimpleImputer, KNNImputer
 import umap
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 
 # %% load the data.js
-df = pd.read_csv('all2.csv')
+df = pd.read_csv('all_new.csv')
 
 # get the columns
 cols_to_keep = {
@@ -44,10 +44,13 @@ X = df[cols_to_keep]
 Y = np.copy(df['umap X'].to_numpy())
 # threshold y as greater than 5
 
+# %%
+# Before scaling, let's check the distribution of the features
+print(X.describe())
 
 # %%
 # scale the data
-scaler = StandardScaler()
+scaler = RobustScaler()
 impute = SimpleImputer(strategy='mean')
 X = impute.fit_transform(X)
 X = scaler.fit_transform(X)
@@ -83,6 +86,13 @@ plt.pause(0.1)
 # plt.scatter(pca.fit_transform(X)[:,0], pca.fit_transform(X)[:,1], c=df['umap X'])
 
 # %% grid plot with each feature on the umap
+# Colour by the same log transforms the UMAP pipeline uses (config.SCALE_FEATURES),
+# and clip the colour range to the 1-99th percentile so a few extreme cells
+# don't squash the rest of the colormap.
+from dandi_scraper.analysis import scale_features
+from dandi_scraper.config import SCALE_FEATURES
+X_plot = scale_features(df[cols_to_keep].copy())
+
 n_features = len(cols_to_keep)
 n_cols = 4
 n_rows = int(np.ceil(n_features / n_cols))
@@ -93,17 +103,23 @@ for i, ax in enumerate(axs):
     if i >= n_features:
         ax.axis('off')
         continue
-    ax.scatter(df['umap X'], df['umap Y'], c=X[:, i], cmap='viridis')
+    col = X_plot[cols_to_keep[i]].to_numpy()
+    vmin, vmax = np.nanpercentile(col, [1, 99])
+    sc = ax.scatter(df['umap X'], df['umap Y'], c=col, cmap='viridis', vmin=vmin, vmax=vmax, s=4)
+    fig.colorbar(sc, ax=ax)
     ax.set_xlabel('umap X')
     ax.set_ylabel('umap Y')
-    ax.set_title(cols_to_keep[i])
+    title = cols_to_keep[i]
+    if cols_to_keep[i] in SCALE_FEATURES:
+        title += f' ({SCALE_FEATURES[cols_to_keep[i]]})'
+    ax.set_title(title)
 
 plt.tight_layout()
 plt.show()
 # %%
 
-# plot the tree
-plt.figure(figsize=(20, 20))
-tree.plot_tree(reg.estimators_[0], feature_names=cols_to_keep, filled=True)
-plt.show()
-# %%
+# # plot the tree
+# plt.figure(figsize=(20, 20))
+# tree.plot_tree(reg.estimators_[0], feature_names=cols_to_keep, filled=True)
+# plt.show()
+# # %%

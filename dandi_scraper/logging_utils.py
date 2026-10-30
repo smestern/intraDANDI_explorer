@@ -12,7 +12,7 @@ _LOGGING_CONFIGURED = False
 
 def configure_logging(log_path: Optional[str] = None) -> None:
     """Idempotently attach a file + stream handler to the dandi_scraper and
-    pyAPisolation loggers. Set env var ``DANDI_SCRAPER_DEBUG=1`` for DEBUG level."""
+    gigaseal loggers. Set env var ``DANDI_SCRAPER_DEBUG=1`` for DEBUG level."""
     global _LOGGING_CONFIGURED
     if _LOGGING_CONFIGURED:
         return
@@ -28,7 +28,7 @@ def configure_logging(log_path: Optional[str] = None) -> None:
     sh = logging.StreamHandler()
     sh.setFormatter(fmt)
     sh.setLevel(level)
-    for name in ("dandi_scraper", "pyAPisolation"):
+    for name in ("dandi_scraper", "gigaseal"):
         lg = logging.getLogger(name)
         lg.setLevel(level)
         existing = {type(h).__name__ + getattr(h, "baseFilename", "") for h in lg.handlers}

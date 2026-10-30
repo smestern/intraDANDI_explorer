@@ -1,4 +1,4 @@
-// Dynamic mode template script for pyAPisolation webViz
+// Dynamic mode template script for gigaseal webViz
 // This script extends template_common.js to add AJAX-based trace loading
 // ⚠️ EXPERIMENTAL - Requires running Flask server
 

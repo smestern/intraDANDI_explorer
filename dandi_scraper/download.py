@@ -12,7 +12,7 @@ from dandi.dandiapi import DandiAPIClient
 from dandi.download import download as dandi_download
 import dandi.download as dandi_download_utils
 
-from pyAPisolation.database.build_database import build_dataset_traces
+from gigaseal.database.build_database import build_dataset_traces
 
 from . import config
 from .analysis import analyze_dandiset, build_dandiset_df, filter_dandiset_df
@@ -32,7 +32,7 @@ def download_dandiset(code: str, save_dir: Optional[str] = None, overwrite: bool
     dandi_download(
         dandiset.api_url,
         save_dir,
-        existing=dandi_download_utils.DownloadExisting.OVERWRITE_DIFFERENT,
+        existing=dandi_download_utils.DownloadExisting.SKIP,
     )
 
 
@@ -71,7 +71,7 @@ def run_analyze_dandiset(
         if code not in filtered_df["identifier"].values:
             filtered_df = pd.concat([filtered_df, dandi_df[dandi_df["identifier"] == code]])
 
-    for row in list(filtered_df.iterrows())[::-1]:
+    for row in list(filtered_df.iterrows())[::1]:
         code = row[1]["identifier"]
         logger.info("downloading dandiset %s", code)
         if code in skip:
@@ -97,6 +97,7 @@ def run_plot_dandiset(
     cache_dir: Optional[str] = None,
     threshold: Optional[float] = None,
     skip: Optional[Iterable[str]] = None,
+    database_db: Optional[str] = "./all_new.csv",
 ) -> None:
     """Render trace SVGs for every dandiset whose code is above ``threshold``."""
     configure_logging()
@@ -107,7 +108,11 @@ def run_plot_dandiset(
     csv_files = glob.glob(os.path.join(cache_dir, "*.csv"))
     csv_codes = [os.path.splitext(os.path.basename(x))[0] for x in csv_files]
 
-    for code in csv_codes:
+    if database_db is not None:
+        database_db = pd.read_csv(database_db)
+
+        
+    for code in csv_codes[::-1]:
         if code == "all":
             print(f"Skipping {code}")
             continue
@@ -117,13 +122,22 @@ def run_plot_dandiset(
         except ValueError:
             continue
         df = pd.read_csv(os.path.join(cache_dir, f"{code}.csv"), index_col=0)
-        ids = [x.split("/dandi/")[-1] for x in df.index.values]
+        ids = [x.split("/sgbackup/")[-1] for x in df.index.values]
         print(f"Processing {code}")
         if code in skip:
             print(f"Skipping {code}")
             continue
         folder = os.path.join(cache_dir, code)
-        build_dataset_traces(folder, ids, parallel=True)
+        # if the user provides a database_db, we could use it to filter which cells to process
+        if database_db is not None:
+            # df.index keeps the full cache path, so mask on the stripped ids to keep df and ids aligned
+            valid = set(database_db['specimen_id'].values)
+            keep = [x in valid for x in ids]
+            ids = [x for x, k in zip(ids, keep) if k]
+            df = df[keep]
+        # reuse the sweeps the analysis picked, rather than having plot_data re-derive them
+        sweep_info = {k: row for k, (_, row) in zip(ids, df.iterrows())}
+        build_dataset_traces(folder, ids, parallel=True, sweep_info=sweep_info)
 
 
 def sort_plot_dandiset(
