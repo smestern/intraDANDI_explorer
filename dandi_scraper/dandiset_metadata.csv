@@ -1,0 +1,52 @@
+dandiset_id,title,brain_region,brain_subregion,source,confidence,reviewed,notes
+8,Phenotypic variation within and across transcriptomic cell types in mouse motor cortex,Neocortex,motor cortex,llm,,True,legacy value: motor cortex
+20,Patch-seq recordings from mouse visual cortex,Neocortex,visual cortex,llm,,True,legacy value: visual cortex
+23,Patch-seq recordings from human cortex (June 2020),Neocortex,,llm,,True,legacy value: neocortex
+35,Temperature-controlled intracellular Patch-seq recordings in mouse motor cortex,Neocortex,motor cortex,llm,,True,legacy value: motor cortex
+43,"Human, macaque, and mouse L5 pyramidal neuron physiology",Neocortex,premotor cortex,llm,,True,legacy value: premotor cortex
+109,Patch-seq recordings from human cortex (June 2021),Neocortex,,llm,,True,legacy value: neocortex
+117,1U01MH116990-01_July_2021,Spinal cord,,llm,,True,legacy value: spinal cord
+142,20210923_AIBS_Patchseq_human,Neocortex,,llm,,True,legacy value: neocortex
+148,Electrophysiological properties of adult mouse spinal cord neurons - 01_Oct_2021,Spinal cord,,llm,,True,legacy value: spinal cord
+209,20211223_AIBS_Patchseq_human,Neocortex,,llm,,True,legacy value: neocortex
+228,20220330_AIBS_Patchseq_human,Neocortex,,llm,,True,legacy value: neocortex
+245,Electrophysiological properties of adult mouse spinal cord neurons - 22Q1_Ephys_DANDI,Spinal cord,,llm,,True,legacy value: spinal cord
+288,20220630_AIBS_Patchseq_human,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+295,Electrophysiological properties of adult mouse spinal cord neurons - 22Q2_Ephys_DANDI,Spinal cord,,llm,,True,legacy value: spinal cord
+297,UHN whole-cell patch-clamp excitability recordings from human cortical neurons,Neocortex,,llm,,True,legacy value: cortical tissue
+337,20220917_AIBS_Patchseq_human,Neocortex,,llm,,True,legacy value: neocortex
+569,20230630_AIBS_Patchseq_nonhuman_primate,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+570,20230630_AIBS_Patchseq_human,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+630,Human L1 patch-seq electrophysiology,Neocortex,L1,llm,,True,legacy value: neocortical L1
+635,20230930_AIBS_Patchseq_nonhuman_primate,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+636,Human interneuron patch-seq electrophysiology,Neocortex,,llm,,True,legacy value: neocortex
+768,20231222_AIBS_Patchseq_nonhuman_primate,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+769,20231222_AIBS_Patchseq_human,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+933,20240331_AIBS_Patchseq_human,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+934,20240331_AIBS_Patchseq_nonhuman_primate,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+1065,Areal specializations in the morpho-electric and transcriptomic properties of layer 5 extratelencephalic-projecting neurons in the primate neocortex,Neocortex,temporal cortex,llm,,True,legacy value: temporal cortex
+1195,Separable Dorsal Raphe Dopamine Projections Mediate the Facets of Loneliness-like State,Midbrain,dorsal raphe nucleus,llm,,True,legacy value: Dorsal Raphe Nucleus
+1261,BLA-projecting NBM/SI neurons in mouse and macaque,Basal forebrain,,llm,,True,legacy value: basal forebrain
+1281,Electrophysiology and Morphology of Human Cortical Supragranular Pyramidal Cells in a Wide Age Range,Neocortex,,llm,,True,legacy value: neocortex
+1348,20250331_AIBS_Patchseq_nonhuman_primate,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+1351,20250331_AIBS_Patchseq_mouse,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+1359,20250331_AIBS_Patchseq_human,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+1454,"Data supporting ""Social isolation recruits amygdala–medial prefrontal cortex projections to escalate alcohol drinking in male mice""",Amygdala,basolateral amygdala,llm,,True,legacy value: basolateral amygdala
+1455,20250630_AIBS_Patchseq_Mouse,Neocortex,visual cortex,llm,high,True,Description explicitly mentions visual cortex
+1464,20250627_AIBS_Patchseq_human,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+1465,20250627_AIBS_Patchseq_nonhuman_primate,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+1534,20250707_Patchseq_BICAN_R01_Neuromodulation_mouse,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+1538,State-dependent modulation of spiny projection neurons controls levodopa-induced dyskinesia in a mouse model of Parkinson’s disease,Striatum,,llm,,True,legacy value: striatum
+1544,Distinct subpopulations of ventral pallidal cholinergic projection neurons encode valence of olfactory stimuli,Pallidum,ventral pallidum,llm,,True,legacy value: ventral pallidum
+1545,Diversification of dentate gyrus granule cell subtypes is regulated by Nrg1 nuclear back-signaling,Hippocampus,dentate gyrus,llm,,True,legacy value: dentate gyrus
+1625,20251020_AIBS_Patchseq_human,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+1626,20251020_AIBS_Patchseq_nhp,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+1746,Electrophysiological Dataset of Patch-seq Recording in non-Human Primate Anterior Insular Cortex,Neocortex,anterior insula,llm,,True,legacy value: anterior insular cortex
+1748,20260213_AIBS_Patchseq_BICAN_R01_Neuromodulation_mouse,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+1753,20260220_AIBS_Patchseq_BICAN_HMBA_macaque,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+1776,"Intracellular Recordings for ""Single neuron diversity supports area functional specialization along the visual cortical pathways""",Neocortex,visual cortex,llm,,True,legacy value: visual cortex
+1855,20260623_AIBS_Patchseq_BICAN_human,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+1856,20260623_AIBS_Patchseq_BICAN_macaque,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+1858,20260623_AIBS_Patchseq_BICAN_R01_Neuromodulation_mouse,Unknown,,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
+1893,Patch-seq profiling of mouse locus coeruleus norepinephrine neurons,Brainstem,locus coeruleus,llm,,True,legacy value: locus coeruleus
+1938,2026_AIBS_Patcheq_HiMC_mouse,Unknown,,manual,,True,HiMC is not a brain region; no region in DANDI metadata

@@ -1,6 +1,6 @@
 h5py
 gunicorn
-pyabf==2.2.8
+pyabf
 pg8000
 methodtools
 fsspec
@@ -9,10 +9,13 @@ dash-core-components
 dash-bootstrap-components
 plotly
 scikit-learn
+umap-learn
+joblib
 numpy
 scipy
 pandas
-allensdk
 dandi
+cohere
 dash-table
-git+https://github.com/smestern/pyAPisolation.git
+# gigaseal is a sibling package (not on PyPI); install from source, e.g.:
+#   pip install -e ../../source/gigaseal[web,ml]

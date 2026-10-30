@@ -7,9 +7,9 @@ from typing import Optional
 import numpy as np
 import pandas as pd
 
-import pyAPisolation.webViz.run_web_viz as wbz
-import pyAPisolation.webViz.webVizConfig as wvc
-from pyAPisolation.loadFile.loadNWB import GLOBAL_STIM_NAMES
+import gigaseal.webViz.run_web_viz as wbz
+import gigaseal.webViz.webVizConfig as wvc
+from gigaseal.loadFile.loadNWB import GLOBAL_STIM_NAMES
 
 from . import config
 
@@ -34,7 +34,7 @@ def build_server(
     ]
     GLOBAL_VARS.table_vars = [
         "input_resistance", "tau", "v_baseline", "sag_nearest_minus_100",
-        "species", "brain_region",
+        "species", "brain_region", "brain_subregion",
     ]
     GLOBAL_VARS.para_vars = [
         "ap_1_width_0_long_square", "input_resistance", "tau", "v_baseline",

@@ -15,10 +15,11 @@ import numpy as np
 import pandas as pd
 from dandi.dandiapi import DandiAPIClient
 
-from pyAPisolation.database.build_database import run_analysis
+from gigaseal.database.build_database import run_analysis
 
 from . import config
 from ._metadata_parser import dandi_meta_parser
+from .metadata_table import normalize_species
 
 logger = logging.getLogger("dandi_scraper.analysis")
 
@@ -48,7 +49,8 @@ def build_dandiset_df() -> pd.DataFrame:
         data["created"].append(dandiset.created)
         data["size"].append(dandiset.draft_version.size)
         if "species" in metadata["assetsSummary"] and len(metadata["assetsSummary"]["species"]):
-            data["species"].append(metadata["assetsSummary"]["species"][0]["name"])
+            sp = metadata["assetsSummary"]["species"][0]
+            data["species"].append(normalize_species(sp.get("name"), sp.get("identifier")))
         else:
             data["species"].append(np.nan)
 
@@ -64,10 +66,7 @@ def build_dandiset_df() -> pd.DataFrame:
 
         data["keywords"].append([x.lower() for x in metadata.get("keywords", [])])
 
-    df = pd.DataFrame.from_dict(data)
-    for key, val in config.SPECIES_REPLACEMENT.items():
-        df["species"] = df["species"].replace(key, val)
-    return df
+    return pd.DataFrame.from_dict(data)
 
 
 def filter_dandiset_df(row, species=None, modality=None, keywords=None, method="or"):
@@ -99,7 +98,7 @@ def get_dandi_metadata(code: str):
 # ---------------------------------------------------------------------------
 
 def analyze_dandiset(code: str, cache_dir: Optional[str] = None) -> pd.DataFrame:
-    """Run the per-cell pyAPisolation pipeline for one dandiset folder."""
+    """Run the per-cell gigaseal pipeline for one dandiset folder."""
     cache_dir = cache_dir or config.CONFIG.cache_dir
     df_dandiset = run_analysis(
         os.path.join(cache_dir, code),
@@ -150,9 +149,11 @@ def quick_qc(
                 _failing[feature].head().to_dict(),
             )
             if num_failing and return_drops:
-                for idx, val in _failing[feature].items():
+                id_full = _failing["id_full"] if "id_full" in _failing.columns else _failing.index
+                for idx, full, val in zip(_failing.index, id_full, _failing[feature]):
                     drop_rows.append({
                         "specimen_id": idx,
+                        "id_full": full,
                         "feature": feature,
                         "value": val,
                         "reason": f"out_of_range[{min_val},{max_val}]",

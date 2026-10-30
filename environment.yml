@@ -15,4 +15,6 @@ dependencies:
   - nose
   - scikit-learn
   - pandas
-  
+  - pip
+  - pip:
+    - cohere

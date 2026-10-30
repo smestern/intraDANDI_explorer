@@ -24,8 +24,41 @@ from sklearn.preprocessing import MinMaxScaler, RobustScaler
 from . import config
 from .analysis import get_dandi_metadata, quick_qc, scale_features
 from .logging_utils import configure_logging
+from .metadata_table import apply_table
 
 logger = logging.getLogger("dandi_scraper.database")
+
+
+def _drop_duplicate_cells(dfs: pd.DataFrame, feature_cols, cell_status: dict) -> pd.DataFrame:
+    """Drop cells whose features exactly match another cell's.
+
+    The same recording is often published in several dandisets (e.g. Allen's
+    000636 re-releases 000142/000209/000570), or saved twice within one dandiset
+    under different session names. Identical feature vectors only come from the
+    same file analysed twice, so these are exact duplicates. Keep the copy from
+    the highest dandiset id (the newest release) and record the other copies'
+    dandisets in ``also_in``.
+    """
+    key = pd.util.hash_pandas_object(dfs[feature_cols], index=False)
+    order = pd.DataFrame({"key": key, "label": dfs["dandiset label"]}).sort_values(
+        "label", ascending=False, kind="stable"
+    )
+
+    is_dup = order.duplicated("key", keep="first")
+    kept_by_key = pd.Series(order.index[~is_dup], index=order.loc[~is_dup, "key"])
+    dup_idx = order.index[is_dup]
+    kept_idx = kept_by_key.loc[order.loc[is_dup, "key"]].values
+
+    dfs = dfs.copy()
+    dfs["also_in"] = ""
+    for d, k in zip(dup_idx, kept_idx):
+        cell_status[dfs.at[d, "id_full"]] = ("dropped_duplicate", f"same features as {dfs.at[k, 'id_full']}")
+        dfs.at[k, "also_in"] = ";".join(filter(None, [dfs.at[k, "also_in"], dfs.at[d, "dandiset label"]]))
+    logger.info(
+        "de-duplication dropped %d cells (%d kept cells had copies)",
+        len(dup_idx), len(set(kept_idx)),
+    )
+    return dfs.drop(index=dup_idx)
 
 
 def run_merge_dandiset(
@@ -60,6 +93,8 @@ def run_merge_dandiset(
     for code in csv_codes:
         if code == "all":
             continue
+        if ".errors" in code: #debugging: skip error logs from previous runs
+            continue
         temp_df = pd.read_csv(os.path.join(cache_dir, f"{code}.csv"), index_col=0)
         temp_df.rename(columns={"dandiset": "dandiset label", "species label": "species"}, inplace=True)
         logger.info("loaded dandiset csv %s: %d rows", code, len(temp_df))
@@ -71,14 +106,23 @@ def run_merge_dandiset(
     dfs["dandiset label"] = dfs["dandiset label"].apply(
         lambda x: "000000"[: 6 - len(str(x))] + str(x)
     )
+    # dfs["dandiset_id"]=dfs["dandiset label"]
 
-    # Remap the indexes; original code used a custom split on "dandi//".
-    dfs.index = dfs.index.map(lambda x: "".join(x.split("dandi//")[1]))
+    # Remap the indexes to "<6-digit dandiset>/<asset path>", independent of
+    # where the cache lives. (Splitting on "00" broke when the cache path
+    # itself contained "00", collapsing thousands of cells onto one key and
+    # blowing up the metadata join below.)
+    dfs.index = dfs.index.str.extract(r"/(\d{6}/.+)$", expand=False)
+    if dfs.index.isna().any() or dfs.index.has_duplicates:
+        raise ValueError(
+            f"index remap produced {dfs.index.isna().sum()} unparsed and "
+            f"{dfs.index.duplicated().sum()} duplicate ids"
+        )
     logger.debug("first indexes after remap: %s", list(dfs.index[:5]))
     dfs["specimen_id"] = dfs.index
-    dfs["id_full"] = dfs["dandiset label"] + "/" + dfs["specimen_id"]
+    dfs["id_full"] = dfs["dandiset label"].astype(str) + "/" + dfs["specimen_id"].astype(str)
 
-    # Carry pyAPisolation analysis-stage failures into the merge log.
+    # Carry gigaseal analysis-stage failures into the merge log.
     if "error_stage" in dfs.columns:
         fail_mask = dfs["error_stage"].notna() & (dfs["error_stage"] != "")
         for _id, stage, msg in zip(
@@ -98,9 +142,6 @@ def run_merge_dandiset(
     post_qc_ids = set(dfs["id_full"])
     dropped_by_qc = pre_qc_ids - post_qc_ids
     if not qc_drops.empty:
-        qc_drops["id_full"] = qc_drops["specimen_id"].map(
-            lambda sid: dfs["id_full"].get(sid) if sid in dfs.index else sid
-        )
         reason_by_id = qc_drops.groupby("id_full")["feature"].apply(
             lambda s: ",".join(sorted(set(s)))
         ).to_dict()
@@ -110,14 +151,29 @@ def run_merge_dandiset(
         cell_status[_id] = ("dropped_quick_qc", reason_by_id.get(_id, "unknown feature"))
     logger.info("quick_qc dropped %d cells", len(dropped_by_qc))
 
+    # Drop rows missing >50% of the COLS_TO_KEEP features, since imputation is
+    # less likely to be successful and these may be low-quality cells. Density
+    # is measured on COLS_TO_KEEP only: counting every column penalized cells
+    # that lack the higher-amplitude *_N_long_square sweeps (e.g. datasets with
+    # coarse current steps), even though those columns are never used.
+    present_keep = [c for c in config.COLS_TO_KEEP if c in dfs.columns]
+    sparse_mask = dfs[present_keep].notna().sum(axis=1) < int(len(present_keep) * 0.5)
+    for _id in dfs.loc[sparse_mask, "id_full"]:
+        if cell_status.get(_id, ("loaded",))[0] == "loaded":
+            cell_status[_id] = ("dropped_sparse_row", "<50% of COLS_TO_KEEP present")
+    logger.info("sparse-row filter dropped %d cells", int(sparse_mask.sum()))
+    dfs = dfs.loc[~sparse_mask]
+
     before_cols = set(dfs.columns)
-    dfs = dfs.dropna(axis=1, thresh=int(len(dfs) * 0.9))
+    dfs = dfs.dropna(axis=1, thresh=int(len(dfs) * 0.5))
     dropped_cols = before_cols - set(dfs.columns)
     if dropped_cols:
         logger.warning(
-            "dropped %d columns failing <90%% density: %s",
+            "dropped %d columns failing <50%% density: %s",
             len(dropped_cols), sorted(dropped_cols),
         )
+
+    dfs = _drop_duplicate_cells(dfs, [c for c in present_keep if c in dfs.columns], cell_status)
 
     missing_cols_per_dandiset: dict = {}
     idxs = []
@@ -133,13 +189,17 @@ def run_merge_dandiset(
                 "dandiset %s missing %d cols_to_keep: %s",
                 code, len(missing_here), missing_here,
             )
+        meta_ = None
         if use_cached_metadata and df_old is not None:
             meta_ = df_old.loc[
-                df_old["dandiset_id"] == int(code),
+                df_old["dandiset_id"] == int(float(code)),
                 ["dandiset_id", "age", "subject_id", "cell_id",
                  "brain_region", "species", "filepath", "contributor"],
             ]
-        else:
+            if meta_.empty:
+                logger.info("dandiset %s not in cached metadata, fetching from DANDI", code)
+                meta_ = None
+        if meta_ is None:
             meta_ = get_dandi_metadata(code)
         meta_data.append(meta_)
 
@@ -176,9 +236,12 @@ def run_merge_dandiset(
     logger.info("meta data shape: %s", meta_data.shape)
 
     dfs = dfs.join(meta_data, how="left", rsuffix="_meta")
+    # Region/species come from dandiset_metadata.csv keyed on the dandiset label,
+    # so cells missing from the cached metadata still get them.
+    dfs = apply_table(dfs, id_col="dandiset label")
     logger.info("dfs shape after joining meta data: %s", dfs.shape)
 
-    dfs = dfs.loc[np.hstack(idxs)]
+    #dfs = dfs.loc[np.hstack(idxs)]
     logger.info("dfs shape after index filter: %s", dfs.shape)
 
     concat_num = pd.concat(dataset_numeric, axis=0)
@@ -192,7 +255,7 @@ def run_merge_dandiset(
         )
     dataset_numeric = concat_num[config.COLS_TO_KEEP]
     logger.info("dataset_numeric shape after concatenation: %s", dataset_numeric.shape)
-    dataset_numeric = scale_features(dataset_numeric)
+    dataset_numeric = scale_features(dataset_numeric) #not a standardizing scaler but a scale for individual features eg log scale ISIs
 
     # Final KNN impute on the numeric feature matrix.
     impute = KNNImputer(keep_empty_features=True)
@@ -208,10 +271,16 @@ def run_merge_dandiset(
         if _id not in cell_status or cell_status[_id][0] == "loaded":
             cell_status[_id] = ("dropped_final_align", "row missing after final dropna/align")
 
-    joblib.dump(dataset_numeric, dataset_numeric_pkl)
-    scaler = RobustScaler()
-    dataset_numeric.loc[:, :] = scaler.fit_transform(dataset_numeric.values)
+    logger.info("Dumping dataset_numeric to %s", dataset_numeric_pkl)
+    #joblib.dump(dataset_numeric, dataset_numeric_pkl)
 
+    #logger info about scaling
+    logger.info("Scaling dataset_numeric with RobustScaler")
+    scaler = RobustScaler()
+    dataset_numeric.loc[:, :] = np.clip(scaler.fit_transform(dataset_numeric.values),
+                                        -config.ROBUST_CLIP, config.ROBUST_CLIP)
+
+    logger.info("creating umap from dataset_numeric")
     reducer = umap.UMAP(densmap=False, min_dist=0.3, spread=10, metric="cosine",
                         n_neighbors=500, verbose=True)
     reducer.fit_transform(dataset_numeric)
@@ -222,7 +291,8 @@ def run_merge_dandiset(
     dfs["umap X"] = reducer2.embedding_[:, 0]
     dfs["umap Y"] = reducer2.embedding_[:, 1]
     plt.scatter(dfs["umap X"], dfs["umap Y"], s=0.1)
-
+    plt.savefig("umap_scatter.png")
+    plt.close()
     pca = PCA(n_components=2)
     embedding = pca.fit_transform(dataset_numeric.fillna(0))
     dfs["pca X"] = embedding[:, 0]
@@ -253,6 +323,9 @@ def run_merge_dandiset(
 
     joblib.dump(dataset_numeric_norm, dataset_numeric_norm_pkl)
 
+    plt.scatter(dfs["norm umap X"], dfs["norm umap Y"], s=0.1)
+    plt.savefig("norm_umap_scatter.png")
+    plt.close()
     dfs["dandiset_link"] = dfs["dandiset label"].apply(
         lambda x: f"https://dandiarchive.org/dandiset/{str(int(x)).zfill(6)}"
     )
@@ -263,13 +336,35 @@ def run_merge_dandiset(
             if use_cached_metadata and df_old is not None:
                 asset = df_old.loc[df_old["id_full"] == (dandiset_id + "/" + specimen_id)]
                 if asset.empty:
-                    asset = client.get_dandiset(
-                        str(int(dandiset_id)).zfill(6), "draft"
-                    ).get_asset_by_path("/".join(specimen_id.split("/")[1:]))
+                    logger.info(
+                        "asset not found in cached metadata for %s/%s, fetching from DANDI",
+                        dandiset_id, specimen_id
+                    )
+                    try:
+                        asset = client.get_dandiset(
+                            str(int(dandiset_id)).zfill(6), 
+                        ).get_asset_by_path("/".join(specimen_id.split("/")[1:]))
+                    except Exception as e:
+                        try:
+                            asset = client.get_dandiset(
+                            str(int(dandiset_id)).zfill(6), 
+                        ).get_asset_by_path("/".join(specimen_id.split("/")[2:])) #no idea man... Sometimes this fails, Maybe due to rate limiting? 
+                        except Exception as e:
+                            logger.warning(
+                                "failed to retrieve asset for %s/%s: %s",
+                                dandiset_id, specimen_id, str(e),
+                            )
+                            meta_data_link.append("")
+                            file_link.append("")
+                            continue
                     s3_url = asset.get_content_url(follow_redirects=1, strip_query=True)
                     meta_data_link.append(asset.api_url)
                     file_link.append(s3_url)
                     continue
+                logger.info(
+                    "using cached metadata for %s/%s",
+                    dandiset_id, specimen_id
+                )
                 s3_url = asset["file_link"].values[0]
                 meta_data_link.append(asset["meta_data_link"].values[0])
             else:
