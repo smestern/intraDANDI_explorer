@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="125.64pt" height="31.681406pt" viewBox="0 0 125.64 31.681406" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-30T15:53:16.876331</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 31.681406 
+L 125.64 31.681406 
+L 125.64 0 
+L 0 0 
+L 0 31.681406 
+z
+" style="fill: none"/>
+  </g>
+  <g id="axes_1">
+   <g id="legend_1">
+    <g id="line2d_1">
+     <path d="M 6.84 6.299063 
+L 11.34 6.299063 
+L 15.84 6.299063 
+" style="fill: none; stroke: #898781; stroke-width: 1.2; stroke-linecap: square"/>
+    </g>
+    <g id="text_1">
+     <text style="font-size: 6px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #0b0b0b" x="20.64" y="8.399063" transform="rotate(-0 20.64 8.399063)">Hyperpolarizing step</text>
+    </g>
+    <g id="line2d_2">
+     <path d="M 6.84 15.299531 
+L 11.34 15.299531 
+L 15.84 15.299531 
+" style="fill: none; stroke: #133660; stroke-width: 1.2; stroke-linecap: square"/>
+    </g>
+    <g id="text_2">
+     <text style="font-size: 6px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #0b0b0b" x="20.64" y="17.399531" transform="rotate(-0 20.64 17.399531)">Rheobase step</text>
+    </g>
+    <g id="line2d_3">
+     <path d="M 6.84 24.3 
+L 11.34 24.3 
+L 15.84 24.3 
+" style="fill: none; stroke: #2a78d6; stroke-width: 1.2; stroke-linecap: square"/>
+    </g>
+    <g id="text_3">
+     <text style="font-size: 6px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #0b0b0b" x="20.64" y="26.4" transform="rotate(-0 20.64 26.4)">Strong step</text>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

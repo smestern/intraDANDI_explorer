@@ -43,17 +43,17 @@ def build_server(
     GLOBAL_VARS.para_var_colors = "ap_1_width_0_long_square"
     GLOBAL_VARS.umap_labels = [
         "dandiset label", "species", "brain_region", "contributor",
-        "GMM cluster label",
+        "GMM cluster label", "coarse cluster", "fine cluster",
         {"Ephys Feat:": config.COLS_TO_KEEP},
     ]
     GLOBAL_VARS.plots_path = "."
     GLOBAL_VARS.umap_cols = ["umap X", "umap Y"]
     GLOBAL_VARS.hidden_table = True
     GLOBAL_VARS.hidden_table_vars = ["dandiset label", "species"]
-    GLOBAL_VARS.db_title = "Icephys Dandiset Visualization"
+    GLOBAL_VARS.db_title = "Intra Ephys Dandiset Visualization"
     GLOBAL_VARS.db_description = (
         " This is a visualization of some of the intracellular electrophysiology "
-        "(icephys) data found across the open \n    neuroscience initiative DANDI. "
+        "data found across the open \n    neuroscience initiative DANDI. "
         "The data is visualized using a UMAP and a parallel coordinates plot. "
         "The data is also visualized in a table format. \n    This is currently a "
         "work in progress and is not yet complete. Please cite the original authors "
@@ -101,6 +101,9 @@ def build_server(
     file["tau"] = np.log10(file["tau"] * 1000)
     file["input_resistance"] = np.log10(file["input_resistance"])
     file["GMM cluster label"] = file["GMM cluster label"].apply(lambda x: f"Cluster {x}")
+    for col in ("coarse cluster", "fine cluster"):
+        if col in file:
+            file[col] = file[col].apply(lambda x: f"Cluster {x}")
 
     file = file.sample(frac=1)
     file.to_csv(shuffled_csv)

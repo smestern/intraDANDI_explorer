@@ -1,25 +1,25 @@
 """Per-cell trace and FI curve SVGs for the explorer's plots.
 
 Moved from gigaseal.database.build_database. plot_data reuses the sweeps that
-extract.data_for_specimen_id analyzed (via its CSV row) when available.
+extract.data_for_specimen_id analyzed (via its CSV row) when available, and otherwise
+picks the run with the same ranking.
 """
 import os
 import datetime
 import logging
 
 import numpy as np
-import scipy.stats
 import matplotlib.pyplot as plt
 
-from ipfx.sweep import SweepSet, Sweep
+from ipfx.sweep import SweepSet
 
 from gigaseal.loadFile.loadNWB import loadNWB, GLOBAL_STIM_NAMES
 from gigaseal.featureExtractor import analyze_spike_times
 from gigaseal.database.build_database import glob_files
-from gigaseal.database.protocol_detect import (
-    _iter_current_clamp_traces, match_protocol, get_stim_characteristics,
-    QC_voltage_data, find_time_index,
-)
+from gigaseal.database.protocol_detect import find_time_index
+from gigaseal.database.long_square import select_long_square_run
+
+from .extract import _rank_long_square_group
 
 
 
@@ -137,73 +137,14 @@ def plot_data(specimen_id, file_list=None, target_amps=[-100, -20, 20, 100, 150,
     if data_set is None or len(data_set.dataY)<1:
         print(f"data_set is None for {file_list[specimen_id]}")
         return result
-    #here we are going to perform long square analysis on the data,
-    #hopefully this will be fixed in the future and we can use ipfx for this
-    sweeps = []
-    start_times = []
-    end_times = []
-    sweep_amp = []
-    debug_log = {}
-    for sweep, t, v, i, skip_reason in _iter_current_clamp_traces(data_set):
-        if skip_reason is not None:
-            logging.debug(f"sweep {sweep} skipped: {skip_reason}")
-            continue
-        dt = t[1] - t[0]
-        if sweep_ids is not None:
-            #these already passed protocol matching and QC in data_for_specimen_id
-            if sweep not in sweep_ids:
-                continue
-        else:
-            #try to figure out if this is a long square
-            if match_protocol(i, t) != "Long Square":
-                logging.debug(f"skipping sweep {sweep} because it is not a long square")
-                debug_log[sweep] = "likely not a long square"
-                continue
-
-        #traces[sweep] = (t, v)
-        dt = t[1] - t[0]
-
-        #try to figure out if this is a long square
-        if match_protocol(i, t) != "Long Square":
-            logging.debug(f"skipping sweep {sweep} because it is not a long square")
-            debug_log[sweep] = "likely not a long square"
-            continue
-
-        start_time, duration, amplitude, start_idx, end_idx = get_stim_characteristics(i, t)
-
-        if QC_voltage_data(t, v, i) == 0:
-            logging.debug(f"skipping sweep {sweep} because it failed QC")
-            debug_log[sweep] = "failed QC"
-            continue
-        #construct a sweep obj
-
-        #again floating point errors can cause issues here, so we will round to the nearest ms, pA, and uV
-        #t = np.round(t, decimals=3)
-        i = np.round(i, decimals=1) #since we are doing long square, round to nearest 0.1 pA, 
-        #if this was ramp or noise or something this is bad.
-        #v = np.round(v, decimals=3)
-        debug_log[sweep] = f"passed QC {start_time:.3f}-{start_time+duration:.3f}s"
-        start_times.append(start_time)
-        end_times.append(start_time+duration)
-        sweep_item = Sweep(t, v, i, clamp_mode="CurrentClamp", sampling_rate=int(1/dt), sweep_number=sweep)
-        sweeps.append(sweep_item)
-        sweep_amp.append(amplitude)
-        #volts_range.append([v.min(), v.max()])
-    if len(sweeps) < 1:
+    #with sweep_ids, replot exactly the run data_for_specimen_id analyzed; otherwise pick it the same way
+    run = select_long_square_run(data_set, rank=_rank_long_square_group, sweep_ids=sweep_ids)
+    if len(run.sweeps.sweeps) < 1:
         return result
-    if sweep_ids is not None:
-        #same alignment as data_for_specimen_id: shift each sweep onto the latest onset
-        start_time = max(start_times)
-        end_time = start_time + float(np.median(np.array(end_times) - np.array(start_times)))
-        sweeps = [Sweep(s.t + (start_time - st), s.v, s.i, clamp_mode="CurrentClamp", sampling_rate=s.sampling_rate,
-                        sweep_number=s.sweep_number) for s, st in zip(sweeps, start_times)]
-        idx_pass = np.arange(len(sweeps))
-    else:
-        #get the most common start and end times
-        start_time = scipy.stats.mode(np.array(start_times))[0]
-        end_time = scipy.stats.mode(np.array(end_times))[0]
-        #index out the sweeps that have the most common start and end times
-        idx_pass = np.where((np.array(start_times) == start_time) & (np.array(end_times) == end_time))[0]
+    sweeps = list(run.sweeps.sweeps)
+    start_time, end_time = run.start, run.end
+    sweep_amp = run.amps_used
+    idx_pass = np.arange(len(sweeps))
 
     sweep_amp_filter = np.array(sweep_amp)[idx_pass]
     if len(sweep_amp_filter) < 1:

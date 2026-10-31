@@ -146,7 +146,7 @@ QC_FEATURE_BOUNDS: Dict[str, Tuple[float, float]] = { #These are generally very 
     "ap_mean_upstroke_downstroke_ratio_0_long_square": (0, 50), # unitless
     # First spike <1 ms after step onset is a stim/capacitive artifact. These cells also
     # carry the implausible 250-290 Hz rheobase rates.
-    "latency_0_long_square": (0.001, 2), # seconds
+    "latency_0_long_square": (0.001, 5), # seconds
 }
 
 SCALE_FEATURES: Dict[str, str] = {
@@ -162,6 +162,14 @@ SCALE_FEATURES: Dict[str, str] = {
 # After RobustScaler, clip each feature to +/- this many IQR-units so no single
 # feature can dominate the cosine distance used by UMAP.
 ROBUST_CLIP: float = 5.0
+
+# Two-tier GMM clustering (see clustering.py): N_COARSE_CLUSTERS gross clusters,
+# each split into up to N_FINE_CLUSTERS sub-clusters. A coarse cluster is only
+# split into as many sub-clusters as it has MIN_FINE_CLUSTER_SIZE cells for.
+N_COARSE_CLUSTERS: int = 6
+N_FINE_CLUSTERS: int = 5
+MIN_FINE_CLUSTER_SIZE: int = 30
+CLUSTER_RANDOM_STATE: int = 0
 
 CODES_TO_PLOT_THRESHOLD: float = 0 #if you are updating you don't need to 
 
@@ -291,6 +299,7 @@ __all__ = [
     "Config", "CONFIG", "apply_overrides",
     "COLS_TO_KEEP", "DANDISETS_TO_SKIP", "DANDISETS_TO_INCLUDE",
     "QC_FEATURE_BOUNDS", "SCALE_FEATURES", "ROBUST_CLIP", "CODES_TO_PLOT_THRESHOLD",
+    "N_COARSE_CLUSTERS", "N_FINE_CLUSTERS", "MIN_FINE_CLUSTER_SIZE", "CLUSTER_RANDOM_STATE",
     "SPECIES_REPLACEMENT", "SPECIES_BY_TAXON", "NEURODATA_TYPE_MAP",
     "BRAIN_REGIONS", "BRAIN_REGION_SYNONYMS", "COHERE_MODEL",
     "get_cohere_key",

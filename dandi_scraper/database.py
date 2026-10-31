@@ -1,7 +1,7 @@
 """Merge per-dandiset analysis CSVs into the final database (`all_new.csv`).
 
-Includes imputation, scaling, UMAP/PCA embedding, GMM clustering, and
-per-cell status tracking written to `all_new.errors.csv`.
+Includes imputation, scaling, UMAP/PCA embedding, flat and two-tier GMM
+clustering, and per-cell status tracking written to `all_new.errors.csv`.
 """
 from __future__ import annotations
 
@@ -23,6 +23,7 @@ from sklearn.preprocessing import MinMaxScaler, RobustScaler
 
 from . import config
 from .analysis import get_dandi_metadata, quick_qc, scale_features
+from .clustering import hierarchical_gmm, hierarchical_aggo
 from .logging_utils import configure_logging
 from .metadata_table import apply_table
 
@@ -69,6 +70,10 @@ def run_merge_dandiset(
     """Merge every per-dandiset CSV in ``cache_dir`` into the final database
     written under ``output_dir``."""
     configure_logging()
+    # The merge only saves figures. With the interactive TkAgg backend, Tk objects
+    # can be garbage-collected on a worker thread, which aborts the process with
+    # "Tcl_AsyncDelete: async handler deleted by the wrong thread".
+    plt.switch_backend("Agg")
     cache_dir = cache_dir or config.CONFIG.cache_dir
     output_dir = output_dir or config.CONFIG.output_dir
     os.makedirs(output_dir, exist_ok=True)
@@ -301,6 +306,10 @@ def run_merge_dandiset(
     gmm = GaussianMixture(n_components=20)
     gmm.fit(dataset_numeric)
     dfs["GMM cluster label"] = gmm.predict(dataset_numeric)
+
+    clusters = hierarchical_aggo(dataset_numeric)
+    dfs["coarse cluster"] = clusters.coarse
+    dfs["fine cluster"] = clusters.fine
 
     reducer3 = umap.UMAP(densmap=False, target_weight=0.1, n_neighbors=50, verbose=True)
     reducer3.fit(dataset_numeric, y=dfs["GMM cluster label"]) + reducer2

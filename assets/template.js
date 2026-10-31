@@ -2,29 +2,6 @@
 // wrap this in a on load function to ensure the page is loaded before the script runs
 $(document).ready(function () {
 
-    // Plots for these dandisets are hosted in the companion traces repo
-    // (https://smestern.github.io/dandi_explorer_traces/) instead of ./data/traces/.
-    // Their layout there is <dandiset>/<subject>/<file>.svg (no data/traces/ prefix).
-    var TRACES_REPO_BASE = "https://smestern.github.io/dandi_explorer_traces/";
-    var TRACES_REPO_DANDISETS = new Set([
-        "000117", "001359", "001454", "001455", "001464", "001465", "001534",
-        "001538", "001544", "001545", "001625", "001626", "001746", "001748",
-        "001751", "001753", "001776", "001789", "001841", "001855", "001856",
-        "001858", "001893", "001938",
-        // dandisets that already lived only in the traces repo
-        "001354"
-    ]);
-
-    // Return the base URL + prefix for a given specimen ID's plots.
-    // IDs look like "<dandiset>/<subject>/<file>.nwb".
-    function traceBaseFor(id) {
-        var dandiset = String(id).split("/")[0];
-        if (TRACES_REPO_DANDISETS.has(dandiset)) {
-            return TRACES_REPO_BASE;
-        }
-        return "./data/traces/";
-    }
-
     /* data_tb */
 
     var embed_colors = ['viridis', 'plasma', 'inferno', 'magma', 'cividis', 'Greys', 'Purples', 'Blues', 'Greens', 'Oranges', 'Reds', 'YlOrBr', 'YlOrRd', 'OrRd', 'PuRd', 'RdPu', 'BuPu', 'GnBu', 'PuBu', 'YlGnBu', 'PuBuGn', 'BuGn', 'YlGn']
@@ -33,7 +10,7 @@ $(document).ready(function () {
 
     var para_keys = ["Rheo-AP width Log[(ms)]", "Input resistance Log[(MOhm)]", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag", "species", "brain_region"]
 
-    var umap_labels = ["dandiset label", "species", "brain_region", "contributor", "GMM cluster label", {"Ephys Feat:": ["Input resistance Log[(MOhm)]", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag", "Rheo-AP Threshold (mV)", "Rheo-AP Peak (mV)", "Rheo-AP Upstroke (mV/ms)", "Rheo-AP width Log[(ms)]", "Rheo-AP Fast Trough (mV)", "Mean AP Threshold (mV)", "Mean AP Peak (mV)", "Mean AP Upstroke (mV/ms)", "Mean AP Width Log[(ms)]", "Mean AP Fast Trough (mV)", "Avg Firing Rate (Hz)", "Latency (s)"]}]
+    var umap_labels = ["dandiset label", "species", "brain_region", "contributor", "GMM cluster label", "coarse cluster", "fine cluster", {"Ephys Feat:": ["Input resistance Log[(MOhm)]", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag", "Rheo-AP Threshold (mV)", "Rheo-AP Peak (mV)", "Rheo-AP Upstroke (mV/ms)", "Rheo-AP width Log[(ms)]", "Rheo-AP Fast Trough (mV)", "Mean AP Threshold (mV)", "Mean AP Peak (mV)", "Mean AP Upstroke (mV/ms)", "Mean AP Width Log[(ms)]", "Mean AP Fast Trough (mV)", "Avg Firing Rate (Hz)", "Latency (s)"]}]
 
     /* dataset_label_col */
 
@@ -775,7 +752,7 @@ function dataset_selector(){
 
 
     function maketrace(row) {
-        var url = traceBaseFor(row.ID) + row.ID + ".svg"
+        var url = "./data/traces/" + row.ID + ".svg"
         var html = []
         html.push('<img src="' + url + '" alt="Traces">');
         //get the div
@@ -784,7 +761,7 @@ function dataset_selector(){
 
     };
     function makerheo(row) {
-        var url = traceBaseFor(row.ID) + row.ID + "_rheo.png"
+        var url = "./data/traces/" + row.ID + "_rheo.png"
         var html = []
         html.push('<img src="' + url + '" alt="Rheobase" style="width: 10%">');
         //get the div
@@ -792,7 +769,7 @@ function dataset_selector(){
         div.innerHTML = html.join('');
     };
     function makefi(row) {
-        var url = traceBaseFor(row.ID) + row.ID + "_FI.svg"
+        var url = "./data/traces/" + row.ID + "_FI.svg"
         var html = []
         html.push('<img src="' + url + '" alt="FI">');
         //get the div
