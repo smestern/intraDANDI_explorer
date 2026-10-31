@@ -15,7 +15,7 @@ import numpy as np
 import pandas as pd
 from dandi.dandiapi import DandiAPIClient
 
-from gigaseal.database.build_database import run_analysis
+from .extract import run_analysis
 
 from . import config
 from ._metadata_parser import dandi_meta_parser

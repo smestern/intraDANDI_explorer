@@ -12,7 +12,7 @@ from dandi.dandiapi import DandiAPIClient
 from dandi.download import download as dandi_download
 import dandi.download as dandi_download_utils
 
-from gigaseal.database.build_database import build_dataset_traces
+from .traces import build_dataset_traces
 
 from . import config
 from .analysis import analyze_dandiset, build_dandiset_df, filter_dandiset_df
