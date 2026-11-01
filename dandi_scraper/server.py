@@ -13,6 +13,8 @@ from gigaseal.loadFile.loadNWB import GLOBAL_STIM_NAMES
 
 from . import config
 
+TRACES_REPO_URL = "https://smestern.github.io/dandi_explorer_traces/"
+
 
 def build_server(
     database_csv: Optional[str] = None,
@@ -94,7 +96,40 @@ def build_server(
         "File Download": "links",
     }
 
+    # Card table layout (gigaseal webViz table_style="cards")
+    GLOBAL_VARS.table_style = "cards"
+    GLOBAL_VARS.card_badges = ["species", "brain_region", "brain_subregion", "fine cluster"]
+    GLOBAL_VARS.card_features = [
+        {"col": "Input resistance Log[(MOhm)]", "label": "Input resistance", "unit": "MΩ", "log10": True},
+        {"col": "Tau Log[(ms)]", "label": "Tau", "unit": "ms", "log10": True},
+        {"col": "Baseline voltage (mV)", "label": "Baseline", "unit": "mV"},
+        {"col": "Sag", "label": "Sag"},
+        {"col": "Rheo-AP Threshold (mV)", "label": "AP threshold", "unit": "mV"},
+        {"col": "Rheo-AP Peak (mV)", "label": "AP peak", "unit": "mV"},
+        {"col": "Rheo-AP width Log[(ms)]", "label": "AP width", "unit": "ms", "log10": True},
+        {"col": "Rheo-AP Upstroke (mV/ms)", "label": "AP upstroke", "unit": "mV/ms"},
+        {"col": "Avg Firing Rate (Hz)", "label": "Firing rate", "unit": "Hz"},
+        {"col": "Latency (s)", "label": "Latency", "unit": "s"},
+    ]
+    GLOBAL_VARS.search_cols = [
+        "specimen_id", "dandiset label", "species", "brain_region", "brain_subregion",
+        "contributor", "coarse cluster", "fine cluster",
+    ]
+    GLOBAL_VARS.drop_cols = [
+        "specimen_id.1", "species_meta", "foldername",
+        "supervised umap X", "supervised umap Y", "norm umap X", "norm umap Y",
+    ]
+
     file = pd.read_csv(database_csv)
+
+    # Trace plots live in ./data/traces/<dandiset>/ when present locally, otherwise in
+    # the companion traces repo (same <dandiset>/<subject>/<file> layout).
+    local_traces = set(os.listdir(config.CONFIG.traces_dir)) if os.path.isdir(config.CONFIG.traces_dir) else set()
+    dandisets = set(file["specimen_id"].astype(str).str.split("/").str[0])
+    GLOBAL_VARS.trace_base_url = "./data/traces/"
+    GLOBAL_VARS.trace_base_overrides = {
+        d: TRACES_REPO_URL for d in sorted(dandisets - local_traces)
+    }
 
     file["ap_1_width_0_long_square"] = np.log10(file["ap_1_width_0_long_square"] * 1000)
     file["tau"] = np.log10(file["tau"] * 1000)

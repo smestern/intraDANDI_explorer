@@ -80,18 +80,26 @@ function cellStyle(value, row, index) {
 
 // ============ Filter Functions ============
 
+// Push an ID filter to the table. `source` is "lasso" or "para"; `active` is false when
+// the source has no constraint. The static cards template overrides this.
+function setTableFilter(ids, source, active) {
+    if (ids === null) {
+        $('#table').bootstrapTable('filterBy', {})
+    } else {
+        $('#table').bootstrapTable('filterBy', {'ID': ids});
+    }
+    //trigger a table refresh to make sure the table updates
+    $table.bootstrapTable('refresh');
+}
+
 function filterByID(ids) {
     if (ids === undefined || ids.length <= 0) {
-        $('#table').bootstrapTable('filterBy', {})
+        setTableFilter(null, "lasso", false);
         crossfilter(data_tb, [], "scatter");
-        //trigger a table refresh to make sure the table updates
-        $table.bootstrapTable('refresh');
     }
     else {
-        $('#table').bootstrapTable('filterBy',{'ID': ids});
+        setTableFilter(ids, "lasso", true);
         crossfilter(data_tb, ids, "scatter");
-        //trigger a table refresh to make sure the table updates
-        $table.bootstrapTable('refresh');
     }
 }
 
@@ -139,8 +147,9 @@ function filterByPlot(keys, ranges){
         var newArray = data_tb;
     } else {
         //filter the data_tb by the selected IDs
+        var selectedSet = new Set(selected);
         var newArray = data_tb.filter(function (el) {
-            return selected.includes(el.ID);
+            return selectedSet.has(el.ID);
         })
     }
     //now we want to filter the data_tb by the selected ranges
@@ -158,11 +167,10 @@ function filterByPlot(keys, ranges){
         });	
     });
     let result = newArray.map(function(a) { return a.ID; });
+    var active = ranges.some(function (r) { return r[0] != -9999; });
 
-    $('#table').bootstrapTable('filterBy',{'ID': result});
+    setTableFilter(result, "para", active);
     crossfilter(data_tb, result, "parallel");
-    //trigger a table refresh to make sure the table updates
-    $table.bootstrapTable('refresh');
 }
 
 function crossfilter(data_tb, IDs, sender='') { 
