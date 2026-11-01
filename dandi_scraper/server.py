@@ -42,8 +42,7 @@ def build_server(
     ]
     GLOBAL_VARS.para_var_colors = "ap_1_width_0_long_square"
     GLOBAL_VARS.umap_labels = [
-        "dandiset label", "species", "brain_region", "contributor",
-        "GMM cluster label", "coarse cluster", "fine cluster",
+        "dandiset label", "species", "brain_region", "contributor", "coarse cluster", "fine cluster",
         {"Ephys Feat:": config.COLS_TO_KEEP},
     ]
     GLOBAL_VARS.plots_path = "."

@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-30T15:53:16.110439</dc:date>
+    <dc:date>2026-11-01T06:58:33.527297</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -1762,7 +1762,7 @@ L 124.045915 80.078337
 L 124.07978 80.095746 
 L 124.181374 79.939067 
 L 124.181374 79.939067 
-" clip-path="url(#pab59fa4b81)" style="fill: none; stroke: #898781; stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#p471d25e74b)" style="fill: none; stroke: #898781; stroke-width: 0.7; stroke-linecap: square"/>
    </g>
    <g id="line2d_2">
     <path d="M 1.443386 80.58319 
@@ -3139,7 +3139,7 @@ L 124.047608 81.471033
 L 124.133964 81.418807 
 L 124.183068 81.52326 
 L 124.183068 81.52326 
-" clip-path="url(#pab59fa4b81)" style="fill: none; stroke: #1baf7a; stroke-width: 0.6; stroke-linecap: square"/>
+" clip-path="url(#p471d25e74b)" style="fill: none; stroke: #1baf7a; stroke-width: 0.6; stroke-linecap: square"/>
    </g>
    <g id="line2d_3">
     <path d="M 1.441693 79.886841 
@@ -4935,17 +4935,17 @@ L 124.050995 80.565781
 L 124.159362 80.757277 
 L 124.191534 80.565781 
 L 124.191534 80.565781 
-" clip-path="url(#pab59fa4b81)" style="fill: none; stroke: #0c4f37; stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#p471d25e74b)" style="fill: none; stroke: #0c4f37; stroke-width: 0.7; stroke-linecap: square"/>
    </g>
    <g id="scalebar_t">
     <path d="M 107.267586 22.356862 
 L 124.2 22.356862 
-" clip-path="url(#pab59fa4b81)" style="fill: none; stroke: #0b0b0b; stroke-width: 0.8"/>
+" clip-path="url(#p471d25e74b)" style="fill: none; stroke: #0b0b0b; stroke-width: 0.8"/>
    </g>
    <g id="scalebar_v">
     <path d="M 124.2 22.356862 
 L 124.2 10.685283 
-" clip-path="url(#pab59fa4b81)" style="fill: none; stroke: #0b0b0b; stroke-width: 0.8"/>
+" clip-path="url(#p471d25e74b)" style="fill: none; stroke: #0b0b0b; stroke-width: 0.8"/>
    </g>
    <g id="text_1">
     <text style="font-size: 5.5px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(1.44 103.799039)">Common marmoset · DANDI 001776</text>
@@ -4963,7 +4963,7 @@ L 124.2 10.685283
   </g>
  </g>
  <defs>
-  <clipPath id="pab59fa4b81">
+  <clipPath id="p471d25e74b">
    <rect x="1.44" y="9.518125" width="122.76" height="88.704"/>
   </clipPath>
  </defs>

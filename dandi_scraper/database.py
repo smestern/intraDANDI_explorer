@@ -31,35 +31,46 @@ logger = logging.getLogger("dandi_scraper.database")
 
 
 def _drop_duplicate_cells(dfs: pd.DataFrame, feature_cols, cell_status: dict) -> pd.DataFrame:
-    """Drop cells whose features exactly match another cell's.
+    """Drop cells that are another cell's recording analysed a second time.
 
     The same recording is often published in several dandisets (e.g. Allen's
-    000636 re-releases 000142/000209/000570), or saved twice within one dandiset
-    under different session names. Identical feature vectors only come from the
-    same file analysed twice, so these are exact duplicates. Keep the copy from
+    000636 re-releases 000109/000142/000209/000570, 001455 re-releases 000020),
+    or saved twice within one dandiset under different session names. Two cells
+    are copies if their features match exactly, or if their NWB files share a
+    name: DANDI names files ``sub-<id>_ses-<id>[_obj-<object id>]_icephys.nwb``,
+    so a re-released file keeps its name. Re-released copies can differ at
+    float32 precision (~1e-7 relative), which breaks the exact feature match,
+    so the file name catches copies the feature match misses. Keep the copy from
     the highest dandiset id (the newest release) and record the other copies'
     dandisets in ``also_in``.
     """
-    key = pd.util.hash_pandas_object(dfs[feature_cols], index=False)
-    order = pd.DataFrame({"key": key, "label": dfs["dandiset label"]}).sort_values(
-        "label", ascending=False, kind="stable"
-    )
-
-    is_dup = order.duplicated("key", keep="first")
-    kept_by_key = pd.Series(order.index[~is_dup], index=order.loc[~is_dup, "key"])
-    dup_idx = order.index[is_dup]
-    kept_idx = kept_by_key.loc[order.loc[is_dup, "key"]].values
-
+    keys = {
+        "same features as": lambda df: pd.util.hash_pandas_object(df[feature_cols], index=False).values,
+        "same NWB file as": lambda df: df["specimen_id"].astype(str).str.rsplit("/", n=1).str[-1].values,
+    }
     dfs = dfs.copy()
     dfs["also_in"] = ""
-    for d, k in zip(dup_idx, kept_idx):
-        cell_status[dfs.at[d, "id_full"]] = ("dropped_duplicate", f"same features as {dfs.at[k, 'id_full']}")
-        dfs.at[k, "also_in"] = ";".join(filter(None, [dfs.at[k, "also_in"], dfs.at[d, "dandiset label"]]))
-    logger.info(
-        "de-duplication dropped %d cells (%d kept cells had copies)",
-        len(dup_idx), len(set(kept_idx)),
-    )
-    return dfs.drop(index=dup_idx)
+    for reason, key_fn in keys.items():
+        order = pd.DataFrame({"key": key_fn(dfs), "label": dfs["dandiset label"]}, index=dfs.index).sort_values(
+            "label", ascending=False, kind="stable"
+        )
+
+        is_dup = order.duplicated("key", keep="first")
+        kept_by_key = pd.Series(order.index[~is_dup], index=order.loc[~is_dup, "key"])
+        dup_idx = order.index[is_dup]
+        kept_idx = kept_by_key.loc[order.loc[is_dup, "key"]].values
+
+        for d, k in zip(dup_idx, kept_idx):
+            cell_status[dfs.at[d, "id_full"]] = ("dropped_duplicate", f"{reason} {dfs.at[k, 'id_full']}")
+            dfs.at[k, "also_in"] = ";".join(
+                filter(None, [dfs.at[k, "also_in"], dfs.at[d, "also_in"], dfs.at[d, "dandiset label"]])
+            )
+        logger.info(
+            "de-duplication (%s) dropped %d cells (%d kept cells had copies)",
+            reason, len(dup_idx), len(set(kept_idx)),
+        )
+        dfs = dfs.drop(index=dup_idx)
+    return dfs
 
 
 def run_merge_dandiset(
@@ -289,8 +300,8 @@ def run_merge_dandiset(
     reducer = umap.UMAP(densmap=False, min_dist=0.3, spread=10, metric="cosine",
                         n_neighbors=500, verbose=True)
     reducer.fit_transform(dataset_numeric)
-    reducer2 = umap.UMAP(n_neighbors=150, min_dist=0.1, spread=2,
-                         repulsion_strength=5, metric="cosine")
+    reducer2 = umap.UMAP() #(n_neighbors=150, min_dist=0.1, spread=2,
+                        # repulsion_strength=5, metric="cosine")
     reducer2.fit(dataset_numeric)
 
     dfs["umap X"] = reducer2.embedding_[:, 0]
