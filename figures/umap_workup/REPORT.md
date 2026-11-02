@@ -54,7 +54,8 @@ returns 34 dense regions rather than 6, so the island table in section 4 does no
 
 **Corrections to the first version of this report.** Per-cell sampling rates replaced the 6-file sample. That
 removed two rates that no file has (37.5 and 75 kHz, medians over mixed files) and the claims that 10 kHz causes
-flatter, wider spikes and that the 10 kHz sets are exactly the non-cortical ones. An earlier note also blamed
+flatter, wider spikes and that the 10 kHz sets are exactly the non-cortical ones. A later direct test (section 3)
+found that sampling explains only a small part of the gap. An earlier note also blamed
 the species loss on dropping `ap_mean_width`; it comes from the repulsion change.
 
 ## Bottom line
@@ -73,7 +74,8 @@ the species loss on dropping `ap_mean_width`; it comes from the repulsion change
    cluster vs. dandiset AMI = 0.14).
 4. **The technical drivers are identifiable but not correctable from what is in the CSV:**
    - recording temperature (AP width, peak)
-   - sampling rate, which tracks upstroke and width across datasets but can't be separated from lab
+   - sampling rate, which tracks upstroke and width across datasets, though a direct test shows it explains
+     only a small part of that (section 3)
    - the step protocol (rheobase-sweep rate)
 
    A liquid-junction-potential offset is **not** a major driver. AP peak varies most by dataset (±10 mV), but
@@ -175,7 +177,7 @@ The two sets mix at only about 0.39 of random in the site UMAP (three seeded ref
 DANDI metadata for most sets, so this cannot be regressed out. It is a plausible major reason AP width separates
 labs, though this one pair is the only direct evidence here.
 
-### Sampling rate: tracks spike kinetics across datasets, but the cause is unresolved
+### Sampling rate: tracks spike kinetics across datasets, but explains little of it
 Per-cell rates from the raw NWB files (`sampling_rates.csv`):
 
 | sampling rate | datasets |
@@ -198,7 +200,43 @@ That does not show that sampling causes the difference:
 - 001746 goes the other way: its 50 kHz cells look slower than its 25 kHz cells (upstroke 123 vs 240 mV/ms, width
   3.3 vs 2.0 ms). That points to a split inside the dataset and is worth a look.
 
-Downsampling 50 kHz traces to 10 kHz and remeasuring would test this directly; that has not been done.
+**Direct test: sampling explains little of the gap.** `tools/downsample_test.py` took 545 cells recorded at
+exactly 50 kHz (6 Allen datasets, fast-spiking and other cells), degraded their sweeps and reran the same feature
+extraction. Undegraded, it reproduces the database exactly on all 13 features checked, so every difference
+below comes from the degradation. Results are in `figures/downsampling_test/`.
+
+| feature | real gap, 10 vs 50 kHz sets | 10 kHz | 10 kHz + 5 kHz Bessel | 10 kHz + 2 kHz Bessel |
+|---|---|---|---|---|
+| upstroke (mV/ms) | −169 | −58 | −68 | −105 |
+| width (ms) | +0.87 | +0.08 | +0.10 | +0.12 |
+| peak (mV) | −15 | −0.4 | −0.9 | −3.9 |
+| threshold (mV) | −5.2 | −0.5 | −0.5 | −0.7 |
+
+![](../downsampling_test/02_effect_vs_real_gap.png)
+![](../downsampling_test/03_example_spikes.png)
+
+- **Width, peak and threshold:** the real gaps are mostly not sampling: 9–14% of the width gap and 10–13% of the
+  threshold gap. Peak is 3–6% except under the heavy 2 kHz filter (26%), which mainly clips fast-spiking cells.
+- **Upstroke:** the only feature with a large effect, and that table overstates it for real 10 kHz cells, because
+  slower spikes lose less. The test cells lost 25% above 400 mV/ms but only 7–11% below 150 mV/ms, and the 10 kHz
+  sets have a median upstroke of 135. Extrapolating, sampling accounts for roughly 6–15% of the upstroke gap.
+- **Our analysis filter does the upstroke damage, not the resampling.** The pipeline caps its dv/dt filter at
+  0.8 × Nyquist, so 10 kHz data is filtered at 4 kHz and 50 kHz data at 10 kHz. Applying the 4 kHz filter to
+  undecimated 50 kHz data lowers upstroke by 25%, more than decimating to 10 kHz does (18%). It leaves width and
+  peak untouched, since those are measured on the unfiltered voltage.
+- **Unaffected:** input resistance, tau, V baseline, sag, latency, f-I slope and fast trough barely move (at most
+  0.1%). 25 kHz has almost no effect on anything (upstroke +2%).
+- **Position on the map:** degrading moves a cell less than the typical distance to its neighbours (median cosine
+  distance 0.016–0.021, or 0.058 at 2 kHz, against 0.072). Neighbours from real 10 kHz sets go from 1.3% to
+  2.4–3.7%, still below their 4.4% share of the database. Degraded Allen cells do not become like 10 kHz cells.
+
+So 10 kHz sets differ mainly for other reasons: lab, region, cell type or temperature. For example, 001538's 1.9 ms
+spikes would be about 0.1 ms wider from sampling.
+
+Limits of the test: all test cells are from Allen rigs, the real sets' analog filters are unknown, and the Allen
+traces already carry their own acquisition filter. At 10 kHz, width is also quantized to 0.1 ms steps. One cell of
+the 545 (in 001359) stopped reaching the spike-detection criteria once degraded.
+
 Removing the upstroke and width features gives the largest single drop in batch score, 1.88 → 1.67
 (`feature_ablation.csv`), whatever the cause.
 
