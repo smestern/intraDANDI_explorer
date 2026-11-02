@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     var para_keys = ["Rheo-AP width Log[(ms)]", "Input resistance Log[(MOhm)]", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag", "species", "brain_region"]
 
-    var umap_labels = ["dandiset label", "species", "brain_region", "contributor", "coarse cluster", "fine cluster", {"Ephys Feat:": ["Input resistance Log[(MOhm)]", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag", "Rheo-AP Threshold (mV)", "Rheo-AP Peak (mV)", "Rheo-AP Upstroke (mV/ms)", "Rheo-AP width Log[(ms)]", "Rheo-AP Fast Trough (mV)", "Mean AP Threshold (mV)", "Mean AP Peak (mV)", "Mean AP Upstroke (mV/ms)", "Mean AP Width Log[(ms)]", "Mean AP Fast Trough (mV)", "Avg Firing Rate (Hz)", "Latency (s)"]}]
+    var umap_labels = ["dandiset label", "species", "brain_region", "contributor", "Lab family", "sampling rate (kHz)", "step duration (s)", "coarse cluster", "fine cluster", {"Ephys Feat:": ["Input resistance Log[(MOhm)]", "Tau Log[(ms)]", "Baseline voltage (mV)", "Sag", "Rheo-AP Threshold (mV)", "Rheo-AP Peak (mV)", "Rheo-AP Upstroke (mV/ms)", "Rheo-AP width Log[(ms)]", "Rheo-AP Fast Trough (mV)", "f-I slope (Hz/pA)", "Latency (s)"]}]
 
     /* dataset_label_col */
 

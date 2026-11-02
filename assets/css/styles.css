@@ -115,10 +115,6 @@ img {
   margin-bottom: 6px;
 }
 
-#plot-col {
-  flex-grow: 1;
-  flex-basis: 60%;
-}
 
 img[alt="FI"] {
   padding-right: 20px;
@@ -130,12 +126,6 @@ img[alt="FI"] {
   /*max-height: 0px;*/
 }
 
-@media (min-width: 1200px) {
-  #header-row {
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-}
 
 @media screen and (max-width: 600px) {
   img[alt="FI"] {
@@ -147,9 +137,6 @@ img[alt="FI"] {
   padding: 0.5rem;
 }
 
-#header-row {
-  max-height: 25%;
-}
 
 .fs-6 {
   font-size: 0.90rem!important;
@@ -159,25 +146,68 @@ img[alt="FI"] {
   font-size: 0.90rem;
 }
 
-@media (min-width:1200px) {
-  .h4, h4 {
-    font-size: 1rem;
-  }
+.h4, h4 {
+  font-size: 1rem;
 }
 
 
-/* ============ Stacked plot cards ============ */
+/* ============ Page layout ============ */
+/* One centred column shared by the plots, toolbar and table, so they line up
+   and never grow past --page-max on very wide screens. */
+
+:root {
+  --page-max: 1920px;
+  --page-gap: 1rem;
+}
+
+.page-wrap {
+  width: 100%;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 12px clamp(12px, 2vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--page-gap);
+}
+
+.page-header {
+  display: grid;
+  grid-template-columns: clamp(230px, 18%, 320px) minmax(0, 1fr);
+  gap: var(--page-gap);
+  align-items: start;
+}
+
+.page-side, .page-plots {
+  display: flex;
+  flex-direction: column;
+  gap: var(--page-gap);
+  min-width: 0;
+}
 
 #graphDiv_scatter {
-  height: 55vh;
-  min-height: 420px;
+  height: clamp(360px, 58vh, 820px);
+}
+
+/* below lg the sidebar moves above the plots, its cards side by side */
+@media screen and (max-width: 991.98px) {
+  .page-header {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .page-side {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+@media screen and (max-width: 599.98px) {
+  .page-side {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* ============ Card table (table_style: cards) ============ */
 
-#table-toolbar-row, #table-row {
-  width: 100%;
-}
 
 #table-toolbar .card-body {
   display: flex;
