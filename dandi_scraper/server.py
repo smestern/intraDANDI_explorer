@@ -43,8 +43,11 @@ def build_server(
         "sag_nearest_minus_100", "species", "brain_region",
     ]
     GLOBAL_VARS.para_var_colors = "ap_1_width_0_long_square"
+    # Lab family, sampling rate and step duration shape the features (rig, filtering, protocol)
+    # but are not corrected for; they are offered as colours so their effect is visible.
     GLOBAL_VARS.umap_labels = [
-        "dandiset label", "species", "brain_region", "contributor", "coarse cluster", "fine cluster",
+        "dandiset label", "species", "brain_region", "contributor", "lab",
+        "sampling rate (kHz)", "step duration (s)", "coarse cluster", "fine cluster",
         {"Ephys Feat:": config.COLS_TO_KEEP},
     ]
     GLOBAL_VARS.plots_path = "."
@@ -58,7 +61,11 @@ def build_server(
         "The data is visualized using a UMAP and a parallel coordinates plot. "
         "The data is also visualized in a table format. \n    This is currently a "
         "work in progress and is not yet complete. Please cite the original authors "
-        "of the data when using this data. "
+        "of the data when using this data. \n    Cells are placed by their features alone, with no "
+        "correction between datasets. Datasets recorded on the same rig and protocol (e.g. the Allen "
+        "Institute releases) mix well, while differences between labs can reflect recording temperature, "
+        "sampling rate and step protocol as well as real biology. Use the lab, sampling rate and step "
+        "duration colourings to explore this. "
     )
     GLOBAL_VARS.db_subtitle = ""
     GLOBAL_VARS.db_links = {
@@ -84,6 +91,8 @@ def build_server(
         "ap_mean_width_0_long_square": "Mean AP Width Log[(ms)]",
         "ap_mean_fast_trough_v_0_long_square": "Mean AP Fast Trough (mV)",
         "avg_rate_0_long_square": "Avg Firing Rate (Hz)",
+        "fi_linear_fit_slope": "f-I slope (Hz/pA)",
+        "lab": "Lab family",
         "latency_0_long_square": "Latency (s)",
         "v_baseline": "Baseline voltage (mV)",
         "dandiset_link": "View Dandiset",
@@ -109,11 +118,12 @@ def build_server(
         {"col": "Rheo-AP width Log[(ms)]", "label": "AP width", "unit": "ms", "log10": True},
         {"col": "Rheo-AP Upstroke (mV/ms)", "label": "AP upstroke", "unit": "mV/ms"},
         {"col": "Avg Firing Rate (Hz)", "label": "Firing rate", "unit": "Hz"},
+        {"col": "f-I slope (Hz/pA)", "label": "f-I slope", "unit": "Hz/pA"},
         {"col": "Latency (s)", "label": "Latency", "unit": "s"},
     ]
     GLOBAL_VARS.search_cols = [
         "specimen_id", "dandiset label", "species", "brain_region", "brain_subregion",
-        "contributor", "coarse cluster", "fine cluster",
+        "contributor", "lab", "coarse cluster", "fine cluster",
     ]
     GLOBAL_VARS.drop_cols = [
         "specimen_id.1", "species_meta", "foldername",
@@ -138,6 +148,10 @@ def build_server(
     for col in ("coarse cluster", "fine cluster"):
         if col in file:
             file[col] = file[col].apply(lambda x: f"Cluster {x}")
+    # Few distinct values, so colour them as categories rather than a continuous scale.
+    for col, unit in (("sampling rate (kHz)", "kHz"), ("step duration (s)", "s")):
+        if col in file:
+            file[col] = file[col].apply(lambda x: f"{x:g} {unit}" if pd.notna(x) else "unknown")
 
     file = file.sample(frac=1)
     file.to_csv(shuffled_csv)

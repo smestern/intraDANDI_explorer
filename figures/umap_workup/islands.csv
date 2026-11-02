@@ -1,0 +1,7 @@
+island,n,x,y,top datasets,top dataset share,n datasets >=5%,species,regions,FS share,mean imputed features,distinguishing features
+1,64,7.89960615,6.8347143,000035 86%; 000008 5%; 001065 2%,0.859375,1,House mouse 92%; Human 6%,Neocortex 98%; Unknown 2%,0.0,0.0,AP1 fast trough +1.3; APmean fast trough +1.3; Rin -1.2; AP1 threshold +0.9
+2,262,9.132292,9.85884,001455 82%; 001938 11%; 001351 2%,0.8244274809160306,2,House mouse 97%; Human 1%,Neocortex 85%; Unknown 15%,0.0,0.0,APmean fast trough +1.2; AP1 fast trough +0.7; sag +0.7; Rin -0.6
+5,315,2.0010839,4.7419066,000008 78%; 000035 15%; 000636 2%,0.7841269841269841,2,House mouse 96%; Human 4%,Neocortex 98%; Unknown 1%,0.006349206349206349,0.0,rheobase rate +1.3; APmean upstroke -0.7; tau -0.7; AP1 upstroke -0.7
+3,124,3.9105407,4.5029208999999994,000008 73%; 001545 14%; 001746 4%,0.7338709677419355,2,House mouse 91%; Cynomolgus macaque 4%,Neocortex 83%; Hippocampus 14%,0.0,0.008064516129032258,rheobase rate +1.3; AP1 threshold -1.0; APmean upstroke -0.9; APmean threshold -0.9
+0,83,5.4157743,3.5331259,000148 36%; 000295 25%; 000245 16%,0.3614457831325301,5,House mouse 83%; Unknown species 14%,Spinal cord 92%; Basal forebrain 6%,0.0,0.03614457831325301,APmean upstroke -3.6; AP1 upstroke -3.5; AP1 width +2.4; APmean width +2.2
+4,13815,4.4773135,8.577643,000020 31%; 001938 9%; 001455 9%,0.3054650741947159,4,House mouse 61%; Human 21%,Neocortex 71%; Unknown 26%,0.13420195439739413,0.015345638798407528,rheobase rate -0.8; APmean upstroke +0.6; AP1 upstroke +0.6; AP1 threshold +0.3

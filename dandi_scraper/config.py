@@ -96,15 +96,16 @@ def apply_overrides(**kwargs) -> Config:
 # Analysis constants (lifted verbatim from the previous monofile)
 # ---------------------------------------------------------------------------
 
+# The ap_mean_* versions of the AP features are left out: they correlate r >= 0.97 with
+# ap_1_*, so keeping both double-weights spike shape. The f-I slope stands in for
+# avg_rate_0_long_square, which for the ~54% of cells that fire one spike at rheobase is
+# just 1 / step duration (see figures/umap_workup/REPORT.md).
 COLS_TO_KEEP: List[str] = [
     "input_resistance", "tau", "v_baseline", "sag_nearest_minus_100",
     "ap_1_threshold_v_0_long_square", "ap_1_peak_v_0_long_square",
     "ap_1_upstroke_0_long_square",
     "ap_1_width_0_long_square", "ap_1_fast_trough_v_0_long_square",
-    "ap_mean_threshold_v_0_long_square", "ap_mean_peak_v_0_long_square",
-    "ap_mean_upstroke_0_long_square",
-    "ap_mean_width_0_long_square", "ap_mean_fast_trough_v_0_long_square",
-    "avg_rate_0_long_square", "latency_0_long_square",
+    "fi_linear_fit_slope", "latency_0_long_square",
 ]
 
 DANDISETS_TO_SKIP: List[str] = [

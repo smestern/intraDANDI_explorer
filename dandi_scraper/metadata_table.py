@@ -1,7 +1,9 @@
 """Per-dandiset metadata table (`dandiset_metadata.csv`) and normalisation of
 brain-region / species values.
 
-The CSV is the source of truth for `brain_region` and `brain_subregion`. Rows
+The CSV is the source of truth for `brain_region`, `brain_subregion` and `lab`
+(the lab family, i.e. the rig/protocol a dandiset was recorded on; blank means a
+lab with a single dandiset here, shown as "Other labs"). Rows
 are hand-reviewed (`reviewed=True`); dandisets missing from it get an
 LLM-suggested row appended with `reviewed=False` for later review.
 """
@@ -19,9 +21,10 @@ logger = logging.getLogger("dandi_scraper.metadata_table")
 
 TABLE_PATH = os.path.join(os.path.dirname(__file__), "dandiset_metadata.csv")
 COLUMNS = [
-    "dandiset_id", "title", "brain_region", "brain_subregion",
+    "dandiset_id", "title", "brain_region", "brain_subregion", "lab",
     "source", "confidence", "reviewed", "notes",
 ]
+OTHER_LAB = "Other labs"
 _REGION_LOOKUP = {r.lower(): r for r in config.BRAIN_REGIONS}
 
 
@@ -64,8 +67,10 @@ def normalize_species(name, identifier: Optional[str] = None):
 def load_table(path: str = TABLE_PATH) -> pd.DataFrame:
     if not os.path.exists(path):
         return pd.DataFrame(columns=COLUMNS).set_index("dandiset_id")
-    text_cols = ["title", "brain_subregion", "source", "confidence", "notes"]
+    text_cols = ["title", "brain_subregion", "lab", "source", "confidence", "notes"]
     df = pd.read_csv(path, dtype={c: str for c in text_cols})
+    if "lab" not in df:
+        df["lab"] = ""
     df["dandiset_id"] = df["dandiset_id"].apply(_as_int_id)
     df["reviewed"] = df["reviewed"].astype(str).str.lower().isin(["true", "1", "yes"])
     df[text_cols] = df[text_cols].fillna("")
@@ -79,7 +84,7 @@ def load_table(path: str = TABLE_PATH) -> pd.DataFrame:
 
 
 def save_table(df: pd.DataFrame, path: str = TABLE_PATH) -> None:
-    df.sort_index().reset_index()[COLUMNS].to_csv(path, index=False)
+    df.sort_index().reset_index().reindex(columns=COLUMNS).to_csv(path, index=False)
 
 
 # ---------------------------------------------------------------------------
@@ -130,7 +135,7 @@ def apply_table(
     species_cols=("species", "species_meta"),
     path: str = TABLE_PATH,
 ) -> pd.DataFrame:
-    """Overwrite brain_region/brain_subregion from the table and normalise
+    """Overwrite brain_region/brain_subregion/lab from the table and normalise
     species, so cached metadata picks up table edits without refetching."""
     meta_df = meta_df.copy()
     table = load_table(path)
@@ -147,6 +152,7 @@ def apply_table(
     meta_df.loc[~in_table, "brain_subregion"] = legacy.str[1]
     meta_df.loc[in_table, "brain_region"] = ids[in_table].map(table["brain_region"])
     meta_df.loc[in_table, "brain_subregion"] = ids[in_table].map(table["brain_subregion"])
+    meta_df["lab"] = ids.map(table["lab"]).replace("", None).fillna(OTHER_LAB)
 
     for col in species_cols:
         if col in meta_df:

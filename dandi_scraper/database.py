@@ -10,6 +10,7 @@ import logging
 import os
 from typing import Optional
 
+import h5py
 import joblib
 import matplotlib.pyplot as plt
 import numpy as np
@@ -73,6 +74,44 @@ def _drop_duplicate_cells(dfs: pd.DataFrame, feature_cols, cell_status: dict) ->
     return dfs
 
 
+def _read_sampling_rate(path: str) -> float:
+    """Median sampling rate (kHz) of a file's current clamp series, NaN if unreadable."""
+    try:
+        with h5py.File(path, "r") as h:
+            series = list(h["acquisition"].values())
+            cc = [g for g in series if g.attrs.get("neurodata_type") in ("CurrentClampSeries", b"CurrentClampSeries")]
+            rates = []
+            for g in cc or series:
+                st = g.get("starting_time")
+                if st is not None and "rate" in st.attrs:
+                    rates.append(float(st.attrs["rate"]))
+                elif "timestamps" in g and len(g["timestamps"]) > 1:
+                    rates.append(1.0 / float(np.diff(g["timestamps"][:2])[0]))
+            return float(np.median(rates)) / 1000 if rates else np.nan
+    except Exception as e:  # missing or unreadable file
+        logger.warning("could not read sampling rate from %s: %s", path, e)
+        return np.nan
+
+
+def _sampling_rates(specimen_ids: pd.Series, cache_dir: str, rates_csv: str) -> pd.Series:
+    """Per-cell sampling rate (kHz), read from the raw NWBs once and cached in ``rates_csv``.
+
+    Spike upstroke and width track it across datasets, though it is confounded with lab and
+    region, so it is kept as a column to colour the explorer by rather than corrected for.
+    """
+    cached = (pd.read_csv(rates_csv, index_col=0)["sampling_rate_khz"]
+              if os.path.exists(rates_csv) else pd.Series(dtype=float, name="sampling_rate_khz"))
+    todo = sorted(set(specimen_ids) - set(cached.dropna().index))
+    if todo:
+        logger.info("reading sampling rate from %d NWB files", len(todo))
+        rates = joblib.Parallel(n_jobs=8)(
+            joblib.delayed(_read_sampling_rate)(os.path.join(cache_dir, sid)) for sid in todo)
+        cached = pd.concat([cached.drop(index=todo, errors="ignore"),
+                            pd.Series(rates, index=todo, name="sampling_rate_khz")])
+        cached.rename_axis("specimen_id").to_csv(rates_csv)
+    return specimen_ids.map(cached)
+
+
 def run_merge_dandiset(
     cache_dir: Optional[str] = None,
     output_dir: Optional[str] = None,
@@ -93,6 +132,7 @@ def run_merge_dandiset(
     merged_errors_csv = os.path.join(output_dir, "all_new.errors.csv")
     dataset_numeric_pkl = os.path.join(output_dir, "dataset_numeric.pkl")
     dataset_numeric_norm_pkl = os.path.join(output_dir, "dataset_numeric_norm.pkl")
+    sampling_rates_csv = os.path.join(output_dir, "sampling_rates.csv")
 
     # cell_status tracks each id_full through the pipeline; terminal status is
     # written to all_new.errors.csv at the end so every missing cell can be
@@ -287,8 +327,14 @@ def run_merge_dandiset(
         if _id not in cell_status or cell_status[_id][0] == "loaded":
             cell_status[_id] = ("dropped_final_align", "row missing after final dropna/align")
 
+    # Recording-setup columns to colour the explorer by: they shape the features but are
+    # not corrected for (see figures/umap_workup/REPORT.md).
+    window = dfs["analyzed_window"].str.split("-", expand=True).astype(float)
+    dfs["step duration (s)"] = (window[1] - window[0]).round(2)
+    dfs["sampling rate (kHz)"] = _sampling_rates(dfs["specimen_id"], cache_dir, sampling_rates_csv).round(1)
+
     logger.info("Dumping dataset_numeric to %s", dataset_numeric_pkl)
-    #joblib.dump(dataset_numeric, dataset_numeric_pkl)
+    joblib.dump(dataset_numeric, dataset_numeric_pkl)
 
     #logger info about scaling
     logger.info("Scaling dataset_numeric with RobustScaler")
@@ -300,8 +346,10 @@ def run_merge_dandiset(
     reducer = umap.UMAP(densmap=False, min_dist=0.3, spread=10, metric="cosine",
                         n_neighbors=500, verbose=True)
     reducer.fit_transform(dataset_numeric)
-    reducer2 = umap.UMAP() #(n_neighbors=150, min_dist=0.1, spread=2,
-                        # repulsion_strength=5, metric="cosine")
+    # repulsion_strength=1 (the UMAP default) mixes same-lab datasets better than 5 did
+    # (figures/umap_workup/REPORT.md, variant D).
+    reducer2 = umap.UMAP(n_neighbors=150, min_dist=0.1, spread=2,
+                        repulsion_strength=1, metric="cosine")
     reducer2.fit(dataset_numeric)
 
     dfs["umap X"] = reducer2.embedding_[:, 0]
@@ -335,8 +383,8 @@ def run_merge_dandiset(
             continue
         scaler = MinMaxScaler()
         dataset_numeric_norm.loc[temp_df.index, :] = scaler.fit_transform(temp_df.values)
-    reducer4 = umap.UMAP(densmap=False, min_dist=0.3, spread=10, metric="cosine",
-                         n_neighbors=500, verbose=True)
+    reducer4 = umap.UMAP(densmap=False, metric="cosine",
+                         n_neighbors=100, verbose=True)
     embedding = reducer4.fit_transform(dataset_numeric_norm)
     dfs["norm umap X"] = embedding[:, 0]
     dfs["norm umap Y"] = embedding[:, 1]
