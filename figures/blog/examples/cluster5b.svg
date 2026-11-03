@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-11-02T15:03:40.121104</dc:date>
+    <dc:date>2026-11-03T15:43:36.924053</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -484,7 +484,7 @@ L 115.302014 84.164264
 L 115.459485 84.119773 
 L 124.194917 84.147148 
 L 124.194917 84.147148 
-" clip-path="url(#pc3e64db79f)" style="fill: none; stroke: #898781; stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#p15d319bd88)" style="fill: none; stroke: #898781; stroke-width: 0.7; stroke-linecap: square"/>
    </g>
    <g id="line2d_2">
     <path d="M 1.455239 84.095815 
@@ -1437,7 +1437,7 @@ L 124.037446 84.26693
 L 124.147507 84.219014 
 L 124.172905 84.260083 
 L 124.194917 84.229282 
-" clip-path="url(#pc3e64db79f)" style="fill: none; stroke: #008300; stroke-width: 0.6; stroke-linecap: square"/>
+" clip-path="url(#p15d319bd88)" style="fill: none; stroke: #008300; stroke-width: 0.6; stroke-linecap: square"/>
    </g>
    <g id="line2d_3">
     <path d="M 1.446773 83.743329 
@@ -2151,17 +2151,17 @@ L 123.962943 83.924704
 L 124.09163 83.97262 
 L 124.159359 83.931555 
 L 124.183065 83.952088 
-" clip-path="url(#pc3e64db79f)" style="fill: none; stroke: #003b00; stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#p15d319bd88)" style="fill: none; stroke: #003b00; stroke-width: 0.7; stroke-linecap: square"/>
    </g>
    <g id="scalebar_t">
     <path d="M 107.267586 21.564972 
 L 124.2 21.564972 
-" clip-path="url(#pc3e64db79f)" style="fill: none; stroke: #0b0b0b; stroke-width: 0.8"/>
+" clip-path="url(#p15d319bd88)" style="fill: none; stroke: #0b0b0b; stroke-width: 0.8"/>
    </g>
    <g id="scalebar_v">
     <path d="M 124.2 21.564972 
 L 124.2 10.613861 
-" clip-path="url(#pc3e64db79f)" style="fill: none; stroke: #0b0b0b; stroke-width: 0.8"/>
+" clip-path="url(#p15d319bd88)" style="fill: none; stroke: #0b0b0b; stroke-width: 0.8"/>
    </g>
    <g id="text_1">
     <text style="font-size: 5.5px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(1.44 103.799664)">House mouse · DANDI 000020</text>
@@ -2179,7 +2179,7 @@ L 124.2 10.613861
   </g>
  </g>
  <defs>
-  <clipPath id="pc3e64db79f">
+  <clipPath id="p15d319bd88">
    <rect x="1.44" y="9.51875" width="122.76" height="88.704"/>
   </clipPath>
  </defs>

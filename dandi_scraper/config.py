@@ -119,7 +119,7 @@ DANDISETS_TO_SKIP: List[str] = [
     "000717",   # test dandiset
     "000293",   # superseded by 000297
     "000292",   # superseded by 000297
-    "000341",   # superseded by 000297
+    "000341",   # In vivo recording
     "000570"
 ]
 

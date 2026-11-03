@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-11-02T15:03:40.008891</dc:date>
+    <dc:date>2026-11-03T15:43:36.710231</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -1214,7 +1214,7 @@ L 124.088243 81.128754
 L 124.184758 81.197199 
 L 124.177985 81.077421 
 L 124.184758 81.197199 
-" clip-path="url(#p1cf046b187)" style="fill: none; stroke: #898781; stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#p2d3f76bbfe)" style="fill: none; stroke: #898781; stroke-width: 0.7; stroke-linecap: square"/>
    </g>
    <g id="line2d_2">
     <path d="M 1.455239 81.060306 
@@ -2656,7 +2656,7 @@ L 123.548099 81.060306
 L 123.639534 80.923421 
 L 124.189838 80.991861 
 L 124.189838 80.991861 
-" clip-path="url(#p1cf046b187)" style="fill: none; stroke: #1baf7a; stroke-width: 0.6; stroke-linecap: square"/>
+" clip-path="url(#p2d3f76bbfe)" style="fill: none; stroke: #1baf7a; stroke-width: 0.6; stroke-linecap: square"/>
    </g>
    <g id="line2d_3">
     <path d="M 1.44508 81.453861 
@@ -3893,17 +3893,17 @@ L 123.458358 81.197199
 L 123.509155 81.231417 
 L 124.167826 81.197199 
 L 124.167826 81.197199 
-" clip-path="url(#p1cf046b187)" style="fill: none; stroke: #0c4f37; stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#p2d3f76bbfe)" style="fill: none; stroke: #0c4f37; stroke-width: 0.7; stroke-linecap: square"/>
    </g>
    <g id="scalebar_t">
     <path d="M 107.267586 21.564972 
 L 124.2 21.564972 
-" clip-path="url(#p1cf046b187)" style="fill: none; stroke: #0b0b0b; stroke-width: 0.8"/>
+" clip-path="url(#p2d3f76bbfe)" style="fill: none; stroke: #0b0b0b; stroke-width: 0.8"/>
    </g>
    <g id="scalebar_v">
     <path d="M 124.2 21.564972 
 L 124.2 10.613861 
-" clip-path="url(#p1cf046b187)" style="fill: none; stroke: #0b0b0b; stroke-width: 0.8"/>
+" clip-path="url(#p2d3f76bbfe)" style="fill: none; stroke: #0b0b0b; stroke-width: 0.8"/>
    </g>
    <g id="text_1">
     <text style="font-size: 5.5px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(1.44 103.315406)">Pigtail macaque · DANDI 001465</text>
@@ -3921,7 +3921,7 @@ L 124.2 10.613861
   </g>
  </g>
  <defs>
-  <clipPath id="p1cf046b187">
+  <clipPath id="p2d3f76bbfe">
    <rect x="1.44" y="9.51875" width="122.76" height="88.704"/>
   </clipPath>
  </defs>
