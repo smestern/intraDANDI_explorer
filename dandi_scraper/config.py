@@ -129,7 +129,7 @@ DANDISETS_TO_INCLUDE: List[str] = [
 
 QC_FEATURE_BOUNDS: Dict[str, Tuple[float, float]] = { #These are generally very liberal. for example, input_resistance shouldn't actually measure 0
     "input_resistance": (10, 1e9), # ohms
-    "sag_nearest_minus_100": (-3, 3), # unitless, ratio
+    "sag_nearest_minus_100": (-5, 5), # unitless, ratio
     # Thresholds below -70 mV sit on v_baseline: the detector picked up stim onset, not a spike.
     "ap_1_threshold_v_0_long_square": (-70, 100), # mV
     "tau": (0.01 / 1000, 0.4), # seconds

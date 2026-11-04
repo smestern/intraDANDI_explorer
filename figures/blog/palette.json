@@ -19,5 +19,17 @@
     "House mouse": "#2a78d6",
     "Human": "#eb6834",
     "Non-human primate": "#1baf7a"
+  },
+  "regions": {
+    "Amygdala": "#2a78d6",
+    "Basal forebrain": "#eb6834",
+    "Brainstem": "#1baf7a",
+    "Spinal cord": "#eda100",
+    "Midbrain": "#e87ba4",
+    "Striatum": "#008300",
+    "Hippocampus": "#6250d6",
+    "Pallidum": "#e34948",
+    "Neocortex": "#52514e",
+    "Unknown": "#898781"
   }
 }

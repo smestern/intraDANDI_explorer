@@ -1,13 +1,16 @@
-"""Blog figures: species and GMM clusters on the UMAP, plus example cells per cluster.
+"""Blog figures: species, clusters, features and brain regions on the UMAP, feature
+summaries per cluster, and example cells per cluster.
 
 Every panel is drawn as its own figure and saved as a standalone SVG (text kept as
 text) so panels can be combined in Illustrator. Grids of related panels are saved
 too, as SVG and PNG, for a quick look at the whole set.
 
-    python tools/blog_figures.py --out figures/blog [--refresh] [--n-examples 3]
+    python tools/blog_figures.py --out figures/blog [--no-refresh] [--n-examples 3]
+    python tools/blog_figures.py --only features,within,regions
 
 Example traces are re-read from the raw NWB files under ``CONFIG.cache_dir`` and
-cached in ``<out>/cache`` so restyling reruns don't touch the disk again.
+cached in ``<out>/cache``; ``--no-refresh`` reuses that cache so restyling reruns
+don't touch the disk again. Sections that don't need traces never read it.
 """
 from __future__ import annotations
 
@@ -17,11 +20,16 @@ import logging
 import os
 import re
 import sys
+from dataclasses import dataclass
 
 import matplotlib
 matplotlib.use("Agg")
+import matplotlib.cm as mcm
 import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
+import matplotlib.text as mtext
+from matplotlib.ticker import MaxNLocator
+from scipy.ndimage import gaussian_filter
 import numpy as np
 import pandas as pd
 from sklearn.impute import KNNImputer
@@ -57,7 +65,46 @@ SPECIES_COLORS = dict(zip(SPECIES_ORDER, SLOTS))  # adjacent pairs only (stacked
 NHP = {"Pigtail macaque", "Cynomolgus macaque", "Common marmoset", "Rhesus macaque"}
 SPECIES_GROUP_COLORS = {"House mouse": SLOTS[0], "Human": SLOTS[1], "Non-human primate": SLOTS[2]}
 
+# The 8 small regions get palette slots, which can't all pass the scatter colour check
+# (worst pair dE 7.1), so the overview labels them directly and each has its own panel.
+REGION_COLORS = {
+    "Amygdala": SLOTS[0], "Basal forebrain": SLOTS[1], "Brainstem": SLOTS[2], "Spinal cord": SLOTS[3],
+    "Midbrain": SLOTS[4], "Striatum": SLOTS[5], "Hippocampus": SLOTS[6], "Pallidum": SLOTS[7],
+}
+NEOCORTEX_COLOR = "#c3c2b7"
+REGION_HIGHLIGHT = {**REGION_COLORS, "Neocortex": INK_2, "Unknown": MUTED}
+SUBREGION_LABELS = {
+    "visual cortex": "Visual cortex", "motor cortex": "Motor cortex", "anterior insula": "Anterior insula",
+    "temporal cortex": "Temporal cortex", "L1": "Layer 1", "premotor cortex": "Premotor cortex",
+}
+
+# One-hue palette ramp (steps 150-700) for feature values. 32 levels keeps matplotlib's
+# colourbar as vector rectangles; it rasterizes from 50 levels up.
+SEQUENTIAL = mcolors.LinearSegmentedColormap.from_list(
+    "blue_ramp", ["#b7d3f6", "#9ec5f4", "#86b6ef", "#6da7ec", "#5598e7", "#3987e5", "#2a78d6",
+                  "#256abf", "#1c5cab", "#184f95", "#104281", "#0d366b"], N=32)
+DIVERGING = mcolors.LinearSegmentedColormap.from_list("blue_red", ["#2a78d6", "#f0efec", "#e34948"], N=32)
+HEATMAP_LIMIT = 2.0  # IQR units from the population median
+
+# col: (label, units, factor to display units). Log features in config.SCALE_FEATURES
+# already land in display units, so their factor only applies to linear features.
+FEATURE_LABELS = {
+    "input_resistance": ("Input resistance", "M\u03a9", 1),
+    "tau": ("Membrane tau", "ms", 1),
+    "v_baseline": ("Baseline voltage", "mV", 1),
+    "sag_nearest_minus_100": ("Sag ratio", "", 1),
+    "ap_1_threshold_v_0_long_square": ("AP threshold", "mV", 1),
+    "ap_1_peak_v_0_long_square": ("AP peak", "mV", 1),
+    "ap_1_upstroke_0_long_square": ("AP upstroke", "V/s", 1),
+    "ap_1_width_0_long_square": ("AP width", "ms", 1),
+    "ap_1_fast_trough_v_0_long_square": ("AP fast trough", "mV", 1),
+    "fi_linear_fit_slope": ("F-I slope", "Hz/pA", 1),
+    "latency_0_long_square": ("First-spike latency", "ms", 1000),
+}
+
 UMAP_SIZE = (3.5, 3.5)
+MAP_SIZE = (3.5, 3.1)  # fixed canvas for panels that must stack exactly in Illustrator
+MAP_RECT = (0.06, 0.07, 0.90, 0.83)
 TRACE_SIZE = (2.2, 1.6)
 DOT = 2.0
 
@@ -79,6 +126,7 @@ plt.rcParams.update({
     "figure.facecolor": "none",
     "axes.facecolor": "none",
     "savefig.facecolor": "none",
+    "savefig.dpi": 300,  # only affects artists marked rasterized in the SVGs
 })
 
 
@@ -93,10 +141,13 @@ def slug(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", text.lower()).strip("_")
 
 
-def save(fig, out_dir: str, name: str, png: bool = False) -> None:
+def save(fig, out_dir: str, name: str, png: bool = False, tight: bool = True) -> None:
     path = os.path.join(out_dir, f"{name}.svg")
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    fig.savefig(path, bbox_inches="tight", pad_inches=0.02)
+    if tight:
+        fig.savefig(path, bbox_inches="tight", pad_inches=0.02)
+    else:  # keep the full canvas so panels stack exactly
+        fig.savefig(path)
     if png:
         fig.savefig(os.path.join(out_dir, f"{name}_preview.png"), dpi=200, bbox_inches="tight",
                     facecolor="white")
@@ -171,14 +222,12 @@ def legend(ax, labels_colors, title=None, loc="upper left", anchor=(1.0, 1.0)) -
 
 
 def label_clusters(ax, df: pd.DataFrame, bins: int = 40) -> None:
-    """Number each cluster at its densest spot. GMM clusters are fit in feature space and
-    are not contiguous on the UMAP, so their median often falls in another cluster."""
+    """Number each cluster on its main mass. Clusters are fit in feature space and can have
+    several lobes on the UMAP, so a median can fall outside all of them."""
     xe = np.linspace(df["umap X"].min(), df["umap X"].max(), bins + 1)
     ye = np.linspace(df["umap Y"].min(), df["umap Y"].max(), bins + 1)
     for c, g in df.groupby("coarse cluster"):
-        h, _, _ = np.histogram2d(g["umap X"], g["umap Y"], bins=[xe, ye])
-        ix, iy = np.unravel_index(np.argmax(h), h.shape)
-        x, y = (xe[ix] + xe[ix + 1]) / 2, (ye[iy] + ye[iy + 1]) / 2
+        x, y = densest_point(g, xe, ye)
         ax.text(x, y, str(c), fontsize=9, fontweight="bold", color=INK, ha="center", va="center",
                 bbox=dict(boxstyle="circle,pad=0.25", fc="white", ec=CLUSTER_COLORS[c], lw=1.2))
 
@@ -481,35 +530,477 @@ def fig_examples(meta: pd.DataFrame, traces: dict, out: str) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Feature maps and within-cluster summaries
+# ---------------------------------------------------------------------------
+
+@dataclass
+class FeatureScale:
+    """One feature in colour space: log10 of display units for log features, else display
+    units. Limits are the population's 1st-99th percentile, shared by every panel."""
+    col: str
+    label: str
+    units: str
+    values: np.ndarray
+    is_log: bool
+    norm: mcolors.Normalize
+    ticks: np.ndarray
+    ticklabels: list
+
+    @property
+    def title(self) -> str:
+        return f"{self.label} ({self.units})" if self.units else self.label
+
+    @property
+    def slug(self) -> str:
+        return slug(self.label)
+
+    def real(self, values):
+        return 10 ** values if self.is_log else values
+
+
+def number_label(v: float) -> str:
+    return f"{v:.3g}".replace("-", "−")
+
+
+def cell_label(v: float) -> str:
+    """Heatmap number: two decimals under 1 so a column reads evenly, else three figures."""
+    if abs(v) >= 1:
+        return number_label(v)
+    return "0" if round(v, 2) == 0 else f"{v:.2f}".replace("-", "\u2212")
+
+
+def nice_log_ticks(vmin: float, vmax: float) -> np.ndarray:
+    """1-2-5 values (in log10 space) that fall inside the range."""
+    decades = np.arange(np.floor(vmin), np.ceil(vmax) + 1)
+    candidates = np.log10([m * 10 ** d for d in decades for m in (1, 2, 5)])
+    return candidates[(candidates >= vmin) & (candidates <= vmax)]
+
+
+def feature_scales(df: pd.DataFrame) -> list[FeatureScale]:
+    transformed = scale_features(df[config.COLS_TO_KEEP].copy())
+    scales = []
+    for col in config.COLS_TO_KEEP:
+        label, units, factor = FEATURE_LABELS[col]
+        is_log = col in config.SCALE_FEATURES
+        values = transformed[col].to_numpy(dtype=float) * (1 if is_log else factor)
+        vmin, vmax = np.nanpercentile(values, [1, 99])
+        if is_log:
+            ticks = nice_log_ticks(vmin, vmax)
+            ticklabels = [number_label(10 ** t) for t in ticks]
+        else:
+            ticks = MaxNLocator(nbins=4).tick_values(vmin, vmax)
+            ticks = ticks[(ticks >= vmin) & (ticks <= vmax)]
+            ticklabels = [number_label(t) for t in ticks]
+        scales.append(FeatureScale(col, label, units, values, is_log, mcolors.Normalize(vmin, vmax),
+                                   ticks, ticklabels))
+    return scales
+
+
+def map_frame(df: pd.DataFrame, pad: float = 0.03) -> tuple[float, float, float, float]:
+    x0, x1 = df["umap X"].min(), df["umap X"].max()
+    y0, y1 = df["umap Y"].min(), df["umap Y"].max()
+    p = pad * max(x1 - x0, y1 - y0)
+    return x0 - p, x1 + p, y0 - p, y1 + p
+
+
+def fix_frame(ax, frame) -> None:
+    ax.set_aspect("equal", adjustable="box")
+    ax.set_xlim(frame[0], frame[1])
+    ax.set_ylim(frame[2], frame[3])
+
+
+def map_figure(extra_width: float = 0.0):
+    """Fixed canvas. ``extra_width`` (inches) adds room on the right and leaves the axes
+    the same size in inches, so the map still stacks with the other panels."""
+    w, h = MAP_SIZE
+    x, y, ax_w, ax_h = MAP_RECT
+    fig = plt.figure(figsize=(w + extra_width, h))
+    k = w / (w + extra_width)
+    return fig, fig.add_axes((x * k, y, ax_w * k, ax_h))
+
+
+def scale_colorbar(cax, scale: FeatureScale) -> None:
+    cb = cax.figure.colorbar(mcm.ScalarMappable(norm=scale.norm, cmap=SEQUENTIAL), cax=cax,
+                             orientation="horizontal")
+    cb.set_ticks(scale.ticks, labels=scale.ticklabels)
+    cb.minorticks_off()
+    cb.outline.set_visible(False)
+    cax.tick_params(labelsize=5.5, length=2, width=0.4, pad=1, color=MUTED, labelcolor=INK_2)
+
+
+def draw_feature_map(ax, df, scale: FeatureScale, frame, rng, cluster: int | None = None, dot: float = DOT,
+                     raster_context: bool = False, raster_dots: bool = False, colorbar: bool = True,
+                     title: str | None = None, arrows: bool = True) -> None:
+    """Colour cells by a feature. With ``cluster``, only that cluster's cells; cells outside
+    it and cells with no measured value (never the imputed one) are grey."""
+    x, y = df["umap X"].to_numpy(), df["umap Y"].to_numpy()
+    show = np.isfinite(scale.values)
+    if cluster is not None:
+        show &= df["coarse cluster"].to_numpy() == cluster
+    ax.scatter(x[~show], y[~show], c=CONTEXT, s=dot, linewidths=0, rasterized=raster_context)
+    order = rng.permutation(np.flatnonzero(show))  # not sorted by value, so extremes don't hide the rest
+    ax.scatter(x[order], y[order], c=scale.values[order], cmap=SEQUENTIAL, norm=scale.norm, s=dot,
+               linewidths=0, rasterized=raster_dots)
+    if arrows:
+        umap_axes(ax)
+    else:
+        ax.axis("off")
+    fix_frame(ax, frame)
+    if title:
+        ax.set_title(title, loc="left", color=INK, pad=3)
+    if colorbar:  # the map's top left corner is empty
+        scale_colorbar(ax.inset_axes([0.02, 0.92, 0.28, 0.03]), scale)
+
+
+def fig_feature_maps(df, scales, frame, out: str, rng) -> None:
+    print("feature maps")
+    for s in scales:
+        fig, ax = map_figure()
+        draw_feature_map(ax, df, s, frame, rng, title=s.title)
+        save(fig, out, f"features/umap_{s.slug}", tight=False)
+    n_cols = 4
+    n_rows = int(np.ceil(len(scales) / n_cols))
+    fig, axs = plt.subplots(n_rows, n_cols, figsize=(MAP_SIZE[0] * n_cols, MAP_SIZE[1] * n_rows))
+    for ax in axs.flat[len(scales):]:
+        ax.axis("off")
+    for ax, s in zip(axs.flat, scales):
+        draw_feature_map(ax, df, s, frame, rng, raster_context=True, raster_dots=True, title=s.title)
+    fig.tight_layout()
+    save(fig, out, "umap_features_grid", png=True)
+
+
+def fig_within_clusters(df, scales, frame, out: str, rng) -> None:
+    """Each cluster's cells coloured by each feature, on one colour scale per feature."""
+    print("per-cluster feature maps")
+    clusters = sorted(df["coarse cluster"].unique())
+    for s in scales:
+        for c in clusters:
+            fig, ax = map_figure()
+            draw_feature_map(ax, df, s, frame, rng, cluster=c, raster_context=True, colorbar=False,
+                             title=f"{s.label}: cluster {c}")
+            save(fig, out, f"within_clusters/{s.slug}/cluster{c}", tight=False)
+        fig = plt.figure(figsize=(1.4, 0.45))
+        cax = fig.add_axes((0.08, 0.55, 0.84, 0.2))
+        scale_colorbar(cax, s)
+        cax.set_title(s.title, fontsize=6, color=INK_2, pad=2)
+        save(fig, out, f"within_clusters/colorbar_{s.slug}")
+
+    # Grids are for reading the set at a glance, so dots are rasterized to keep them small.
+    n_cols = 4
+    n_rows = int(np.ceil(len(scales) / n_cols))
+    for c in clusters:
+        fig, axs = plt.subplots(n_rows, n_cols, figsize=(MAP_SIZE[0] * n_cols, MAP_SIZE[1] * n_rows))
+        for ax in axs.flat[len(scales):]:
+            ax.axis("off")
+        for ax, s in zip(axs.flat, scales):
+            draw_feature_map(ax, df, s, frame, rng, cluster=c, raster_context=True, raster_dots=True,
+                             title=s.title)
+        fig.suptitle(f"Cluster {c}", x=0.01, ha="left", fontsize=10, fontweight="bold")
+        fig.tight_layout()
+        save(fig, out, f"within_clusters/cluster{c}_features_grid")
+
+    fig, axs = plt.subplots(len(clusters), len(scales), squeeze=False,
+                            figsize=(1.6 * len(scales), 1.4 * len(clusters)))
+    for i, c in enumerate(clusters):
+        for j, s in enumerate(scales):
+            draw_feature_map(axs[i, j], df, s, frame, rng, cluster=c, dot=0.5, colorbar=False, arrows=False,
+                             title=s.label if i == 0 else None)
+        axs[i, 0].text(-0.05, 0.5, f"Cluster {c}", transform=axs[i, 0].transAxes, rotation=90,
+                       ha="right", va="center", fontsize=8, fontweight="bold")
+    fig.tight_layout()
+    path = os.path.join(out, "within_clusters_matrix_preview.png")
+    fig.savefig(path, dpi=150, facecolor="white", bbox_inches="tight")
+    plt.close(fig)
+    print(f"  wrote {path}")
+
+
+def heatmap_colorbar(fig, ax, label: str) -> None:
+    norm = mcolors.Normalize(-HEATMAP_LIMIT, HEATMAP_LIMIT)
+    cb = fig.colorbar(mcm.ScalarMappable(norm=norm, cmap=DIVERGING), ax=ax, fraction=0.025, pad=0.02,
+                      extend="both")
+    cb.set_label(label, fontsize=6, color=INK_2)
+    cb.outline.set_visible(False)
+    cb.ax.tick_params(labelsize=6, length=2, width=0.4, color=MUTED, labelcolor=INK_2)
+
+
+def feature_xticks(ax, scales) -> None:
+    ax.set_xticks(np.arange(len(scales)) + 0.5, [s.title for s in scales], rotation=40, ha="right",
+                  rotation_mode="anchor", color=INK_2)
+    ax.tick_params(axis="both", length=0)
+    for sp in ax.spines.values():
+        sp.set_visible(False)
+
+
+def fig_cluster_heatmaps(df, scales, X: np.ndarray, out: str) -> None:
+    print("cluster x feature heatmaps")
+    norm = mcolors.Normalize(-HEATMAP_LIMIT, HEATMAP_LIMIT)
+    colorbar_label = "Median, in IQRs from the population median"
+    clusters = sorted(df["coarse cluster"].unique())
+    coarse = df["coarse cluster"].to_numpy()
+    counts = df["coarse cluster"].value_counts()
+
+    # Coarse: colour is the scaled value the clustering saw, the number is in real units.
+    medians = np.array([np.median(X[coarse == c], axis=0) for c in clusters])
+    fig, ax = plt.subplots(figsize=(5.2, 2.7))
+    ax.pcolormesh(np.arange(len(scales) + 1), np.arange(len(clusters) + 1), medians, cmap=DIVERGING,
+                  norm=norm, edgecolors=SURFACE, linewidth=1.0)
+    for i, c in enumerate(clusters):
+        for j, s in enumerate(scales):
+            real = np.nanmedian(s.real(s.values[coarse == c]))
+            ink = "white" if abs(medians[i, j]) > 0.65 * HEATMAP_LIMIT else INK
+            ax.text(j + 0.5, i + 0.5, cell_label(real), ha="center", va="center", fontsize=6, color=ink)
+    ax.set_yticks(np.arange(len(clusters)) + 0.5, [f"Cluster {c}  (n={counts[c]:,})" for c in clusters],
+                  color=INK_2)
+    ax.invert_yaxis()
+    feature_xticks(ax, scales)
+    heatmap_colorbar(fig, ax, colorbar_label)
+    save(fig, out, "cluster_feature_heatmap", png=True)
+
+    # Fine: grouped by coarse cluster, with a colour strip for the parent and gaps between groups.
+    fine = df["fine cluster"].to_numpy()
+    fig, ax = plt.subplots(figsize=(5.2, 6.0))
+    y, gap = 0.0, 0.5
+    ticks, ticklabels = [], []
+    for c in clusters:
+        subs = sorted(np.unique(fine[coarse == c]), key=lambda f: int(f.split(".")[1]))
+        block = np.array([np.median(X[fine == f], axis=0) for f in subs])
+        ax.pcolormesh(np.arange(len(scales) + 1), y + np.arange(len(subs) + 1), block, cmap=DIVERGING,
+                      norm=norm, edgecolors=SURFACE, linewidth=0.6)
+        ax.add_patch(plt.Rectangle((-0.22, y), 0.14, len(subs), color=CLUSTER_COLORS[c], clip_on=False, lw=0))
+        for k, f in enumerate(subs):
+            ticks.append(y + k + 0.5)
+            ticklabels.append(f"{f}  (n={(fine == f).sum():,})")
+        y += len(subs) + gap
+    ax.set_yticks(ticks, ticklabels, color=INK_2)
+    ax.tick_params(axis="y", pad=9)
+    ax.set_xlim(0, len(scales))
+    ax.set_ylim(y - gap, 0)
+    feature_xticks(ax, scales)
+    ax.tick_params(axis="y", pad=9)
+    heatmap_colorbar(fig, ax, colorbar_label)
+    save(fig, out, "fine_cluster_feature_heatmap", png=True)
+
+
+def draw_violins(ax, df, scale: FeatureScale) -> None:
+    clusters = sorted(df["coarse cluster"].unique())
+    coarse = df["coarse cluster"].to_numpy()
+    finite = np.isfinite(scale.values)
+    data = [scale.values[finite & (coarse == c)] for c in clusters]
+    parts = ax.violinplot(data, positions=clusters, widths=0.82, showextrema=False, points=300)
+    for body, c in zip(parts["bodies"], clusters):
+        body.set_facecolor(CLUSTER_COLORS[c])
+        body.set_edgecolor("none")
+        body.set_alpha(1.0)
+    for c, d in zip(clusters, data):
+        ax.plot([c - 0.28, c + 0.28], [np.median(d)] * 2, color=INK, lw=0.9, solid_capstyle="butt")
+    # Axis limits only: outliers stay in the density estimate but off the visible range.
+    lo, hi = np.percentile(scale.values[finite], [0.5, 99.5])
+    pad = 0.03 * (hi - lo)
+    ax.set_ylim(lo - pad, hi + pad)
+    ax.set_yticks(scale.ticks, scale.ticklabels)
+    ax.set_xticks(clusters)
+    ax.set_xlabel("Cluster")
+    ax.set_title(scale.title, loc="left", color=INK)
+    ax.tick_params(length=2, width=0.4, labelcolor=INK_2)
+
+
+def fig_distributions(df, scales, out: str) -> None:
+    print("feature distributions")
+    for s in scales:
+        fig, ax = plt.subplots(figsize=(2.6, 1.9))
+        draw_violins(ax, df, s)
+        save(fig, out, f"distributions/{s.slug}")
+    n_cols = 4
+    n_rows = int(np.ceil(len(scales) / n_cols))
+    fig, axs = plt.subplots(n_rows, n_cols, figsize=(2.6 * n_cols, 2.0 * n_rows))
+    for ax in axs.flat[len(scales):]:
+        ax.axis("off")
+    for ax, s in zip(axs.flat, scales):
+        draw_violins(ax, df, s)
+    fig.tight_layout()
+    save(fig, out, "distributions_grid", png=True)
+
+
+# ---------------------------------------------------------------------------
+# Brain regions
+# ---------------------------------------------------------------------------
+
+def dandiset_note(cells: pd.DataFrame) -> str:
+    k = cells["dandiset label"].nunique()
+    return f"n={len(cells):,}, {k} dandiset{'' if k == 1 else 's'}"
+
+
+def densest_point(g: pd.DataFrame, xe, ye, sigma: float = 3.0) -> tuple[float, float]:
+    """Peak of the smoothed 2D density, so a tight little clump can't outrank the main body."""
+    h, _, _ = np.histogram2d(g["umap X"], g["umap Y"], bins=[xe, ye])
+    ix, iy = np.unravel_index(np.argmax(gaussian_filter(h, sigma)), h.shape)
+    return (xe[ix] + xe[ix + 1]) / 2, (ye[iy] + ye[iy + 1]) / 2
+
+
+def place_labels(ax, anchors: dict[str, tuple[float, float]]) -> None:
+    """Text labels with leader lines, each at the first nearby offset that overlaps no
+    earlier label. A plain background box keeps them as editable text in the SVG."""
+    offsets = [(a * r, b * r) for r in (10, 18, 28, 40) for a, b in ((1, 1), (1, -1), (-1, 1), (-1, -1))]
+    fig = ax.figure
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+    placed = []
+    for name, xy in anchors.items():
+        for off in offsets:
+            t = ax.annotate(name, xy, xytext=off, textcoords="offset points", fontsize=6, color=INK,
+                            ha="left" if off[0] > 0 else "right", va="center",
+                            bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=0.85),
+                            arrowprops=dict(arrowstyle="-", lw=0.4, color=INK_2, shrinkA=0, shrinkB=0))
+            t.update_positions(renderer)
+            # Text's own extent: Annotation's also counts the leader line, which over-rejects.
+            box = mtext.Text.get_window_extent(t, renderer).expanded(1.05, 1.3)
+            if not any(box.overlaps(b) for b in placed) or off == offsets[-1]:
+                placed.append(box)
+                break
+            t.remove()
+
+
+def fig_regions(df, frame, out: str) -> None:
+    print("brain region panels")
+    region = df["brain_region"]
+    small = [r for r in region.value_counts().index if r in REGION_COLORS]
+
+    fig, ax = map_figure(extra_width=1.15)  # legend sits right of the map, clear of its left lobe
+    for name, color in (("Unknown", CONTEXT), ("Neocortex", NEOCORTEX_COLOR)):
+        cells = df[region == name]
+        ax.scatter(cells["umap X"], cells["umap Y"], c=color, s=DOT, linewidths=0)
+    xe = np.linspace(frame[0], frame[1], 41)
+    ye = np.linspace(frame[2], frame[3], 41)
+    anchors = {}
+    for r in small:
+        cells = df[region == r]
+        ax.scatter(cells["umap X"], cells["umap Y"], c=REGION_COLORS[r], s=7, linewidths=0.2,
+                   edgecolors=SURFACE)
+        anchors[r] = densest_point(cells, xe, ye)
+    umap_axes(ax)
+    fix_frame(ax, frame)
+    place_labels(ax, anchors)
+    counts = region.value_counts()
+    legend(ax, [(f"{r} ({counts[r]:,})", NEOCORTEX_COLOR if r == "Neocortex" else CONTEXT)
+                for r in ("Neocortex", "Unknown")] + [(f"{r} ({counts[r]:,})", REGION_COLORS[r]) for r in small],
+           loc="upper left", anchor=(1.01, 1.0))
+    save(fig, out, "regions/umap_regions_overview", png=True, tight=False)
+
+    order = ["Neocortex"] + small + ["Unknown"]
+    for r in order:
+        fig, ax = map_figure()
+        scatter_highlight(ax, df, (region == r).to_numpy(), REGION_HIGHLIGHT[r], f"{r}  ({dandiset_note(df[region == r])})")
+        fix_frame(ax, frame)
+        save(fig, out, f"regions/umap_region_{slug(r)}", tight=False)
+    fig, axs = plt.subplots(2, 5, figsize=(MAP_SIZE[0] * 5, MAP_SIZE[1] * 2))
+    for ax, r in zip(axs.flat, order):
+        scatter_highlight(ax, df, (region == r).to_numpy(), REGION_HIGHLIGHT[r], f"{r}  ({dandiset_note(df[region == r])})")
+        fix_frame(ax, frame)
+    fig.tight_layout()
+    save(fig, out, "umap_regions_grid", png=True)
+
+    sub = df["brain_subregion"]
+    for s, label in SUBREGION_LABELS.items():
+        fig, ax = map_figure()
+        scatter_highlight(ax, df, (sub == s).to_numpy(), SLOTS[0], f"{label}  ({dandiset_note(df[sub == s])})")
+        fix_frame(ax, frame)
+        save(fig, out, f"regions/umap_subregion_{slug(label)}", tight=False)
+    fig, axs = plt.subplots(2, 3, figsize=(MAP_SIZE[0] * 3, MAP_SIZE[1] * 2))
+    for ax, (s, label) in zip(axs.flat, SUBREGION_LABELS.items()):
+        scatter_highlight(ax, df, (sub == s).to_numpy(), SLOTS[0], f"{label}  ({dandiset_note(df[sub == s])})")
+        fix_frame(ax, frame)
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    n_unassigned = int(((region == "Neocortex") & sub.isna()).sum())
+    fig.text(0.01, 0.01, f"{n_unassigned:,} neocortical cells have no subregion and stay grey in every panel.",
+             fontsize=7, color=INK_2)
+    save(fig, out, "umap_subregions_grid", png=True)
+
+
+def fig_region_by_cluster(df, out: str) -> None:
+    print("region x cluster bars")
+    counts = df["brain_region"].value_counts()
+    regions = ["Neocortex"] + [r for r in counts.index if r in REGION_COLORS] + ["Unknown"]
+    clusters = sorted(df["coarse cluster"].unique())
+    frac = pd.crosstab(df["brain_region"], df["coarse cluster"], normalize="index")
+    fig, ax = plt.subplots(figsize=(4.8, 3.2))
+    rows = regions[::-1]  # first region on top
+    y = np.arange(len(rows))
+    left = np.zeros(len(rows))
+    for c in clusters:
+        w = frac.loc[rows, c].to_numpy()
+        ax.barh(y, w, left=left, height=0.72, color=CLUSTER_COLORS[c], edgecolor=SURFACE, linewidth=1.0,
+                label=f"Cluster {c}")
+        for yi, (l, wi) in enumerate(zip(left, w)):
+            if wi >= 0.12:
+                ink = INK if CLUSTER_COLORS[c] == "#eda100" else "white"
+                ax.text(l + wi / 2, yi, f"{wi:.0%}", ha="center", va="center", fontsize=6, color=ink)
+        left += w
+    ax.set_yticks(y, [f"{r}  ({dandiset_note(df[df['brain_region'] == r])})" for r in rows])
+    ax.set_xlim(0, 1)
+    ax.set_xticks([0, 0.25, 0.5, 0.75, 1], ["0%", "25%", "50%", "75%", "100%"])
+    ax.tick_params(axis="y", length=0, labelcolor=INK_2)
+    ax.spines["left"].set_visible(False)
+    ax.set_xlabel("Share of the region's cells")
+    ax.legend(loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=6.5, handlelength=1.0,
+              handleheight=1.0, borderaxespad=0)
+    save(fig, out, "region_by_cluster", png=True)
+
+
+# ---------------------------------------------------------------------------
+
+SECTIONS = ("species", "clusters", "examples", "features", "within", "regions")
+
 
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--csv", default=config.CONFIG.merged_csv)
     p.add_argument("--out", default="figures/blog")
-    p.add_argument("--refresh", action="store_true", help="Re-pick exemplars and re-read their NWB files.")
+    p.add_argument("--refresh", default=True, action=argparse.BooleanOptionalAction,
+                   help="Re-pick exemplars and re-read their NWB files.")
+    p.add_argument("--only", default=",".join(SECTIONS),
+                   help=f"Comma-separated sections to draw, from: {','.join(SECTIONS)}.")
     p.add_argument("--n-examples", type=int, default=3)
-    p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--seed", type=int, default=42)
     args = p.parse_args(argv)
+    sections = set(args.only.split(","))
+    if sections - set(SECTIONS):
+        p.error(f"unknown sections: {sorted(sections - set(SECTIONS))}")
     logging.basicConfig(level=logging.WARNING, format="%(levelname)s %(name)s: %(message)s")
 
     df = load_cells(args.csv)
     print(f"{len(df):,} cells, {df['coarse cluster'].nunique()} coarse / {df['fine cluster'].nunique()} fine clusters")
-    cache_dir = os.path.join(args.out, "cache")
-    have_cache = os.path.exists(os.path.join(cache_dir, "exemplars.csv"))
-    if args.refresh or not have_cache:
-        print("choosing exemplars (reading NWB files)")
-        chosen = choose_exemplars(df, scaled_features(df), args.n_examples)
-        save_cache(chosen, df, cache_dir)
-    meta, traces = load_cache(cache_dir)
+    if sections & {"clusters", "examples"}:
+        cache_dir = os.path.join(args.out, "cache")
+        have_cache = os.path.exists(os.path.join(cache_dir, "exemplars.csv"))
+        if args.refresh or not have_cache:
+            print("choosing exemplars (reading NWB files)")
+            chosen = choose_exemplars(df, scaled_features(df), args.n_examples)
+            save_cache(chosen, df, cache_dir)
+        meta, traces = load_cache(cache_dir)
 
     rng = np.random.default_rng(args.seed)
-    fig_species(df, args.out, rng)
-    fig_species_by_cluster(df, args.out)
-    fig_clusters(df, meta, args.out, rng)
-    fig_examples(meta, traces, args.out)
+    if "species" in sections:
+        fig_species(df, args.out, rng)
+        fig_species_by_cluster(df, args.out)
+    if "clusters" in sections:
+        fig_clusters(df, meta, args.out, rng)
+    if "examples" in sections:
+        fig_examples(meta, traces, args.out)
+    frame = map_frame(df)
+    if sections & {"features", "within"}:
+        scales = feature_scales(df)
+    if "features" in sections:
+        fig_feature_maps(df, scales, frame, args.out, rng)
+    if "within" in sections:
+        fig_within_clusters(df, scales, frame, args.out, rng)
+        fig_cluster_heatmaps(df, scales, scaled_features(df), args.out)
+        fig_distributions(df, scales, args.out)
+    if "regions" in sections:
+        fig_regions(df, frame, args.out)
+        fig_region_by_cluster(df, args.out)
     with open(os.path.join(args.out, "palette.json"), "w") as f:
         json.dump({"clusters": CLUSTER_COLORS, "species": SPECIES_COLORS,
-                   "species_groups": SPECIES_GROUP_COLORS}, f, indent=2)
+                   "species_groups": SPECIES_GROUP_COLORS, "regions": REGION_HIGHLIGHT}, f, indent=2)
     return 0
 
 

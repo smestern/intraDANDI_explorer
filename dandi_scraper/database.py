@@ -343,13 +343,13 @@ def run_merge_dandiset(
                                         -config.ROBUST_CLIP, config.ROBUST_CLIP)
 
     logger.info("creating umap from dataset_numeric")
-    reducer = umap.UMAP(densmap=False, min_dist=0.3, spread=10, metric="cosine",
-                        n_neighbors=500, verbose=True)
-    reducer.fit_transform(dataset_numeric)
+    # reducer = umap.UMAP(densmap=False, min_dist=0.3, spread=10, metric="cosine",
+    #                     n_neighbors=500, verbose=True)
+    # reducer.fit_transform(dataset_numeric)
     # repulsion_strength=1 (the UMAP default) mixes same-lab datasets better than 5 did
     # (figures/umap_workup/REPORT.md, variant D).
     reducer2 = umap.UMAP(n_neighbors=150, min_dist=0.1, spread=2,
-                        repulsion_strength=1, metric="cosine")
+                        repulsion_strength=1, metric="euclidean")
     reducer2.fit(dataset_numeric)
 
     dfs["umap X"] = reducer2.embedding_[:, 0]
@@ -366,7 +366,7 @@ def run_merge_dandiset(
     gmm.fit(dataset_numeric)
     dfs["GMM cluster label"] = gmm.predict(dataset_numeric)
 
-    clusters = hierarchical_aggo(dataset_numeric)
+    clusters = hierarchical_aggo(dataset_numeric, metric="euclidean")
     dfs["coarse cluster"] = clusters.coarse
     dfs["fine cluster"] = clusters.fine
 
@@ -379,11 +379,11 @@ def run_merge_dandiset(
     dataset_numeric_norm = dataset_numeric.copy()
     for code in dfs["dandiset label"].unique():
         temp_df = dataset_numeric.loc[dfs["dandiset label"] == code]
-        if len(temp_df) < 10:
+        if len(temp_df) < 4:
             continue
-        scaler = MinMaxScaler()
+        scaler = RobustScaler()
         dataset_numeric_norm.loc[temp_df.index, :] = scaler.fit_transform(temp_df.values)
-    reducer4 = umap.UMAP(densmap=False, metric="cosine",
+    reducer4 = umap.UMAP(densmap=False, metric="euclidean",
                          n_neighbors=100, verbose=True)
     embedding = reducer4.fit_transform(dataset_numeric_norm)
     dfs["norm umap X"] = embedding[:, 0]

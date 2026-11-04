@@ -43,8 +43,14 @@ def _fit_gmm(X: np.ndarray, n_components: int, random_state: int) -> tuple[Gauss
     rank[order] = np.arange(n_components)
     return gmm, rank[raw]
 
-def _fit_aggo(X: np.ndarray, n_clusters: int, metric: str, linkage: str = "average") -> tuple[AgglomerativeClustering, np.ndarray]:
-    """Fit agglomerative clustering and return raw and ranked labels."""
+def _fit_aggo(X: np.ndarray, n_clusters: int, metric: str, linkage: str = None) -> tuple[AgglomerativeClustering, np.ndarray]:
+    """Fit agglomerative clustering and return raw and ranked labels.
+
+    ``linkage`` defaults to ward for euclidean and average otherwise. Euclidean with
+    average linkage only peels off outliers here (15518 of 15665 cells in one cluster).
+    """
+    if linkage is None:
+        linkage = "ward" if metric == "euclidean" else "average"
     agg = AgglomerativeClustering(metric=metric, n_clusters=n_clusters, linkage=linkage)
     raw = agg.fit_predict(X)
     counts = np.bincount(raw)
