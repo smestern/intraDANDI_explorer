@@ -11,6 +11,8 @@ import os
 from collections import defaultdict
 from typing import Dict, List, Optional, Tuple
 
+import h5py
+import joblib
 import numpy as np
 import pandas as pd
 from dandi.dandiapi import DandiAPIClient
@@ -91,6 +93,53 @@ def get_dandi_metadata(code: str):
     client.get_dandiset(code)  # validate the code resolves
     metadata_parser = dandi_meta_parser(code)
     return metadata_parser.asset_data
+
+
+def species_display_name(value) -> Optional[str]:
+    """Display name for a raw NWB ``subject/species`` value: a binomial ("Homo Sapiens"),
+    an NCBITaxon URL, or either wrapped in a bytes array. None if it is empty or unknown."""
+    if isinstance(value, np.ndarray):
+        value = value.ravel()[0] if value.size else None
+    if isinstance(value, bytes):
+        value = value.decode()
+    if value is None or not str(value).strip():
+        return None
+    value = str(value).strip()
+    if "NCBITaxon" in value:
+        return normalize_species(None, value)
+    return normalize_species(value[:1].upper() + value[1:].lower())
+
+
+def read_nwb_species(path: str) -> Optional[str]:
+    """Species recorded in one NWB file's subject, or None if the file doesn't say."""
+    try:
+        with h5py.File(path, "r") as h:
+            subject = h.get("general/subject")
+            if subject is None or "species" not in subject:
+                return None
+            return species_display_name(subject["species"][()])
+    except OSError as e:  # missing or unreadable file
+        logger.warning("could not read species from %s: %s", path, e)
+        return None
+
+
+def nwb_species(specimen_ids: pd.Series, cache_dir: str, species_csv: str) -> pd.Series:
+    """Per-cell species from each cell's NWB subject, read once and cached in ``species_csv``.
+
+    DANDI's dandiset-level species lists every species in the dandiset, and only the first is
+    kept for the dandiset, so mixed sets (e.g. 001261 mouse + macaque, the Allen NHP sets) need
+    the per-file value. Cells whose file has no species come back NaN, for the caller to fill.
+    """
+    cached = (pd.read_csv(species_csv, index_col=0)["species"]
+              if os.path.exists(species_csv) else pd.Series(dtype=object, name="species"))
+    todo = sorted(set(specimen_ids) - set(cached.index))
+    if todo:
+        logger.info("reading species from %d NWB files", len(todo))
+        found = joblib.Parallel(n_jobs=8)(
+            joblib.delayed(read_nwb_species)(os.path.join(cache_dir, sid)) for sid in todo)
+        cached = pd.concat([cached, pd.Series(found, index=todo, name="species", dtype=object)])
+        cached.rename_axis("specimen_id").to_csv(species_csv)
+    return specimen_ids.map(cached)
 
 
 # ---------------------------------------------------------------------------

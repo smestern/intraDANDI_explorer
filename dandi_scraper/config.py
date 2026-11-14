@@ -127,6 +127,12 @@ DANDISETS_TO_INCLUDE: List[str] = [
     "001776",   # iCEphys dataset not labeled as such
 ]
 
+# Cutoff (Hz) of the Bessel filter ipfx applies before taking dv/dt, which sets spike detection,
+# threshold, upstroke, downstroke and their ratio. gigaseal caps it at 0.8 x Nyquist, so 10 kHz
+# recordings are always filtered at 4 kHz; 4000 puts every cell on that footing, 10000 is the old
+# fixed value (see figures/filter_test). Each cell's applied cutoff is saved as "dvdt_filter_hz".
+DVDT_FILTER_HZ: float = 4000
+
 QC_FEATURE_BOUNDS: Dict[str, Tuple[float, float]] = { #These are generally very liberal. for example, input_resistance shouldn't actually measure 0
     "input_resistance": (10, 1e9), # ohms
     "sag_nearest_minus_100": (-5, 5), # unitless, ratio
@@ -164,6 +170,14 @@ SCALE_FEATURES: Dict[str, str] = {
 # feature can dominate the cosine distance used by UMAP.
 ROBUST_CLIP: float = 5.0
 
+# PatchOTDA: brain_region is the supervised label, so cells are only transported
+# onto a reference dandiset of the same region. Regions not listed here use their
+# largest dandiset as the reference; a region with a single dandiset is left as is.
+# Dandisets whose region is OTDA_UNLABELED_REGION are aligned onto OTDA_UNLABELED_TARGET.
+OTDA_REFERENCE_DANDISETS: dict = {"Neocortex": "000020"}
+OTDA_UNLABELED_REGION: str = "Unknown"
+OTDA_UNLABELED_TARGET: str = "Neocortex"
+
 # Two-tier GMM clustering (see clustering.py): N_COARSE_CLUSTERS gross clusters,
 # each split into up to N_FINE_CLUSTERS sub-clusters. A coarse cluster is only
 # split into as many sub-clusters as it has MIN_FINE_CLUSTER_SIZE cells for.
@@ -186,6 +200,13 @@ SPECIES_REPLACEMENT: Dict[str, str] = {
     "Macaca nemestrina - Pigtail macaque": "Pigtail macaque",
     "Macaca nemestrina": "Pigtail macaque",
     "Callithrix jacchus - Common marmoset": "Common marmoset",
+    # bare binomials, as NWB subject/species often has them
+    "Mus musculus": "House mouse",
+    "Homo sapiens": "Human",
+    "Rattus norvegicus": "Rat",
+    "Macaca mulatta": "Rhesus macaque",
+    "Macaca fascicularis": "Cynomolgus macaque",
+    "Callithrix jacchus": "Common marmoset",
 }
 
 # NCBITaxon id (trailing digits of the DANDI species identifier URL) -> display
@@ -299,7 +320,8 @@ def get_cohere_key() -> str:
 __all__ = [
     "Config", "CONFIG", "apply_overrides",
     "COLS_TO_KEEP", "DANDISETS_TO_SKIP", "DANDISETS_TO_INCLUDE",
-    "QC_FEATURE_BOUNDS", "SCALE_FEATURES", "ROBUST_CLIP", "CODES_TO_PLOT_THRESHOLD",
+    "DVDT_FILTER_HZ", "QC_FEATURE_BOUNDS", "SCALE_FEATURES", "ROBUST_CLIP", "CODES_TO_PLOT_THRESHOLD",
+    "OTDA_REFERENCE_DANDISETS", "OTDA_UNLABELED_REGION", "OTDA_UNLABELED_TARGET",
     "N_COARSE_CLUSTERS", "N_FINE_CLUSTERS", "MIN_FINE_CLUSTER_SIZE", "CLUSTER_RANDOM_STATE",
     "SPECIES_REPLACEMENT", "SPECIES_BY_TAXON", "NEURODATA_TYPE_MAP",
     "BRAIN_REGIONS", "BRAIN_REGION_SYNONYMS", "COHERE_MODEL",

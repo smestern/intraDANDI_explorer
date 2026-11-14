@@ -16,7 +16,7 @@ from dandi_scraper.database import _drop_duplicate_cells
 # %% load the merged database
 df = pd.read_csv('all_new.csv', low_memory=False)
 df = df.dropna(subset=['umap X']).reset_index(drop=True)
-
+print(df.columns[-20:])
 # The features the merge feeds to UMAP / clustering
 cols_to_keep = list(config.COLS_TO_KEEP)
 
@@ -124,4 +124,85 @@ for ax in axs:
 plt.tight_layout()
 plt.show()
 
+# %%
+#patchOTDA
+import ot.da as da
+#pick a ref? 00020
+Xt = X[df["dandiset label"] == "000020"]
+dataset_adapted = {}
+dataset_adapted_norm = X.copy()
+for code in df["dandiset label"].unique():
+    if code == "000020":
+        continue
+    Xs = X[df["dandiset label"] == code]
+
+    dataset_adapted[code] = np.array(Xs.values).copy()
+
+reg_grid = np.logspace(-1, 0.1, 5)
+
+
+
+
+for reg in reg_grid:
+    temp_adapted = {}
+    da_ = da.JCPOTTransport(reg_e=reg, max_iter=100, log=True,  verbose=True)
+    adapted = da_.fit_transform(Xs=list(dataset_adapted.values()), ys=[-1*np.ones(len(Xs)) for Xs in dataset_adapted.values()], Xt=np.array(Xt.values), yt=-1*np.ones(len(Xt)))
+
+    #embedding after adaptation
+    for i, code in enumerate(dataset_adapted.keys()):
+        temp_adapted[code] = adapted[i]
+
+    for i, code in enumerate(temp_adapted.keys()):
+        dataset_adapted_norm.loc[df["dandiset label"] == code, :] = temp_adapted[code]
+
+    reducer5 = UMAP(densmap=False, metric="euclidean",
+                            n_neighbors=100, verbose=True)
+    embedding = reducer5.fit_transform(dataset_adapted_norm)
+
+
+
+    plt.scatter(embedding[:, 0], embedding[:, 1], s=3, c=df["brain_subregion"].astype("category").cat.codes)
+    plt.title(f'UMAP embedding with reg_e={reg}')
+    plt.xlabel('UMAP 1')
+    plt.ylabel('UMAP 2')
+   
+    plt.show()
+
+
+# %%
+#try laplace
+
+temp_adapted = {}
+dataset_adapted_laplace = {}
+for code in df["dandiset label"].unique():
+    if code == "000020":
+        continue
+    print(f"Processing dandiset label: {code}")
+    Xs = X[df["dandiset label"] == code]
+    dataset_adapted_laplace[code] = np.array(Xs.values).copy()
+
+    n_neighbors = min(len(Xs), 3)
+
+    if n_neighbors < 3:
+        print(f"Skipping dandiset label {code} due to insufficient neighbors")
+        temp_adapted[code] = np.array(Xs.values).copy()
+        continue
+
+    da_ = da.EMDLaplaceTransport(reg_lap=10, max_iter=100, log=True, verbose=True, similarity_param=n_neighbors)
+    adapted = da_.fit_transform(Xs=np.array(Xs.values), Xt=np.array(Xt.values))
+
+    temp_adapted[code] = adapted
+
+for i, code in enumerate(temp_adapted.keys()):
+    dataset_adapted_norm.loc[df["dandiset label"] == code, :] = temp_adapted[code]
+
+reducer6 = UMAP(densmap=False, metric="euclidean",
+                        n_neighbors=100, verbose=True)
+embedding = reducer6.fit_transform(dataset_adapted_norm)
+
+plt.scatter(embedding[:, 0], embedding[:, 1], s=3, c=df["brain_subregion"].astype("category").cat.codes)
+plt.title(f'UMAP embedding with Laplace adaptation')
+plt.xlabel('UMAP 1')
+plt.ylabel('UMAP 2')
+plt.show()
 # %%

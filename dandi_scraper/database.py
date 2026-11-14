@@ -21,9 +21,10 @@ from sklearn.decomposition import PCA
 from sklearn.impute import KNNImputer
 from sklearn.mixture import GaussianMixture
 from sklearn.preprocessing import MinMaxScaler, RobustScaler
-
+from ot import da
+import ot
 from . import config
-from .analysis import get_dandi_metadata, quick_qc, scale_features
+from .analysis import get_dandi_metadata, nwb_species, quick_qc, scale_features
 from .clustering import hierarchical_gmm, hierarchical_aggo
 from .logging_utils import configure_logging
 from .metadata_table import apply_table
@@ -112,6 +113,54 @@ def _sampling_rates(specimen_ids: pd.Series, cache_dir: str, rates_csv: str) -> 
     return specimen_ids.map(cached)
 
 
+def patch_otda_by_region(X: pd.DataFrame, dandisets: pd.Series, regions: pd.Series) -> pd.DataFrame:
+    """Align dandisets with optimal transport, using brain region as the supervised label.
+
+    Each dandiset is transported only onto a reference dandiset of its own region
+    (``config.OTDA_REFERENCE_DANDISETS``, else the region's largest), so between-lab
+    offsets are removed while differences between regions are kept. A region with a single
+    dandiset has nothing to align against and is left as is. Dandisets whose region is
+    ``config.OTDA_UNLABELED_REGION`` are aligned onto the ``config.OTDA_UNLABELED_TARGET`` reference.
+
+    Labels are enforced by grouping rather than through JCPOT's ``ys``: POT's JCPOT
+    assumes every source domain contains every class, and here each dandiset has exactly one region.
+    """
+    adapted = X.copy()
+    counts = pd.crosstab(dandisets, regions)
+    region_of = counts.idxmax(axis=1)
+    if (counts > 0).sum(axis=1).max() > 1:
+        logger.warning("PatchOTDA: some dandisets span several regions; using each one's majority region")
+
+    references = {}
+    for region in region_of.unique():
+        members = region_of.index[region_of == region]
+        ref = config.OTDA_REFERENCE_DANDISETS.get(region)
+        if ref not in members:
+            ref = counts.loc[members].sum(axis=1).idxmax()
+        references[region] = ref
+
+    unlabeled = config.OTDA_UNLABELED_REGION
+    for region in region_of.unique():
+        if region == unlabeled:
+            target_region = config.OTDA_UNLABELED_TARGET if config.OTDA_UNLABELED_TARGET in references else unlabeled
+        else:
+            target_region = region
+        ref = references[target_region]
+        sources = [d for d in region_of.index[region_of == region] if d != ref]
+        if not sources:
+            logger.info("PatchOTDA: %s has a single dandiset (%s); left unaligned", region, ref)
+            continue
+        logger.info("PatchOTDA: aligning %d %s dandisets onto %s (%s)",
+                    len(sources), region, ref, target_region)
+        Xs = [X.loc[(dandisets == d).values].values for d in sources]
+        Xt = X.loc[(dandisets == ref).values].values
+        transport = da.JCPOTTransport(log=True, verbose=False)
+        moved = transport.fit_transform(Xs=Xs, ys=[np.zeros(len(x)) for x in Xs], Xt=Xt)
+        for d, x in zip(sources, moved):
+            adapted.loc[(dandisets == d).values, :] = np.asarray(x)
+    return adapted
+
+
 def run_merge_dandiset(
     cache_dir: Optional[str] = None,
     output_dir: Optional[str] = None,
@@ -133,6 +182,7 @@ def run_merge_dandiset(
     dataset_numeric_pkl = os.path.join(output_dir, "dataset_numeric.pkl")
     dataset_numeric_norm_pkl = os.path.join(output_dir, "dataset_numeric_norm.pkl")
     sampling_rates_csv = os.path.join(output_dir, "sampling_rates.csv")
+    species_csv = os.path.join(output_dir, "nwb_species.csv")
 
     # cell_status tracks each id_full through the pipeline; terminal status is
     # written to all_new.errors.csv at the end so every missing cell can be
@@ -332,6 +382,8 @@ def run_merge_dandiset(
     window = dfs["analyzed_window"].str.split("-", expand=True).astype(float)
     dfs["step duration (s)"] = (window[1] - window[0]).round(2)
     dfs["sampling rate (kHz)"] = _sampling_rates(dfs["specimen_id"], cache_dir, sampling_rates_csv).round(1)
+    # The NWB file's own species wins; cells whose file has none keep the dandiset's.
+    dfs["species"] = nwb_species(dfs["specimen_id"], cache_dir, species_csv).fillna(dfs["species"])
 
     logger.info("Dumping dataset_numeric to %s", dataset_numeric_pkl)
     joblib.dump(dataset_numeric, dataset_numeric_pkl)
@@ -389,9 +441,45 @@ def run_merge_dandiset(
     dfs["norm umap X"] = embedding[:, 0]
     dfs["norm umap Y"] = embedding[:, 1]
 
+    # PatchOTDA, supervised by brain region (aligns only within region; single-dandiset
+    # regions are left as is). Disabled in favour of the unlabeled version below.
+    # dataset_adapted_norm = patch_otda_by_region(dataset_numeric, dfs["dandiset label"], dfs["brain_region"])
+
+    #patchOTDA
+    #pick a ref? 00020
+    Xt = dataset_numeric[dfs["dandiset label"] == "000020"]
+    da_ = da.JCPOTTransport( log=True, verbose=True)
+    dataset_adapted = {}
+    dataset_adapted_norm = dataset_numeric.copy()
+    for code in dfs["dandiset label"].unique():
+        if code == "000020":
+            continue
+        Xs = dataset_numeric[dfs["dandiset label"] == code]
+
+        dataset_adapted[code] = np.array(Xs.values).copy()
+
+    adapted = da_.fit_transform(Xs=list(dataset_adapted.values()), ys=[-1*np.ones(len(Xs)) for Xs in dataset_adapted.values()], Xt=np.array(Xt.values))
+
+    #put back in order
+    for i, code in enumerate(dataset_adapted.keys()):
+        dataset_adapted[code] = adapted[i]
+
+    for i, code in enumerate(dataset_adapted.keys()):
+        dataset_adapted_norm.loc[dfs["dandiset label"] == code, :] = dataset_adapted[code]
+
+    reducer5 = umap.UMAP(densmap=False, metric="euclidean",
+                         n_neighbors=100, verbose=True)
+    embedding = reducer5.fit_transform(dataset_adapted_norm)
+    dfs["PATCHOTDA umap X"] = embedding[:, 0]
+    dfs["PATCHOTDA umap Y"] = embedding[:, 1]
+
+    plt.scatter(dfs["PATCHOTDA umap X"], dfs["PATCHOTDA umap Y"], s=0.1, c=dfs["dandiset label"].astype("category").cat.codes)
+    plt.savefig("patchOTDA_scatter.png")
+    plt.close()
+
     joblib.dump(dataset_numeric_norm, dataset_numeric_norm_pkl)
 
-    plt.scatter(dfs["norm umap X"], dfs["norm umap Y"], s=0.1)
+    plt.scatter(dfs["norm umap X"], dfs["norm umap Y"], s=0.1, c=dfs["dandiset label"].astype("category").cat.codes)
     plt.savefig("norm_umap_scatter.png")
     plt.close()
     dfs["dandiset_link"] = dfs["dandiset label"].apply(
@@ -446,7 +534,6 @@ def run_merge_dandiset(
     dfs["meta_data_link"] = meta_data_link
 
     dfs.to_csv(merged_csv)
-
     for _id in dfs["id_full"]:
         cell_status[_id] = ("kept", "")
     status_rows = [

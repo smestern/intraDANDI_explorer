@@ -15,6 +15,8 @@ from gigaseal.loadFile.loadNWB import loadNWB, GLOBAL_STIM_NAMES
 from gigaseal.database.build_database import glob_files
 from gigaseal.database.long_square import select_long_square_run, long_square_features
 
+from . import config
+
 
 def run_analysis(folder, outfile='out.csv', ext="nwb", parallel=False, n_jobs=4):
     files = glob_files(folder, ext=ext)[::-1]
@@ -124,8 +126,11 @@ def data_for_specimen_id(specimen_id, passed_only, data_source, ontology, file_l
 
         stage = "features"
         features, sweep_indexes = long_square_features(sweeps, start_time, end_time,
-                                                       amp_interval=amp_interval, max_above_rheo=max_above_rheo)
+                                                       amp_interval=amp_interval, max_above_rheo=max_above_rheo,
+                                                       max_filter_hz=config.DVDT_FILTER_HZ)
         result.update(features)
+        #the cutoff gigaseal actually applied, after its 0.8 x Nyquist cap
+        result["dvdt_filter_hz"] = min(config.DVDT_FILTER_HZ, 0.8 * min(sweeps.sampling_rate) / 2)
 
         #we should record the name of the stimuli used and the sweeps used, for either plotting or debugging
         result["stimulus_name"] = data_set.sweepMetadata[0]['stim_dict']['description']

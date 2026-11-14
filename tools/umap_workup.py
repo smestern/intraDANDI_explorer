@@ -104,14 +104,36 @@ DIVERGING = mcolors.LinearSegmentedColormap.from_list(
 SEQUENTIAL = mcolors.LinearSegmentedColormap.from_list(
     "blues", ["#f0efec", "#cde2fb", "#86b6ef", "#3987e5", "#1c5cab", "#0d366b"])
 
-plt.rcParams.update({"font.size": 8, "axes.titlesize": 9, "axes.labelsize": 8})
+plt.rcParams.update({
+    "font.size": 8, "axes.titlesize": 9, "axes.labelsize": 8,
+    "svg.fonttype": "none",  # keep text as text, editable in Illustrator
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"],
+})
 
 
 def save(fig, out: str, name: str) -> None:
+    """Write a PNG and an SVG. The SVG's dpi only affects artists marked rasterized."""
     path = os.path.join(out, f"{name}.png")
     fig.savefig(path, dpi=180, bbox_inches="tight", facecolor="white")
+    fig.savefig(os.path.join(out, f"{name}.svg"), dpi=300, bbox_inches="tight", facecolor="white")
     plt.close(fig)
-    print(f"  wrote {path}")
+    print(f"  wrote {path} and .svg")
+
+
+def heatmap(ax, values: np.ndarray, **kwargs):
+    """Like imshow (cells centred on integers, first row on top), but vector cells in the SVG."""
+    rows, cols = values.shape
+    im = ax.pcolormesh(np.arange(cols + 1) - 0.5, np.arange(rows + 1) - 0.5, np.ma.masked_invalid(values),
+                       **kwargs)
+    ax.invert_yaxis()
+    return im
+
+
+def vector_colorbar(cb) -> None:
+    """Colorbars with many levels rasterize by default; edges stop seams between the levels."""
+    cb.solids.set_rasterized(False)
+    cb.solids.set_edgecolor("face")
 
 
 # ---------------------------------------------------------------------------
@@ -481,7 +503,8 @@ def section_pair_auc(df, X, out, cache, refresh) -> pd.DataFrame:
         auc.to_csv(path)
 
     fig, ax = plt.subplots(figsize=(9.5, 8.6))
-    im = ax.imshow(auc.to_numpy(dtype=float), cmap=SEQUENTIAL, vmin=0.5, vmax=1.0)
+    im = heatmap(ax, auc.to_numpy(dtype=float), cmap=SEQUENTIAL, vmin=0.5, vmax=1.0)
+    ax.set_aspect("equal")
     labels = [f"{d} {meta.loc[d, 'species'][:12]} {meta.loc[d, 'region'][:10]}" for d in order]
     ax.set_xticks(range(len(order)), order, rotation=90, fontsize=5.5)
     ax.set_yticks(range(len(order)), labels, fontsize=5.5)
@@ -496,6 +519,7 @@ def section_pair_auc(df, X, out, cache, refresh) -> pd.DataFrame:
     for s in ax.spines.values():
         s.set_visible(False)
     cb = fig.colorbar(im, ax=ax, shrink=0.5, pad=0.01)
+    vector_colorbar(cb)
     cb.set_label("Cross-validated AUC (0.5 = can't tell apart)")
     ax.set_title("How well features alone tell two datasets apart  "
                  "(blocks = mouse / NHP / human; label colour = lab family)", loc="left", color=INK)
@@ -561,7 +585,7 @@ def section_feature_drivers(df, X, out) -> dict:
     med = X.groupby(df["ds"].to_numpy()).median().loc[meta.index]
     med.to_csv(os.path.join(out, "dandiset_feature_medians.csv"))
     fig, ax = plt.subplots(figsize=(7.4, 0.16 * len(med) + 1.6))
-    im = ax.imshow(med.to_numpy(), cmap=DIVERGING, vmin=-2, vmax=2, aspect="auto")
+    im = heatmap(ax, med.to_numpy(), cmap=DIVERGING, vmin=-2, vmax=2)
     ax.set_xticks(range(med.shape[1]), [SHORT.get(c, c) for c in med.columns], rotation=60, ha="right")
     ax.set_yticks(range(len(med)), [f"{d} {meta.loc[d, 'species'][:12]} {meta.loc[d, 'region'][:10]}"
                                     for d in med.index], fontsize=6)
@@ -573,6 +597,7 @@ def section_feature_drivers(df, X, out) -> dict:
     for e in np.flatnonzero(groups[1:] != groups[:-1]) + 0.5:
         ax.axhline(e, color=INK, lw=0.8)
     cb = fig.colorbar(im, ax=ax, shrink=0.6, pad=0.01)
+    vector_colorbar(cb)
     cb.set_label("Dataset median (robust-scaled IQR units)")
     ax.set_title("Dataset medians per feature (label colour = lab family)", loc="left", color=INK)
     save(fig, out, "06_dandiset_feature_medians")

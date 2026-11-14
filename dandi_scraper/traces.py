@@ -68,7 +68,7 @@ def build_dataset_traces(folder, ids =None, ext="nwb", parallel=True, sweep_info
     #GLOBAL_STIM_NAMES.stim_type = ['CurrentClamp', 'CC', 'IC', 'Current Clamp'] #drops non-CC series in the loader, shifting sweep ids vs analyzed_sweeps
     if parallel == True:
         #Run in parallel
-        parallel = 2 # nwb loads into memory, so keep this consservative
+        parallel = 4 # nwb loads into memory, so keep this consservative
     else:
         parallel = 1
     #results = joblib.Parallel(n_jobs=parallel)(joblib.delayed(plot_data)(specimen_id, files, sweep_info=rows[specimen_id], overwrite_older_than=overwrite_older_than) for specimen_id in file_idx)

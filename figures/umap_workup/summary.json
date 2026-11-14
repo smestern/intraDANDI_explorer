@@ -1,15 +1,15 @@
 {
-  "n cells": 15665,
+  "n cells": 15849,
   "n dandisets": 50,
-  "FS share": 0.12639642515161187,
+  "FS share": 0.13975645151113636,
   "pair AUC median by kind": {
-    "different species": 0.979043230195304,
-    "same species & region, different lab": 0.9992841803865424,
-    "same species, different region": 0.9951891891891892,
-    "same species, lab, region": 0.8449215065552758
+    "different species": 0.9784403171499946,
+    "same species & region, different lab": 0.9895835374336266,
+    "same species, different region": 0.9902294372294373,
+    "same species, lab, region": 0.8353067211181733
   },
   "ap1 vs apmean r": {},
-  "single-spike rheobase share": 0.5373124800510692,
+  "single-spike rheobase share": 0.5396554987696385,
   "rate vs 1/duration": {
     "0.5": 2.0000000000002203,
     "0.6": 3.3333333333325537,
@@ -18,6 +18,6 @@
     "1.0": 1.0000000252621255,
     "1.2": 4.950750000001047
   },
-  "imputed cells": 83,
+  "imputed cells": 68,
   "datasets fully missing a feature": {}
 }
