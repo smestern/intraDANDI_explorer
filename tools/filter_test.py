@@ -7,8 +7,12 @@ The pipeline filters dv/dt at min(10 kHz, 0.8 x Nyquist), so a 10 kHz cell is fi
     filter 4k     keep each cell's own rate, filter dv/dt at 4 kHz for everyone
     resample 10k  resample every cell above 10 kHz down to 10 kHz (zero-phase FIR anti-alias), then
                   run the pipeline as usual, which filters at 4 kHz. Cells at <= 10 kHz are untouched
+    resample 10k nofilt
+                  resample as above, then take dv/dt with no filter at all (max_filter_hz=0). This one
+                  also changes the cells recorded at <= 10 kHz, which lose their 4 kHz filter
 
-Cells at <= 10 kHz come out the same under all three, so their database values are used as they are.
+Because of the last condition, a sample of the <= 10 kHz cells is rerun too, and the whole-database
+test scores them with their own values under each condition.
 
 Two tests:
   1. Within dataset. Several datasets mix slow (< 25 kHz) and fast (>= 25 kHz) cells from the same lab
@@ -48,7 +52,8 @@ from downsample_test import FEATURES, load_cells, to_display_units  # noqa: E402
 SEED = 0
 TARGET_HZ = 10000.0
 SLOW_KHZ = 25.0  # below this a cell's native dv/dt filter is under 10 kHz
-CONDITIONS = ["native", "filter 4k", "resample 10k"]
+CONDITIONS = ["native", "filter 4k", "resample 10k", "resample 10k nofilt"]
+FILTER_HZ = {"native": 10000, "filter 4k": 4000, "resample 10k": 10000, "resample 10k nofilt": 0}
 KEY = ["ap_1_upstroke_0_long_square", "ap_1_downstroke_0_long_square", "ap_1_width_0_long_square",
        "ap_1_peak_v_0_long_square", "ap_1_threshold_v_0_long_square"]
 
@@ -93,12 +98,12 @@ def measure_cell(specimen_id: str, analyzed_sweeps: str, cache_dir: str, cell_ca
                 for s in run.sweeps.sweeps:
                     t, v, i = np.asarray(s.t), np.asarray(s.v), np.asarray(s.i)
                     fs = 1.0 / (t[1] - t[0])
-                    if cond == "resample 10k" and fs > 1.05 * TARGET_HZ:
+                    if cond.startswith("resample 10k") and fs > 1.05 * TARGET_HZ:
                         t, v, i = resample(t, v, i, fs)
                     swps.append(Sweep(t, v, i, clamp_mode="CurrentClamp",
                                       sampling_rate=int(round(1 / (t[1] - t[0]))), sweep_number=s.sweep_number))
                 features, _ = long_square_features(SweepSet(swps), run.start, run.end, amp_interval=20,
-                                                   max_filter_hz=4000 if cond == "filter 4k" else 10000)
+                                                   max_filter_hz=FILTER_HZ[cond])
                 row.update({k: features.get(k, np.nan) for k in set(FEATURES) | set(config.COLS_TO_KEEP)})
             except Exception as e:
                 row["error"] = f"{type(e).__name__}: {e}"
@@ -110,8 +115,8 @@ def measure_cell(specimen_id: str, analyzed_sweeps: str, cache_dir: str, cell_ca
 
 def pick_cells(df: pd.DataFrame, per_dataset: int) -> pd.DataFrame:
     """Every slow cell in a dataset that also has fast cells, with up to ``per_dataset`` of its fast
-    cells; plus up to ``per_dataset`` cells from every other dataset recorded above 10 kHz."""
-    d = df[df["analyzed_sweeps"].notna() & (df["rate"] > 10.5)]
+    cells; plus up to ``per_dataset`` cells from every other dataset, including the <= 10 kHz ones."""
+    d = df[df["analyzed_sweeps"].notna() & df["rate"].notna()]
     picks = []
     for ds, g in d.groupby("ds"):
         slow, fast = g[g["rate"] < SLOW_KHZ], g[g["rate"] >= SLOW_KHZ]
@@ -169,15 +174,14 @@ def within_dataset(cells: pd.DataFrame, wide: dict) -> tuple[pd.DataFrame, pd.Da
 
 
 def whole_database(df: pd.DataFrame, cells: pd.DataFrame, wide: dict) -> pd.DataFrame:
-    """Test cells under each condition, scored together with the real 10 kHz cells (whose values
-    don't change under any condition)."""
-    ten = df[df["rate"] <= 10.5].set_index("specimen_id")
+    """Test cells under each condition, scored together with the sampled 10 kHz cells, each under
+    its own values for that condition (the nofilt condition changes the 10 kHz cells too)."""
+    ten = cells[cells["rate"] <= 10.5].set_index("specimen_id")
     fs = df.set_index("specimen_id")["fast spiking"]
     ds_of = df.set_index("specimen_id")["ds"]
     rows = {}
     for cond in CONDITIONS:
-        table = pd.concat([ten[list(config.COLS_TO_KEEP)], wide[cond][list(config.COLS_TO_KEEP)]])
-        table = table[~table.index.duplicated()]
+        table = wide[cond][list(config.COLS_TO_KEEP)]
         z, _ = feature_space(table)
         is_ten = z.index.isin(ten.index)
         is_fs = fs.reindex(z.index).fillna(False).to_numpy(bool)

@@ -26,7 +26,6 @@ id_full,status,detail
 001938/001938/sub-1382286660/sub-1382286660_ses-1385070386_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001938/001938/sub-1382286660/sub-1382286660_ses-1385077140_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001938/001938/sub-1369741540/sub-1369741540_ses-1370752623_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
-001938/001938/sub-1369508535/sub-1369508535_ses-1369935895_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001938/001938/sub-1368312575/sub-1368312575_ses-1370962030_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
 001938/001938/sub-1347789892/sub-1347789892_ses-1363943464_icephys.nwb,analysis_failed:features,"No subthreshold long square sweeps with stim_amp in range [(-200.0, 0)] Cannot evaluate cell features."
 001938/001938/sub-1337690348/sub-1337690348_ses-1338980179_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
@@ -35,6 +34,7 @@ id_full,status,detail
 001938/001938/sub-1517601296/sub-1517601296_ses-1517838340_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
 001938/001938/sub-1509900575/sub-1509900575_ses-1513477994_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
 001938/001938/sub-1509900557/sub-1509900557_ses-1510228697_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
+002029/002029/sourcedata/raw/sub-1256313642/sub-1256313642_ses-1256446225_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
 001752/001752/sub-Mfa250904/sub-Mfa250904_ses-Sess250904HS_obj-17j2vbx_icephys.nwb,analysis_failed:select,no long square sweeps passed QC
 001752/001752/sub-Mfa250904/sub-Mfa250904_ses-Sess250904HS_obj-10il1l4_icephys.nwb,analysis_failed:select,no long square sweeps passed QC
 001752/001752/sub-Mfa250904/sub-Mfa250904_ses-Sess250904AS_obj-x8p67c_icephys.nwb,analysis_failed:select,no long square sweeps passed QC
@@ -2129,7 +2129,6 @@ id_full,status,detail
 001625/001625/sub-1439593019/sub-1439593019_ses-1439642940_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001626/001626/sub-1452803736/sub-1452803736_ses-1452924015_icephys.nwb,analysis_failed:features,"No subthreshold long square sweeps with stim_amp in range [(-200.0, 0)] Cannot evaluate cell features."
 001626/001626/sub-1452803736/sub-1452803736_ses-1454808868_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
-001626/001626/sub-1447992644/sub-1447992644_ses-1450876466_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001626/001626/sub-1447992644/sub-1447992644_ses-1448401972_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001626/001626/sub-1431907338/sub-1431907338_ses-1432036722_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
 001626/001626/sub-1431907338/sub-1431907338_ses-1432141751_icephys.nwb,analysis_failed:features,"No subthreshold long square sweeps with stim_amp in range [(-200.0, 0)] Cannot evaluate cell features."
@@ -2475,7 +2474,6 @@ id_full,status,detail
 001751/001751/sub-Mfa190314/sub-Mfa190314_ses-190315s6_obj-dmix85_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001348/001348/sub-1347447837/sub-1347447837_ses-1363679614_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001348/001348/sub-1343882723/sub-1343882723_ses-1344157930_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
-001348/001348/sub-1333949582/sub-1333949582_ses-1335541225_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001348/001348/sub-1333949582/sub-1333949582_ses-1334657582_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001348/001348/sub-1330349593/sub-1330349593_ses-1332617522_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001348/001348/sub-1314202834/sub-1314202834_ses-1317255188_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
@@ -2539,14 +2537,10 @@ id_full,status,detail
 001354/001354/sub-PK-109/sub-PK-109_ses-20240717T164239_slice-2024-07-17-0005_cell-2024-07-17-0005_icephys.nwb,analysis_failed:select,no long square sweeps passed QC
 001354/001354/sub-PK-109/sub-PK-109_ses-20240717T155714_slice-2024-07-17-0003_cell-2024-07-17-0003_icephys.nwb,analysis_failed:select,no long square sweeps passed QC
 001354/001354/sub-PK-109/sub-PK-109_ses-20240717T150830_slice-2024-07-17-0001_cell-2024-07-17-0001_icephys.nwb,analysis_failed:select,no long square sweeps passed QC
-001359/001359/sub-1295011705/sub-1295011705_ses-1298004743_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
-001359/001359/sub-1294084014/sub-1294084014_ses-1296471421_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
-001359/001359/sub-1269274954/sub-1269274954_ses-1271067639_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001359/001359/sub-1269274954/sub-1269274954_ses-1271063423_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001359/001359/sub-1269274954/sub-1269274954_ses-1271108087_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001359/001359/sub-1269274954/sub-1269274954_ses-1271096233_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001359/001359/sub-1250755141/sub-1250755141_ses-1252523678_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
-001359/001359/sub-1250755141/sub-1250755141_ses-1252517811_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
 001359/001359/sub-1250755141/sub-1250755141_ses-1250804694_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001359/001359/sub-1250755141/sub-1250755141_ses-1252054313_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001359/001359/sub-1226798098/sub-1226798098_ses-1227838698_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
@@ -2844,7 +2838,6 @@ id_full,status,detail
 001454/001454/sub-M3-1-male-2024-07-19/sub-M3-1-male-2024-07-19_ses-20240719_obj-sb853d_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001454/001454/sub-M3-1-male-2024-07-19/sub-M3-1-male-2024-07-19_ses-20240719_obj-flyizt_icephys.nwb,analysis_failed:features,"No subthreshold long square sweeps with stim_amp in range [(-200.0, 0)] Cannot evaluate cell features."
 001454/001454/sub-Cohort16-M1-4/sub-Cohort16-M1-4_ses-20230324T165942_behavior+image+ophys.nwb,analysis_failed:load,negative dimensions are not allowed
-001464/001464/sub-1416967733/sub-1416967733_ses-1417399897_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001465/001465/sub-1421583644/sub-1421583644_ses-1422711431_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
 001465/001465/sub-1386440230/sub-1386440230_ses-1388911958_icephys.nwb,analysis_failed:features,"No subthreshold long square sweeps with stim_amp in range [(-200.0, 0)] Cannot evaluate cell features."
 001475/001475/sub-RMBE96m1/sub-RMBE96m1_ses-1b4B4_ephys.nwb,analysis_failed:select,no long square sweeps passed QC
@@ -3337,7 +3330,7 @@ id_full,status,detail
 001475/001475/sub-HSB-w18-11/sub-HSB-w18-11_ses-20250408_cell-au42_obj-1j16cso_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001475/001475/sub-HSB-w18-11/sub-HSB-w18-11_ses-20250408_cell-au42_obj-1d74yqm_icephys.nwb,analysis_failed:select,no long square sweeps passed QC
 001475/001475/sub-HSB-w18-11/sub-HSB-w18-11_ses-20250408_cell-au41_obj-qglqsy_icephys.nwb,analysis_failed:select,no long square sweeps passed QC
-001475/001475/sub-HSB-w18-11/sub-HSB-w18-11_ses-20250408_cell-au41_obj-b70sbo_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
+001475/001475/sub-HSB-w18-11/sub-HSB-w18-11_ses-20250408_cell-au41_obj-b70sbo_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
 001475/001475/sub-HSB-w18-11/sub-HSB-w18-11_ses-20250408_cell-au29_obj-1hm40up_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 001475/001475/sub-HSB-w18-11/sub-HSB-w18-11_ses-20250408_cell-au29_obj-1ekcm9z_icephys.nwb,analysis_failed:select,no long square sweeps passed QC
 001475/001475/sub-HSB-w18-11/sub-HSB-w18-11_ses-20250408_cell-au26_icephys.nwb,analysis_failed:select,no long square sweeps passed QC
@@ -3396,7 +3389,6 @@ id_full,status,detail
 000636/000636/sub-1056763709/sub-1056763709_ses-1059924731_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
 000636/000636/sub-716866594/sub-716866594_ses-717044861_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
 000769/000769/sub-1269274954/sub-1269274954_ses-1269533196_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
-000769/000769/sub-1260690332/sub-1260690332_ses-1263313597_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 000769/000769/sub-1250755141/sub-1250755141_ses-1252505875_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 000769/000769/sub-1250755141/sub-1250755141_ses-1252338979_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 000769/000769/sub-1250755141/sub-1250755141_ses-1250823734_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
@@ -4005,7 +3997,6 @@ id_full,status,detail
 000117/000117/sub-20210617001-2021-06-17-0000/sub-20210617001-2021-06-17-0000_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 000117/000117/sub-20210615003-2021-06-15-0021/sub-20210615003-2021-06-15-0021_icephys.nwb,analysis_failed:select,no long square sweeps passed QC
 000117/000117/sub-20210615003-2021-06-15-0020/sub-20210615003-2021-06-15-0020_icephys.nwb,analysis_failed:select,no long square sweeps passed QC
-000117/000117/sub-20210615003-2021-06-15-0019/sub-20210615003-2021-06-15-0019_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
 000117/000117/sub-20210615003-2021-06-15-0018/sub-20210615003-2021-06-15-0018_icephys.nwb,analysis_failed:load,no sweeps loaded
 000117/000117/sub-20210615003-2021-06-15-0017/sub-20210615003-2021-06-15-0017_icephys.nwb,analysis_failed:select,no long square sweeps passed QC
 000117/000117/sub-20210615003-2021-06-15-0016/sub-20210615003-2021-06-15-0016_icephys.nwb,analysis_failed:select,no long square sweeps passed QC
@@ -4243,6 +4234,9 @@ id_full,status,detail
 000569/000569/sub-1257702203/sub-1257702203_ses-1261009002_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
 000569/000569/sub-1256313642/sub-1256313642_ses-1256446225_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
 000569/000569/sub-1223010848/sub-1223010848_ses-1223472584_icephys.nwb,analysis_failed:features,"No spiking long square sweeps, cannot compute cell features."
+000570/000570/sub-1129830310/sub-1129830310_ses-1129918522_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
+000570/000570/sub-1056763709/sub-1056763709_ses-1059924731_icephys.nwb,analysis_failed:features,Cannot fit f-I curve slope with less than two sweeps
+000570/000570/sub-783453365/sub-783453365_ses-785369493_icephys.nwb,analysis_failed:select,no long square sweeps passed QC
 001856/001856/sub-1492018653/sub-1492018653_ses-1492325875_icephys.nwb,dropped_quick_qc,input_resistance
 001856/001856/sub-1492018653/sub-1492018653_ses-1492310896_icephys.nwb,kept,
 001856/001856/sub-1492018653/sub-1492018653_ses-1492307037_icephys.nwb,kept,
@@ -5068,7 +5062,7 @@ id_full,status,detail
 001938/001938/sub-1393827884/sub-1393827884_ses-1395062165_icephys.nwb,kept,
 001938/001938/sub-1393827884/sub-1393827884_ses-1395058361_icephys.nwb,kept,
 001938/001938/sub-1385495220/sub-1385495220_ses-1387356088_icephys.nwb,kept,
-001938/001938/sub-1385495220/sub-1385495220_ses-1387347751_icephys.nwb,dropped_quick_qc,latency_0_long_square
+001938/001938/sub-1385495220/sub-1385495220_ses-1387347751_icephys.nwb,kept,
 001938/001938/sub-1385495200/sub-1385495200_ses-1386995698_icephys.nwb,kept,
 001938/001938/sub-1385495200/sub-1385495200_ses-1386991023_icephys.nwb,kept,
 001938/001938/sub-1385495200/sub-1385495200_ses-1386990926_icephys.nwb,kept,
@@ -5106,7 +5100,7 @@ id_full,status,detail
 001938/001938/sub-1382286671/sub-1382286671_ses-1385032865_icephys.nwb,kept,
 001938/001938/sub-1382286671/sub-1382286671_ses-1385031471_icephys.nwb,kept,
 001938/001938/sub-1382286660/sub-1382286660_ses-1385072675_icephys.nwb,kept,
-001938/001938/sub-1382286660/sub-1382286660_ses-1385070936_icephys.nwb,dropped_quick_qc,latency_0_long_square
+001938/001938/sub-1382286660/sub-1382286660_ses-1385070936_icephys.nwb,kept,
 001938/001938/sub-1382286660/sub-1382286660_ses-1385069849_icephys.nwb,kept,
 001938/001938/sub-1382286660/sub-1382286660_ses-1385069231_icephys.nwb,kept,
 001938/001938/sub-1382286660/sub-1382286660_ses-1385082463_icephys.nwb,dropped_quick_qc,latency_0_long_square
@@ -5527,6 +5521,7 @@ id_full,status,detail
 001938/001938/sub-1369508535/sub-1369508535_ses-1369938425_icephys.nwb,kept,
 001938/001938/sub-1369508535/sub-1369508535_ses-1369937861_icephys.nwb,kept,
 001938/001938/sub-1369508535/sub-1369508535_ses-1369935976_icephys.nwb,dropped_quick_qc,input_resistance
+001938/001938/sub-1369508535/sub-1369508535_ses-1369935895_icephys.nwb,dropped_quick_qc,latency_0_long_square
 001938/001938/sub-1369508535/sub-1369508535_ses-1369934063_icephys.nwb,kept,
 001938/001938/sub-1369508535/sub-1369508535_ses-1369931063_icephys.nwb,kept,
 001938/001938/sub-1369508535/sub-1369508535_ses-1369928303_icephys.nwb,dropped_quick_qc,input_resistance
@@ -6154,6 +6149,58 @@ id_full,status,detail
 002018/002018/sub-1162945399/sub-1162945399_ses-1162993829_icephys.nwb,kept,
 002018/002018/sub-1162945399/sub-1162945399_ses-1162988824_icephys.nwb,kept,
 002018/002018/sub-1162945399/sub-1162945399_ses-1162982128_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1257702203/sub-1257702203_ses-1258178783_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1257702203/sub-1257702203_ses-1258170140_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1256313642/sub-1256313642_ses-1256469559_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1256313642/sub-1256313642_ses-1256468441_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1256313642/sub-1256313642_ses-1256454466_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1256313642/sub-1256313642_ses-1256446193_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1256313642/sub-1256313642_ses-1256435784_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1256313642/sub-1256313642_ses-1256432717_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1253938349/sub-1253938349_ses-1254033693_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1246007072/sub-1246007072_ses-1246171824_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1244263408/sub-1244263408_ses-1245573184_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1244263408/sub-1244263408_ses-1244530162_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1244263408/sub-1244263408_ses-1244527847_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1244263408/sub-1244263408_ses-1244522502_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1244263408/sub-1244263408_ses-1244515934_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1244263408/sub-1244263408_ses-1244377141_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1244263408/sub-1244263408_ses-1244360215_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1229448755/sub-1229448755_ses-1229729186_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1229448755/sub-1229448755_ses-1229726699_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1229448755/sub-1229448755_ses-1229697792_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223067925_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223065636_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223057941_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223056539_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223050946_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223050885_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223043448_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223041284_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223032714_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223032670_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223022017_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223787438_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223784745_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223780485_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223751280_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223715204_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223524258_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223503435_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223274165_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223266741_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223266236_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223257956_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223246864_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223245489_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223240845_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223230447_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223227726_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223216141_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223193867_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223072279_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223069347_icephys.nwb,kept,
+002029/002029/sourcedata/raw/sub-1216132605/sub-1216132605_ses-1216178721_icephys.nwb,kept,
 001753/001753/sub-1475259024/sub-1475259024_ses-1475395904_icephys.nwb,kept,
 001753/001753/sub-1475259024/sub-1475259024_ses-1475389906_icephys.nwb,kept,
 001753/001753/sub-1475259024/sub-1475259024_ses-1475373950_icephys.nwb,kept,
@@ -7116,7 +7163,7 @@ id_full,status,detail
 001625/001625/sub-1439593019/sub-1439593019_ses-1441879508_icephys.nwb,kept,
 001625/001625/sub-1439593019/sub-1439593019_ses-1439809167_icephys.nwb,kept,
 001625/001625/sub-1439593019/sub-1439593019_ses-1439799796_icephys.nwb,kept,
-001625/001625/sub-1439593019/sub-1439593019_ses-1439681019_icephys.nwb,dropped_quick_qc,latency_0_long_square
+001625/001625/sub-1439593019/sub-1439593019_ses-1439681019_icephys.nwb,kept,
 001625/001625/sub-1439593019/sub-1439593019_ses-1439671143_icephys.nwb,kept,
 001625/001625/sub-1439593019/sub-1439593019_ses-1439667350_icephys.nwb,kept,
 001625/001625/sub-1439593019/sub-1439593019_ses-1439658855_icephys.nwb,kept,
@@ -7169,6 +7216,7 @@ id_full,status,detail
 001626/001626/sub-1447992644/sub-1447992644_ses-1451076567_icephys.nwb,kept,
 001626/001626/sub-1447992644/sub-1447992644_ses-1451102481_icephys.nwb,kept,
 001626/001626/sub-1447992644/sub-1447992644_ses-1451068782_icephys.nwb,kept,
+001626/001626/sub-1447992644/sub-1447992644_ses-1450876466_icephys.nwb,dropped_quick_qc,latency_0_long_square
 001626/001626/sub-1447992644/sub-1447992644_ses-1448359703_icephys.nwb,kept,
 001626/001626/sub-1447992644/sub-1447992644_ses-1451061565_icephys.nwb,kept,
 001626/001626/sub-1447992644/sub-1447992644_ses-1450884498_icephys.nwb,kept,
@@ -8119,6 +8167,7 @@ id_full,status,detail
 001348/001348/sub-1340812489/sub-1340812489_ses-1343915043_icephys.nwb,kept,
 001348/001348/sub-1340812489/sub-1340812489_ses-1343881179_icephys.nwb,kept,
 001348/001348/sub-1333949582/sub-1333949582_ses-1335544913_icephys.nwb,kept,
+001348/001348/sub-1333949582/sub-1333949582_ses-1335541225_icephys.nwb,dropped_quick_qc,latency_0_long_square
 001348/001348/sub-1333949582/sub-1333949582_ses-1335532591_icephys.nwb,kept,
 001348/001348/sub-1333949582/sub-1333949582_ses-1335531122_icephys.nwb,kept,
 001348/001348/sub-1333949582/sub-1333949582_ses-1335747163_icephys.nwb,kept,
@@ -8351,7 +8400,7 @@ id_full,status,detail
 001348/001348/sub-1273579455/sub-1273579455_ses-1273906932_icephys.nwb,kept,
 001348/001348/sub-1273579455/sub-1273579455_ses-1273867747_icephys.nwb,kept,
 001348/001348/sub-1273579455/sub-1273579455_ses-1273714644_icephys.nwb,kept,
-001348/001348/sub-1273579455/sub-1273579455_ses-1276956216_icephys.nwb,dropped_quick_qc,latency_0_long_square
+001348/001348/sub-1273579455/sub-1273579455_ses-1276956216_icephys.nwb,kept,
 001348/001348/sub-1273579455/sub-1273579455_ses-1276791279_icephys.nwb,kept,
 001348/001348/sub-1273579455/sub-1273579455_ses-1276722820_icephys.nwb,kept,
 001348/001348/sub-1271976045/sub-1271976045_ses-1272634342_icephys.nwb,kept,
@@ -8371,7 +8420,7 @@ id_full,status,detail
 001348/001348/sub-1257702203/sub-1257702203_ses-1260936807_icephys.nwb,kept,
 001348/001348/sub-1256313642/sub-1256313642_ses-1257807395_icephys.nwb,kept,
 001348/001348/sub-1256313642/sub-1256313642_ses-1257758210_icephys.nwb,kept,
-001348/001348/sub-1256313642/sub-1256313642_ses-1256454466_icephys.nwb,kept,
+001348/001348/sub-1256313642/sub-1256313642_ses-1256454466_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1256313642/sub-1256313642_ses-1256454466_icephys.nwb
 001348/001348/sub-1256313642/sub-1256313642_ses-1256445693_icephys.nwb,kept,
 001348/001348/sub-1256313642/sub-1256313642_ses-1256435833_icephys.nwb,kept,
 001348/001348/sub-1256313642/sub-1256313642_ses-1256423527_icephys.nwb,kept,
@@ -8388,13 +8437,13 @@ id_full,status,detail
 001348/001348/sub-1253938349/sub-1253938349_ses-1256617728_icephys.nwb,kept,
 001348/001348/sub-1253938349/sub-1253938349_ses-1256612326_icephys.nwb,kept,
 001348/001348/sub-1253938349/sub-1253938349_ses-1254039916_icephys.nwb,kept,
-001348/001348/sub-1244263408/sub-1244263408_ses-1244515934_icephys.nwb,kept,
+001348/001348/sub-1244263408/sub-1244263408_ses-1244515934_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1244263408/sub-1244263408_ses-1244515934_icephys.nwb
 001348/001348/sub-1244263408/sub-1244263408_ses-1244388939_icephys.nwb,kept,
 001348/001348/sub-1244263408/sub-1244263408_ses-1244385889_icephys.nwb,kept,
 001348/001348/sub-1244263408/sub-1244263408_ses-1244385826_icephys.nwb,kept,
 001348/001348/sub-1244263408/sub-1244263408_ses-1244381001_icephys.nwb,kept,
 001348/001348/sub-1244263408/sub-1244263408_ses-1244367338_icephys.nwb,kept,
-001348/001348/sub-1244263408/sub-1244263408_ses-1244360215_icephys.nwb,kept,
+001348/001348/sub-1244263408/sub-1244263408_ses-1244360215_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1244263408/sub-1244263408_ses-1244360215_icephys.nwb
 001348/001348/sub-1229448755/sub-1229448755_ses-1231245598_icephys.nwb,kept,
 001348/001348/sub-1229448755/sub-1229448755_ses-1229739075_icephys.nwb,kept,
 001348/001348/sub-1229448755/sub-1229448755_ses-1229732491_icephys.nwb,kept,
@@ -8406,13 +8455,13 @@ id_full,status,detail
 001348/001348/sub-1223010848/sub-1223010848_ses-1223194988_icephys.nwb,kept,
 001348/001348/sub-1223010848/sub-1223010848_ses-1223073591_icephys.nwb,kept,
 001348/001348/sub-1223010848/sub-1223010848_ses-1223060164_icephys.nwb,kept,
-001348/001348/sub-1223010848/sub-1223010848_ses-1223041284_icephys.nwb,kept,
+001348/001348/sub-1223010848/sub-1223010848_ses-1223041284_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223041284_icephys.nwb
 001348/001348/sub-1223010848/sub-1223010848_ses-1223021971_icephys.nwb,kept,
 001348/001348/sub-1223010848/sub-1223010848_ses-1223249380_icephys.nwb,kept,
 001348/001348/sub-1223010848/sub-1223010848_ses-1223221838_icephys.nwb,kept,
 001348/001348/sub-1223010848/sub-1223010848_ses-1223213580_icephys.nwb,kept,
 001348/001348/sub-1223010848/sub-1223010848_ses-1224638786_icephys.nwb,dropped_quick_qc,input_resistance
-001348/001348/sub-1223010848/sub-1223010848_ses-1223787438_icephys.nwb,kept,
+001348/001348/sub-1223010848/sub-1223010848_ses-1223787438_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223787438_icephys.nwb
 001348/001348/sub-1223010848/sub-1223010848_ses-1223276159_icephys.nwb,kept,
 001348/001348/sub-1223010848/sub-1223010848_ses-1223276128_icephys.nwb,kept,
 001348/001348/sub-1223010848/sub-1223010848_ses-1223212457_icephys.nwb,kept,
@@ -8595,7 +8644,7 @@ id_full,status,detail
 001359/001359/sub-1323017636/sub-1323017636_ses-1324845205_icephys.nwb,kept,
 001359/001359/sub-1323017636/sub-1323017636_ses-1325019058_icephys.nwb,kept,
 001359/001359/sub-1323017636/sub-1323017636_ses-1325005546_icephys.nwb,kept,
-001359/001359/sub-1323017636/sub-1323017636_ses-1325004874_icephys.nwb,dropped_quick_qc,latency_0_long_square
+001359/001359/sub-1323017636/sub-1323017636_ses-1325004874_icephys.nwb,kept,
 001359/001359/sub-1323017636/sub-1323017636_ses-1324988165_icephys.nwb,kept,
 001359/001359/sub-1323017636/sub-1323017636_ses-1324837155_icephys.nwb,kept,
 001359/001359/sub-1321888477/sub-1321888477_ses-1322759952_icephys.nwb,kept,
@@ -8667,6 +8716,7 @@ id_full,status,detail
 001359/001359/sub-1295011705/sub-1295011705_ses-1297088883_icephys.nwb,kept,
 001359/001359/sub-1295011705/sub-1295011705_ses-1296923850_icephys.nwb,kept,
 001359/001359/sub-1295011705/sub-1295011705_ses-1298005513_icephys.nwb,kept,
+001359/001359/sub-1295011705/sub-1295011705_ses-1298004743_icephys.nwb,dropped_quick_qc,latency_0_long_square
 001359/001359/sub-1295011705/sub-1295011705_ses-1297178577_icephys.nwb,kept,
 001359/001359/sub-1295011705/sub-1295011705_ses-1298046067_icephys.nwb,kept,
 001359/001359/sub-1295011705/sub-1295011705_ses-1298023425_icephys.nwb,kept,
@@ -8680,6 +8730,7 @@ id_full,status,detail
 001359/001359/sub-1294084014/sub-1294084014_ses-1295618591_icephys.nwb,kept,
 001359/001359/sub-1294084014/sub-1294084014_ses-1295610118_icephys.nwb,kept,
 001359/001359/sub-1294084014/sub-1294084014_ses-1295608174_icephys.nwb,dropped_quick_qc,input_resistance
+001359/001359/sub-1294084014/sub-1294084014_ses-1296471421_icephys.nwb,kept,
 001359/001359/sub-1294084014/sub-1294084014_ses-1295645600_icephys.nwb,kept,
 001359/001359/sub-1294084014/sub-1294084014_ses-1295605944_icephys.nwb,dropped_quick_qc,input_resistance
 001359/001359/sub-1294084014/sub-1294084014_ses-1295370558_icephys.nwb,kept,
@@ -8713,11 +8764,12 @@ id_full,status,detail
 001359/001359/sub-1282284113/sub-1282284113_ses-1284094094_icephys.nwb,kept,
 001359/001359/sub-1282284113/sub-1282284113_ses-1284084431_icephys.nwb,kept,
 001359/001359/sub-1269274954/sub-1269274954_ses-1270925670_icephys.nwb,kept,
-001359/001359/sub-1269274954/sub-1269274954_ses-1270898527_icephys.nwb,dropped_quick_qc,latency_0_long_square
+001359/001359/sub-1269274954/sub-1269274954_ses-1270898527_icephys.nwb,kept,
 001359/001359/sub-1269274954/sub-1269274954_ses-1270832295_icephys.nwb,kept,
 001359/001359/sub-1269274954/sub-1269274954_ses-1269541343_icephys.nwb,kept,
 001359/001359/sub-1269274954/sub-1269274954_ses-1271076166_icephys.nwb,dropped_quick_qc,ap_1_threshold_v_0_long_square
 001359/001359/sub-1269274954/sub-1269274954_ses-1271069982_icephys.nwb,kept,
+001359/001359/sub-1269274954/sub-1269274954_ses-1271067639_icephys.nwb,dropped_quick_qc,latency_0_long_square
 001359/001359/sub-1269274954/sub-1269274954_ses-1272086328_icephys.nwb,kept,
 001359/001359/sub-1269274954/sub-1269274954_ses-1272067253_icephys.nwb,kept,
 001359/001359/sub-1269274954/sub-1269274954_ses-1271091841_icephys.nwb,kept,
@@ -8759,6 +8811,7 @@ id_full,status,detail
 001359/001359/sub-1250755141/sub-1250755141_ses-1252332891_icephys.nwb,kept,
 001359/001359/sub-1250755141/sub-1250755141_ses-1252086085_icephys.nwb,kept,
 001359/001359/sub-1250755141/sub-1250755141_ses-1250830844_icephys.nwb,kept,
+001359/001359/sub-1250755141/sub-1250755141_ses-1252517811_icephys.nwb,kept,
 001359/001359/sub-1250755141/sub-1250755141_ses-1252365841_icephys.nwb,kept,
 001359/001359/sub-1250755141/sub-1250755141_ses-1252358122_icephys.nwb,kept,
 001359/001359/sub-1250755141/sub-1250755141_ses-1250825199_icephys.nwb,kept,
@@ -8768,7 +8821,7 @@ id_full,status,detail
 001359/001359/sub-1250755141/sub-1250755141_ses-1250813940_icephys.nwb,kept,
 001359/001359/sub-1250755141/sub-1250755141_ses-1252067506_icephys.nwb,kept,
 001359/001359/sub-1250755141/sub-1250755141_ses-1252045516_icephys.nwb,dropped_quick_qc,input_resistance
-001359/001359/sub-1250755141/sub-1250755141_ses-1251005558_icephys.nwb,dropped_quick_qc,ap_1_threshold_v_0_long_square
+001359/001359/sub-1250755141/sub-1250755141_ses-1251005558_icephys.nwb,kept,
 001359/001359/sub-1250755141/sub-1250755141_ses-1252595933_icephys.nwb,kept,
 001359/001359/sub-1250755141/sub-1250755141_ses-1252540349_icephys.nwb,kept,
 001359/001359/sub-1250755141/sub-1250755141_ses-1252537580_icephys.nwb,kept,
@@ -8828,7 +8881,7 @@ id_full,status,detail
 001359/001359/sub-1215761491/sub-1215761491_ses-1216310135_icephys.nwb,kept,
 001359/001359/sub-1215761491/sub-1215761491_ses-1216282917_icephys.nwb,kept,
 001359/001359/sub-1215761491/sub-1215761491_ses-1217001370_icephys.nwb,kept,
-001359/001359/sub-1215761491/sub-1215761491_ses-1216993887_icephys.nwb,dropped_quick_qc,latency_0_long_square
+001359/001359/sub-1215761491/sub-1215761491_ses-1216993887_icephys.nwb,kept,
 001359/001359/sub-1215761491/sub-1215761491_ses-1217060225_icephys.nwb,kept,
 001359/001359/sub-1215761491/sub-1215761491_ses-1217044180_icephys.nwb,kept,
 001359/001359/sub-1215761491/sub-1215761491_ses-1217037372_icephys.nwb,kept,
@@ -10598,6 +10651,7 @@ id_full,status,detail
 001464/001464/sub-1416967733/sub-1416967733_ses-1417480586_icephys.nwb,kept,
 001464/001464/sub-1416967733/sub-1416967733_ses-1417443423_icephys.nwb,kept,
 001464/001464/sub-1416967733/sub-1416967733_ses-1417431103_icephys.nwb,kept,
+001464/001464/sub-1416967733/sub-1416967733_ses-1417399897_icephys.nwb,kept,
 001464/001464/sub-1416967733/sub-1416967733_ses-1417002313_icephys.nwb,kept,
 001464/001464/sub-1416967733/sub-1416967733_ses-1416998494_icephys.nwb,kept,
 001464/001464/sub-1416967733/sub-1416967733_ses-1416993191_icephys.nwb,kept,
@@ -11281,15 +11335,15 @@ id_full,status,detail
 000635/000635/sub-1271976045/sub-1271976045_ses-1272239622_icephys.nwb,dropped_quick_qc,latency_0_long_square
 000635/000635/sub-1257702203/sub-1257702203_ses-1261468649_icephys.nwb,kept,
 000635/000635/sub-1257702203/sub-1257702203_ses-1258197823_icephys.nwb,kept,
-000635/000635/sub-1257702203/sub-1257702203_ses-1258178783_icephys.nwb,kept,
-000635/000635/sub-1256313642/sub-1256313642_ses-1256435784_icephys.nwb,kept,
+000635/000635/sub-1257702203/sub-1257702203_ses-1258178783_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1257702203/sub-1257702203_ses-1258178783_icephys.nwb
+000635/000635/sub-1256313642/sub-1256313642_ses-1256435784_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1256313642/sub-1256313642_ses-1256435784_icephys.nwb
 000635/000635/sub-1244263408/sub-1244263408_ses-1245564419_icephys.nwb,kept,
-000635/000635/sub-1244263408/sub-1244263408_ses-1244530162_icephys.nwb,kept,
-000635/000635/sub-1244263408/sub-1244263408_ses-1244522502_icephys.nwb,kept,
-000635/000635/sub-1223010848/sub-1223010848_ses-1223715204_icephys.nwb,kept,
-000635/000635/sub-1223010848/sub-1223010848_ses-1223503435_icephys.nwb,kept,
+000635/000635/sub-1244263408/sub-1244263408_ses-1244530162_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1244263408/sub-1244263408_ses-1244530162_icephys.nwb
+000635/000635/sub-1244263408/sub-1244263408_ses-1244522502_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1244263408/sub-1244263408_ses-1244522502_icephys.nwb
+000635/000635/sub-1223010848/sub-1223010848_ses-1223715204_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223715204_icephys.nwb
+000635/000635/sub-1223010848/sub-1223010848_ses-1223503435_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223503435_icephys.nwb
 000635/000635/sub-1223010848/sub-1223010848_ses-1223243222_icephys.nwb,kept,
-000635/000635/sub-1223010848/sub-1223010848_ses-1223227726_icephys.nwb,kept,
+000635/000635/sub-1223010848/sub-1223010848_ses-1223227726_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223227726_icephys.nwb
 000636/000636/sub-846404050/sub-846404050_ses-848653368_icephys.nwb,kept,
 000636/000636/sub-846404050/sub-846404050_ses-848586183_icephys.nwb,kept,
 000636/000636/sub-846404050/sub-846404050_ses-847970008_icephys.nwb,kept,
@@ -12103,7 +12157,7 @@ id_full,status,detail
 000769/000769/sub-1260954683/sub-1260954683_ses-1263249371_icephys.nwb,kept,
 000769/000769/sub-1260954683/sub-1260954683_ses-1261065013_icephys.nwb,kept,
 000769/000769/sub-1260690332/sub-1260690332_ses-1262822167_icephys.nwb,kept,
-000769/000769/sub-1260690332/sub-1260690332_ses-1262808591_icephys.nwb,dropped_quick_qc,latency_0_long_square
+000769/000769/sub-1260690332/sub-1260690332_ses-1262808591_icephys.nwb,dropped_quick_qc,ap_1_threshold_v_0_long_square
 000769/000769/sub-1260690332/sub-1260690332_ses-1262563882_icephys.nwb,kept,
 000769/000769/sub-1260690332/sub-1260690332_ses-1262558322_icephys.nwb,kept,
 000769/000769/sub-1260690332/sub-1260690332_ses-1262534833_icephys.nwb,kept,
@@ -12116,6 +12170,7 @@ id_full,status,detail
 000769/000769/sub-1260690332/sub-1260690332_ses-1263787520_icephys.nwb,kept,
 000769/000769/sub-1260690332/sub-1260690332_ses-1263346114_icephys.nwb,kept,
 000769/000769/sub-1260690332/sub-1260690332_ses-1263345105_icephys.nwb,kept,
+000769/000769/sub-1260690332/sub-1260690332_ses-1263313597_icephys.nwb,kept,
 000769/000769/sub-1260690332/sub-1260690332_ses-1263298210_icephys.nwb,kept,
 000769/000769/sub-1260690332/sub-1260690332_ses-1262930780_icephys.nwb,kept,
 000769/000769/sub-1260690332/sub-1260690332_ses-1262843243_icephys.nwb,kept,
@@ -12320,7 +12375,7 @@ id_full,status,detail
 001065/001065/sub-Q21-26-005/sub-Q21-26-005_ses-20210210T001156_icephys.nwb,kept,
 001065/001065/sub-Q21-26-005/sub-Q21-26-005_ses-20210209T232500_icephys.nwb,kept,
 001065/001065/sub-Q21-26-005/sub-Q21-26-005_ses-20210209T220345_icephys.nwb,kept,
-001065/001065/sub-Q21-26-002/sub-Q21-26-002_ses-20210127T233711_icephys.nwb,kept,
+001065/001065/sub-Q21-26-002/sub-Q21-26-002_ses-20210127T233711_icephys.nwb,dropped_quick_qc,input_resistance
 001065/001065/sub-Q21-26-002/sub-Q21-26-002_ses-20210121T235931_icephys.nwb,kept,
 001065/001065/sub-Q21-26-002/sub-Q21-26-002_ses-20210121T213535_icephys.nwb,kept,
 001065/001065/sub-Q21-26-001/sub-Q21-26-001_ses-20210113T031906_icephys.nwb,kept,
@@ -12899,7 +12954,7 @@ id_full,status,detail
 001281/001281/sub-181109/sub-181109_ses-1811091lr-4-2-2_icephys.nwb,kept,
 001281/001281/sub-181109/sub-181109_ses-1811091lr-2-1-2_icephys.nwb,kept,
 001281/001281/sub-181017/sub-181017_ses-1810172fs-4-1-2_icephys.nwb,kept,
-001281/001281/sub-181017/sub-181017_ses-1810171lr-2-2-2_icephys.nwb,kept,
+001281/001281/sub-181017/sub-181017_ses-1810171lr-2-2-2_icephys.nwb,dropped_quick_qc,ap_1_width_0_long_square
 001281/001281/sub-180928/sub-180928_ses-1809282lr-3-1-2_icephys.nwb,kept,
 001281/001281/sub-180216/sub-180216_ses-1802161oa-2-1-1_icephys.nwb,kept,
 001281/001281/sub-180214/sub-180214_ses-1802142og-1-4-1_icephys.nwb,kept,
@@ -13126,7 +13181,7 @@ id_full,status,detail
 001281/001281/sub-220505/sub-220505_ses-2205051pz-4-2-1_icephys.nwb,kept,
 001281/001281/sub-220505/sub-220505_ses-2205051pz-3-3-1_icephys.nwb,kept,
 001281/001281/sub-220505/sub-220505_ses-2205051pz-1-1-1_icephys.nwb,kept,
-001281/001281/sub-220303/sub-220303_ses-2203032si-3-1-1_icephys.nwb,kept,
+001281/001281/sub-220303/sub-220303_ses-2203032si-3-1-1_icephys.nwb,dropped_quick_qc,ap_1_width_0_long_square
 001281/001281/sub-220303/sub-220303_ses-2203031si-3-1-1_icephys.nwb,kept,
 001281/001281/sub-220218/sub-220218_ses-2202181tm-3-1-1_icephys.nwb,kept,
 001281/001281/sub-220218/sub-220218_ses-2202181si-6-5-1_icephys.nwb,kept,
@@ -15867,7 +15922,7 @@ id_full,status,detail
 000020/000020/sub-790588016/sub-790588016_ses-794801907_icephys.nwb,kept,
 000020/000020/sub-790588016/sub-790588016_ses-794948939_icephys.nwb,kept,
 000020/000020/sub-790588016/sub-790588016_ses-794937638_icephys.nwb,kept,
-000020/000020/sub-790588016/sub-790588016_ses-794869712_icephys.nwb,dropped_quick_qc,ap_1_threshold_v_0_long_square
+000020/000020/sub-790588016/sub-790588016_ses-794869712_icephys.nwb,kept,
 000020/000020/sub-790588016/sub-790588016_ses-794864537_icephys.nwb,kept,
 000020/000020/sub-782818593/sub-782818593_ses-788939222_icephys.nwb,kept,
 000020/000020/sub-782818593/sub-782818593_ses-788925642_icephys.nwb,kept,
@@ -19894,6 +19949,7 @@ id_full,status,detail
 000109/000109/sub-737373545/sub-737373545_ses-737933906_icephys.nwb,kept,
 000109/000109/sub-737373545/sub-737373545_ses-737860128_icephys.nwb,kept,
 000109/000109/sub-737373545/sub-737373545_ses-737550961_icephys.nwb,kept,
+000117/000117/sub-20210615003-2021-06-15-0019/sub-20210615003-2021-06-15-0019_icephys.nwb,kept,
 000117/000117/sub-20210611002-2021-06-11-0010/sub-20210611002-2021-06-11-0010_icephys.nwb,dropped_quick_qc,input_resistance
 000117/000117/sub-20210611002-2021-06-11-0006/sub-20210611002-2021-06-11-0006_icephys.nwb,kept,
 000117/000117/sub-20210610004-2021-06-10-0019/sub-20210610004-2021-06-10-0019_icephys.nwb,kept,
@@ -21081,14 +21137,14 @@ id_full,status,detail
 000288/000288/sub-H19.03.316/sub-H19.03.316_ses-914396880_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-914396880_icephys.nwb
 000288/000288/sub-H19.03.316/sub-H19.03.316_ses-914355964_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-914355964_icephys.nwb
 000288/000288/sub-H19.03.316/sub-H19.03.316_ses-914354777_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-914354777_icephys.nwb
-000288/000288/sub-H19.03.306/sub-H19.03.306_ses-835704054_icephys.nwb,kept,
+000288/000288/sub-H19.03.306/sub-H19.03.306_ses-835704054_icephys.nwb,dropped_duplicate,same features as 000570/000570/sub-835477230/sub-835477230_ses-835704054_icephys.nwb
 000288/000288/sub-H18.06.371/sub-H18.06.371_ses-793604699_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-793165711/sub-793165711_ses-793604699_icephys.nwb
 000288/000288/sub-H18.03.315/sub-H18.03.315_ses-740695185_icephys.nwb,kept,
 000288/000288/sub-H18.03.003/sub-H18.03.003_ses-666108636_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-665691251/sub-665691251_ses-666108636_icephys.nwb
 000288/000288/sub-H18.03.003/sub-H18.03.003_ses-666067870_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-665691251/sub-665691251_ses-666067870_icephys.nwb
 000288/000288/sub-H18.03.003/sub-H18.03.003_ses-665718232_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-665691251/sub-665691251_ses-665718232_icephys.nwb
-000288/000288/sub-H18.03.003/sub-H18.03.003_ses-665703339_icephys.nwb,kept,
-000288/000288/sub-H18.03.003/sub-H18.03.003_ses-665695908_icephys.nwb,kept,
+000288/000288/sub-H18.03.003/sub-H18.03.003_ses-665703339_icephys.nwb,dropped_duplicate,same features as 000570/000570/sub-665691251/sub-665691251_ses-665703339_icephys.nwb
+000288/000288/sub-H18.03.003/sub-H18.03.003_ses-665695908_icephys.nwb,dropped_duplicate,same features as 000570/000570/sub-665691251/sub-665691251_ses-665695908_icephys.nwb
 000288/000288/sub-H17.26.003/sub-H17.26.003_ses-650074243_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-648220984/sub-648220984_ses-650074243_icephys.nwb
 000288/000288/sub-H17.06.013/sub-H17.06.013_ses-643583112_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-643488707/sub-643488707_ses-643583112_icephys.nwb
 000288/000288/sub-H17.03.013/sub-H17.03.013_ses-636991746_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-636948822/sub-636948822_ses-636991746_icephys.nwb
@@ -21243,7 +21299,7 @@ id_full,status,detail
 000569/000569/sub-1257702203/sub-1257702203_ses-1258199441_icephys.nwb,kept,
 000569/000569/sub-1257702203/sub-1257702203_ses-1258198439_icephys.nwb,kept,
 000569/000569/sub-1257702203/sub-1257702203_ses-1258191718_icephys.nwb,kept,
-000569/000569/sub-1257702203/sub-1257702203_ses-1258170140_icephys.nwb,kept,
+000569/000569/sub-1257702203/sub-1257702203_ses-1258170140_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1257702203/sub-1257702203_ses-1258170140_icephys.nwb
 000569/000569/sub-1257702203/sub-1257702203_ses-1258167132_icephys.nwb,kept,
 000569/000569/sub-1257702203/sub-1257702203_ses-1260767591_icephys.nwb,kept,
 000569/000569/sub-1257702203/sub-1257702203_ses-1260317674_icephys.nwb,kept,
@@ -21251,10 +21307,10 @@ id_full,status,detail
 000569/000569/sub-1257702203/sub-1257702203_ses-1261763003_icephys.nwb,kept,
 000569/000569/sub-1257702203/sub-1257702203_ses-1261483652_icephys.nwb,kept,
 000569/000569/sub-1256313642/sub-1256313642_ses-1257720395_icephys.nwb,kept,
-000569/000569/sub-1256313642/sub-1256313642_ses-1256469559_icephys.nwb,kept,
-000569/000569/sub-1256313642/sub-1256313642_ses-1256468441_icephys.nwb,kept,
-000569/000569/sub-1256313642/sub-1256313642_ses-1256446193_icephys.nwb,kept,
-000569/000569/sub-1256313642/sub-1256313642_ses-1256432717_icephys.nwb,kept,
+000569/000569/sub-1256313642/sub-1256313642_ses-1256469559_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1256313642/sub-1256313642_ses-1256469559_icephys.nwb
+000569/000569/sub-1256313642/sub-1256313642_ses-1256468441_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1256313642/sub-1256313642_ses-1256468441_icephys.nwb
+000569/000569/sub-1256313642/sub-1256313642_ses-1256446193_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1256313642/sub-1256313642_ses-1256446193_icephys.nwb
+000569/000569/sub-1256313642/sub-1256313642_ses-1256432717_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1256313642/sub-1256313642_ses-1256432717_icephys.nwb
 000569/000569/sub-1256313642/sub-1256313642_ses-1257758173_icephys.nwb,kept,
 000569/000569/sub-1256313642/sub-1256313642_ses-1257745417_icephys.nwb,kept,
 000569/000569/sub-1256313642/sub-1256313642_ses-1257738494_icephys.nwb,kept,
@@ -21266,7 +21322,7 @@ id_full,status,detail
 000569/000569/sub-1253938349/sub-1253938349_ses-1256367067_icephys.nwb,kept,
 000569/000569/sub-1253938349/sub-1253938349_ses-1256357783_icephys.nwb,kept,
 000569/000569/sub-1253938349/sub-1253938349_ses-1256351608_icephys.nwb,kept,
-000569/000569/sub-1253938349/sub-1253938349_ses-1254033693_icephys.nwb,kept,
+000569/000569/sub-1253938349/sub-1253938349_ses-1254033693_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1253938349/sub-1253938349_ses-1254033693_icephys.nwb
 000569/000569/sub-1253938349/sub-1253938349_ses-1254008145_icephys.nwb,kept,
 000569/000569/sub-1253938349/sub-1253938349_ses-1256616986_icephys.nwb,kept,
 000569/000569/sub-1253938349/sub-1253938349_ses-1256601748_icephys.nwb,kept,
@@ -21276,51 +21332,203 @@ id_full,status,detail
 000569/000569/sub-1253938349/sub-1253938349_ses-1256624472_icephys.nwb,kept,
 000569/000569/sub-1253938349/sub-1253938349_ses-1256619665_icephys.nwb,kept,
 000569/000569/sub-1253938349/sub-1253938349_ses-1256380088_icephys.nwb,kept,
-000569/000569/sub-1246007072/sub-1246007072_ses-1246171824_icephys.nwb,kept,
+000569/000569/sub-1246007072/sub-1246007072_ses-1246171824_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1246007072/sub-1246007072_ses-1246171824_icephys.nwb
 000569/000569/sub-1244263408/sub-1244263408_ses-1245868071_icephys.nwb,kept,
 000569/000569/sub-1244263408/sub-1244263408_ses-1245856800_icephys.nwb,kept,
 000569/000569/sub-1244263408/sub-1244263408_ses-1245591661_icephys.nwb,kept,
 000569/000569/sub-1244263408/sub-1244263408_ses-1245582702_icephys.nwb,kept,
-000569/000569/sub-1244263408/sub-1244263408_ses-1245573184_icephys.nwb,kept,
-000569/000569/sub-1244263408/sub-1244263408_ses-1244527847_icephys.nwb,kept,
-000569/000569/sub-1244263408/sub-1244263408_ses-1244377141_icephys.nwb,kept,
+000569/000569/sub-1244263408/sub-1244263408_ses-1245573184_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1244263408/sub-1244263408_ses-1245573184_icephys.nwb
+000569/000569/sub-1244263408/sub-1244263408_ses-1244527847_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1244263408/sub-1244263408_ses-1244527847_icephys.nwb
+000569/000569/sub-1244263408/sub-1244263408_ses-1244377141_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1244263408/sub-1244263408_ses-1244377141_icephys.nwb
 000569/000569/sub-1229448755/sub-1229448755_ses-1231252692_icephys.nwb,kept,
 000569/000569/sub-1229448755/sub-1229448755_ses-1231236649_icephys.nwb,kept,
 000569/000569/sub-1229448755/sub-1229448755_ses-1231234526_icephys.nwb,kept,
 000569/000569/sub-1229448755/sub-1229448755_ses-1231220321_icephys.nwb,kept,
-000569/000569/sub-1229448755/sub-1229448755_ses-1229729186_icephys.nwb,kept,
-000569/000569/sub-1229448755/sub-1229448755_ses-1229726699_icephys.nwb,kept,
-000569/000569/sub-1229448755/sub-1229448755_ses-1229697792_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223230447_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223216141_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223193867_icephys.nwb,kept,
+000569/000569/sub-1229448755/sub-1229448755_ses-1229729186_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1229448755/sub-1229448755_ses-1229729186_icephys.nwb
+000569/000569/sub-1229448755/sub-1229448755_ses-1229726699_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1229448755/sub-1229448755_ses-1229726699_icephys.nwb
+000569/000569/sub-1229448755/sub-1229448755_ses-1229697792_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1229448755/sub-1229448755_ses-1229697792_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223230447_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223230447_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223216141_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223216141_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223193867_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223193867_icephys.nwb
 000569/000569/sub-1223010848/sub-1223010848_ses-1223075016_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223246864_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223245489_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223240845_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223274165_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223257956_icephys.nwb,kept,
+000569/000569/sub-1223010848/sub-1223010848_ses-1223246864_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223246864_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223245489_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223245489_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223240845_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223240845_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223274165_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223274165_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223257956_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223257956_icephys.nwb
 000569/000569/sub-1223010848/sub-1223010848_ses-1223239507_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223072279_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223065636_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223266741_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223266236_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223057941_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223056539_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223050946_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223050885_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223043448_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223032714_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223032670_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223022017_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223069347_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223067925_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223784745_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223780485_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223751280_icephys.nwb,kept,
-000569/000569/sub-1223010848/sub-1223010848_ses-1223524258_icephys.nwb,kept,
+000569/000569/sub-1223010848/sub-1223010848_ses-1223072279_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223072279_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223065636_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223065636_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223266741_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223266741_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223266236_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223266236_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223057941_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223057941_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223056539_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223056539_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223050946_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223050946_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223050885_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223050885_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223043448_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223043448_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223032714_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223032714_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223032670_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223032670_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223022017_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223022017_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223069347_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223069347_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223067925_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223067925_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223784745_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223784745_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223780485_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223780485_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223751280_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223751280_icephys.nwb
+000569/000569/sub-1223010848/sub-1223010848_ses-1223524258_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1223010848/sub-1223010848_ses-1223524258_icephys.nwb
 000569/000569/sub-1223010848/sub-1223010848_ses-1223466043_icephys.nwb,kept,
-000569/000569/sub-1216132605/sub-1216132605_ses-1216178721_icephys.nwb,kept,
+000569/000569/sub-1216132605/sub-1216132605_ses-1216178721_icephys.nwb,dropped_duplicate,same features as 002029/002029/sourcedata/raw/sub-1216132605/sub-1216132605_ses-1216178721_icephys.nwb
 000569/000569/sub-1214579789/sub-1214579789_ses-1214626483_icephys.nwb,kept,
 000569/000569/sub-1214579789/sub-1214579789_ses-1214622236_icephys.nwb,kept,
 000569/000569/sub-1214579789/sub-1214579789_ses-1214621812_icephys.nwb,kept,
+000570/000570/sub-653718968/sub-653718968_ses-654144504_icephys.nwb,kept,
+000570/000570/sub-653027578/sub-653027578_ses-653037324_icephys.nwb,kept,
+000570/000570/sub-651940947/sub-651940947_ses-652075828_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-651940947/sub-651940947_ses-652075828_icephys.nwb
+000570/000570/sub-648220984/sub-648220984_ses-650074243_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-648220984/sub-648220984_ses-650074243_icephys.nwb
+000570/000570/sub-643488707/sub-643488707_ses-643583112_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-643488707/sub-643488707_ses-643583112_icephys.nwb
+000570/000570/sub-636948822/sub-636948822_ses-636991746_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-636948822/sub-636948822_ses-636991746_icephys.nwb
+000570/000570/sub-636948822/sub-636948822_ses-636982248_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-636948822/sub-636948822_ses-636982248_icephys.nwb
+000570/000570/sub-611526465/sub-611526465_ses-611901143_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-611526465/sub-611526465_ses-611901143_icephys.nwb
+000570/000570/sub-611526465/sub-611526465_ses-611894345_icephys.nwb,kept,
+000570/000570/sub-611526465/sub-611526465_ses-611822740_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-611526465/sub-611526465_ses-611822740_icephys.nwb
+000570/000570/sub-611526465/sub-611526465_ses-611610562_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-611526465/sub-611526465_ses-611610562_icephys.nwb
+000570/000570/sub-601901227/sub-601901227_ses-602201875_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-601901227/sub-601901227_ses-602201875_icephys.nwb
+000570/000570/sub-601901227/sub-601901227_ses-602196772_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-601901227/sub-601901227_ses-602196772_icephys.nwb
+000570/000570/sub-601901227/sub-601901227_ses-601916346_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-601901227/sub-601901227_ses-601916346_icephys.nwb
+000570/000570/sub-596832620/sub-596832620_ses-596907532_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-596832620/sub-596832620_ses-596907532_icephys.nwb
+000570/000570/sub-596832620/sub-596832620_ses-596902756_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-596832620/sub-596832620_ses-596902756_icephys.nwb
+000570/000570/sub-596832620/sub-596832620_ses-596893802_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-596832620/sub-596832620_ses-596893802_icephys.nwb
+000570/000570/sub-595536280/sub-595536280_ses-595715586_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-595536280/sub-595536280_ses-595715586_icephys.nwb
+000570/000570/sub-595536280/sub-595536280_ses-595707931_icephys.nwb,kept,
+000570/000570/sub-595536280/sub-595536280_ses-595699633_icephys.nwb,kept,
+000570/000570/sub-595536280/sub-595536280_ses-595597605_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-595536280/sub-595536280_ses-595597605_icephys.nwb
+000570/000570/sub-595536280/sub-595536280_ses-595591210_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-595536280/sub-595536280_ses-595591210_icephys.nwb
+000570/000570/sub-591270122/sub-591270122_ses-591419661_icephys.nwb,kept,
+000570/000570/sub-591270122/sub-591270122_ses-591342850_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-591270122/sub-591270122_ses-591342850_icephys.nwb
+000570/000570/sub-591270122/sub-591270122_ses-591326867_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-591270122/sub-591270122_ses-591326867_icephys.nwb
+000570/000570/sub-571458187/sub-571458187_ses-571674350_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-571458187/sub-571458187_ses-571674350_icephys.nwb
+000570/000570/sub-569800644/sub-569800644_ses-569883325_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-569800644/sub-569800644_ses-569883325_icephys.nwb
+000570/000570/sub-569800644/sub-569800644_ses-569870997_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-569800644/sub-569800644_ses-569870997_icephys.nwb
+000570/000570/sub-569800644/sub-569800644_ses-569844238_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-569800644/sub-569800644_ses-569844238_icephys.nwb
+000570/000570/sub-569800644/sub-569800644_ses-569817501_icephys.nwb,kept,
+000570/000570/sub-567704703/sub-567704703_ses-567773605_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-567704703/sub-567704703_ses-567773605_icephys.nwb
+000570/000570/sub-567704703/sub-567704703_ses-567737666_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-567704703/sub-567704703_ses-567737666_icephys.nwb
+000570/000570/sub-548298531/sub-548298531_ses-548480228_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-548298531/sub-548298531_ses-548480228_icephys.nwb
+000570/000570/sub-1154304730/sub-1154304730_ses-1154338526_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-1154304730/sub-1154304730_ses-1154338526_icephys.nwb
+000570/000570/sub-1102847412/sub-1102847412_ses-1104092216_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1102847412/sub-1102847412_ses-1104092216_icephys.nwb
+000570/000570/sub-1084222307/sub-1084222307_ses-1086233100_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1084222307/sub-1084222307_ses-1086233100_icephys.nwb
+000570/000570/sub-1078812471/sub-1078812471_ses-1079573610_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1078812471/sub-1078812471_ses-1079573610_icephys.nwb
+000570/000570/sub-1068001195/sub-1068001195_ses-1069706289_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1068001195/sub-1068001195_ses-1069706289_icephys.nwb
+000570/000570/sub-1068001195/sub-1068001195_ses-1069681999_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1068001195/sub-1068001195_ses-1069681999_icephys.nwb
+000570/000570/sub-1067593183/sub-1067593183_ses-1069274565_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1067593183/sub-1067593183_ses-1069274565_icephys.nwb
+000570/000570/sub-1067593183/sub-1067593183_ses-1069247264_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1067593183/sub-1067593183_ses-1069247264_icephys.nwb
+000570/000570/sub-1064223281/sub-1064223281_ses-1065914773_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1064223281/sub-1064223281_ses-1065914773_icephys.nwb
+000570/000570/sub-1058766119/sub-1058766119_ses-1061726321_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1058766119/sub-1058766119_ses-1061726321_icephys.nwb
+000570/000570/sub-1058766119/sub-1058766119_ses-1060130799_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1058766119/sub-1058766119_ses-1060130799_icephys.nwb
+000570/000570/sub-1058766119/sub-1058766119_ses-1059245935_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1058766119/sub-1058766119_ses-1059245935_icephys.nwb
+000570/000570/sub-1056763709/sub-1056763709_ses-1059677171_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1056763709/sub-1056763709_ses-1059677171_icephys.nwb
+000570/000570/sub-1056763709/sub-1056763709_ses-1057891427_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1056763709/sub-1056763709_ses-1057891427_icephys.nwb
+000570/000570/sub-1052597362/sub-1052597362_ses-1054186694_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1052597362/sub-1052597362_ses-1054186694_icephys.nwb
+000570/000570/sub-1048208693/sub-1048208693_ses-1049264939_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1048208693/sub-1048208693_ses-1049264939_icephys.nwb
+000570/000570/sub-1036289507/sub-1036289507_ses-1037668793_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1036289507/sub-1036289507_ses-1037668793_icephys.nwb
+000570/000570/sub-1036289507/sub-1036289507_ses-1037480901_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1036289507/sub-1036289507_ses-1037480901_icephys.nwb
+000570/000570/sub-1032184063/sub-1032184063_ses-1033067786_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1032184063/sub-1032184063_ses-1033067786_icephys.nwb
+000570/000570/sub-1029212302/sub-1029212302_ses-1030953959_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1029212302/sub-1029212302_ses-1030953959_icephys.nwb
+000570/000570/sub-1026212250/sub-1026212250_ses-1027446425_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1026212250/sub-1026212250_ses-1027446425_icephys.nwb
+000570/000570/sub-1005024327/sub-1005024327_ses-1005671030_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1005024327/sub-1005024327_ses-1005671030_icephys.nwb
+000570/000570/sub-1001372857/sub-1001372857_ses-1002962014_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1001372857/sub-1001372857_ses-1002962014_icephys.nwb
+000570/000570/sub-1001372857/sub-1001372857_ses-1002550936_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-1001372857/sub-1001372857_ses-1002550936_icephys.nwb
+000570/000570/sub-964127089/sub-964127089_ses-967540022_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-964127089/sub-964127089_ses-967540022_icephys.nwb
+000570/000570/sub-925115441/sub-925115441_ses-932161154_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-925115441/sub-925115441_ses-932161154_icephys.nwb
+000570/000570/sub-925115441/sub-925115441_ses-928374037_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-925115441/sub-925115441_ses-928374037_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-910813336_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-910813336_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-910809635_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-910809635_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-910477695_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-910477695_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-910459748_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-910459748_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-912201092_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-912201092_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-912063850_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-912063850_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-912009042_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-912009042_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-914257522_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-914257522_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-912228391_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-912228391_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-910817683_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-910817683_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-910434305_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-910434305_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-910335384_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-910335384_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-912369140_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-912369140_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-912335658_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-912335658_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-912289929_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-912289929_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-910319653_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-910319653_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-910298720_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-910298720_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-907597657_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-907597657_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-907584983_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-907584983_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-907584826_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-907584826_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-907573806_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-907573806_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-907564597_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-907564597_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-910408142_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-910408142_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-910352638_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-910352638_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-910352435_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-910352435_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-914396880_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-914396880_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-914355964_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-914355964_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-914354777_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-914354777_icephys.nwb
+000570/000570/sub-907501068/sub-907501068_ses-914342344_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-907501068/sub-907501068_ses-914342344_icephys.nwb
+000570/000570/sub-902323111/sub-902323111_ses-906766343_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-902323111/sub-902323111_ses-906766343_icephys.nwb
+000570/000570/sub-889628154/sub-889628154_ses-893605727_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-889628154/sub-889628154_ses-893605727_icephys.nwb
+000570/000570/sub-879881396/sub-879881396_ses-886414486_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-879881396/sub-879881396_ses-886414486_icephys.nwb
+000570/000570/sub-871554083/sub-871554083_ses-875493592_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-871554083/sub-871554083_ses-875493592_icephys.nwb
+000570/000570/sub-871554083/sub-871554083_ses-875385912_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-871554083/sub-871554083_ses-875385912_icephys.nwb
+000570/000570/sub-871554083/sub-871554083_ses-873817347_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-871554083/sub-871554083_ses-873817347_icephys.nwb
+000570/000570/sub-871554083/sub-871554083_ses-873805567_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-871554083/sub-871554083_ses-873805567_icephys.nwb
+000570/000570/sub-871554083/sub-871554083_ses-873779439_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-871554083/sub-871554083_ses-873779439_icephys.nwb
+000570/000570/sub-871554083/sub-871554083_ses-873756822_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-871554083/sub-871554083_ses-873756822_icephys.nwb
+000570/000570/sub-861697826/sub-861697826_ses-864072643_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-861697826/sub-861697826_ses-864072643_icephys.nwb
+000570/000570/sub-854418264/sub-854418264_ses-856015250_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-854418264/sub-854418264_ses-856015250_icephys.nwb
+000570/000570/sub-849052252/sub-849052252_ses-852636209_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-849052252/sub-849052252_ses-852636209_icephys.nwb
+000570/000570/sub-849052252/sub-849052252_ses-851881593_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-849052252/sub-849052252_ses-851881593_icephys.nwb
+000570/000570/sub-849052252/sub-849052252_ses-851826230_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-849052252/sub-849052252_ses-851826230_icephys.nwb
+000570/000570/sub-849052252/sub-849052252_ses-851708174_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-849052252/sub-849052252_ses-851708174_icephys.nwb
+000570/000570/sub-849052252/sub-849052252_ses-850885881_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-849052252/sub-849052252_ses-850885881_icephys.nwb
+000570/000570/sub-846404050/sub-846404050_ses-848629111_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-846404050/sub-846404050_ses-848629111_icephys.nwb
+000570/000570/sub-846404050/sub-846404050_ses-847931011_icephys.nwb,kept,
+000570/000570/sub-846404050/sub-846404050_ses-847887213_icephys.nwb,kept,
+000570/000570/sub-846404050/sub-846404050_ses-1042056967_icephys.nwb,kept,
+000570/000570/sub-837533189/sub-837533189_ses-839239538_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-837533189/sub-837533189_ses-839239538_icephys.nwb
+000570/000570/sub-837533189/sub-837533189_ses-839223718_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-837533189/sub-837533189_ses-839223718_icephys.nwb
+000570/000570/sub-835477230/sub-835477230_ses-835704054_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-835477230/sub-835477230_ses-835704054_icephys.nwb
+000570/000570/sub-819522395/sub-819522395_ses-820061071_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-819522395/sub-819522395_ses-820061071_icephys.nwb
+000570/000570/sub-819522395/sub-819522395_ses-820022494_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-819522395/sub-819522395_ses-820022494_icephys.nwb
+000570/000570/sub-819522395/sub-819522395_ses-819983003_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-819522395/sub-819522395_ses-819983003_icephys.nwb
+000570/000570/sub-819522395/sub-819522395_ses-819891491_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-819522395/sub-819522395_ses-819891491_icephys.nwb
+000570/000570/sub-819522395/sub-819522395_ses-819770635_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-819522395/sub-819522395_ses-819770635_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819221250_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819221250_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819206225_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819206225_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819191225_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819191225_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819185113_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819185113_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819177656_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819177656_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819165835_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819165835_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819133336_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819133336_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819116462_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819116462_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819106777_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819106777_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819074421_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819074421_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819218991_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819218991_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819213646_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819213646_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819211268_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819211268_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819209049_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819209049_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819200423_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819200423_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819197395_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819197395_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819194539_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819194539_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819228933_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819228933_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819226251_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819226251_icephys.nwb
+000570/000570/sub-813352040/sub-813352040_ses-819223620_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-813352040/sub-813352040_ses-819223620_icephys.nwb
+000570/000570/sub-793165711/sub-793165711_ses-793604699_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-793165711/sub-793165711_ses-793604699_icephys.nwb
+000570/000570/sub-758233315/sub-758233315_ses-760944910_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-758233315/sub-758233315_ses-760944910_icephys.nwb
+000570/000570/sub-731978186/sub-731978186_ses-732592126_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-731978186/sub-731978186_ses-732592126_icephys.nwb
+000570/000570/sub-731978186/sub-731978186_ses-732044941_icephys.nwb,kept,
+000570/000570/sub-720619787/sub-720619787_ses-720868659_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-720619787/sub-720619787_ses-720868659_icephys.nwb
+000570/000570/sub-700619648/sub-700619648_ses-701071858_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-700619648/sub-700619648_ses-701071858_icephys.nwb
+000570/000570/sub-695464588/sub-695464588_ses-696102803_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-695464588/sub-695464588_ses-696102803_icephys.nwb
+000570/000570/sub-685740095/sub-685740095_ses-685814154_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-685740095/sub-685740095_ses-685814154_icephys.nwb
+000570/000570/sub-665691251/sub-665691251_ses-666108636_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-665691251/sub-665691251_ses-666108636_icephys.nwb
+000570/000570/sub-665691251/sub-665691251_ses-666067870_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-665691251/sub-665691251_ses-666067870_icephys.nwb
+000570/000570/sub-665691251/sub-665691251_ses-665718232_icephys.nwb,dropped_duplicate,same features as 000636/000636/sub-665691251/sub-665691251_ses-665718232_icephys.nwb
+000570/000570/sub-665691251/sub-665691251_ses-665703339_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-665691251/sub-665691251_ses-665703339_icephys.nwb
+000570/000570/sub-665691251/sub-665691251_ses-665700181_icephys.nwb,kept,
+000570/000570/sub-665691251/sub-665691251_ses-665695908_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-665691251/sub-665691251_ses-665695908_icephys.nwb
+000570/000570/sub-1122692698/sub-1122692698_ses-1122759713_icephys.nwb,dropped_duplicate,same NWB file as 000630/000630/sub-1122692698/sub-1122692698_ses-1122759713_icephys.nwb

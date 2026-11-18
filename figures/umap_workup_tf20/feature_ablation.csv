@@ -1,0 +1,8 @@
+,within-stratum enrichment,species purity enrichment,n features
+all 11 features,1.883179261813156,1.6071429740795753,11.0
+without absolute voltages,1.8266453577634496,1.4460187582835942,7.0
+"without passive (Rin, tau, sag)",1.8292522791847148,1.4613736584715482,8.0
+"without AP kinetics (upstroke, width)",1.7440840942121247,1.5116835945978373,9.0
+"without rheobase firing (rate, latency)",1.9039930326275971,1.604776936828039,10.0
+relative voltages (keep V baseline),1.8901045531990697,1.6123618875232935,11.0
+"relative voltages, no V baseline",1.906091410811359,1.60139827457996,10.0

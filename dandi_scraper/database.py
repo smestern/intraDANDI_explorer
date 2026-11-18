@@ -305,6 +305,15 @@ def run_merge_dandiset(
             if meta_.empty:
                 logger.info("dandiset %s not in cached metadata, fetching from DANDI", code)
                 meta_ = None
+            else:
+                # Cells new to a cached dandiset (e.g. after re-extraction) aren't in the cache;
+                # fetch just those assets rather than leave their age/subject/cell blank.
+                missing = temp_df.index.difference(meta_.index)
+                if len(missing):
+                    logger.info("dandiset %s: %d cells not in cached metadata, fetching them from DANDI",
+                                code, len(missing))
+                    fresh = get_dandi_metadata(code, paths=["/".join(i.split("/")[1:]) for i in missing])
+                    meta_ = pd.concat([meta_, fresh.reindex(columns=meta_.columns)])
         if meta_ is None:
             meta_ = get_dandi_metadata(code)
         meta_data.append(meta_)

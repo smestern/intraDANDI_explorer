@@ -350,7 +350,9 @@ def pick_sweeps(sweeps: dict[int, float], rheobase: float) -> dict[str, tuple[in
         return None
     closest = lambda d, x: min(d.items(), key=lambda kv: abs(kv[1] - x))  # noqa: E731
     rheo = closest(pos, rheobase)
-    strong = closest(pos, max(2 * rheobase, rheobase + 100))
+    # rheobase + 100 pA: 2x rheobase put high-rheobase (fast-spiking) cells at 400-500 pA, where
+    # hundreds of spikes merge into a solid block at figure size
+    strong = closest(pos, rheobase + 100)
     if strong[1] <= rheo[1]:
         strong = max(pos.items(), key=lambda kv: kv[1])
     if strong[1] <= rheo[1]:
@@ -400,6 +402,21 @@ def extract_traces(row: pd.Series, picks: dict) -> dict | None:
     return traces if len(traces) == 3 else None
 
 
+def trace_problem(traces: dict) -> str | None:
+    """Why a cell's three sweeps make a misleading exemplar, or None. Depolarization block on the
+    strong step (spiking stops and V sits above -35 mV for the last 40% of the step) is over-drive,
+    not the cluster's firing pattern; sweeps whose pre-step baselines differ by more than 5 mV look
+    like recording drift."""
+    base = [np.median(tr["v"][tr["t"] < 0]) for tr in traces.values() if np.any(tr["t"] < 0)]
+    if len(base) == 3 and max(base) - min(base) > 5:
+        return "baseline drift"
+    st = traces["strong"]
+    tail = st["v"][(st["t"] > 0.6 * st["dur"]) & (st["t"] < st["dur"])]
+    if len(tail) and np.median(tail) > -35 and tail.max() - np.median(tail) < 20:
+        return "depolarization block"
+    return None
+
+
 def choose_exemplars(df: pd.DataFrame, X: np.ndarray, n_examples: int, n_candidates: int = 60) -> pd.DataFrame:
     """Per cluster, walk cells from nearest to the cluster mean and keep ``n_examples``
     whose traces load, preferring new species, then new dandisets."""
@@ -421,11 +438,29 @@ def choose_exemplars(df: pd.DataFrame, X: np.ndarray, n_examples: int, n_candida
                 if pass_ == "dandiset" and r["dandiset label"] in dandisets:
                     continue
                 tried.add(idx)
-                picks = pick_sweeps(parse_sweeps(r["analyzed_sweeps"]), r["rheobase_i"])
+                sweeps = parse_sweeps(r["analyzed_sweeps"])
+                picks = pick_sweeps(sweeps, r["rheobase_i"])
                 if picks is None:
                     continue
                 traces = extract_traces(r, picks)
                 if traces is None:
+                    continue
+                # some protocols repeat the rheobase step; if the picked repeat didn't fire, use
+                # another sweep at the same amplitude so the rheobase trace shows its first spike
+                if traces["rheo"]["v"].max() < 0:
+                    rheo_sw, rheo_amp = picks["rheo"]
+                    for sw, a in sweeps.items():
+                        if sw != rheo_sw and abs(a - rheo_amp) < 1:
+                            alt = extract_traces(r, {**picks, "rheo": (sw, a)})
+                            if alt is not None and alt["rheo"]["v"].max() >= 0:
+                                traces = alt
+                                break
+                    else:
+                        print(f"  cluster {c}: skip {r['specimen_id']} (rheobase sweep has no spike)")
+                        continue
+                problem = trace_problem(traces)
+                if problem:
+                    print(f"  cluster {c}: skip {r['specimen_id']} ({problem})")
                     continue
                 rank = int(np.flatnonzero(ranked == idx)[0])
                 picked.append(dict(row=idx, rank=rank, traces=traces))
@@ -471,7 +506,9 @@ def load_cache(cache_dir):
 def draw_example(ax, meta_row, traces, ylim, xlim, scalebar=True) -> None:
     c = int(meta_row["cluster"])
     color = CLUSTER_COLORS[c]
-    styles = {"hyper": (MUTED, 0.7), "strong": (color, 0.6), "rheo": (shade(color, -0.55), 0.7)}
+    # the strong step is tinted back so the rheobase trace (first-spike latency) and the
+    # hyperpolarizing trace (sag), which separate the regular-spiking clusters, carry the panel
+    styles = {"hyper": (MUTED, 0.8), "strong": (shade(color, 0.45), 0.5), "rheo": (shade(color, -0.55), 0.8)}
     for name in ("hyper", "strong", "rheo"):  # rheobase drawn last so its first spike reads
         col, lw = styles[name]
         ax.plot(traces[name]["t"], traces[name]["v"], color=col, lw=lw, solid_joinstyle="round",
@@ -481,7 +518,10 @@ def draw_example(ax, meta_row, traces, ylim, xlim, scalebar=True) -> None:
     ax.axis("off")
     amps = "/".join(f"{traces[n]['amp']:+d}".replace("-", "−") for n in ("hyper", "rheo", "strong"))
     ax.set_title(f"{meta_row['tag']}", loc="left", fontsize=8, fontweight="bold", color=INK, pad=2)
-    ax.text(0.0, 0.0, f"{meta_row['species']} · DANDI {meta_row['dandiset']}\n{amps} pA",
+    extra = ""
+    if pd.notna(meta_row.get("sag")) and pd.notna(meta_row.get("latency_ms")):
+        extra = f" · sag {meta_row['sag']:.2f} · 1st spike {meta_row['latency_ms']:.0f} ms"
+    ax.text(0.0, 0.0, f"{meta_row['species']} · DANDI {meta_row['dandiset']}\n{amps} pA{extra}",
             transform=ax.transAxes, fontsize=5.5, color=INK_2, va="top", linespacing=1.3)
     if scalebar:  # top right is empty: spikes stop at step offset, the tail sits near rest
         x0, y0 = xlim[1] - 0.2, ylim[1] - 22
@@ -492,8 +532,12 @@ def draw_example(ax, meta_row, traces, ylim, xlim, scalebar=True) -> None:
         ax.text(x0 + 0.215, y0 + 10, "20 mV", fontsize=5.5, color=INK_2, ha="left", va="center")
 
 
-def fig_examples(meta: pd.DataFrame, traces: dict, out: str) -> None:
+def fig_examples(meta: pd.DataFrame, traces: dict, out: str, df: pd.DataFrame | None = None) -> None:
     print("example traces")
+    if df is not None:  # the two features the panels are meant to show, for the caption line
+        f = df.set_index("specimen_id")
+        meta = meta.assign(sag=meta["specimen_id"].map(pd.to_numeric(f["sag_nearest_minus_100"], errors="coerce")),
+                           latency_ms=meta["specimen_id"].map(pd.to_numeric(f["latency_0_long_square"], errors="coerce")) * 1000)
     allv = np.concatenate([tr["v"] for cell in traces.values() for tr in cell.values()])
     ylim = (np.floor(allv.min() / 10) * 10, np.ceil(allv.max() / 10) * 10 + 2)
     longest = max(float(meta[["hyper_dur_s", "rheo_dur_s", "strong_dur_s"]].max().max()), 0.5)
@@ -523,7 +567,7 @@ def fig_examples(meta: pd.DataFrame, traces: dict, out: str) -> None:
     fig, ax = plt.subplots(figsize=(2.2, 0.5))
     ax.axis("off")
     key = [("Hyperpolarizing step", MUTED), ("Rheobase step", shade(CLUSTER_COLORS[1], -0.55)),
-           ("Strong step", CLUSTER_COLORS[1])]
+           ("Strong step", shade(CLUSTER_COLORS[1], 0.45))]
     ax.legend(handles=[plt.Line2D([], [], color=c, lw=1.2, label=l) for l, c in key],
               loc="center left", ncol=1, fontsize=6, handlelength=1.5)
     save(fig, out, "examples/trace_key")
@@ -985,7 +1029,7 @@ def main(argv=None) -> int:
     if "clusters" in sections:
         fig_clusters(df, meta, args.out, rng)
     if "examples" in sections:
-        fig_examples(meta, traces, args.out)
+        fig_examples(meta, traces, args.out, df)
     frame = map_frame(df)
     if sections & {"features", "within"}:
         scales = feature_scales(df)

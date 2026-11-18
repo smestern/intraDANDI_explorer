@@ -120,7 +120,7 @@ DANDISETS_TO_SKIP: List[str] = [
     "000293",   # superseded by 000297
     "000292",   # superseded by 000297
     "000341",   # In vivo recording
-    "000570"
+    #"000570"
 ]
 
 DANDISETS_TO_INCLUDE: List[str] = [
@@ -132,6 +132,27 @@ DANDISETS_TO_INCLUDE: List[str] = [
 # recordings are always filtered at 4 kHz; 4000 puts every cell on that footing, 10000 is the old
 # fixed value (see figures/filter_test). Each cell's applied cutoff is saved as "dvdt_filter_hz".
 DVDT_FILTER_HZ: float = 4000
+
+# ipfx spike threshold target, as a fraction of the sweep's mean upstroke (ipfx default 0.05).
+# At 0.05 thresholds in fast trains slide back to the AHP trough and get rejected by the 5 ms
+# threshold-to-peak limit, and a slow ramp to the first spike puts its threshold at stimulus
+# onset; 0.2 fixes both and leaves rheobase unchanged (thresholds ~0.6 mV higher).
+SPIKE_THRESH_FRAC: float = 0.2
+
+# How far before the stimulus start (s) the spike detector's window opens. ipfx only counts a spike on an
+# upward dv/dt crossing inside the window; in some datasets (000008, 000035) the voltage leaves
+# baseline 0.1-0.3 ms before the recorded current step, so on strong steps the charging crossing
+# fell just before the window and the first spike, riding on it, was never detected. 0.5 ms
+# recovered all of them (1,137 sweeps in a 1,421-cell sample) with no change to rheobase.
+# Only the spike detector moves: ipfx reads each sweep's stim amplitude from the current right after
+# the train extractor's start (shifting that too gives 0 pA and no rheobase), and latency and the
+# subthreshold features stay measured from the true step.
+STIM_START_LEAD_S: float = 0.0005
+
+# Fast-spiking label used by the analysis tools: AP width < 0.5 ms and upstroke/downstroke ratio
+# below this. The usual cutoff of 2 was set on dv/dt filtered at 10 kHz; filtering at 4 kHz lowers
+# the ratio ~18%, and 1.53 reproduces the 10 kHz labels best (60 of 15,617 cells disagree).
+FS_UPDOWN_RATIO_MAX: float = 1.53 if DVDT_FILTER_HZ < 10000 else 2.0
 
 QC_FEATURE_BOUNDS: Dict[str, Tuple[float, float]] = { #These are generally very liberal. for example, input_resistance shouldn't actually measure 0
     "input_resistance": (10, 1e9), # ohms
@@ -320,7 +341,7 @@ def get_cohere_key() -> str:
 __all__ = [
     "Config", "CONFIG", "apply_overrides",
     "COLS_TO_KEEP", "DANDISETS_TO_SKIP", "DANDISETS_TO_INCLUDE",
-    "DVDT_FILTER_HZ", "QC_FEATURE_BOUNDS", "SCALE_FEATURES", "ROBUST_CLIP", "CODES_TO_PLOT_THRESHOLD",
+    "DVDT_FILTER_HZ", "SPIKE_THRESH_FRAC", "STIM_START_LEAD_S", "FS_UPDOWN_RATIO_MAX", "QC_FEATURE_BOUNDS", "SCALE_FEATURES", "ROBUST_CLIP", "CODES_TO_PLOT_THRESHOLD",
     "OTDA_REFERENCE_DANDISETS", "OTDA_UNLABELED_REGION", "OTDA_UNLABELED_TARGET",
     "N_COARSE_CLUSTERS", "N_FINE_CLUSTERS", "MIN_FINE_CLUSTER_SIZE", "CLUSTER_RANDOM_STATE",
     "SPECIES_REPLACEMENT", "SPECIES_BY_TAXON", "NEURODATA_TYPE_MAP",

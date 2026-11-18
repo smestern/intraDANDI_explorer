@@ -125,7 +125,7 @@ Response:"""
 
 
 class dandi_meta_parser():
-    def __init__(self, dandiset_id):
+    def __init__(self, dandiset_id, paths=None):
         self.dandiset_id = dandiset_id
         self.client = DandiAPIClient("https://api.dandiarchive.org/api/")
         self.dandiset = self.client.get_dandiset(dandiset_id)
@@ -147,16 +147,26 @@ class dandi_meta_parser():
                 self.dandiset_keywords, self.dandiset_species,
             ),
         )
-        self.asset_data = self.build_asset_data()
+        self.asset_data = self.build_asset_data(paths)
         logger.info(
             "metadata parsed for dandiset %s: %d assets, brain region %s / %s",
             self.dandiset_id, len(self.asset_data),
             self.dandiset_brain_region, self.dandiset_brain_subregion,
         )
 
-    def build_asset_data(self):
+    def _assets_at(self, paths):
+        for path in paths:
+            try:
+                yield self.dandiset.get_asset_by_path(path)
+            except Exception as exc:  # NotFoundError, or a transient API failure
+                logger.warning("dandiset %s: no asset at %s (%s)", self.dandiset_id, path, exc)
+
+    def build_asset_data(self, paths=None):
+        """Every asset in the dandiset, or only those at ``paths`` (relative to the dandiset root),
+        which saves listing thousands of assets when only a few cells are new."""
         asset_data = []
-        for asset in self.dandiset.get_assets():
+        assets = self.dandiset.get_assets() if paths is None else self._assets_at(paths)
+        for asset in assets:
             meta_asst = asset.get_metadata()
             row = {'idxs': self.dandiset_id + '/' + meta_asst.path, 'dandiset_id': self.dandiset_id,
                    'age': None, 'subject_id': None, 'cell_id': None,
@@ -176,4 +186,8 @@ class dandi_meta_parser():
             except (AttributeError, IndexError, TypeError, ValueError) as exc:
                 logger.debug("dandiset %s asset %s: incomplete metadata (%s)", self.dandiset_id, meta_asst.path, exc)
             asset_data.append(row)
+        if not asset_data:
+            return pd.DataFrame(columns=['dandiset_id', 'age', 'subject_id', 'cell_id', 'brain_region',
+                                         'brain_subregion', 'species', 'filepath', 'contributor'],
+                                index=pd.Index([], name='idxs'))
         return pd.DataFrame.from_dict(asset_data).set_index('idxs')

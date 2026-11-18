@@ -4,6 +4,7 @@ Run selection and feature extraction are gigaseal.database.long_square; this mod
 supplies the DANDI policy (which run to analyze), the CSV row format, and a QC debug
 plot next to the dandiset cache folder.
 """
+import gc
 import os
 from functools import partial
 
@@ -117,7 +118,11 @@ def data_for_specimen_id(specimen_id, passed_only, data_source, ontology, file_l
             dir_of_the_dir = os.path.dirname(dir_base)
             os.makedirs(f"{dir_of_the_dir}/debug/{os.path.basename(dir_base)}", exist_ok=True)
             fig.savefig(f"{dir_of_the_dir}/debug/{os.path.basename(dir_base)}/{os.path.basename(file_list[specimen_id])}.png")
-            plt.close()
+            plt.close(fig)
+            #the figure's reference cycles keep every plotted trace alive until a full gc pass, which
+            #python rarely runs on its own: without this, 000209 grew ~2 GB per file until the OOM killer hit
+            del fig, ax
+            gc.collect()
             #plt.pause(0.2)
 
         if len(sweeps.v) < 1:
@@ -127,8 +132,12 @@ def data_for_specimen_id(specimen_id, passed_only, data_source, ontology, file_l
         stage = "features"
         features, sweep_indexes = long_square_features(sweeps, start_time, end_time,
                                                        amp_interval=amp_interval, max_above_rheo=max_above_rheo,
-                                                       max_filter_hz=config.DVDT_FILTER_HZ)
+                                                       max_filter_hz=config.DVDT_FILTER_HZ,
+                                                       thresh_frac=config.SPIKE_THRESH_FRAC,
+                                                       detect_lead=config.STIM_START_LEAD_S)
         result.update(features)
+        result["spike_thresh_frac"] = config.SPIKE_THRESH_FRAC
+        result["stim_start_lead_s"] = config.STIM_START_LEAD_S
         #the cutoff gigaseal actually applied, after its 0.8 x Nyquist cap
         result["dvdt_filter_hz"] = min(config.DVDT_FILTER_HZ, 0.8 * min(sweeps.sampling_rate) / 2)
 

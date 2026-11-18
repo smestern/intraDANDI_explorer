@@ -50,4 +50,5 @@ dandiset_id,title,brain_region,brain_subregion,lab,source,confidence,reviewed,no
 1858,20260623_AIBS_Patchseq_BICAN_R01_Neuromodulation_mouse,Unknown,,Allen Institute,llm,low,True,AIBS HMBA/BICAN upload: no region in DANDI or NWB metadata; leave Unknown until Allen provides it
 1893,Patch-seq profiling of mouse locus coeruleus norepinephrine neurons,Brainstem,locus coeruleus,,llm,,True,legacy value: locus coeruleus
 1938,2026_AIBS_Patcheq_HiMC_mouse,Unknown,,Allen Institute,manual,,True,HiMC is not a brain region; no region in DANDI metadata
-2018,Human Neocortical Glutamatergic Neurons Revealed Through Multimodal Profiling,Neocortex,,,llm,high,False,"Title and keywords explicitly mention neocortex, but no specific subregion is stated"
+2018,Human Neocortical Glutamatergic Neurons Revealed Through Multimodal Profiling,Neocortex,,Allen Institute,llm,high,False,"Title and keywords explicitly mention neocortex, but no specific subregion is stated; lab: Allen Institute for Brain Science is a contributor organization on DANDI"
+2029,Morphoelectric Diversity and Specialization of Neuronal Cell Types in the Primate Striatum,Striatum,,Allen Institute,llm,high,False,"Title and description explicitly mention the striatum as the primary brain region studied; lab: Allen Institute, re-hosts AIBS Patch-seq macaque cells also in 000569/000635/001348"

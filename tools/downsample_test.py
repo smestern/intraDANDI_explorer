@@ -148,7 +148,7 @@ def load_cells(csv_path: str) -> pd.DataFrame:
     df = pd.read_csv(csv_path, low_memory=False, usecols=lambda c: c in set(cols))
     df["ds"] = df["dandiset label"].astype(str).str.zfill(6)
     width = df["ap_1_width_0_long_square"] * 1000
-    df["fast spiking"] = (width < 0.5) & (df["ap_1_upstroke_downstroke_ratio_0_long_square"] < 2.0)
+    df["fast spiking"] = (width < 0.5) & (df["ap_1_upstroke_downstroke_ratio_0_long_square"] < config.FS_UPDOWN_RATIO_MAX)
     return df
 
 

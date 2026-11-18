@@ -87,11 +87,11 @@ def filter_dandiset_df(row, species=None, modality=None, keywords=None, method="
     raise ValueError("method must be 'or' or 'and'")
 
 
-def get_dandi_metadata(code: str):
-    """Fetch raw + LLM-parsed metadata for a single dandiset."""
+def get_dandi_metadata(code: str, paths: Optional[List[str]] = None):
+    """Fetch raw + LLM-parsed metadata for a single dandiset; with ``paths``, only for those assets."""
     client = DandiAPIClient()
     client.get_dandiset(code)  # validate the code resolves
-    metadata_parser = dandi_meta_parser(code)
+    metadata_parser = dandi_meta_parser(code, paths=paths)
     return metadata_parser.asset_data
 
 
