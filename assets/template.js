@@ -678,7 +678,8 @@ function dataset_selector(){
                 b: 20, r: 20, t: 20, l: 20
             },
             xaxis: { zeroline: false },
-            yaxis: { zeroline: false },
+            // lock 1 x-unit == 1 y-unit so the embedding is never stretched to the div's shape
+            yaxis: { zeroline: false, scaleanchor: 'x', scaleratio: 1 },
             legend: {
                 x: 1,
                 //xanchor: 'right',
