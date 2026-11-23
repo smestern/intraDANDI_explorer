@@ -2,6 +2,8 @@
 
 I thought it would be a fun exercise to integrate all the open intracellular electrophysiology datasets from the [DANDI archive](https://dandiarchive.org/) into a single dataset, similar to projects in the transcriptomics world like [HYPOMAP](https://www.nature.com/articles/s42255-022-00657-y) and [MapMyCells](https://brain-map.org/bkp/analyze/mapmycells).
 
+Browse the frontend here: https://smestern.com/intraDANDI_explorer/
+
 ### TOC
 
 * [1. What is This?](#what-is-this)  
@@ -92,7 +94,7 @@ Fig 3: How much of each feature's variance is explained by where the cell came f
 
 A few things stand out to me here. For every feature, at least half of the variance is *not* explained by any of these labels. It sits between cells within the same dandiset, which is what we would hope for if the map is mostly capturing cell types.
 
-The features with the largest dandiset share (beyond species and region) are f-I slope (~0.23), AP peak (~0.22), AP width (~0.18) and AP fast trough (~0.14). These are mostly spike shape features, which are exactly the ones we would expect to be sensitive to recording temperature and acquisition settings. The f-I slope I suspect is partially a protocol thing, as the datasets use different step sizes (from 2 pA up to 50 pA) and step durations (0.5 to 1 s). On the other hand, the passive features (Rin, tau, V baseline) and first spike latency are mostly explained by species and region, with only a small extra dandiset term. Sag has the largest species term of any feature (~0.17), which lines up with the macaque sag story above.
+The features with the largest dandiset share (beyond species and region) are f-I slope (0.23), AP peak (0.22), AP width (0.18) and AP fast trough (0.14). These are mostly spike shape features, which are exactly the ones we would expect to be sensitive to recording temperature and acquisition settings. The f-I slope I suspect is partially a protocol thing, as the datasets use different step sizes (from 2 pA up to 50 pA) and step durations (0.5 to 1 s). On the other hand, the passive features (Rin, tau, V baseline) and first spike latency are mostly explained by species and region, with only a small extra dandiset term. Sag has the largest species term of any feature (~0.17), which lines up with the macaque sag story above.
 
 There are two big caveats to reading this plot, though:
 - Since most regions (and many species) only come from a single dandiset, the blue bars are not clean 'biology' either. If a region only has one dataset, any lab effect gets credited to the region first. So I would read the blue bars as an upper bound on the biology, and the orange bars as a lower bound on the lab effect.
@@ -102,7 +104,7 @@ There are two big caveats to reading this plot, though:
 
 To get a better feel for the orange bars, I checked a few of the technical suspects directly:
 
-- Temperature: The Tolias lab has two mouse neocortex dandisets, 000008 (room temp) and 000035 (recorded warmer). Same lab, same species, same region, which makes for a nice comparison. The median AP width drops from ~1.16 ms to ~0.68 ms (roughly 40% narrower) and the AP peak drops by ~10 mV in the warmer set, while tau and threshold barely move. This fits with the temperature effect on [ion channel kinetics](https://link.springer.com/article/10.1007/BF00584655) mentioned below.
+- Temperature: The Tolias lab has two mouse neocortex dandisets, 000008 (room temp) and 000035 (recorded warmer). Same lab, species, and region, which makes for a nice comparison. The median AP width drops from ~1.16 ms to ~0.68 ms (roughly 40% narrower) and the AP peak drops by ~10 mV in the warmer set, while tau and threshold barely move. This fits with the temperature effect on [ion channel kinetics](https://link.springer.com/article/10.1007/BF00584655) mentioned below.
 - Sampling rate: Most of the Allen data is sampled at 50 kHz, whereas many of the other labs (including the spinal cord sets) sampled at 10 kHz. To test this, I took Allen cells and degraded them down to 10 kHz, then re-ran the feature extraction. This only explained ~10% of the AP width gap between the 10 and 50 kHz datasets, and almost none of the AP peak gap. AP upstroke is the most sensitive (about a third of the gap, more with heavier filtering). The passive features did not change at all. So sampling rate is a factor for upstroke, but it does not explain most of the differences.
 - Protocol: For about half the cells, the rheobase sweep contains a single spike, so the 'firing rate at rheobase' is really just 1/(step duration). Coarser current steps also overshoot rheobase. Because of this I swapped rheobase firing rate out for the f-I slope.
 
@@ -154,8 +156,6 @@ As noted above, spike width is a common metric for rapid, rough cell typing of c
 
 ![](images/eac47f05_out1.png)
 
-The rightmost plot shows the first action potential from each cell. Here, you can see a pretty clear distinction between the fast spiker (cell 296) and the broad spiker (cell 1315). With 296 showing almost double the width. The caveat is that these cells are from disparate dandisets. Cell 296 is from dandiset 000020 (https://dandiarchive.org/dandiset/000020), whereas cell 1315 comes from 000008 (https://dandiarchive.org/dandiset/000008?search=000008&pos=1). These dandisets differ not only in their region (V1 vs motor), but also in their recording temperature (000020 at physiological, 000008 at room temp). Recording temp can have a large effect on [ion channel kinetics](https://link.springer.com/article/10.1007/BF00584655) and therefore action potential width.
-
 ## The sag islands:
 
 There are two distinct islands in the UMAP embedding with a large measured "Sag". Sag in this case refers to the deflection present in the voltage when a cell is stimulated with a hyperpolarizing pulse. 
@@ -168,8 +168,6 @@ Image: A example of an HCN driven 'sag' from: https://doi.org/10.1016/j.neuropha
 You may see a cell with sag described as having a h-current (or Ih), and this h-current is [thought to be driven by HCN channels](https://www.cell.com/neuron/fulltext/S0896-6273(18)30900-0). H-current bestows a number of different computation properites on neurons and expression differs across species and age (check out: [here](https://www.cell.com/neuron/fulltext/S0896-6273(18)30900-0), [or here](https://academic.oup.com/cercor/article/31/2/845/5927870?login=true)). Here sag is expressed as a ratio between steady state and absolutle deflection, you may see papers report absoulte or relative deflection in mV instead.
 
 ![](images/5d0ef2f9_out2.png)
-
-Interestingly, we identified two cells with different sag phenotypes, both from the human dataset.
 
 ## The latency corner:
 
