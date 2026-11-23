@@ -158,6 +158,12 @@ img[alt="FI"] {
 :root {
   --page-max: 1920px;
   --page-gap: 1rem;
+  --page-bg: #e1e0d4; /* beige sampled from the blog figure background */
+}
+
+/* only the page behind the cards; cards, table rows and plots stay white */
+body {
+  background-color: var(--page-bg);
 }
 
 .page-wrap {
